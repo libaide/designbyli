@@ -1,26 +1,124 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html,
+body {
+  overflow-x: hidden;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --bg: 255 255 255;
+  --fg: 17 24 39;
+  --muted: 107 114 128;
+  --card: 245 245 245;
+  --border: 229 231 235;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: 10 10 12;
+    --fg: 243 244 246;
+    --muted: 156 163 175;
+    --card: 17 17 20;
+    --border: 38 38 43;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  .animate-scrollBounce,
+  .animate-scrollPing {
+    animation: none !important;
+  }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-card] {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}
+
+
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.85; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+@keyframes scrollPing {
+  0%   { transform: scale(1);   opacity: 0.25; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.985);
+    filter: blur(10px);
+    -webkit-mask-position: 0% 50%;
+    mask-position: 0% 50%;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+    -webkit-mask-position: 100% 50%;
+    mask-position: 100% 50%;
+  }
+}
+
+/* Optional: a tiny “sparkle” pass */
+@keyframes logoSheen {
+  0% { opacity: 0; transform: translateX(-30%); }
+  30% { opacity: 0.12; }
+  100% { opacity: 0; transform: translateX(30%); }
+}
+
+.logoParticleIn {
+  animation: logoReveal 1100ms ease-out both;
+  /* The “particle dissolve” comes from the mask image */
+  -webkit-mask-image: url("/noise.png");
+  mask-image: url("/noise.png");
+  -webkit-mask-size: 300% 300%;
+  mask-size: 300% 300%;
+}
+
+.logoParticleIn::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.25), transparent 55%);
+  mix-blend-mode: screen;
+  animation: logoSheen 900ms ease-out 200ms both;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .logoParticleIn {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .logoParticleIn::after { display: none !important; }
+}
+
+.animate-scrollBounce {
+  animation: scrollBounce 1.4s ease-in-out infinite;
+}
+
+.animate-scrollPing {
+  animation: scrollPing 1.8s ease-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.bg-background { background-color: rgb(var(--bg)); }
+.text-foreground { color: rgb(var(--fg)); }
+.text-muted { color: rgb(var(--muted)); }
+.bg-card { background-color: rgb(var(--card)); }
+.border-border { border-color: rgb(var(--border)); }
