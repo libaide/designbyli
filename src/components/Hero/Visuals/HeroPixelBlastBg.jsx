@@ -10,15 +10,15 @@ export default function HeroPixelBlastBg() {
       <PixelBlast
         eventSourceId="hero"
         variant="circle"
-        pixelSize={6}
-        color="#707070"
-        patternScale={3}
-        patternDensity={1.2}
-        pixelSizeJitter={0.5}
+        pixelSize={4}
+        color="#8F8F8F"
+        patternScale={5}
+        patternDensity={1.5}
+        pixelSizeJitter={1.8}
         enableRipples
         rippleSpeed={0.55}
         rippleThickness={0.14}
-        rippleIntensityScale={2.2}
+        rippleIntensityScale={2.8}
         liquid={false}
         liquidStrength={0.12}
         liquidRadius={1.2}
