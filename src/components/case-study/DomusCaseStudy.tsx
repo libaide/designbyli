@@ -261,197 +261,340 @@ export default function OperatorCaseStudy() {
   </Container>
 </section>
 
+{/* User Journeys */}
+<section className="relative overflow-hidden py-24">
+  {/* Soft background */}
+  <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
 
+  <Container>
+    {/* Header */}
+    <div className="relative mx-auto max-w-3xl text-center">
+      <h3 className="text-4xl font-semibold tracking-tight">User Journeys</h3>
+      <p className="mt-4 text-sm leading-relaxed text-muted">
+        Once the MVP objectives were defined and the research had been done, I
+        mapped the user journeys for the three main roles: Client, Technician,
+        and Admin. These journeys helped me identify critical moments that would
+        shape the MVP.
+      </p>
+    </div>
 
-
-      {/* UI Previews */}
-      <section className="py-14">
-        <Container>
-          <h3 className="text-4xl font-semibold tracking-tight text-center">
-            UI Previews
-          </h3>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {[
-              { src: "/case-studies/operator/ui-preview-1.png", alt: "UI preview 1" },
-              { src: "/case-studies/operator/ui-preview-2.png", alt: "UI preview 2" },
-              { src: "/case-studies/operator/ui-preview-3.png", alt: "UI preview 3" },
-              { src: "/case-studies/operator/ui-preview-4.png", alt: "UI preview 4" },
-            ].map((img) => (
-              <div
-                key={img.src}
-                className="group relative overflow-hidden rounded-3xl border border-border bg-card"
-              >
-                <div className="relative aspect-[16/10]">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8">
-            <div className="overflow-hidden rounded-3xl border border-border bg-card">
-              <div className="px-5 pt-5">
-                <p className="text-sm font-semibold">Chrome extension in action</p>
-                <p className="mt-1 text-sm text-muted">
-                  Quick demo of the Assist extension inside the agent workflow.
-                </p>
-              </div>
-
-              <div className="mt-4 max-w-100 mx-auto">
-                <img
-                  src="/case-studies/operator/extension-demo.gif"
-                  alt="Chrome extension demo animation"
-                  className="block w-full"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {[
-              { src: "/case-studies/operator/ui-preview-1.png", alt: "UI preview 1" },
-              { src: "/case-studies/operator/ui-preview-2.png", alt: "UI preview 2" },
-            ].map((img) => (
-              <div
-                key={img.src}
-                className="group relative overflow-hidden rounded-3xl border border-border bg-card"
-              >
-                <div className="relative aspect-[16/10]">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Impact & Results */}
-      <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0">
-          <Image
-            src="/case-studies/operator/impact-bg1.png"
-            alt="Customer support agent using Operator"
-            fill
-            className="object-cover object-right"
-            priority
-          />
+    {/* Cards */}
+    <div className="relative mt-14 space-y-8">
+      {/* Client */}
+      <div className="rounded-3xl border border-border bg-card shadow-sm">
+        <div className="px-6 pt-6 sm:px-8 sm:pt-8">
+          <h4 className="text-sm font-semibold tracking-tight text-foreground">
+            Client
+          </h4>
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
-
-        <Container>
-          <div className="relative z-10">
-            <h3 className="text-center text-5xl font-semibold tracking-tight text-white">
-              Impact And Results
-            </h3>
-
-            <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-start">
-              <div>
-                <p className="text-lg text-white/80">
-                  Operator improved usability and adoption across the company’s
-                  internal tools.
-                </p>
-
-                <ul className="mt-10 space-y-6">
-                  <li className="flex items-start gap-4">
-                    <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black">
-                      ✓
-                    </span>
-                    <p className="text-base text-white/90">
-                      <span className="font-semibold text-white">Adopted by 500+</span>{" "}
-                      agents across teams
-                    </p>
-                  </li>
-
-                  <li className="flex items-start gap-4">
-                    <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black">
-                      ✓
-                    </span>
-                    <p className="text-base text-white/90">
-                      Unified design language across{" "}
-                      <span className="font-semibold text-white">3 applications</span>{" "}
-                      and an admin panel
-                    </p>
-                  </li>
-
-                  <li className="flex items-start gap-4">
-                    <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black">
-                      ✓
-                    </span>
-                    <p className="text-base text-white/90">
-                      Positive feedback from early users—agents and paying
-                      customers—highlighting clarity and visual consistency
-                    </p>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="flex items-start">
-                <div className="border-l border-white/30 pl-6">
-                  <p className="text-lg leading-relaxed text-white/85">
-                    The success and maturity of Operator’s product direction
-                    contributed to Crescendo’s interest in PartnerHero during the
-                    acquisition process, demonstrating the value of scalable
-                    internal tooling and thoughtful product design.
-                  </p>
-                </div>
-              </div>
+        <div className="p-4 sm:p-6 pt-4">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-background">
+            <div className="relative aspect-[16/6] sm:aspect-[16/5]">
+              <Image
+                src="/case-studies/domus/user-journeys-client.png"
+                alt="User journey map for the Client role"
+                fill
+                className="object-contain"
+                sizes="(min-width: 1024px) 900px, 100vw"
+              />
             </div>
           </div>
-        </Container>
-      </section>
+        </div>
+      </div>
 
-      {/* Reflection */}
-      <section className="relative overflow-hidden py-24">
-        <Container>
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h3 className="text-center text-5xl font-semibold tracking-tight text-white">
-              Reflection
-            </h3>
+      {/* Technician */}
+      <div className="rounded-3xl border border-border bg-card shadow-sm">
+        <div className="px-6 pt-6 sm:px-8 sm:pt-8">
+          <h4 className="text-sm font-semibold tracking-tight text-foreground">
+            Technician
+          </h4>
+        </div>
 
-            <div className="mt-5 space-y-6 text-sm leading-relaxed text-muted">
-              <p>
-                Through my experience with Operator, I gained valuable insights into implementing
-                design strategies across multiple teams and products while maintaining consistency,
-                transparency, and purpose.
-              </p>
-              <p>
-                As features regularly changed, objectives transformed, and deadlines shifted, I was
-                motivated to develop greater flexibility, better communication skills, and a more
-                practical design methodology.
-              </p>
-              <p>
-                However, the most fulfilling aspect went beyond the process itself; it was observing
-                teams thrive using the exact tools we had created.
-              </p>
-
-              <h4 className="text-center text-3xl font-semibold tracking-tight text-white">
-                ...exceptional design goes beyond visual interfaces.
-              </h4>
-
-              <p>
-                Exceptional design involves empowering individuals to perform at their highest level
-                through clear communication, understanding, and flexible systems that evolve
-                alongside their users.
-              </p>
+        <div className="p-4 sm:p-6 pt-4">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-background">
+            <div className="relative aspect-[16/6] sm:aspect-[16/5]">
+              <Image
+                src="/case-studies/domus/user-journeys-technician.png"
+                alt="User journey map for the Technician role"
+                fill
+                className="object-contain"
+                sizes="(min-width: 1024px) 900px, 100vw"
+              />
             </div>
           </div>
-        </Container>
-      </section>
+        </div>
+      </div>
+
+      {/* Admin */}
+      <div className="rounded-3xl border border-border bg-card shadow-sm">
+        <div className="px-6 pt-6 sm:px-8 sm:pt-8">
+          <h4 className="text-sm font-semibold tracking-tight text-foreground">
+            Admin
+          </h4>
+        </div>
+
+        <div className="p-4 sm:p-6 pt-4">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-background">
+            <div className="relative aspect-[16/6] sm:aspect-[16/5]">
+              <Image
+                src="/case-studies/domus/user-journeys-admin.png"
+                alt="User journey map for the Admin role"
+                fill
+                className="object-contain"
+                sizes="(min-width: 1024px) 900px, 100vw"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+{/* User Flows */}
+<section className="relative overflow-hidden py-24">
+  {/* Soft background */}
+  <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
+
+  <Container>
+    {/* Header */}
+    <div className="relative mx-auto max-w-3xl text-center">
+      <h3 className="text-4xl font-semibold tracking-tight">User Flows</h3>
+      <p className="mt-4 text-sm leading-relaxed text-muted">
+        I proceeded to map the core user flows for the three main roles. This
+        helped clarify how each interaction connected to business logic, from
+        posting a service to payment confirmation.
+      </p>
+    </div>
+
+    {/* Large flow artifact card */}
+    <div className="relative mt-14">
+      <div className="mx-auto max-w-5xl rounded-3xl border border-border bg-card shadow-sm">
+        <div className="p-4 sm:p-6">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-background">
+            {/* Wide stage for diagrams */}
+            <div className="relative aspect-[16/10] sm:aspect-[16/9]">
+              <Image
+                src="/case-studies/domus/user-flows.png"
+                alt="User flows diagram for Client, Technician, and Admin"
+                fill
+                className="object-contain"
+                sizes="(min-width: 1024px) 900px, 100vw"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+{/* Wireframes */}
+<section className="relative overflow-hidden py-24">
+  {/* Soft background */}
+  <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
+
+  <Container>
+    {/* Header */}
+    <div className="relative mx-auto max-w-3xl text-center">
+      <h3 className="text-4xl font-semibold tracking-tight">Wireframes</h3>
+      <p className="mt-4 text-sm leading-relaxed text-muted">
+        After finalizing the flow diagrams and defining the MVP scope and core features, I transitioned into low-fidelity wireframes. I collaborated closely with Ricardo and Samuel to ensure all critical MVP functionalities were represented and the UX remained simple and intuitive. We now had a validated UX structure that served as the foundation for the final UI design and later handoff to developers.
+      </p>
+    </div>
+
+    {/* Large flow artifact card */}
+    <div className="relative mt-14">
+      <div className="mx-auto max-w-5xl rounded-3xl border border-border bg-card shadow-sm">
+        <div className="p-4 sm:p-6">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-background">
+            {/* Wide stage for diagrams */}
+            <div className="relative aspect-[16/10] sm:aspect-[16/9]">
+              <Image
+                src="/case-studies/domus/user-flows.png"
+                alt="User flows diagram for Client, Technician, and Admin"
+                fill
+                className="object-contain"
+                sizes="(min-width: 1024px) 900px, 100vw"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+{/* Design System */}
+<section className="relative overflow-hidden py-24">
+  {/* Soft background */}
+  <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
+
+  <Container>
+    {/* Header */}
+    <div className="relative mx-auto max-w-3xl text-center">
+      <h3 className="text-4xl font-semibold tracking-tight">Design System</h3>
+
+      <p className="mt-4 text-sm leading-relaxed text-muted">
+        Once the UX structure and wireframes were validated, I moved on to
+        establishing the visual identity and design system for Domus. The goal
+        was to build a cohesive, scalable, and developer-friendly UI foundation
+        that could evolve as the product matured.
+      </p>
+
+      <p className="mt-6 text-sm leading-relaxed text-muted">
+        I based the entire interface on Material Design 3 principles, and using
+        the Material Theme Builder, I generated an accessible and “Domus branded”
+        design system. With the personalized Material design system, I created a
+        local components library and style tokens tailored to the project’s
+        needs.
+      </p>
+    </div>
+
+    {/* Artifact card */}
+    <div className="relative mt-14">
+      <div className="mx-auto max-w-5xl rounded-3xl border border-border bg-card shadow-sm">
+        <div className="p-4 sm:p-6">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-background">
+            {/* Taller stage to match the screenshot */}
+            <div className="relative aspect-[16/13] sm:aspect-[16/12]">
+              <Image
+                src="/case-studies/domus/design-system.png"
+                alt="Domus design system artifacts: color, typography, icons, and components"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 900px, 100vw"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+
+      
+{/* UI Previews */}
+<section className="relative overflow-hidden py-28">
+  {/* Dark gradient background */}
+  <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-indigo-950 to-black" />
+
+  <Container>
+    {/* Header */}
+    <div className="relative mx-auto max-w-3xl text-center">
+      <h3 className="text-4xl font-semibold tracking-tight text-white">
+        UI Previews
+      </h3>
+      <p className="mt-4 text-sm leading-relaxed text-white/80">
+        The MVP design defined a clear, testable foundation for product
+        validation.
+      </p>
+    </div>
+
+    {/* Mobile UI grid */}
+    <div className="relative mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        "/case-studies/domus/ui/mobile-1.png",
+        "/case-studies/domus/ui/mobile-2.png",
+        "/case-studies/domus/ui/mobile-3.png",
+        "/case-studies/domus/ui/mobile-4.png",
+        "/case-studies/domus/ui/mobile-5.png",
+        "/case-studies/domus/ui/mobile-6.png",
+        "/case-studies/domus/ui/mobile-7.png",
+        "/case-studies/domus/ui/mobile-8.png",
+      ].map((src) => (
+        <div
+          key={src}
+          className="relative overflow-hidden rounded-3xl bg-black/30 shadow-xl ring-1 ring-white/10"
+        >
+          <div className="relative aspect-[9/19]">
+            <Image
+              src={src}
+              alt="Domus mobile UI preview"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 20vw, 50vw"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Desktop / Admin previews */}
+    <div className="relative mt-20 space-y-10">
+      {/* Wide dashboard */}
+      <div className="mx-auto max-w-6xl rounded-3xl bg-black/30 p-4 shadow-xl ring-1 ring-white/10">
+        <div className="relative overflow-hidden rounded-2xl">
+          <div className="relative aspect-[16/9]">
+            <Image
+              src="/case-studies/domus/ui/admin-dashboard.png"
+              alt="Domus admin dashboard UI"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 80vw, 100vw"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Technician profile / verification */}
+      <div className="mx-auto max-w-4xl rounded-3xl bg-black/30 p-4 shadow-xl ring-1 ring-white/10">
+        <div className="relative overflow-hidden rounded-2xl">
+          <div className="relative aspect-[16/10]">
+            <Image
+              src="/case-studies/domus/ui/technician-profile.png"
+              alt="Technician verification and profile UI"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 60vw, 100vw"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+  {/* Reflection */}
+<section className="relative overflow-hidden py-28">
+  {/* Background image */}
+  <div className="absolute inset-0">
+    <Image
+      src="/case-studies/domus/reflection-bg.jpg"
+      alt="Domus reflection background"
+      fill
+      className="object-cover"
+      priority={false}
+    />
+  </div>
+
+  {/* Readability overlay */}
+  <div className="absolute inset-0 bg-black/25" />
+
+  <Container>
+    <div className="relative z-10 flex justify-center">
+      <div className="w-full max-w-3xl rounded-3xl border border-border bg-card/90 p-10 text-center shadow-xl backdrop-blur">
+        <h3 className="text-3xl font-semibold tracking-tight">Reflection</h3>
+
+        <p className="mt-4 text-sm leading-relaxed text-muted">
+          Domus provided me with the opportunity to combine UX strategy and
+          product design execution, transforming a simple idea into a validated
+          MVP.
+        </p>
+
+        <p className="mt-5 text-base font-medium italic leading-relaxed text-foreground">
+          This project strengthened my ability to design trust-based ecosystems
+          and create scalable product foundations for emerging markets.
+        </p>
+      </div>
+    </div>
+  </Container>
+</section>
+    
+
+      
     </>
   );
 }
