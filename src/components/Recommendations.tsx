@@ -159,6 +159,7 @@ export default function Recommendations() {
       <Section
         title="Recommendations"
         subtitle="What teammates and stakeholders have said about working with me."
+        align="center"
       >
         <div className="mt-10 flex flex-col items-center">
           <div className="relative w-full max-w-3xl">

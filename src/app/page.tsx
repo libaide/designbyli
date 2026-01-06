@@ -8,6 +8,7 @@ import Recommendations from "@/components/Recommendations";
 import Logo from "@/components/logo";
 import Section from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
+import Button from "@/components/Button";
 
 export default function HomePage() {
   return (
@@ -37,12 +38,10 @@ export default function HomePage() {
               </p>
 
               {/* CTA */}
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-xl bg-card px-6 py-3 text-sm font-medium border border-border hover:opacity-90 transition"
-              >
-                Contact
-              </Link>
+              <Link href="/contact">
+              <Button variant="cta">
+              Get in touch
+              </Button></Link>
             </div>
           </Container>
         </div>
@@ -84,16 +83,18 @@ export default function HomePage() {
       <Recommendations />
 
       {/* Contact (Homepage) */}
-      <section id="home-contact" className="py-20">
-        <Section
-          title="Let’s work together"
-          subtitle="Have a project in mind or want to collaborate? Send me a message."
-        >
-          <Container>
-            <ContactForm />
-          </Container>
-        </Section>
-      </section>
+      <section id="home-contact" className="py-20 bg-white text-black">
+  <Section
+    title="Let’s work together"
+    subtitle="Have a project in mind or want to collaborate? Send me a message."
+    align="center"
+  >
+    <div className="flex justify-center">
+      <ContactForm />
+    </div>
+  </Section>
+</section>
+
     </>
   );
 }

@@ -5,6 +5,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Section from "@/components/Section";
 import { projects } from "@/data/projects";
 import Image from "next/image";
+import Button from "@/components/Button";
+
 
 function useInViewStaggered(count: number) {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -60,7 +62,8 @@ export default function FeaturedWorkAnimated() {
 
   return (
     <section id="featured-work" className="py-16">
-      <Section title="Featured work" subtitle="Selected projects and case studies.">
+      <Section title="Featured work" subtitle="Selected projects and case studies."
+      align= "center">
         <div ref={containerRef} className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((p, i) => (
             <Link
@@ -116,16 +119,10 @@ export default function FeaturedWorkAnimated() {
 
         {/* CTA */}
         <div className="mt-12 flex justify-center">
-          <Link
-            href="/work"
-            className={[
-              "inline-flex items-center justify-center rounded-full",
-              "border border-border bg-card px-6 py-3 text-sm font-medium",
-              "transition hover:bg-muted/40",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-            ].join(" ")}
-          >
-            View more projects
+          <Link href="/work">
+            <Button>
+              View more projects
+            </Button>
           </Link>
         </div>
       </Section>

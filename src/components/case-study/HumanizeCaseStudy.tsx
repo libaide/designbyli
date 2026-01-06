@@ -42,46 +42,52 @@ export default function HumanizeCaseStudy() {
       </section>
 
       {/* Problem & Context */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
+<section className="relative overflow-hidden">
+  {/* Background */}
+  <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
-        <div className="relative mx-auto w-full max-w-5xl px-4">
-          <div className="relative z-10 min-h-[620px] py-24">
-            <div className="max-w-xl">
-              <h3 className="text-4xl font-semibold tracking-tight text-white">
-                Problem & Context
-              </h3>
+  <div className="relative mx-auto w-full max-w-5xl px-6 py-24">
+    <div className="grid items-center gap-12 lg:grid-cols-2">
+      {/* Text */}
+      <div className="relative z-10 max-w-xl">
+        <h3 className="text-4xl font-semibold tracking-tight text-white">
+          Problem &amp; Context
+        </h3>
 
-              <p className="mt-6 text-sm leading-relaxed text-white/80">
-                PartnerHero’s global CX teams could offer high-quality support at scale. The challenge was turning this operation capability into a lightweight, self-serve Shopify app, with frictionless user experience.
-              </p>
+        <p className="mt-6 text-sm leading-relaxed text-white/80">
+          PartnerHero’s global CX teams could offer high-quality support at
+          scale. The challenge was turning this operational capability into a
+          lightweight, self-serve Shopify app with a frictionless user
+          experience.
+        </p>
 
-              <p className="mt-6 text-sm leading-relaxed text-white/80">
-                <strong>Merchant Pain Points</strong>
-              </p>
+        <p className="mt-6 text-sm leading-relaxed text-white/80 font-semibold">
+          Merchant Pain Points
+        </p>
 
-              <ul className="mt-4 ml-4 list-disc space-y-2 text-sm leading-relaxed text-white/80">
-                <li>Customer emails piling up during nights/weekends</li>
-                <li>High costs of hiring support staff</li>
-                <li>Difficulty maintaining consistent tone and quality</li>
-                <li>App fatigue / too many apps</li>
-              </ul>
-            </div>
-          </div>
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-white/80">
+          <li>Customer emails piling up during nights and weekends</li>
+          <li>High costs of hiring and training support staff</li>
+          <li>Difficulty maintaining consistent tone and quality</li>
+          <li>App fatigue caused by fragmented tooling</li>
+        </ul>
+      </div>
 
-          <div className="pointer-events-none absolute bottom-0 right-4 z-0 hidden lg:block">
-            <div className="relative h-[560px] w-[420px]">
-              <Image
-                src="/case-studies/humanize/problem-context.png"
-                alt="Humanize concept illustration"
-                fill
-                className="object-contain object-bottom"
-                priority
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Image */}
+      <div className="relative h-[420px] w-full lg:h-[520px]">
+        <Image
+          src="/case-studies/humanize/problem-context.png"
+          alt="Humanize concept illustration"
+          fill
+          className="object-contain object-bottom"
+          priority
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
       {/* Business Objectives */}
       <section className="py-14">
