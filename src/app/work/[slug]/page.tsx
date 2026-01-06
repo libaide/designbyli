@@ -4,6 +4,7 @@ import CaseHero from "@/components/case-study/CaseHero";
 
 import OperatorCaseStudy from "@/components/case-study/OperatorCaseStudy";
 import DomusCaseStudy from "@/components/case-study/DomusCaseStudy";
+import HumanizeCaseStudy from "@/components/case-study/HumanizeCaseStudy";
 
 export default async function CaseStudyPage({
   params,
@@ -36,21 +37,24 @@ export default async function CaseStudyPage({
         align="bottom"
       />
 
-      {slug === "operator" ? <OperatorCaseStudy /> : null}
-      {slug === "domus" ? <DomusCaseStudy /> : null}
+      {slug === "operator" && <OperatorCaseStudy />}
+      {slug === "domus" && <DomusCaseStudy />}
+      {slug === "humanize" && <HumanizeCaseStudy />}
 
-      {slug !== "operator" && slug !== "domus" ? (
-        <section className="py-12">
-          <Container>
-            <h3 className="text-3xl font-semibold tracking-tight">
-              Case study in progress
-            </h3>
-            <p className="mt-2 text-sm text-muted">
-              This case study is being built next.
-            </p>
-          </Container>
-        </section>
-      ) : null}
+      {slug !== "operator" &&
+        slug !== "domus" &&
+        slug !== "humanize" && (
+          <section className="py-12">
+            <Container>
+              <h3 className="text-3xl font-semibold tracking-tight">
+                Case study in progress
+              </h3>
+              <p className="mt-2 text-sm text-muted">
+                This case study is being built next.
+              </p>
+            </Container>
+          </section>
+        )}
     </div>
   );
 }

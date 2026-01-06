@@ -6,6 +6,8 @@ import HeroPixelBlastBg from "@/components/Hero/Visuals/HeroPixelBlastBg";
 import FeaturedWorkAnimated from "@/components/FeaturedWorkAnimated";
 import Recommendations from "@/components/Recommendations";
 import Logo from "@/components/logo";
+import Section from "@/components/Section";
+import ContactForm from "@/components/ContactForm";
 
 export default function HomePage() {
   return (
@@ -80,6 +82,18 @@ export default function HomePage() {
 
       {/* Recommendations */}
       <Recommendations />
+
+      {/* Contact (Homepage) */}
+      <section id="home-contact" className="py-20">
+        <Section
+          title="Let’s work together"
+          subtitle="Have a project in mind or want to collaborate? Send me a message."
+        >
+          <Container>
+            <ContactForm />
+          </Container>
+        </Section>
+      </section>
     </>
   );
 }

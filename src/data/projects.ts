@@ -27,22 +27,22 @@ export const projects: Project[] = [
     cover: "/covers/domus.png",
   },
   {
-    slug: "skin-studio",
-    title: "Skin Studio",
-    category: "Web Design & Payments",
-    description:
-      "Marketing website and custom HPP payment integration for a skincare clinic.",
-    tags: ["Web Design", "Payments", "HPP"],
-    cover: "/covers/skin-studio.png",
-  },
-  {
     slug: "humanize",
     title: "Humanize",
+    category: "Web Design & Payments",
+    description:
+      "A Shopify application that enables store owners to offer 24/7 email support backed by a team of expert customer service associates at rates that stores of any size can afford. ",
+    tags: ["UX", "UI", "Shopify App"],
+    cover: "/covers/humanize1.png",
+  },
+  {
+    slug: "skin-studio",
+    title: "Skin Studio",
     category: "UX / UI",
     description:
-      "A human-centered UX/UI exploration focused on empathy-driven digital experiences.",
-    tags: ["UX", "UI", "Research"],
-    cover: "/covers/humanize.png",
+      "Marketing website and custom HPP payment integration for a skincare clinic.",
+    tags: ["Payments", "Web Design","HPP",],
+    cover: "/covers/skin-studio.png",
   },
   {
     slug: "realtor",
