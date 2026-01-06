@@ -8,7 +8,9 @@ import Image from "next/image";
 
 function useInViewStaggered(count: number) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState<boolean[]>(() => Array(count).fill(false));
+  const [visible, setVisible] = useState<boolean[]>(() =>
+    Array(count).fill(false)
+  );
 
   useEffect(() => {
     const el = containerRef.current;
@@ -45,7 +47,7 @@ function useInViewStaggered(count: number) {
 }
 
 export default function FeaturedWorkAnimated() {
-  const featuredSlugs = useMemo(() => ["operator", "domus", "skin-studio"], []);
+  const featuredSlugs = useMemo(() => ["operator", "domus", "humanize"], []);
   const featured = useMemo(
     () =>
       featuredSlugs
@@ -76,16 +78,15 @@ export default function FeaturedWorkAnimated() {
             >
               {/* Image / thumbnail */}
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted/30">
-  <Image
-    src={p.cover}
-    alt={`${p.title} cover`}
-    fill
-    className="object-cover transition duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-95"
-    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-    priority={p.slug === "operator"}
-  />
-</div>
-
+                <Image
+                  src={p.cover}
+                  alt={`${p.title} cover`}
+                  fill
+                  className="object-cover transition duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-95"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  priority={p.slug === "operator"}
+                />
+              </div>
 
               {/* Title */}
               <h3 className="mt-6 text-xl font-semibold tracking-tight">{p.title}</h3>
@@ -111,6 +112,21 @@ export default function FeaturedWorkAnimated() {
               </span>
             </Link>
           ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/work"
+            className={[
+              "inline-flex items-center justify-center rounded-full",
+              "border border-border bg-card px-6 py-3 text-sm font-medium",
+              "transition hover:bg-muted/40",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            ].join(" ")}
+          >
+            View more projects
+          </Link>
         </div>
       </Section>
     </section>
