@@ -155,7 +155,7 @@ export default function Recommendations() {
   if (items.length === 0) return null;
 
   return (
-    <section className="py-16">
+    <section className="py-16 bg-[#000000]">
       <Section
         title="Recommendations"
         subtitle="What teammates and stakeholders have said about working with me."

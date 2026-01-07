@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import FadeInOnView from "./FadeInOnView";
+
 
 type Field = "name" | "email" | "message";
 
