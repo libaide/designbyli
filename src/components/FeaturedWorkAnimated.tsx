@@ -99,7 +99,7 @@ export default function FeaturedWorkAnimated() {
                 {p.tags.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full border border-border px-4 py-1 text-xs text-muted"
+                    className="rounded-full border border-border px-4 py-1 text-sm text-muted"
                   >
                     {t}
                   </span>
@@ -107,7 +107,7 @@ export default function FeaturedWorkAnimated() {
               </div>
 
               {/* Description */}
-              <p className="mt-4 text-sm text-muted max-w-[40ch]">{p.description}</p>
+              <p className="mt-4 text-m text-muted max-w-[40ch]">{p.description}</p>
 
               {/* View */}
               <span className="mt-4 inline-block text-sm underline underline-offset-4">

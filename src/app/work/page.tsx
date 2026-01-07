@@ -14,10 +14,9 @@ export default function WorkPage() {
           >
             <div className="flex items-start justify-between gap-4">
               <h3 className="text-lg font-semibold">{p.title}</h3>
-              <span className="text-sm underline">View</span>
             </div>
 
-            <p className="mt-2 text-sm text-muted">{p.description}</p>
+            <p className="mt-2 text-m text-muted">{p.description}</p>
 
             <div className="mt-4 flex flex-wrap gap-2">
               {p.tags.map((t) => (
