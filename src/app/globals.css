@@ -46,6 +46,24 @@ body {
   50% { transform: translateY(6px); opacity: 1; }
 }
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp 700ms ease-out forwards;
+  will-change: transform, opacity;
+}
+
+
 @keyframes scrollPing {
   0%   { transform: scale(1);   opacity: 0.25; }
   70%  { transform: scale(1.6); opacity: 0; }
@@ -122,3 +140,25 @@ body {
 .text-muted { color: rgb(var(--muted)); }
 .bg-card { background-color: rgb(var(--card)); }
 .border-border { border-color: rgb(var(--border)); }
+
+
+.cursor-reveal {
+  -webkit-mask-image: radial-gradient(
+    circle var(--reveal-radius, 180px) at var(--reveal-x, -999px) var(--reveal-y, -999px),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: radial-gradient(
+    circle var(--reveal-radius, 180px) at var(--reveal-x, -999px) var(--reveal-y, -999px),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+

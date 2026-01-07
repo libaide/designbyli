@@ -9,6 +9,10 @@ import Logo from "@/components/logo";
 import Section from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
 import Button from "@/components/Button";
+import FadeInOnView from "@/components/FadeInOnView";
+import Noise from "@/components/Noise";
+
+
 
 export default function HomePage() {
   return (
@@ -32,13 +36,14 @@ export default function HomePage() {
             <Logo size={324} priority delayMs={100} />
           </div>
 
-          <p className="max-w-3xl text-xl leading-relaxed text-muted sm:text-4xl tracking-tight">
+          <p className="animate-fade-up max-w-3xl text-xl leading-relaxed text-muted sm:text-4xl tracking-tight">
             clear · functional · beautiful
           </p>
-
+          <div className="animate-fade-up [animation-delay:340ms]">
           <Link href="/contact">
             <Button variant="cta">Get in touch</Button>
           </Link>
+          </div>
         </div>
       </Container>
     </div>
@@ -80,23 +85,46 @@ export default function HomePage() {
 
 
       {/* Featured work */}
-      <FeaturedWorkAnimated />
+      <FadeInOnView>
+        <FeaturedWorkAnimated />
+      </FadeInOnView>
 
       {/* Recommendations */}
-      <Recommendations />
+      <FadeInOnView>
+       <Recommendations />
+      </FadeInOnView>
+
 
       {/* Contact (Homepage) */}
-      <section id="home-contact" className="py-20 bg-white text-black">
-  <Section
-    title="Let’s work together"
-    subtitle="Have a project in mind or want to collaborate? Send me a message."
-    align="center"
-  >
-    <div className="flex justify-center">
-      <ContactForm />
-    </div>
-  </Section>
+<section
+  id="home-contact"
+  className="relative overflow-hidden py-20 bg-[#ffffff] text-black"
+><FadeInOnView>
+  {/* Noise BG */}
+  <Noise
+    patternSize={250}
+    patternScaleX={1}
+    patternScaleY={1}
+    patternRefreshInterval={2}
+    patternAlpha={35}
+    className="opacity-70"
+  />
+
+  <div className="relative z-10">
+    <Section
+      title="Let’s work together"
+      subtitle="Have a project in mind or want to collaborate? Send me a message."
+      align="center"
+    >
+      <div className="flex justify-center">
+        <ContactForm />
+      </div>
+    </Section>
+  </div>
+  </FadeInOnView>
 </section>
+
+
 
     </>
   );
