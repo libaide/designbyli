@@ -98,31 +98,32 @@ export default function HomePage() {
       {/* Contact (Homepage) */}
 <section
   id="home-contact"
-  className="relative overflow-hidden py-20 bg-[#ffffff] text-black"
-><FadeInOnView>
-  {/* Noise BG */}
+  className="relative overflow-hidden py-20 bg-white text-black"
+>
+  {/* Noise BG - must fill the SECTION */}
   <Noise
     patternSize={250}
     patternScaleX={1}
     patternScaleY={1}
     patternRefreshInterval={2}
     patternAlpha={35}
-    className="opacity-70"
+    className="absolute inset-0 z-0 opacity-70"
   />
 
   <div className="relative z-10">
-    <Section
-      title="Let’s work together"
-      subtitle="Have a project in mind or want to collaborate? Send me a message."
-      align="center"
-    >
-      <div className="flex justify-center">
-        <ContactForm />
-      </div>
-    </Section>
+    <FadeInOnView>
+      <Section
+        title="Let’s work together"
+        align="center"
+      >
+        <div className="flex justify-center">
+          <ContactForm />
+        </div>
+      </Section>
+    </FadeInOnView>
   </div>
-  </FadeInOnView>
 </section>
+
 
 
 
