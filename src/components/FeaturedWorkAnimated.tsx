@@ -9,7 +9,9 @@ import Button from "@/components/Button";
 
 function useInViewStaggered(count: number) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState<boolean[]>(() => Array(count).fill(false));
+  const [visible, setVisible] = useState<boolean[]>(() =>
+    Array(count).fill(false)
+  );
 
   useEffect(() => {
     const el = containerRef.current;
@@ -21,6 +23,7 @@ function useInViewStaggered(count: number) {
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
+
           const idx = Number((entry.target as HTMLElement).dataset.index);
           if (Number.isNaN(idx)) return;
 
@@ -57,11 +60,11 @@ export default function FeaturedWorkAnimated() {
   const { containerRef, visible } = useInViewStaggered(featured.length);
 
   // Full Section reveal tracking
-  const areaRef = useRef<HTMLDivElement | null>(null);
+  const areaRef = useRef<HTMLElement | null>(null);
   const bgRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
 
-  const onPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+  const onPointerMove = useCallback((e: React.PointerEvent<HTMLElement>) => {
     const area = areaRef.current;
     const bg = bgRef.current;
     if (!area || !bg) return;
@@ -87,104 +90,108 @@ export default function FeaturedWorkAnimated() {
   }, []);
 
   return (
-    <section id="featured-work" className="py-16">
-      {/* ✅ Wrap the entire Section so title is included */}
+    <section
+      id="featured-work"
+      ref={areaRef}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
+      className="relative overflow-hidden rounded-3xl py-16"
+    >
+      {/* BG – always visible on mobile */}
       <div
-        ref={areaRef}
-        onPointerMove={onPointerMove}
-        onPointerLeave={onPointerLeave}
-        className="relative overflow-hidden rounded-3xl"
-      >
-        {/* BG – always visible on mobile */}
-<div
-  aria-hidden="true"
-  className="
-    absolute inset-0 pointer-events-none
-    bg-[url('/featured-work-bg.png')]
-    bg-auto bg-center bg-repeat
-    opacity-25
-    md:hidden
-  "
-/>
+        aria-hidden="true"
+        className="
+          absolute inset-0 pointer-events-none
+          bg-[url('/featured-work-bg.png')]
+          bg-auto bg-center bg-repeat
+          opacity-25
+          md:hidden
+        "
+      />
 
-{/* BG – cursor reveal on desktop */}
-<div
-  ref={bgRef}
-  aria-hidden="true"
-  className="
-    absolute inset-0 pointer-events-none
-    hidden md:block
-    cursor-reveal
-    bg-[url('/featured-work-bg.png')]
-    bg-cover bg-center bg-no-repeat
-    opacity-35
-  "
-  style={{ ["--reveal-radius" as any]: "220px" }}
-/>
+      {/* BG – cursor reveal on desktop */}
+      <div
+        ref={bgRef}
+        aria-hidden="true"
+        className="
+          absolute inset-0 pointer-events-none
+          hidden md:block
+          cursor-reveal
+          bg-[url('/featured-work-bg.png')]
+          bg-cover bg-center bg-no-repeat
+          opacity-60
+        "
+        style={{ ["--reveal-radius" as any]: "220px" }}
+      />
 
-
-        {/* Foreground content (title + grid + CTA) */}
-        <div className="relative z-10 px-6 py-12 sm:px-10 sm:py-14">
-          <Section
-            title="Featured work"
-            subtitle="Selected projects and case studies."
-            align="center"
+      {/* Foreground content */}
+      <div className="relative z-10 px-6 py-12 sm:px-10 sm:py-14">
+        <Section
+          title="Featured work"
+          subtitle="Selected projects and case studies."
+          align="center"
+        >
+          <div
+            ref={containerRef}
+            className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
           >
-            <div ref={containerRef} className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {featured.map((p, i) => (
-                <Link
-                  key={p.slug}
-                  href={`/work/${p.slug}`}
-                  data-card
-                  data-index={i}
-                  className={[
-                    "group block will-change-transform transition-[transform,opacity,filter] duration-700 ease-out",
-                    visible[i]
-                      ? "opacity-100 translate-y-0 blur-0"
-                      : "opacity-0 translate-y-6 blur-[6px]",
-                  ].join(" ")}
-                  style={{ transitionDelay: `${i * 90}ms` }}
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted/30">
-                    <Image
-                      src={p.cover}
-                      alt={`${p.title} cover`}
-                      fill
-                      className="object-cover transition duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-95"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      priority={p.slug === "operator"}
-                    />
-                  </div>
+            {featured.map((p, i) => (
+              <Link
+                key={p.slug}
+                href={`/work/${p.slug}`}
+                data-card
+                data-index={i}
+                className={[
+                  "group block will-change-transform transition-[transform,opacity,filter] duration-700 ease-out",
+                  visible[i]
+                    ? "opacity-100 translate-y-0 blur-0"
+                    : "opacity-0 translate-y-6 blur-[6px]",
+                ].join(" ")}
+                style={{ transitionDelay: `${i * 90}ms` }}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted/30">
+                  <Image
+                    src={p.cover}
+                    alt={`${p.title} cover`}
+                    fill
+                    className="object-cover transition duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-95"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={p.slug === "operator"}
+                  />
+                </div>
 
-                  <h3 className="mt-6 text-xl font-semibold tracking-tight">{p.title}</h3>
+                <h3 className="mt-6 text-xl font-semibold tracking-tight">
+                  {p.title}
+                </h3>
 
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {p.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border border-border px-4 py-1 text-sm text-muted"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-border px-4 py-1 text-sm text-muted"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
 
-                  <p className="mt-4 text-m text-muted max-w-[40ch]">{p.description}</p>
+                <p className="mt-4 text-m text-muted max-w-[40ch]">
+                  {p.description}
+                </p>
 
-                  <span className="mt-4 inline-block text-sm underline underline-offset-4">
-                    View
-                  </span>
-                </Link>
-              ))}
-            </div>
-
-            <div className="mt-12 flex justify-center">
-              <Link href="/work">
-                <Button>View more projects</Button>
+                <span className="mt-4 inline-block text-sm underline underline-offset-4">
+                  View
+                </span>
               </Link>
-            </div>
-          </Section>
-        </div>
+            ))}
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Link href="/work">
+              <Button>View more projects</Button>
+            </Link>
+          </div>
+        </Section>
       </div>
     </section>
   );
