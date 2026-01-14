@@ -3,84 +3,111 @@ import Image from "next/image";
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-4">
-      <p className="text-xs text-muted">{label}</p>
-      <p className="mt-1 text-sm font-semibold">{value}</p>
+    <div className="rounded-2xl border border-black/10 bg-[#212121] p-4 shadow-sm">
+      <p className="text-xs font-medium text-white/50">{label}</p>
+      <p className="mt-1 text-sm font-semibold text-white/90">{value}</p>
     </div>
   );
 }
 
+
 export default function OperatorCaseStudy() {
   return (
     <>
-      {/* Overview + stat chips/cards */}
-      <section className="py-12">
-        <Container>
-          <h3 className="text-4xl font-semibold tracking-tight">Overview</h3>
+      {/* Overview — Stats */}
+<section className="bg-black py-20">
+  <Container>
+    <div className="grid gap-3 sm:grid-cols-3">
+      <StatCard label="Project Type" value="Internal SaaS Platform" />
+      <StatCard label="Role" value="UX/UI Designer" />
+      <StatCard label="Timeline" value="2023–2024" />
+      <StatCard label="Tools" value="Figma, Material UI, Jira" />
+      <StatCard
+        label="Scope"
+        value="Research, Wireframing, Prototyping, Visual Design"
+      />
+      <StatCard label="Company" value="PartnerHero (now Crescendo)" />
+    </div>
+  </Container>
+</section>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-3">
-            <StatCard label="Project Type" value="Internal SaaS Platform" />
-            <StatCard label="Role" value="UX/UI Designer" />
-            <StatCard label="Timeline" value="2023-2024" />
-            <StatCard label="Tools" value="Figma, Material UI, Jira" />
-            <StatCard
-              label="Scope"
-              value="Research, Wireframing, Prototyping, Visual Design"
-            />
-            <StatCard label="Company" value="PartnerHero (now Crescendo)" />
-          </div>
+{/* Overview — Operator description */}
+<section className="bg-white py-20">
+  <Container>
+    {/* Operator header */}
+<div className="mx-auto max-w-3xl text-center">
+  <img
+    src="/case-studies/operator/Operator-logo.svg"
+    alt="Operator logo"
+    className="mx-auto h-10 w-auto"
+    draggable={false}
+  />
 
-          {/* Body copy */}
-          <div className="mt-8 space-y-6">
-            <p className="max-w-3xl text-sm leading-relaxed text-muted">
-              Operator is an internal platform designed to supercharge customer support
-              teams at PartnerHero (now Crescendo). It provides access to 3 core
-              applications:
-            </p>
+  <p className="mt-6 text-base leading-relaxed text-black/75">
+    Operator is PartnerHero’s internal platform that unified multiple support operations
+    tools into one product suite. It helps agents, managers, and admins work faster with
+    consistent workflows, shared data, and a cohesive UI across applications.
+  </p>
 
-            <ol className="max-w-4xl list-decimal space-y-4 pl-5 text-sm leading-relaxed text-muted">
-              <li>
-                <span className="font-semibold text-foreground">Assist:</span>{" "}
-                Formerly PartnerGenie, an AI copilot that helps agents draft and refine
-                customer emails, reducing response time and improving accuracy. It is
-                comprised of a web app for managers/admins and a Chrome extension that
-                agents use to interact with the AI copilot.
-              </li>
+  <p className="mt-10 text-base leading-relaxed text-black/75">
+    I led UX and UI design for{" "}
+    <span className="font-semibold text-black/90">Assist</span>,{" "}
+    <span className="font-semibold text-black/90">Quality</span>, and the{" "}
+    <span className="font-semibold text-black/90">Operator</span> admin panel, collaborating
+    closely with other designers, product managers, developers, and stakeholders.
+  </p>
+</div>
 
-              <li>
-                <span className="font-semibold text-foreground">Quality:</span>{" "}
-                Formerly Aprikot, a peer-to-peer review tool that enables teams to
-                evaluate and improve agent performance collaboratively. It is comprised
-                of a web app for managers/admins and a Chrome extension that agents use
-                to score tickets.
-              </li>
 
-              <li>
-                <span className="font-semibold text-foreground">Health:</span>{" "}
-                A powerful analytics dashboard that aggregates key metrics, providing
-                actionable insights for managers and clients. It is comprised of a web
-                app for managers/admins.
-              </li>
-            </ol>
+    {/* 3 core apps */}
+    <div className="mt-14 grid gap-10 md:grid-cols-3">
+      {[
+        {
+          title: "Assist",
+          logo: "/case-studies/operator/Assist-logo.svg",
+          body:
+            "Formerly PartnerGenie, an AI copilot that helps agents draft and refine customer emails, reducing response time and improving accuracy. It is comprised of a web app for managers/admins and a Chrome extension that agents use to interact with the AI copilot.",
+        },
+        {
+          title: "Quality",
+          logo: "/case-studies/operator/Quality-logo.svg",
+          body:
+            "Formerly Aprikot, a peer-to-peer review tool that enables teams to evaluate and improve agent performance collaboratively. It is comprised of a web app for managers/admins and a Chrome extension that agents use to score tickets.",
+        },
+        {
+          title: "Health",
+          logo: "/case-studies/operator/Health-logo.svg",
+          body:
+            "A powerful analytics dashboard that aggregates key metrics, providing actionable insights for managers and clients. It is comprised of a web app for managers/admins.",
+        },
+      ].map((app) => (
+        <div key={app.title} className="space-y-6">
+          {/* pill header (logo only) */}
+          <div className="flex items-center justify-center rounded-2xl bg-[#EFEFEF] px-6 py-5">
+  <img
+    src={app.logo}
+    alt={`${app.title} logo`}
+    className="h-[40px] w-auto"
+    draggable={false}
+  />
+</div>
+          <p className="max-w-[42ch] text-base leading-relaxed text-black/75">
+            {app.body}
+          </p>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
 
-            <p className="max-w-3xl text-sm leading-relaxed text-muted">
-              I led UX and UI design for{" "}
-              <span className="font-semibold text-foreground">Assist</span>,{" "}
-              <span className="font-semibold text-foreground">Quality</span>, and the{" "}
-              <span className="font-semibold text-foreground">Operator</span> admin panel,
-              collaborating closely with other designers, product managers, developers,
-              and stakeholders.
-            </p>
-          </div>
-        </Container>
-      </section>
+
 
       {/* Problem & Context */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
         <div className="relative mx-auto w-full max-w-5xl px-4">
-          <div className="relative z-10 min-h-[620px] py-24">
+          <div className="relative z-10 min-h-[620px] py-20">
             <div className="max-w-xl">
               <h3 className="text-4xl font-semibold tracking-tight text-white">
                 Problem & Context
@@ -118,7 +145,7 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* Research & Insights */}
-      <section className="py-14">
+      <section className="py-20">
         <Container>
           <h3 className="text-4xl font-semibold tracking-tight text-center">
             Research & Insights
@@ -400,7 +427,7 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* UI Previews */}
-      <section className="py-14">
+      <section className="py-20">
         <Container>
           <h3 className="text-4xl font-semibold tracking-tight text-center">
             UI Previews
@@ -475,7 +502,7 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* Impact & Results */}
-      <section className="relative overflow-hidden py-24">
+      <section className="relative overflow-hidden py-20">
         <div className="absolute inset-0">
           <Image
             src="/case-studies/operator/impact-bg1.png"
@@ -551,7 +578,7 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* Reflection */}
-      <section className="relative overflow-hidden py-24">
+      <section className="relative overflow-hidden py-20">
         <Container>
           <div className="relative z-10 max-w-2xl mx-auto">
             <h3 className="text-center text-5xl font-semibold tracking-tight text-white">
