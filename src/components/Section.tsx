@@ -15,7 +15,7 @@ export default function Section({
   const headerItems = align === "center" ? "items-center" : "items-start";
 
   return (
-    <section className="py-16">
+    <section className="py-24">
       <Container>
         {/* Header */}
         <div className={`flex flex-col gap-3 ${headerItems} ${headerAlign}`}>

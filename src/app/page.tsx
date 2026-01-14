@@ -36,7 +36,7 @@ export default function HomePage() {
             <Logo size={324} priority delayMs={100} />
           </div>
 
-          <p className="animate-fade-up max-w-3xl text-xl leading-relaxed text-muted sm:text-4xl tracking-tight">
+          <p className="animate-fade-up max-w-3xl text-xl leading-relaxed text-white sm:text-4xl tracking-tight">
             clear · functional · beautiful
           </p>
           <div className="animate-fade-up [animation-delay:340ms]">
@@ -98,7 +98,7 @@ export default function HomePage() {
       {/* Contact (Homepage) */}
 <section
   id="home-contact"
-  className="relative overflow-hidden py-20 bg-white text-black"
+  className="relative overflow-hidden bg-white text-black"
 >
   {/* Noise BG - must fill the SECTION */}
   <Noise
