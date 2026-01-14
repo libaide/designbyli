@@ -64,14 +64,14 @@ function SectionHeader({
 }) {
   return (
     <div className="mx-auto max-w-3xl text-center">
-      <h3
+      <h2
         className={[
           "text-4xl font-semibold tracking-tight",
           dark ? "text-white" : "text-[#1B2166]",
         ].join(" ")}
       >
         {title}
-      </h3>
+      </h2>
       {description ? (
         <p
           className={[
@@ -238,7 +238,7 @@ export default function DomusCaseStudy() {
 
       {/* Problem & Context */}
 <section className="relative overflow-hidden bg-white">
-  <div className="relative mx-auto w-full max-w-6xl px-4 py-20 lg:py-32">
+  <div className="relative mx-auto w-full max-w-6xl px-4 py-20 lg:py-20">
     {/* ✅ in-view trigger (fires once) */}
     {(() => {
       const { ref, inView } = useInView({
@@ -256,9 +256,9 @@ export default function DomusCaseStudy() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
           ].join(" ")}
         >
-          <h3 className="text-4xl font-semibold tracking-tight text-[#1B2166]">
+          <h2 className="text-4xl font-semibold tracking-tight text-[#1B2166]">
             The Problem
-          </h3>
+          </h2>
 
           <p className="mt-6 text-base leading-relaxed text-[#1B2166]/80">
             In Honduras, it can be tough to find reliable and trustworthy home service providers.
@@ -315,12 +315,12 @@ export default function DomusCaseStudy() {
 
 
       {/* Business Objectives & MVP Goals */}
-      <section className="bg-[#f6f7ff] py-28">
+      <section className="bg-[#f6f7ff] py-20">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h3 className="text-4xl font-semibold tracking-tight text-[#1B2166]">
+            <h2 className="text-4xl font-semibold tracking-tight text-[#1B2166]">
               Business Objectives & MVP Goals
-            </h3>
+            </h2>
             <p className="mt-6 text-base leading-relaxed text-[#1B2166]/80">
               The MVP aimed to validate the business hypothesis that there is real demand for
               verified home services in Honduras under a <span className="italic">“pull model”</span>, where
@@ -403,7 +403,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Personas */}
-      <section className="relative overflow-hidden py-24 sm:py-28">
+      <section className="relative overflow-hidden 20 sm:py-20">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1B1E4B] via-[#15173A] to-[#0A0B1F]" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/30" />
@@ -488,7 +488,7 @@ export default function DomusCaseStudy() {
 
       {/* Competitive Research */}
       <section
-        className="relative overflow-hidden bg-[#F6F7FF] py-28"
+        className="relative overflow-hidden bg-[#F6F7FF] py-20"
         style={{
           backgroundImage: "url('/case-studies/domus/pattern-tile.png')",
           backgroundRepeat: "repeat",
@@ -498,9 +498,9 @@ export default function DomusCaseStudy() {
         <Container>
           <div className="flex justify-center">
             <div className="w-full max-w-4xl rounded-[32px] bg-[#F6F7FF] px-10 py-12 text-center sm:px-14 sm:py-16">
-              <h3 className="text-4xl font-semibold tracking-tight text-[#1B2166]">
+              <h2 className="text-4xl font-semibold tracking-tight text-[#1B2166]">
                 Competitive Research
-              </h3>
+              </h2>
 
               <div className="mt-8 space-y-6 text-base leading-relaxed text-[#1B2166]/80">
                 <p>
@@ -524,7 +524,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* User Journeys */}
-      <section className="relative overflow-hidden py-24 sm:py-28">
+      <section className="relative overflow-hidden py-20 sm:py-20">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[#F6F7FF]" />
           <div className="absolute left-1/2 top-[-220px] h-[700px] w-[900px] -translate-x-1/2 rounded-full bg-[#D9DBFF]/35 blur-3xl" />
@@ -568,7 +568,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* User Flows */}
-      <section className="relative overflow-hidden py-24 sm:py-28">
+      <section className="relative overflow-hidden py-20 sm:py-20">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[#F6F7FF]" />
           <div className="absolute left-1/2 top-[-220px] h-[700px] w-[900px] -translate-x-1/2 rounded-full bg-[#D9DBFF]/35 blur-3xl" />
@@ -603,7 +603,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Wireframes */}
-      <section className="relative overflow-hidden py-24 sm:py-28">
+      <section className="relative overflow-hidden py-20 sm:py-20">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[#F6F7FF]" />
           <div className="absolute left-1/2 top-[-220px] h-[700px] w-[900px] -translate-x-1/2 rounded-full bg-[#D9DBFF]/35 blur-3xl" />
@@ -661,7 +661,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Design System */}
-      <section className="relative overflow-hidden py-24 sm:py-28">
+      <section className="relative overflow-hidden py-20 sm:py-20">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[#F6F7FF]" />
           <div className="absolute left-1/2 top-[-220px] h-[700px] w-[900px] -translate-x-1/2 rounded-full bg-[#D9DBFF]/35 blur-3xl" />
@@ -705,7 +705,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* UI Previews */}
-      <section className="relative overflow-hidden py-28">
+      <section className="relative overflow-hidden py-20">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-indigo-950 to-black" />
 
         <Container>
@@ -788,7 +788,7 @@ export default function DomusCaseStudy() {
 
       {/* Reflection */}
       <section
-        className="relative overflow-hidden bg-[#F6F7FF] py-28"
+        className="relative overflow-hidden bg-[#F6F7FF] py-20"
         style={{
           backgroundImage: "url('/case-studies/domus/pattern-tile.png')",
           backgroundRepeat: "repeat",
@@ -798,7 +798,7 @@ export default function DomusCaseStudy() {
         <Container>
           <div className="flex justify-center">
             <div className="w-full max-w-3xl rounded-[32px] bg-[#F6F7FF] px-10 py-12 text-center sm:px-14 sm:py-16">
-              <h3 className="text-4xl font-semibold tracking-tight text-[#1B2166]">Reflection</h3>
+              <h2 className="text-4xl font-semibold tracking-tight text-[#1B2166]">Reflection</h2>
 
               <div className="mt-8 space-y-6 text-base leading-relaxed text-[#1B2166]/80">
                 <p>

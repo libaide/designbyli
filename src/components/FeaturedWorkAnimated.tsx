@@ -95,7 +95,7 @@ export default function FeaturedWorkAnimated() {
       ref={areaRef}
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
-      className="relative overflow-hidden rounded-3xl py-16"
+      className="relative overflow-hidden rounded-3xl"
     >
       {/* BG – always visible on mobile */}
       <div
@@ -125,10 +125,9 @@ export default function FeaturedWorkAnimated() {
       />
 
       {/* Foreground content */}
-      <div className="relative z-10 px-6 py-12 sm:px-10 sm:py-14">
+      <div className="relative z-10 px-6 sm:px-10">
         <Section
           title="Featured work"
-          subtitle="Selected projects and case studies."
           align="center"
         >
           <div
@@ -175,7 +174,7 @@ export default function FeaturedWorkAnimated() {
                   ))}
                 </div>
 
-                <p className="mt-4 text-m text-muted max-w-[40ch]">
+                <p className="mt-4 text-m text-white/80 max-w-[40ch]">
                   {p.description}
                 </p>
 

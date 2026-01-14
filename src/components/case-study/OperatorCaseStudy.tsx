@@ -15,9 +15,9 @@ export default function OperatorCaseStudy() {
   return (
     <>
       {/* Overview — Stats */}
-<section className="bg-black py-20">
+<section className="bg-black py-24">
   <Container>
-    <div className="grid gap-3 sm:grid-cols-3">
+    <div className="grid gap-6 sm:grid-cols-3">
       <StatCard label="Project Type" value="Internal SaaS Platform" />
       <StatCard label="Role" value="UX/UI Designer" />
       <StatCard label="Timeline" value="2023–2024" />
@@ -32,7 +32,7 @@ export default function OperatorCaseStudy() {
 </section>
 
 {/* Overview — Operator description */}
-<section className="bg-white py-20">
+<section className="bg-white py-24">
   <Container>
     {/* Operator header */}
 <div className="mx-auto max-w-3xl text-center">
@@ -43,17 +43,17 @@ export default function OperatorCaseStudy() {
     draggable={false}
   />
 
-  <p className="mt-6 text-base leading-relaxed text-black/75">
+  <p className="mt-6 text-base leading-relaxed text-[#474747]">
     Operator is PartnerHero’s internal platform that unified multiple support operations
     tools into one product suite. It helps agents, managers, and admins work faster with
     consistent workflows, shared data, and a cohesive UI across applications.
   </p>
 
-  <p className="mt-10 text-base leading-relaxed text-black/75">
+  <p className="mt-10 text-base leading-relaxed text-[#474747]">
     I led UX and UI design for{" "}
-    <span className="font-semibold text-black/90">Assist</span>,{" "}
-    <span className="font-semibold text-black/90">Quality</span>, and the{" "}
-    <span className="font-semibold text-black/90">Operator</span> admin panel, collaborating
+    <span className="font-semibold text-[#474747]">Assist</span>,{" "}
+    <span className="font-semibold text-[#474747]">Quality</span>, and the{" "}
+    <span className="font-semibold text-[#474747]">Operator</span> admin panel, collaborating
     closely with other designers, product managers, developers, and stakeholders.
   </p>
 </div>
@@ -107,13 +107,13 @@ export default function OperatorCaseStudy() {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
         <div className="relative mx-auto w-full max-w-5xl px-4">
-          <div className="relative z-10 min-h-[620px] py-20">
+          <div className="relative z-10 min-h-[620px] py-24">
             <div className="max-w-xl">
-              <h3 className="text-4xl font-semibold tracking-tight text-white">
+              <h2 className="text-5xl font-semibold tracking-tight text-[#FF80F1]">
                 Problem & Context
-              </h3>
+              </h2>
 
-              <p className="mt-6 text-sm leading-relaxed text-white/80">
+              <p className="mt-6 text-base leading-relaxed text-white/70">
                 Customer support teams previously relied on fragmented tools,
                 inconsistent workflows, and manual processes, which led to
                 inefficiencies and rising operational costs. After several
@@ -122,7 +122,7 @@ export default function OperatorCaseStudy() {
                 team across the organization.
               </p>
 
-              <p className="mt-6 text-sm leading-relaxed text-white/80">
+              <p className="mt-6 text-base leading-relaxed text-white/70">
                 My mission was to transform fragmented internal tools into an
                 integrated, scalable product suite, ensuring that every feature
                 enhanced efficiency, clarity, and agent satisfaction.
@@ -145,21 +145,21 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* Research & Insights */}
-      <section className="py-20">
+      <section className="py-24">
         <Container>
-          <h3 className="text-4xl font-semibold tracking-tight text-center">
+          <h2 className="text-5xl text-[#FF80F1] font-semibold tracking-tight text-center">
             Research & Insights
-          </h3>
+          </h2>
 
           {/* Current State Analysis */}
-          <div className="mt-10">
+          <div className="mt-16">
             <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
               <div className="lg:col-span-4">
-                <h4 className="text-2xl font-medium tracking-tight">
+                <h3 className="text-3xl font-medium tracking-tight">
                   Current State Analysis
-                </h4>
+                </h3>
 
-                <div className="mt-5 space-y-6 text-sm leading-relaxed text-muted">
+                <div className="mt-5 space-y-6 text-base leading-relaxed text-white/70">
                   <p>
                     Customer support teams previously relied on fragmented tools,
                     inconsistent workflows, and manual processes, which led to
@@ -238,10 +238,10 @@ export default function OperatorCaseStudy() {
                 </div>
 
                 <div className="max-w-xl">
-                  <h4 className="text-3xl font-medium tracking-tight text-white">
+                  <h3 className="text-3xl font-medium tracking-tight text-white">
                     Interviews
-                  </h4>
-                  <div className="mt-6 space-y-5 text-sm leading-relaxed text-white/80">
+                  </h3>
+                  <div className="mt-6 space-y-5 text-base leading-relaxed text-white/70">
                     <p>
                       To ensure Operator effectively addressed the challenges faced by
                       customer support agents, I planned and led a series of user
@@ -267,18 +267,18 @@ export default function OperatorCaseStudy() {
           </div>
 
           {/* Impact */}
-          <section className="py-14">
-            <h4 className="text-3xl font-medium tracking-tight text-center">
+          <section className="py-16">
+            <h3 className="text-3xl font-medium tracking-tight text-center">
               Impact of Research
-            </h4>
-            <p className="mt-3 text-center text-sm text-muted">
+            </h3>
+            <p className="mt-3 text-center text-base text-white/70">
               These insights directly influenced feature updates and UI improvements, making the tools more intuitive and valuable for agents.
             </p>
 
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               <div className="rounded-2xl border border-border bg-card p-6">
-                <h4 className="font-semibold">Agent experience</h4>
-                <ul className="mt-3 list-disc pl-5 text-sm text-muted space-y-2">
+                <h4 className="font-normal text-2xl">Agent experience</h4>
+                <ul className="mt-3 list-disc pl-5 text-base text-white/70 space-y-2">
                   <li>The Chrome extension UI is unclear</li>
                   <li>Management through the web-app is difficult, and so is reviewing data.</li>
                   <li>Some agents felt the AI-generated responses were too generic and needed more customization.</li>
@@ -289,8 +289,8 @@ export default function OperatorCaseStudy() {
               </div>
 
               <div className="rounded-2xl border border-border bg-card p-6">
-                <h4 className="font-semibold">Quality & ops</h4>
-                <ul className="mt-3 list-disc pl-5 text-sm text-muted space-y-2">
+                <h4 className="font-normal text-2xl">Quality & ops</h4>
+                <ul className="mt-3 list-disc pl-5 text-base text-white/70 space-y-2">
                   <li>Agents had difficulty understanding how to navigate and score in the Chrome extension</li>
                   <li>Managers had difficulty understanding how to create rubrics</li>
                   <li>Reviewing and comparing data felt slow</li>
@@ -304,134 +304,151 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* Ideation & Design Process */}
-      <section className="relative overflow-hidden py-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-purple-900/70" />
+<section className="relative overflow-hidden py-20">
+  <div className="absolute inset-0 bg-gradient-to-br from-[#FBFAF9] via-[#FBFAF9] to-[#E6DAE8]" />
 
-        <Container>
-          <div className="relative">
-            <h3 className="text-center text-4xl font-semibold tracking-tight text-white">
-              Ideation & Design Process
-            </h3>
+  <Container>
+    <div className="relative">
+      {/* Title */}
+      <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
+        Ideation & Design Process
+      </h2>
 
-            <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:items-start">
-              <div className="lg:col-span-8">
-                <div className="grid gap-4 rounded-3xl">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-                      <div className="relative aspect-[16/10]">
-                        <Image
-                          src="/case-studies/operator/ideation-collage1.png"
-                          alt="Ideation artifact 1"
-                          fill
-                          className="object-cover"
-                          sizes="(min-width: 1024px) 34vw, 100vw"
-                        />
-                      </div>
-                    </div>
+      {/* Intro text */}
+      <div className="mx-auto mt-8 max-w-2xl space-y-6 text-base leading-relaxed text-[#474747]/80 text-center">
+        <p>
+          After reviewing insights gathered during the research process and
+          incorporating feedback from project managers, stakeholders, and
+          developers, we aligned on a structured vision for the software suite.
+          We openly discussed what an ideal version of the product would look like
+          and developed a clear plan for the MVP.
+        </p>
 
-                    <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-                      <div className="relative aspect-[16/10]">
-                        <Image
-                          src="/case-studies/operator/ideation-collage2.png"
-                          alt="Ideation artifact 2"
-                          fill
-                          className="object-cover"
-                          sizes="(min-width: 1024px) 34vw, 100vw"
-                        />
-                      </div>
-                    </div>
-                  </div>
+        <p>
+          With the roadmap in place, we began wireframing and designing the
+          interfaces section by section. To ensure a consistent and cohesive
+          experience across all applications within the platform, we chose
+          Material UI as our design framework. For the MVP, customization of
+          the design system was kept minimal to prioritize functionality and
+          speed of development.
+        </p>
+      </div>
 
-                  <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-                    <div className="relative aspect-[21/9]">
-                      <Image
-                        src="/case-studies/operator/ideation-collage3.png"
-                        alt="Ideation artifact 3"
-                        fill
-                        className="object-cover"
-                        sizes="(min-width: 1024px) 70vw, 100vw"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-                    <div className="relative aspect-[21/9]">
-                      <Image
-                        src="/case-studies/operator/ideation-collage4.png"
-                        alt="Ideation artifact 4"
-                        fill
-                        className="object-cover"
-                        sizes="(min-width: 1024px) 70vw, 100vw"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-4 lg:pl-6">
-                <div className="text-sm leading-relaxed text-white/80 space-y-6">
-                  <p>
-                    After reviewing insights gathered during the research process and
-                    incorporating feedback from project managers, stakeholders, and
-                    developers, we aligned on a structured vision for the software suite.
-                    We openly discussed what an ideal version of the product would look like
-                    and developed a clear plan for the MVP.
-                  </p>
-
-                  <p>
-                    With the roadmap in place, we began wireframing and designing the
-                    interfaces section by section. To ensure a consistent and cohesive
-                    experience across all applications within the platform, we chose
-                    Material UI as our design framework. For the MVP, customization of
-                    the design system was kept minimal to prioritize functionality and
-                    speed of development.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-16">
-              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/60">
-                <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-purple-900/40" />
-
-                <div className="relative p-8 lg:p-10">
-                  <h4 className="text-center text-2xl font-semibold text-white">
-                    Collaboration & Agile Integration
-                  </h4>
-
-                  <div className="mt-8 overflow-hidden rounded-2xl border border-transparent/10 bg-transparent">
-                    <div className="relative aspect-[16/9]">
-                      <Image
-                        src="/case-studies/operator/ideation-collab.svg"
-                        alt="Collaboration and agile integration"
-                        fill
-                        className="object-cover"
-                        sizes="(min-width: 1024px) 70vw, 100vw"
-                      />
-                    </div>
-                  </div>
-
-                  <p className="mt-8 max-w-3xl text-sm leading-relaxed text-white/80">
-                    Operator was developed within a Scrum-based engineering process.
-                    Design, product, and development worked as a single, cross-functional
-                    team. I integrated deeply into this workflow by participating in
-                    sprint planning, daily standups, and iterative design reviews. I
-                    also made sure decisions were validated early and consistently
-                    aligned with our development resources.
-                  </p>
-                </div>
-              </div>
+      {/* Images */}
+      <div className="mt-14 grid gap-6">
+        {/* Top 2-up */}
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <div className="relative aspect-[16/10]">
+              <Image
+                src="/case-studies/operator/ideation-collage1.png"
+                alt="Ideation artifact 1"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
             </div>
           </div>
-        </Container>
-      </section>
+
+          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <div className="relative aspect-[16/10]">
+              <Image
+                src="/case-studies/operator/ideation-collage2.png"
+                alt="Ideation artifact 2"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom 2-up */}
+<div className="grid gap-6 sm:grid-cols-2">
+  <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+    <div className="relative aspect-[16/10]">
+      <Image
+        src="/case-studies/operator/ideation-collage3.png"
+        alt="Ideation artifact 3"
+        fill
+        className="object-cover"
+        sizes="(min-width: 1024px) 50vw, 100vw"
+      />
+    </div>
+  </div>
+
+  <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+    <div className="relative aspect-[16/10]">
+      <Image
+        src="/case-studies/operator/ideation-collage4.png"
+        alt="Ideation artifact 4"
+        fill
+        className="object-cover"
+        sizes="(min-width: 1024px) 50vw, 100vw"
+      />
+    </div>
+  </div>
+</div>
+
+      </div>
+
+      {/* Collaboration block */}
+      <div className="mt-16">
+  <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/60">
+    <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-purple-900/40" />
+
+    <div className="relative p-8 lg:p-10">
+      {/* Title */}
+      <h4 className="text-center text-2xl font-semibold text-white">
+        Collaboration & Agile Integration
+      </h4>
+
+      {/* Content */}
+      <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:items-center">
+        {/* Text */}
+        <div className="space-y-4 text-base leading-relaxed text-white/70">
+          <p>
+            Operator was developed within a Scrum-based engineering process.
+            Design, product, and development worked as a single, cross-functional
+            team.
+          </p>
+
+          <p>
+            I integrated deeply into this workflow by participating in sprint
+            planning, daily standups, and iterative design reviews. This ensured
+            that decisions were validated early and consistently aligned with
+            development resources.
+          </p>
+        </div>
+
+        {/* Image */}
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <div className="relative aspect-[16/9]">
+            <Image
+              src="/case-studies/operator/ideation-collab.svg"
+              alt="Collaboration and agile integration"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 40vw, 100vw"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </Container>
+</section>
+
 
       {/* UI Previews */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <Container>
-          <h3 className="text-4xl font-semibold tracking-tight text-center">
+          <h2 className="text-5xl font-semibold tracking-tight text-center text-[#4521A6]">
             UI Previews
-          </h3>
+          </h2>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {[
@@ -517,13 +534,13 @@ export default function OperatorCaseStudy() {
 
         <Container>
           <div className="relative z-10">
-            <h3 className="text-center text-5xl font-semibold tracking-tight text-white">
+            <h2 className="text-center text-5xl font-semibold tracking-tight text-white">
               Impact And Results
-            </h3>
+            </h2>
 
             <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-start">
               <div>
-                <p className="text-lg text-white/80">
+                <p className="text-lg text-white/70">
                   Operator improved usability and adoption across the company’s
                   internal tools.
                 </p>
@@ -578,42 +595,48 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* Reflection */}
-      <section className="relative overflow-hidden py-20">
-        <Container>
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h3 className="text-center text-5xl font-semibold tracking-tight text-white">
-              Reflection
-            </h3>
+<section className="relative overflow-hidden py-20">
+  {/* Background gradient */}
+  <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
-            <div className="mt-5 space-y-6 text-sm leading-relaxed text-muted">
-              <p>
-                Through my experience with Operator, I gained valuable insights into implementing
-                design strategies across multiple teams and products while maintaining consistency,
-                transparency, and purpose.
-              </p>
-              <p>
-                As features regularly changed, objectives transformed, and deadlines shifted, I was
-                motivated to develop greater flexibility, better communication skills, and a more
-                practical design methodology.
-              </p>
-              <p>
-                However, the most fulfilling aspect went beyond the process itself; it was observing
-                teams thrive using the exact tools we had created.
-              </p>
+  <Container>
+    <div className="relative z-10 max-w-2xl mx-auto">
+      <h2 className="text-center text-5xl font-semibold tracking-tight text-[#FF80F1]">
+        Reflection
+      </h2>
 
-              <h4 className="text-center text-3xl font-semibold tracking-tight text-white">
-                ...exceptional design goes beyond visual interfaces.
-              </h4>
+      <div className="mt-6 space-y-6 text-base leading-relaxed text-white/70">
+        <p>
+          Through my experience with Operator, I gained valuable insights into implementing
+          design strategies across multiple teams and products while maintaining consistency,
+          transparency, and purpose.
+        </p>
 
-              <p>
-                Exceptional design involves empowering individuals to perform at their highest level
-                through clear communication, understanding, and flexible systems that evolve
-                alongside their users.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
+        <p>
+          As features regularly changed, objectives transformed, and deadlines shifted, I was
+          motivated to develop greater flexibility, better communication skills, and a more
+          practical design methodology.
+        </p>
+
+        <p>
+          However, the most fulfilling aspect went beyond the process itself; it was observing
+          teams thrive using the exact tools we had created.
+        </p>
+
+        <h4 className="pt-6 text-center text-3xl font-semibold tracking-tight text-white">
+          ...exceptional design goes beyond visual interfaces.
+        </h4>
+
+        <p className="text-center">
+          Exceptional design involves empowering individuals to perform at their highest level
+          through clear communication, understanding, and flexible systems that evolve
+          alongside their users.
+        </p>
+      </div>
+    </div>
+  </Container>
+</section>
+
     </>
   );
 }
