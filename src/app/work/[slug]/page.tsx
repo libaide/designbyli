@@ -25,36 +25,40 @@ export default async function CaseStudyPage({
     );
   }
 
+  // ✅ Projects that have their own custom hero inside the case study
+  const usesCustomHero = slug === "operator";
+
   return (
     <div className="pb-20">
-      <CaseHero
-        title={project.title}
-        subtitle={project.description}
-        meta="Case Study"
-        coverSrc={project.cover}
-        priority
-        height="lg"
-        align="bottom"
-      />
+      {/* ✅ Only show old CaseHero for projects that DON'T have a custom hero */}
+      {!usesCustomHero && (
+        <CaseHero
+          title={project.title}
+          subtitle={project.description}
+          meta="Case Study"
+          coverSrc={project.cover}
+          priority
+          height="lg"
+          align="bottom"
+        />
+      )}
 
       {slug === "operator" && <OperatorCaseStudy />}
       {slug === "domus" && <DomusCaseStudy />}
       {slug === "humanize" && <HumanizeCaseStudy />}
 
-      {slug !== "operator" &&
-        slug !== "domus" &&
-        slug !== "humanize" && (
-          <section className="py-12">
-            <Container>
-              <h3 className="text-3xl font-semibold tracking-tight">
-                Case study in progress
-              </h3>
-              <p className="mt-2 text-sm text-muted">
-                This case study is being built next.
-              </p>
-            </Container>
-          </section>
-        )}
+      {slug !== "operator" && slug !== "domus" && slug !== "humanize" && (
+        <section className="py-12">
+          <Container>
+            <h3 className="text-3xl font-semibold tracking-tight">
+              Case study in progress
+            </h3>
+            <p className="mt-2 text-sm text-muted">
+              This case study is being built next.
+            </p>
+          </Container>
+        </section>
+      )}
     </div>
   );
 }
