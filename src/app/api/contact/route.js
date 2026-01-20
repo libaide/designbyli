@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
-    const { name, email, message, honey } = await req.json();
+    const { reason, name, email, message, honey } = await req.json();
 
     // Honeypot (spam trap). If it's filled, silently succeed.
     if (honey) return Response.json({ ok: true });
@@ -30,6 +30,7 @@ export async function POST(req) {
     const subjectPrefix = process.env.CONTACT_SUBJECT_PREFIX || "Website Contact";
 
     const text = [
+      `<Reason: ${reason}>`,
       `Name: ${name}`,
       `Email: ${email}`,
       "",
