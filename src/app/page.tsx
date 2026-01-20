@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Container from "@/components/Container";
-import HeroPixelBlastBg from "@/components/Hero/Visuals/HeroPixelBlastBg";
+//import HeroPixelBlastBg from "@/components/Hero/Visuals/HeroPixelBlastBg";
 import FeaturedWorkAnimated from "@/components/FeaturedWorkAnimated";
 import Recommendations from "@/components/Recommendations";
 import Logo from "@/components/logo";
@@ -10,7 +10,7 @@ import Section from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
 import Button from "@/components/Button";
 import FadeInOnView from "@/components/FadeInOnView";
-import Noise from "@/components/Noise";
+//import Noise from "@/components/Noise";
 
 
 
@@ -22,7 +22,7 @@ export default function HomePage() {
   id="hero"
   className="relative overflow-hidden min-h-svh"
 >
-  <HeroPixelBlastBg />
+  {/* <HeroPixelBlastBg /> */}
 
   {/* Content + arrow layout */}
   <div className="relative z-10 min-h-svh flex flex-col">
@@ -104,14 +104,14 @@ export default function HomePage() {
   className="relative overflow-hidden bg-white text-black"
 >
   {/* Noise BG - must fill the SECTION */}
-  <Noise
+  {/* <Noise
     patternSize={250}
     patternScaleX={1}
     patternScaleY={1}
     patternRefreshInterval={2}
     patternAlpha={35}
     className="absolute inset-0 z-0 opacity-70"
-  />
+  /> */}
 
   <div className="relative z-10">
     <FadeInOnView>
