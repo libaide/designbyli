@@ -150,7 +150,7 @@ export default function ContactForm() {
               disabled={loading}
             >
               <option value="recruiter">
-                Full-time / Contract role (Recruiter)
+                Full-time / Contract role
               </option>
               <option value="freelance">Freelance project</option>
               <option value="collab">Collaboration</option>
