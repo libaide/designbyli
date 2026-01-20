@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Container from "@/components/Container";
-//import HeroPixelBlastBg from "@/components/Hero/Visuals/HeroPixelBlastBg";
+import HeroPixelBlastBg from "@/components/Hero/Visuals/HeroPixelBlastBg";
 import FeaturedWorkAnimated from "@/components/FeaturedWorkAnimated";
 import Recommendations from "@/components/Recommendations";
 import Logo from "@/components/logo";
@@ -22,7 +22,7 @@ export default function HomePage() {
   id="hero"
   className="relative overflow-hidden min-h-svh"
 >
-  {/* <HeroPixelBlastBg /> */}
+  <HeroPixelBlastBg />
 
   {/* Content + arrow layout */}
   <div className="relative z-10 min-h-svh flex flex-col">

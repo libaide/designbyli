@@ -344,18 +344,51 @@ export default function PixelBlast({
   moveStopMs = 140,
   waveOnMove = false,
 
-  // ✅ NEW: capture events from another element (your hero)
+  // ✅ capture events from another element (your hero)
   eventSourceId,
 }) {
   const containerRef = useRef(null);
+
+  // offscreen + tab visibility pause
   const visibilityRef = useRef({ visible: true });
+  const tabVisibleRef = useRef(true);
+
   const speedRef = useRef(speed);
 
   const threeRef = useRef(null);
   const prevConfigRef = useRef(null);
 
   const movingRef = useRef(false);
-const moveStopTimerRef = useRef(null);
+  const moveStopTimerRef = useRef(null);
+
+  // ✅ Keep visibilityRef.current.visible actually updated (fixes broken autoPauseOffscreen)
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    visibilityRef.current.visible = true;
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        visibilityRef.current.visible =
+          entry.isIntersecting && entry.intersectionRatio > 0;
+      },
+      { threshold: [0, 0.01, 0.1] }
+    );
+
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  // ✅ Pause when tab/app is backgrounded (very important on mobile)
+  useEffect(() => {
+    const onVis = () => {
+      tabVisibleRef.current = document.visibilityState === "visible";
+    };
+    onVis();
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -382,7 +415,7 @@ const moveStopTimerRef = useRef(null);
       if (threeRef.current) {
         const t = threeRef.current;
         t.resizeObserver?.disconnect();
-        cancelAnimationFrame(t.raf);
+        if (t.raf) cancelAnimationFrame(t.raf);
         t.quad?.geometry.dispose();
         t.material.dispose();
         t.composer?.dispose();
@@ -403,7 +436,7 @@ const moveStopTimerRef = useRef(null);
 
       renderer.domElement.style.width = "100%";
       renderer.domElement.style.height = "100%";
-      renderer.domElement.style.pointerEvents = "none"; // ✅ IMPORTANT
+      renderer.domElement.style.pointerEvents = "none";
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       container.appendChild(renderer.domElement);
 
@@ -535,7 +568,7 @@ const moveStopTimerRef = useRef(null);
 
       if (composer) composer.setSize(renderer.domElement.width, renderer.domElement.height);
 
-      // ✅ map pointer from TARGET element into renderer pixel space
+      // map pointer from TARGET element into renderer pixel space
       const mapToPixels = (e) => {
         const rect = container.getBoundingClientRect();
         const scaleX = renderer.domElement.width / rect.width;
@@ -550,44 +583,38 @@ const moveStopTimerRef = useRef(null);
         const ix = threeRef.current?.clickIx ?? 0;
         uniforms.uClickPos.value[ix].set(fx, fy);
         uniforms.uClickTimes.value[ix] = uniforms.uTime.value;
-        if (threeRef.current) {
-          threeRef.current.clickIx = (ix + 1) % MAX_CLICKS;
-        }
+        if (threeRef.current) threeRef.current.clickIx = (ix + 1) % MAX_CLICKS;
       };
 
       const triggerRippleAt = (fx, fy) => {
-  if (!enableRipples) return;
-  const ix = threeRef.current?.clickIx ?? 0;
-  uniforms.uClickPos.value[ix].set(fx, fy);
-  uniforms.uClickTimes.value[ix] = uniforms.uTime.value;
-  if (threeRef.current) {
-    threeRef.current.clickIx = (ix + 1) % MAX_CLICKS;
-  }
-};
+        if (!enableRipples) return;
+        const ix = threeRef.current?.clickIx ?? 0;
+        uniforms.uClickPos.value[ix].set(fx, fy);
+        uniforms.uClickTimes.value[ix] = uniforms.uTime.value;
+        if (threeRef.current) threeRef.current.clickIx = (ix + 1) % MAX_CLICKS;
+      };
 
-const onPointerMove = (e) => {
-  const { fx, fy, w, h } = mapToPixels(e);
+      const onPointerMove = (e) => {
+        const { fx, fy, w, h } = mapToPixels(e);
 
-  // ✅ Burst only when movement STARTS
-  if (burstOnMoveStart && !movingRef.current) {
-    movingRef.current = true;
-    triggerRippleAt(fx, fy);
-  }
+        // Burst only when movement STARTS
+        if (burstOnMoveStart && !movingRef.current) {
+          movingRef.current = true;
+          triggerRippleAt(fx, fy);
+        }
 
-  // ✅ Re-arm after user stops moving
-  if (moveStopTimerRef.current) window.clearTimeout(moveStopTimerRef.current);
-  moveStopTimerRef.current = window.setTimeout(() => {
-    movingRef.current = false;
-  }, moveStopMs);
+        // Re-arm after user stops moving
+        if (moveStopTimerRef.current) window.clearTimeout(moveStopTimerRef.current);
+        moveStopTimerRef.current = window.setTimeout(() => {
+          movingRef.current = false;
+        }, moveStopMs);
 
-  // ❌ No wave unless explicitly enabled
-  if (waveOnMove && touch) {
-    touch.addTouch({ x: fx / w, y: fy / h });
-  }
-};
+        // No wave unless explicitly enabled
+        if (waveOnMove && touch) {
+          touch.addTouch({ x: fx / w, y: fy / h });
+        }
+      };
 
-
-      // ✅ NEW: listen on hero (or container fallback)
       const target =
         (eventSourceId && document.getElementById(eventSourceId)) || container;
 
@@ -599,11 +626,18 @@ const onPointerMove = (e) => {
         target.removeEventListener("pointermove", onPointerMove);
       };
 
-      let raf = 0;
-
       const animate = () => {
-        if (autoPauseOffscreen && !visibilityRef.current.visible) {
-          raf = requestAnimationFrame(animate);
+        // ✅ PAUSE: offscreen OR tab hidden
+        const shouldPause =
+          (autoPauseOffscreen && !visibilityRef.current.visible) || !tabVisibleRef.current;
+
+        // Keep the RAF alive but do zero work while paused
+        if (shouldPause) {
+          if (threeRef.current) {
+            threeRef.current.raf = requestAnimationFrame(animate);
+          } else {
+            requestAnimationFrame(animate);
+          }
           return;
         }
 
@@ -621,10 +655,15 @@ const onPointerMove = (e) => {
           renderer.render(scene, camera);
         }
 
-        raf = requestAnimationFrame(animate);
+        if (threeRef.current) {
+          threeRef.current.raf = requestAnimationFrame(animate);
+        } else {
+          requestAnimationFrame(animate);
+        }
       };
 
-      raf = requestAnimationFrame(animate);
+      // start loop (and store RAF id correctly)
+      const raf = requestAnimationFrame(animate);
 
       threeRef.current = {
         renderer,
@@ -635,7 +674,7 @@ const onPointerMove = (e) => {
         clickIx: 0,
         uniforms,
         resizeObserver: ro,
-        raf,
+        raf, // ✅ will be updated each frame by animate()
         quad,
         timeOffset,
         composer,
@@ -676,24 +715,24 @@ const onPointerMove = (e) => {
     prevConfigRef.current = cfg;
 
     return () => {
-        if (moveStopTimerRef.current) {
-  window.clearTimeout(moveStopTimerRef.current);
-}
-movingRef.current = false;
+      if (moveStopTimerRef.current) window.clearTimeout(moveStopTimerRef.current);
+      movingRef.current = false;
 
       if (!threeRef.current) return;
       const t = threeRef.current;
+
       t.resizeObserver?.disconnect();
-      cancelAnimationFrame(t.raf);
+      if (t.raf) cancelAnimationFrame(t.raf); // ✅ now cancels the real latest RAF id
       t.quad?.geometry.dispose();
       t.material.dispose();
       t.composer?.dispose();
       t.renderer.dispose();
       t.cleanupEvents?.();
+
       if (t.renderer.domElement.parentElement === container)
         container.removeChild(t.renderer.domElement);
+
       threeRef.current = null;
-      
     };
   }, [
     antialias,
@@ -716,7 +755,10 @@ movingRef.current = false;
     variant,
     color,
     speed,
-    eventSourceId, // ✅ important
+    eventSourceId,
+    burstOnMoveStart,
+    moveStopMs,
+    waveOnMove,
   ]);
 
   return (
