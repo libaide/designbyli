@@ -3,19 +3,21 @@
 import { useState } from "react";
 
 type Field = "reason" | "name" | "email" | "message";
+type Status = "idle" | "success" | "error";
+
+const initialValues = {
+  reason: "recruiter",
+  name: "",
+  email: "",
+  message: "",
+  honey: "", // honeypot
+};
 
 export default function ContactForm() {
-  const [values, setValues] = useState({
-    reason: "recruiter",
-    name: "",
-    email: "",
-    message: "",
-    honey: "", // honeypot
-  });
-
+  const [values, setValues] = useState(initialValues);
   const [focused, setFocused] = useState<Partial<Record<Field, boolean>>>({});
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   const hasValue = (field: Field) => values[field].trim().length > 0;
@@ -31,8 +33,49 @@ export default function ContactForm() {
       "focus:border-black",
     ].join(" ");
 
+  function update<K extends keyof typeof initialValues>(key: K, value: string) {
+    setValues((v) => ({ ...v, [key]: value }));
+    // If they start editing after a send, clear the status so UI feels natural
+    if (status !== "idle") setStatus("idle");
+    if (errorMsg) setErrorMsg("");
+  }
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (loading) return;
+
+    const name = values.name.trim();
+    const email = values.email.trim();
+    const message = values.message.trim();
+    const reason = values.reason;
+
+    // Honeypot: if filled, pretend success (bots will fill it)
+    if (values.honey.trim()) {
+      setStatus("success");
+      setValues(initialValues);
+      return;
+    }
+
+    // Client-side validation (server still validates too)
+    if (!name || !email || !message) {
+      setStatus("error");
+      setErrorMsg("Please fill out name, email, and message.");
+      return;
+    }
+
+    // Light email sanity check (don’t overdo it)
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      setStatus("error");
+      setErrorMsg("Please enter a valid email address.");
+      return;
+    }
+
+    if (message.length > 5000) {
+      setStatus("error");
+      setErrorMsg("Message is too long (max 5000 characters).");
+      return;
+    }
+
     setLoading(true);
     setStatus("idle");
     setErrorMsg("");
@@ -42,11 +85,11 @@ export default function ContactForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          reason: values.reason,
-          name: values.name,
-          email: values.email,
-          message: values.message,
-          honey: values.honey, // spam trap
+          reason,
+          name,
+          email,
+          message,
+          honey: "", // always send empty honeypot from real users
         }),
       });
 
@@ -59,13 +102,8 @@ export default function ContactForm() {
       }
 
       setStatus("success");
-      setValues({
-        reason: "recruiter",
-        name: "",
-        email: "",
-        message: "",
-        honey: "",
-      });
+      setValues(initialValues);
+      setFocused({});
     } catch {
       setStatus("error");
       setErrorMsg("Network error. Please try again.");
@@ -80,13 +118,14 @@ export default function ContactForm() {
         <form className="space-y-6" onSubmit={onSubmit}>
           {/* Honeypot (hidden from users, bots may fill it) */}
           <div className="hidden" aria-hidden="true">
-            <label>
+            <label htmlFor="honey">
               Leave this field empty
               <input
+                id="honey"
                 type="text"
                 name="honey"
                 value={values.honey}
-                onChange={(e) => setValues((v) => ({ ...v, honey: e.target.value }))}
+                onChange={(e) => update("honey", e.target.value)}
                 tabIndex={-1}
                 autoComplete="off"
               />
@@ -95,12 +134,13 @@ export default function ContactForm() {
 
           {/* Reason */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-black">
+            <label htmlFor="reason" className="text-sm font-medium text-black">
               Reason for reaching out
             </label>
             <select
+              id="reason"
               value={values.reason}
-              onChange={(e) => setValues((v) => ({ ...v, reason: e.target.value }))}
+              onChange={(e) => update("reason", e.target.value)}
               onFocus={() => setFocused((f) => ({ ...f, reason: true }))}
               onBlur={() => setFocused((f) => ({ ...f, reason: false }))}
               name="reason"
@@ -109,7 +149,9 @@ export default function ContactForm() {
               aria-label="Reason for reaching out"
               disabled={loading}
             >
-              <option value="recruiter">Full-time / Contract role (Recruiter)</option>
+              <option value="recruiter">
+                Full-time / Contract role (Recruiter)
+              </option>
               <option value="freelance">Freelance project</option>
               <option value="collab">Collaboration</option>
               <option value="other">Other</option>
@@ -122,10 +164,13 @@ export default function ContactForm() {
 
           {/* Name */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-black">Name</label>
+            <label htmlFor="name" className="text-sm font-medium text-black">
+              Name
+            </label>
             <input
+              id="name"
               value={values.name}
-              onChange={(e) => setValues((v) => ({ ...v, name: e.target.value }))}
+              onChange={(e) => update("name", e.target.value)}
               onFocus={() => setFocused((f) => ({ ...f, name: true }))}
               onBlur={() => setFocused((f) => ({ ...f, name: false }))}
               type="text"
@@ -137,12 +182,15 @@ export default function ContactForm() {
             />
           </div>
 
-          {/* Email (always shown so backend validation passes) */}
+          {/* Email */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-black">Email</label>
+            <label htmlFor="email" className="text-sm font-medium text-black">
+              Email
+            </label>
             <input
+              id="email"
               value={values.email}
-              onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
+              onChange={(e) => update("email", e.target.value)}
               onFocus={() => setFocused((f) => ({ ...f, email: true }))}
               onBlur={() => setFocused((f) => ({ ...f, email: false }))}
               type="email"
@@ -156,10 +204,13 @@ export default function ContactForm() {
 
           {/* Message */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-black">Message</label>
+            <label htmlFor="message" className="text-sm font-medium text-black">
+              Message
+            </label>
             <textarea
+              id="message"
               value={values.message}
-              onChange={(e) => setValues((v) => ({ ...v, message: e.target.value }))}
+              onChange={(e) => update("message", e.target.value)}
               onFocus={() => setFocused((f) => ({ ...f, message: true }))}
               onBlur={() => setFocused((f) => ({ ...f, message: false }))}
               name="message"
