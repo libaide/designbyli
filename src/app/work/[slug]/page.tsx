@@ -1,3 +1,4 @@
+// app/work/[slug]/page.tsx
 import Container from "@/components/Container";
 import { projects } from "@/data/projects";
 import CaseHero from "@/components/case-study/CaseHero";
@@ -25,8 +26,9 @@ export default async function CaseStudyPage({
     );
   }
 
-  // ✅ Projects that have their own custom hero inside the case study
-  const usesCustomHero = slug === "operator";
+  // ✅ Projects that render their own hero inside the case study
+  const usesCustomHero =
+    slug === "operator" || slug === "domus" || slug === "humanize";
 
   return (
     <div className="pb-20">

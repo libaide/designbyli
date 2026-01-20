@@ -85,9 +85,12 @@ export default function HomePage() {
 
 
       {/* Featured work */}
-      <FadeInOnView>
-        <FeaturedWorkAnimated />
-      </FadeInOnView>
+<section id="featured-work">
+  <FadeInOnView>
+    <FeaturedWorkAnimated />
+  </FadeInOnView>
+</section>
+
 
       {/* Recommendations */}
       <FadeInOnView>
