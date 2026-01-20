@@ -734,7 +734,7 @@ export default function DomusCaseStudy() {
 
   {/* Content */}
   <div className="relative z-10">
-    <FadeInOnView>
+    {/*<FadeInOnView>*/}
       <Container>
         <SectionHeader
           title="UI Previews"
@@ -809,7 +809,7 @@ export default function DomusCaseStudy() {
           ))}
         </div>
       </Container>
-    </FadeInOnView>
+    {/*</FadeInOnView>*/}
   </div>
 </section>
 
