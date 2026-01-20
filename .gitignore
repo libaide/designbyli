@@ -5,3 +5,4 @@ node_modules
 .DS_Store
 .vscode
 /public/case-studies/operator/*.gif
+/public/case-studies/operator/*.gif
