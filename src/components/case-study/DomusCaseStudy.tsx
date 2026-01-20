@@ -728,88 +728,91 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* UI Previews */}
-      <section className="relative overflow-hidden py-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-indigo-950 to-black" />
+<section className="relative overflow-hidden py-20">
+  {/* Background */}
+  <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-indigo-900 via-indigo-950 to-black" />
 
-        <FadeInOnView>
-          <Container>
-            <div className="relative">
-              <SectionHeader
-                title="UI Previews"
-                dark
-                description="The MVP design defined a clear, testable foundation for product validation."
-              />
+  {/* Content */}
+  <div className="relative z-10">
+    <FadeInOnView>
+      <Container>
+        <SectionHeader
+          title="UI Previews"
+          dark
+          description="The MVP design defined a clear, testable foundation for product validation."
+        />
 
-              <div className="relative mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {mobilePreviews.map(({ src, alt }) => (
-                  <div
-                    key={src}
-                    className="relative overflow-hidden rounded-3xl bg-black/30 shadow-xl ring-1 ring-white/10"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => openImage({ src, alt })}
-                      className="group relative w-full cursor-zoom-in overflow-hidden rounded-3xl focus:outline-none"
-                      aria-label={`Expand image: ${alt}`}
-                    >
-                      <div className="relative aspect-[9/19]">
-                        <Image
-                          src={src}
-                          alt={alt}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                          sizes="(min-width: 1024px) 20vw, 50vw"
-                        />
-                      </div>
-                      <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 group-hover:ring-white/20" />
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              <div className="relative mt-20 space-y-10">
-                {[
-                  {
-                    src: "/case-studies/domus/desktop-preview-1.png",
-                    alt: "Domus admin dashboard UI",
-                    max: "max-w-6xl",
-                    aspect: "aspect-[16/9]",
-                  },
-                  {
-                    src: "/case-studies/domus/desktop-preview-2.png",
-                    alt: "Technician verification and profile UI",
-                    max: "max-w-4xl",
-                    aspect: "aspect-[16/10]",
-                  },
-                ].map((d) => (
-                  <div
-                    key={d.src}
-                    className={`mx-auto ${d.max} rounded-3xl bg-black/30 p-4 shadow-xl ring-1 ring-white/10`}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => openImage({ src: d.src, alt: d.alt })}
-                      className="group relative w-full cursor-zoom-in overflow-hidden rounded-2xl focus:outline-none"
-                      aria-label={`Expand image: ${d.alt}`}
-                    >
-                      <div className={`relative ${d.aspect}`}>
-                        <Image
-                          src={d.src}
-                          alt={d.alt}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-[1.01]"
-                          sizes="(min-width: 1024px) 80vw, 100vw"
-                        />
-                      </div>
-                      <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 group-hover:ring-white/20" />
-                    </button>
-                  </div>
-                ))}
-              </div>
+        <div className="relative mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {mobilePreviews.map(({ src, alt }) => (
+            <div
+              key={src}
+              className="relative overflow-hidden rounded-3xl bg-black/30 shadow-xl ring-1 ring-white/10"
+            >
+              <button
+                type="button"
+                onClick={() => openImage({ src, alt })}
+                className="group relative w-full cursor-zoom-in overflow-hidden rounded-3xl focus:outline-none"
+                aria-label={`Expand image: ${alt}`}
+              >
+                <div className="relative aspect-[9/19]">
+                  <Image
+                    src={src}
+                    alt={alt}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    sizes="(min-width: 1024px) 20vw, 50vw"
+                  />
+                </div>
+                <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 group-hover:ring-white/20" />
+              </button>
             </div>
-          </Container>
-        </FadeInOnView>
-      </section>
+          ))}
+        </div>
+
+        <div className="relative mt-20 space-y-10">
+          {[
+            {
+              src: "/case-studies/domus/desktop-preview-1.png",
+              alt: "Domus admin dashboard UI",
+              max: "max-w-6xl",
+              aspect: "aspect-[16/9]",
+            },
+            {
+              src: "/case-studies/domus/desktop-preview-2.png",
+              alt: "Technician verification and profile UI",
+              max: "max-w-4xl",
+              aspect: "aspect-[16/10]",
+            },
+          ].map((d) => (
+            <div
+              key={d.src}
+              className={`mx-auto ${d.max} rounded-3xl bg-black/30 p-4 shadow-xl ring-1 ring-white/10`}
+            >
+              <button
+                type="button"
+                onClick={() => openImage({ src: d.src, alt: d.alt })}
+                className="group relative w-full cursor-zoom-in overflow-hidden rounded-2xl focus:outline-none"
+                aria-label={`Expand image: ${d.alt}`}
+              >
+                <div className={`relative ${d.aspect}`}>
+                  <Image
+                    src={d.src}
+                    alt={d.alt}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.01]"
+                    sizes="(min-width: 1024px) 80vw, 100vw"
+                  />
+                </div>
+                <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 group-hover:ring-white/20" />
+              </button>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </FadeInOnView>
+  </div>
+</section>
+
 
       {/* Reflection */}
       <section
