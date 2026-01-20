@@ -473,12 +473,18 @@ export default function OperatorCaseStudy() {
         </div>
 
         <div className="mt-4 flex justify-center px-4 pb-4">
-          <img
-            src="/case-studies/operator/extension-demo.gif"
-            alt="Assist Chrome extension - Humanizing response"
-            className="w-full max-w-md object-contain rounded-xl"
-            loading="lazy"
-          />
+          <video
+  src="/case-studies/operator/extension-demo.mp4"
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="metadata"
+  className="w-full max-w-md rounded-xl"
+>
+  Your browser does not support the video tag.
+</video>
+
         </div>
       </div>
     </div>
@@ -543,12 +549,18 @@ export default function OperatorCaseStudy() {
         </div>
 
         <div className="mt-4 flex justify-center px-4 pb-4">
-          <img
-            src="/case-studies/operator/extension-demo-2.gif"
-            alt="Quality Chrome extension - Scoring"
-            className="w-full max-w-md object-contain rounded-xl"
-            loading="lazy"
-          />
+          <video
+  src="/case-studies/operator/extension-demo-2.mp4"
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="metadata"
+  className="w-full max-w-md rounded-xl"
+>
+  Your browser does not support the video tag.
+</video>
+
         </div>
       </div>
     </div>
