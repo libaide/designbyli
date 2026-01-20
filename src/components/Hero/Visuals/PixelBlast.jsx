@@ -437,7 +437,11 @@ export default function PixelBlast({
       renderer.domElement.style.width = "100%";
       renderer.domElement.style.height = "100%";
       renderer.domElement.style.pointerEvents = "none";
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      const maxDpr = isMobile ? 1 : 2;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxDpr));
+      
       container.appendChild(renderer.domElement);
 
       if (transparent) renderer.setClearAlpha(0);
