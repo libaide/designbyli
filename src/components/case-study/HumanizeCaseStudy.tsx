@@ -1,18 +1,14 @@
 "use client";
 
 import Container from "@/components/Container";
-import FadeInOnView from "@/components/FadeInOnView";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import CaseStudyTopSection from "@/components/case-study/CaseStudyTopSection";
+import RiseInOnView from "@/components/RiseInOnView";
 
-function StatCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl bg-[#1B1B1B]/50 p-4">
-      <p className="text-xs text-muted">{label}</p>
-      <p className="mt-1 text-sm font-semibold">{value}</p>
-    </div>
-  );
-}
+// ✅ Use your renamed/moved header component from the case-study folder.
+// If your file name is different, only change this import path/name.
+import SectionHeader from "@/components/case-study/SectionHeader";
 
 type ExpandedImage =
   | null
@@ -41,67 +37,62 @@ export default function HumanizeCaseStudy() {
 
   return (
     <>
-      {/* Overview + stat chips/cards */}
-      <section className="relative overflow-hidden py-20">
-        {/* Background */}
-        <div className="absolute inset-0 bg-[#1B1B1B]" />
+      {/* Split Hero */}
+      <CaseStudyTopSection
+        className="bg-white pb-20"
+        logoSrc="/case-studies/humanize/humanize-logo.png"
+        logoAlt="Humanize logo"
+        logoSize="lg"
+        illustrationSrc="/case-studies/humanize/hero.png"
+        illustrationAlt="Humanize UI preview"
+        summary={
+          <>
+            <p>
+              A lightweight, self-serve Shopify app that helps merchants deliver high-quality
+              customer support at scale through PartnerHero’s global CX teams—packaged into a
+              frictionless, Shopify-native experience.
+            </p>
 
-        {/* Warm radial glow (bottom-right) */}
-        <div
-          className="absolute bottom-[-40%] left-[-20%] h-[700px] w-[700px] rounded-full
-                  bg-[radial-gradient(circle_at_center,#FF9985_0%,#FF7F66_20%,#E85032_35%,#85392F_55%,transparent_70%)]
-                  blur-3xl opacity-80"
-        />
-
-        {/* Cool subtle depth (left) */}
-        <div
-          className="absolute top-[-30%] left-[-20%] h-[600px] w-[600px] rounded-full
-                  bg-[radial-gradient(circle_at_center,#3B272C_0%,#2E242B_40%,transparent_70%)]
-                  blur-3xl opacity-60"
-        />
-
-        <Container className="relative z-10">
-          <FadeInOnView>
-            <div className="mx-auto grid max-w-5xl gap-3 sm:grid-cols-3">
-              <StatCard label="Project Type" value="Shopify App, SaaS Product" />
-              <StatCard label="Role" value="UX/UI Designer" />
-              <StatCard label="Timeline" value="2022–2023" />
-              <StatCard label="Tools" value="Sketch, Polaris (Shopify design system)" />
-              <StatCard
-                label="Scope"
-                value="Research, Wireframing, Prototyping, Visual Design"
-              />
-              <StatCard label="Company" value="PartnerHero" />
-            </div>
-          </FadeInOnView>
-        </Container>
-      </section>
+            <p>
+              My role covered <span className="font-semibold">research</span>,{" "}
+              <span className="font-semibold">user flows</span>,{" "}
+              <span className="font-semibold">wireframing</span>,{" "}
+              <span className="font-semibold">prototyping</span>, and{" "}
+              <span className="font-semibold">UI design</span>, aligned to{" "}
+              <span className="font-semibold">Shopify Polaris</span> patterns to build trust and
+              reduce learning time.
+            </p>
+          </>
+        }
+        stats={[
+          { label: "Project Type", value: "Shopify App, SaaS Product" },
+          { label: "Role", value: "UX/UI Designer" },
+          { label: "Timeline", value: "2022–2023" },
+          { label: "Tools", value: "Sketch, Polaris (Shopify design system)" },
+          { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
+          { label: "Company", value: "PartnerHero" },
+        ]}
+      />
 
       {/* Context & Opportunity */}
       <section className="relative overflow-hidden border-b-4 border-[#1B1B1B]">
-        {/* Background */}
         <div className="absolute inset-0 bg-[#A3DEFA]" />
 
         <div className="relative mx-auto w-full max-w-5xl px-6 py-20">
-          <FadeInOnView>
+          <RiseInOnView>
             <div className="grid items-center gap-12 lg:grid-cols-2">
               {/* Text */}
               <div className="relative z-10 max-w-xl">
-                <h3 className="text-center text-4xl font-bold tracking-tight text-[#1B1B1B]">
-                  Context &amp; Opportunity
-                </h3>
+                <SectionHeader
+                  title="Context & Opportunity"
+                  description="PartnerHero’s global CX teams could offer high-quality support at scale. The challenge was turning this operational capability into a lightweight, self-serve Shopify app with a frictionless user experience."
+                  titleClassName="text-[#1B1B1B] font-bold"
+                  descriptionClassName="text-[#1B1B1B]/80 text-lg font-medium leading-relaxed"
+                  underline={{ show: true, className: "bg-[#E45027]" }}
+                  wrapperClassName="text-left mx-0 max-w-none"
+                />
 
-                <div className="mt-4 flex justify-center text-center">
-                  <div className="h-2 w-20 rounded-full bg-[#E45027]" />
-                </div>
-
-                <p className="mt-6 text-lg font-medium leading-relaxed text-[#1B1B1B]/80">
-                  PartnerHero’s global CX teams could offer high-quality support at scale.
-                  The challenge was turning this operational capability into a lightweight,
-                  self-serve Shopify app with a frictionless user experience.
-                </p>
-
-                <p className="mt-6 text-base font-bold leading-relaxed text-[#1B1B1B]/80">
+                <p className="mt-10 text-base font-bold leading-relaxed text-[#1B1B1B]/80">
                   Merchant Pain Points
                 </p>
 
@@ -124,51 +115,40 @@ export default function HumanizeCaseStudy() {
                 />
               </div>
             </div>
-          </FadeInOnView>
+          </RiseInOnView>
         </div>
       </section>
 
       {/* Objectives */}
       <section className="border-y-4 border-[#1B1B1B] bg-[#F5F3E8] py-20">
-        <FadeInOnView>
+        <RiseInOnView>
           <Container>
-            <h3 className="text-center text-4xl font-bold tracking-tight text-[#1B1B1B]">
-              Objectives
-            </h3>
+            <SectionHeader
+              title="Objectives"
+              description="The project focused on four primary UX objectives:"
+              titleClassName="text-[#1B1B1B] font-bold"
+              descriptionClassName="text-[#1B1B1B]/80 text-lg font-medium"
+              underline={{ show: true, className: "bg-[#E45027]" }}
+            />
 
-            <div className="mt-4 flex justify-center text-center">
-              <div className="h-2 w-20 rounded-full bg-[#E45027]" />
-            </div>
-
-            <div className="mx-auto mt-6 max-w-2xl">
-              <p className="mt-3 text-center text-lg font-medium text-[#1B1B1B]/80">
-                The project focused on four primary UX objectives:
-              </p>
-
-              <div className="mx-auto mt-8 max-w-2xl">
-                <ol className="mt-3 list-disc space-y-2 pl-5 text-base text-[#1B1B1B]/80">
-                  <li>
-                    Establish trust through clear tone, privacy signals, and consistent UI
-                    patterns
-                  </li>
-                  <li>Communicate Humanize’s value proposition in under 20 seconds</li>
-                  <li>Design a frictionless Shopify onboarding flow</li>
-                  <li>
-                    Make support status and performance immediately visible and understandable
-                  </li>
-                </ol>
-              </div>
+            <div className="mx-auto mt-10 max-w-2xl">
+              <ol className="list-disc space-y-2 pl-5 text-base text-[#1B1B1B]/80">
+                <li>
+                  Establish trust through clear tone, privacy signals, and consistent UI patterns
+                </li>
+                <li>Communicate Humanize’s value proposition in under 20 seconds</li>
+                <li>Design a frictionless Shopify onboarding flow</li>
+                <li>Make support status and performance immediately visible and understandable</li>
+              </ol>
             </div>
           </Container>
-        </FadeInOnView>
+        </RiseInOnView>
       </section>
 
       {/* Design Process */}
       <section className="relative overflow-hidden py-20">
-        {/* Base background */}
         <div className="absolute inset-0 bg-[#0B0B10]" />
 
-        {/* Warm radial glow (bottom-right) */}
         <div
           className="
             absolute bottom-[-40%] right-[-20%]
@@ -178,7 +158,6 @@ export default function HumanizeCaseStudy() {
           "
         />
 
-        {/* Cool subtle depth (left) */}
         <div
           className="
             absolute top-[-30%] left-[-20%]
@@ -189,25 +168,18 @@ export default function HumanizeCaseStudy() {
         />
 
         <Container className="relative z-10">
-          <FadeInOnView>
+          <RiseInOnView>
             <>
-              {/* Header */}
-              <div className="mx-auto max-w-5xl text-center">
-                <h3 className="text-4xl font-bold tracking-tight text-white">
-                  Design Process
-                </h3>
+              <SectionHeader
+                title="Design Process"
+                description="I followed a structured, human-centered design process focused on reducing friction, building trust, and aligning with Shopify merchants’ expectations."
+                dark
+                titleClassName="font-bold"
+                descriptionClassName="text-white/70 text-lg font-medium"
+                underline={{ show: true, className: "bg-[#E45027]" }}
+                wrapperClassName="max-w-5xl"
+              />
 
-                <div className="mt-4 flex justify-center text-center">
-                  <div className="h-2 w-20 rounded-full bg-[#E45027]" />
-                </div>
-
-                <p className="mx-auto mt-6 max-w-2xl text-lg font-medium leading-relaxed text-white/70">
-                  I followed a structured, human-centered design process focused on reducing
-                  friction, building trust, and aligning with Shopify merchants’ expectations.
-                </p>
-              </div>
-
-              {/* Steps */}
               <div className="mx-auto mt-14 grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {/* 1. Research */}
                 <div className="rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
@@ -224,8 +196,7 @@ export default function HumanizeCaseStudy() {
                     <p className="text-sm leading-relaxed text-muted">
                       Before defining flows or UI, I conducted a focused research phase to
                       understand merchant needs, competitive expectations within the Shopify
-                      ecosystem, and the operational requirements of Humanize’s support
-                      workflows.
+                      ecosystem, and the operational requirements of Humanize’s support workflows.
                     </p>
                   </div>
                 </div>
@@ -243,8 +214,7 @@ export default function HumanizeCaseStudy() {
                     </div>
 
                     <p className="text-sm leading-relaxed text-muted">
-                      I mapped the core user flows required to activate and use Humanize
-                      effectively:
+                      I mapped the core user flows required to activate and use Humanize effectively:
                     </p>
 
                     <ul className="space-y-2 text-sm text-muted">
@@ -277,10 +247,9 @@ export default function HumanizeCaseStudy() {
                     </div>
 
                     <p className="text-sm leading-relaxed text-muted">
-                      Because Humanize lives inside the Shopify Admin, I used Shopify Polaris
-                      as the foundation and extended it only where necessary. This kept the UI
-                      familiar, reduced learning time, and increased merchant trust from the
-                      first interaction.
+                      Because Humanize lives inside the Shopify Admin, I used Shopify Polaris as the
+                      foundation and extended it only where necessary. This kept the UI familiar,
+                      reduced learning time, and increased merchant trust from the first interaction.
                     </p>
                   </div>
                 </div>
@@ -326,9 +295,9 @@ export default function HumanizeCaseStudy() {
                     </div>
 
                     <p className="text-sm leading-relaxed text-muted">
-                      To enable reliable, high-quality support, merchants were required to
-                      provide at least 10 knowledge base articles. I designed a guided flow
-                      that broke this task into manageable steps without overwhelming users.
+                      To enable reliable, high-quality support, merchants were required to provide at
+                      least 10 knowledge base articles. I designed a guided flow that broke this task
+                      into manageable steps without overwhelming users.
                     </p>
                   </div>
                 </div>
@@ -348,35 +317,28 @@ export default function HumanizeCaseStudy() {
                     <p className="text-sm leading-relaxed text-muted">
                       Once requirements were clear, I created low-fidelity wireframes to define
                       structure and hierarchy. After validation, these were translated into
-                      high-fidelity designs, resulting in a polished, Shopify-native app
-                      merchants could trust from day one.
+                      high-fidelity designs, resulting in a polished, Shopify-native app merchants
+                      could trust from day one.
                     </p>
                   </div>
                 </div>
               </div>
             </>
-          </FadeInOnView>
+          </RiseInOnView>
         </Container>
       </section>
 
       {/* UI Preview */}
       <section className="relative overflow-hidden border-b-4 border-[#1B1B1B] bg-[#F5F3E8] py-24">
-        <FadeInOnView>
+        <RiseInOnView>
           <Container>
-            <div className="relative mx-auto max-w-3xl text-center">
-              <h3 className="text-4xl font-bold tracking-tight text-[#1B1B1B]">
-                UI Preview
-              </h3>
-
-              <div className="mt-4 flex justify-center text-center">
-                <div className="h-2 w-20 rounded-full bg-[#E45027]" />
-              </div>
-
-              <p className="mx-auto mt-6 max-w-2xl text-lg text-medium leading-relaxed text-[#1B1B1B]/80">
-                Key screens inside the Shopify Admin showing onboarding, knowledge base setup,
-                performance metrics, and support visibility.
-              </p>
-            </div>
+            <SectionHeader
+              title="UI Preview"
+              description="Key screens inside the Shopify Admin showing onboarding, knowledge base setup, performance metrics, and support visibility."
+              titleClassName="text-[#1B1B1B] font-bold"
+              descriptionClassName="text-[#1B1B1B]/80 text-lg font-medium"
+              underline={{ show: true, className: "bg-[#E45027]" }}
+            />
 
             <div className="relative mt-16 space-y-10">
               {[
@@ -423,54 +385,42 @@ export default function HumanizeCaseStudy() {
               ))}
             </div>
           </Container>
-        </FadeInOnView>
+        </RiseInOnView>
       </section>
 
       {/* Launch & Impact */}
       <section className="relative overflow-hidden border-t-4 border-[#1B1B1B] bg-[#A3DEFA] py-24">
-        <FadeInOnView>
+        <RiseInOnView>
           <Container>
-            <div className="mx-auto text-center">
-              <div className="mx-auto max-w-3xl text-center">
-                <h3 className="text-center text-4xl font-bold tracking-tight text-[#1B1B1B]">
-                  Launch &amp; Impact
-                </h3>
-              </div>
+            <SectionHeader
+              title="Launch & Impact"
+              description="Humanize launched successfully on the Shopify App Store. This project demonstrated PartnerHero’s ability to bring a real SaaS product to market fast, lean, and merchant-driven."
+              titleClassName="text-[#1B1B1B] font-bold"
+              descriptionClassName="text-[#1B1B1B]/80 text-lg font-medium"
+              underline={{ show: true, className: "bg-[#E45027]" }}
+            />
 
-              <div className="mt-4 flex justify-center text-center">
-                <div className="h-2 w-20 rounded-full bg-[#E45027]" />
-              </div>
-
-              <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-[#1B1B1B]/80">
-                Humanize launched successfully on the Shopify App Store. This project demonstrated
-                PartnerHero’s ability to bring a real SaaS product to market fast, lean, and
-                merchant-driven.
+            <div className="mx-auto mt-10 max-w-2xl">
+              <p className="text-left text-base font-normal text-[#1B1B1B]/80">
+                Early results included:
               </p>
 
-              <div className="mx-auto mt-10 max-w-2xl">
-                <p className="mt-10 text-left text-base font-normal text-[#1B1B1B]/80">
-                  Early results included:
-                </p>
-
-                <div className="mt-4">
-                  <ul className="mt-3 list-disc space-y-2 pl-5 text-m text-[#1B1B1B]/80">
-                    {[
-                      "Paid subscriptions from small & mid-sized merchants",
-                      "Positive feedback on onboarding simplicity",
-                      "High trust due to Shopify-native patterns and clarity",
-                      "Clear value for merchants struggling with email volume",
-                    ].map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#E45027]" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-m text-[#1B1B1B]/80">
+                {[
+                  "Paid subscriptions from small & mid-sized merchants",
+                  "Positive feedback on onboarding simplicity",
+                  "High trust due to Shopify-native patterns and clarity",
+                  "Clear value for merchants struggling with email volume",
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#E45027]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </Container>
-        </FadeInOnView>
+        </RiseInOnView>
       </section>
 
       {/* Lightbox */}

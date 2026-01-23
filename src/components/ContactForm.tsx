@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import RiseInOnView from "./RiseInOnView";
 
 type Field = "reason" | "name" | "email" | "message";
 type Status = "idle" | "success" | "error";
@@ -114,6 +115,7 @@ export default function ContactForm() {
 
   return (
     <section className="w-full">
+      <RiseInOnView>
       <div className="mx-auto max-w-2xl rounded-3xl border-[4px] border-black bg-white p-8">
         <form className="space-y-6" onSubmit={onSubmit}>
           {/* Honeypot (hidden from users, bots may fill it) */}
@@ -246,6 +248,7 @@ export default function ContactForm() {
           </div>
         </form>
       </div>
+      </RiseInOnView>
     </section>
   );
 }

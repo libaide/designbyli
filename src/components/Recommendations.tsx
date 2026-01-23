@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useCallback } from "react";
-import Section from "@/components/Section";
+import SectionHeader from "@/components/case-study/SectionHeader";
 import { recommendations } from "@/data/recommendations";
 import RecommendationsCarousel from "@/components/RecommendationsCarousel";
 
@@ -20,10 +20,8 @@ function RecCard({
   expanded: boolean;
   onToggle: () => void;
 }) {
-  // Note: we keep the “read more” behavior, but in the carousel we’ll control
-  // expanded state from the parent.
   return (
-    <figure className="w-full rounded-3xl border border-border bg-card/70 p-8 shadow-sm backdrop-blur-sm">
+    <figure className="w-full rounded-3xl border border-white/10 bg-white/5 p-8 shadow-sm backdrop-blur-sm">
       {/* Text area */}
       <div
         className="relative overflow-hidden"
@@ -32,37 +30,48 @@ function RecCard({
           transition: "max-height 420ms cubic-bezier(0.22, 1, 0.36, 1)",
         }}
       >
-        <blockquote className="text-base leading-relaxed text-foreground/90 sm:text-lg">
+        <blockquote className="text-base leading-relaxed text-white/80 sm:text-lg">
           “{text}”
         </blockquote>
 
-        {/* Fade at bottom when collapsed */}
-        {!expanded && (
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-card/90 to-transparent" />
-        )}
+        {!expanded ? (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/60 to-transparent" />
+        ) : null}
       </div>
 
-      {/* Read more / less */}
       <button
         type="button"
         onClick={onToggle}
-        className="mt-4 text-sm font-medium underline underline-offset-4 text-foreground/90 hover:opacity-80 transition"
+        className="mt-4 text-sm font-medium underline underline-offset-4 text-white/70 transition hover:text-white/90"
       >
         {expanded ? "Show less" : "Read more"}
       </button>
 
       <figcaption className="mt-8">
-        <div className="text-sm font-semibold sm:text-base">{name}</div>
-        <div className="mt-1 text-xs text-muted sm:text-sm">{title}</div>
+        <div className="text-sm font-semibold text-white sm:text-base">{name}</div>
+        <div className="mt-1 text-xs text-white/60 sm:text-sm">{title}</div>
       </figcaption>
     </figure>
   );
 }
 
-export default function Recommendations() {
-  const items = useMemo(() => recommendations, []);
+type RecItem = {
+  name: string;
+  title: string;
+  quote: string;
+};
 
-  // Track expanded state per slide so each card can expand independently.
+export default function Recommendations() {
+  const items = useMemo<RecItem[]>(
+    () =>
+      recommendations.map((r) => ({
+        name: r.name,
+        title: r.title,
+        quote: r.text,
+      })),
+    []
+  );
+
   const [expandedByIndex, setExpandedByIndex] = useState<Record<number, boolean>>(
     {}
   );
@@ -74,36 +83,31 @@ export default function Recommendations() {
   if (items.length === 0) return null;
 
   return (
-    <section className="bg-[#000000]">
-      <Section
-        title="Recommendations"
-        align="center"
-      >
-        <div className="mt-10">
+    <section className="bg-black text-white">
+      <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10">
+        <SectionHeader
+          title="Recommendations"
+          dark
+          underline={{ show: false }}
+          // description="What teammates and stakeholders have said about working with me."
+          // descriptionClassName="text-white/70"
+        />
+
+        <div className="mt-12">
           <RecommendationsCarousel
-            items={items.map((r, i) => ({
-              // Keep the carousel data minimal, but pass index so we can render custom slides.
-              name: r.name,
-              title: r.title,
-              quote: r.text,
-              _index: i as unknown as never, // internal only
-            }))}
-          
-            renderSlide={(rec: any) => {
-              const i = rec._index as number;
-              return (
-                <RecCard
-                  name={rec.name}
-                  title={rec.title}
-                  text={rec.quote}
-                  expanded={!!expandedByIndex[i]}
-                  onToggle={() => toggleExpanded(i)}
-                />
-              );
-            }}
+            items={items}
+            renderSlide={(rec, i) => (
+              <RecCard
+                name={rec.name}
+                title={rec.title}
+                text={rec.quote}
+                expanded={!!expandedByIndex[i]}
+                onToggle={() => toggleExpanded(i)}
+              />
+            )}
           />
         </div>
-      </Section>
+      </div>
     </section>
   );
 }

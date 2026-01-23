@@ -6,11 +6,10 @@ import HeroPixelBlastBg from "@/components/Hero/Visuals/HeroPixelBlastBg";
 import FeaturedWorkAnimated from "@/components/FeaturedWorkAnimated";
 import Recommendations from "@/components/Recommendations";
 import Logo from "@/components/logo";
-import Section from "@/components/Section";
-import ContactForm from "@/components/ContactForm";
 import Button from "@/components/Button";
-import FadeInOnView from "@/components/FadeInOnView";
-import Noise from "@/components/Noise";
+import FadeInOnView from "@/components/RiseInOnView";
+import ContactSection from "@/components/ContactSection";
+
 
 
 
@@ -99,41 +98,7 @@ export default function HomePage() {
 
 
       {/* Contact (Homepage) */}
-<section
-  id="home-contact"
-  className="relative overflow-hidden bg-white text-black"
->
-  {/* Animated noise on desktop (Noise measures its parent, so it must be a direct child of the section) */}
-<Noise
-  patternSize={250}
-  patternScaleX={1}
-  patternScaleY={1}
-  patternRefreshInterval={2}
-  patternAlpha={35}
-  className="hidden md:block absolute inset-0 z-0 opacity-70"
-/>
-
-{/* Static noise on mobile */}
-<div className="md:hidden absolute inset-0 z-0 opacity-12 static-noise" />
-
-
-
-  <div className="relative z-10">
-    <FadeInOnView>
-      <Section
-        title="Let’s work together"
-        align="center"
-      >
-        <div className="flex justify-center">
-          <ContactForm />
-        </div>
-      </Section>
-    </FadeInOnView>
-  </div>
-</section>
-
-
-
+<ContactSection id="home-contact" />
 
     </>
   );

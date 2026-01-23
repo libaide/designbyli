@@ -20,18 +20,28 @@ function ArrowButton({
       aria-label={direction === "prev" ? "Previous" : "Next"}
       onClick={onClick}
       disabled={disabled}
-      className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card/60 backdrop-blur-sm shadow-sm transition hover:bg-card/80 disabled:opacity-40"
+      className={[
+        "grid h-10 w-10 place-items-center rounded-full",
+        "border border-white/20 bg-white/10 backdrop-blur-sm shadow-sm",
+        "transition hover:bg-white/20",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
+        "disabled:opacity-30 disabled:hover:bg-white/10",
+      ].join(" ")}
     >
       <svg
         viewBox="0 0 24 24"
-        className="h-5 w-5 text-foreground/80"
+        className="h-5 w-5 text-white/80"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {direction === "prev" ? <path d="M15 18l-6-6 6-6" /> : <path d="M9 18l6-6-6-6" />}
+        {direction === "prev" ? (
+          <path d="M15 18l-6-6 6-6" />
+        ) : (
+          <path d="M9 18l6-6-6-6" />
+        )}
       </svg>
     </button>
   );
@@ -74,9 +84,9 @@ export default function RecommendationsCarousel<T>({
 
   return (
     <section className={["relative", className].filter(Boolean).join(" ")}>
-      {/* Edge fade */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-background to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-background to-transparent" />
+      {/* Edge fade (match section bg) */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-black to-transparent" />
 
       {/* Controls */}
       <div className="mb-6 flex items-center justify-between gap-4">
@@ -93,7 +103,7 @@ export default function RecommendationsCarousel<T>({
           />
         </div>
 
-        {/* Dots */}
+        {/* Dots (force visible on dark) */}
         <div className="flex items-center gap-2">
           {items.map((_, i) => (
             <button
@@ -103,7 +113,10 @@ export default function RecommendationsCarousel<T>({
               onClick={() => emblaApi?.scrollTo(i)}
               className={[
                 "h-2 w-2 rounded-full transition",
-                i === selectedIndex ? "bg-foreground/80" : "bg-foreground/20 hover:bg-foreground/35",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
+                i === selectedIndex
+                  ? "bg-white/80"
+                  : "bg-white/25 hover:bg-white/45",
               ].join(" ")}
             />
           ))}
@@ -116,10 +129,7 @@ export default function RecommendationsCarousel<T>({
           {items.map((item, idx) => (
             <div
               key={idx}
-              className="
-                min-w-0 shrink-0
-                basis-[88%] sm:basis-[70%] lg:basis-[46%] xl:basis-[38%]
-              "
+              className="min-w-0 shrink-0 basis-[88%] sm:basis-[70%] lg:basis-[46%] xl:basis-[38%]"
             >
               {renderSlide(item, idx)}
             </div>

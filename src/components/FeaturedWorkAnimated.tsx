@@ -1,17 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Section from "@/components/Section";
-import { projects } from "@/data/projects";
 import Image from "next/image";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
+import { projects } from "@/data/projects";
 import Button from "@/components/Button";
+import SectionHeader from "@/components/case-study/SectionHeader";
 
 function useInViewStaggered(count: number) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState<boolean[]>(() =>
-    Array(count).fill(false)
-  );
+  const [visible, setVisible] = useState<boolean[]>(() => Array(count).fill(false));
 
   useEffect(() => {
     const el = containerRef.current;
@@ -59,7 +58,6 @@ export default function FeaturedWorkAnimated() {
 
   const { containerRef, visible } = useInViewStaggered(featured.length);
 
-  // Full Section reveal tracking
   const areaRef = useRef<HTMLElement | null>(null);
   const bgRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
@@ -101,7 +99,7 @@ export default function FeaturedWorkAnimated() {
       <div
         aria-hidden="true"
         className="
-          absolute inset-0 pointer-events-none
+          pointer-events-none absolute inset-0
           bg-[url('/featured-work-bg.png')]
           bg-auto bg-center bg-repeat
           opacity-25
@@ -114,7 +112,7 @@ export default function FeaturedWorkAnimated() {
         ref={bgRef}
         aria-hidden="true"
         className="
-          absolute inset-0 pointer-events-none
+          pointer-events-none absolute inset-0
           hidden md:block
           cursor-reveal
           bg-[url('/featured-work-bg.png')]
@@ -125,72 +123,72 @@ export default function FeaturedWorkAnimated() {
       />
 
       {/* Foreground content */}
-      <div className="relative z-10 px-6 sm:px-10">
-        <Section
+      <div className="relative z-10 px-6 sm:px-10 py-24">
+        <SectionHeader
           title="Featured work"
-          align="center"
+          underline={{ show: false }}
+          // optional tweaks:
+          titleClassName="text-white"
+          // description="A few highlights from recent projects."
+          // descriptionClassName="text-white/70"
+        />
+
+        <div
+          ref={containerRef}
+          className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
         >
-          <div
-            ref={containerRef}
-            className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {featured.map((p, i) => (
-              <Link
-                key={p.slug}
-                href={`/work/${p.slug}`}
-                data-card
-                data-index={i}
-                className={[
-                  "group block will-change-transform transition-[transform,opacity,filter] duration-700 ease-out",
-                  visible[i]
-                    ? "opacity-100 translate-y-0 blur-0"
-                    : "opacity-0 translate-y-6 blur-[6px]",
-                ].join(" ")}
-                style={{ transitionDelay: `${i * 90}ms` }}
-              >
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted/30">
-                  <Image
-                    src={p.cover}
-                    alt={`${p.title} cover`}
-                    fill
-                    className="object-cover transition duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-95"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={p.slug === "operator"}
-                  />
-                </div>
+          {featured.map((p, i) => (
+            <Link
+              key={p.slug}
+              href={`/work/${p.slug}`}
+              data-card
+              data-index={i}
+              className={[
+                "group block will-change-transform transition-[transform,opacity,filter] duration-700 ease-out",
+                visible[i]
+                  ? "translate-y-0 opacity-100 blur-0"
+                  : "translate-y-6 opacity-0 blur-[6px]",
+              ].join(" ")}
+              style={{ transitionDelay: `${i * 90}ms` }}
+            >
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted/30">
+                <Image
+                  src={p.cover}
+                  alt={`${p.title} cover`}
+                  fill
+                  className="object-cover transition duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-95"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  priority={p.slug === "operator"}
+                />
+              </div>
 
-                <h3 className="mt-6 text-xl font-semibold tracking-tight">
-                  {p.title}
-                </h3>
+              <h3 className="mt-6 text-xl font-semibold tracking-tight">{p.title}</h3>
 
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full border border-border px-4 py-1 text-sm text-muted"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {p.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-border px-4 py-1 text-sm text-muted"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
 
-                <p className="mt-4 text-m text-white/80 max-w-[40ch]">
-                  {p.description}
-                </p>
+              <p className="mt-4 max-w-[40ch] text-m text-white/80">{p.description}</p>
 
-                <span className="mt-4 inline-block text-sm underline underline-offset-4">
-                  View
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-12 flex justify-center">
-            <Link href="/work">
-              <Button>View more projects</Button>
+              <span className="mt-4 inline-block text-sm underline underline-offset-4">
+                View
+              </span>
             </Link>
-          </div>
-        </Section>
+          ))}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <Link href="/work">
+            <Button>View more projects</Button>
+          </Link>
+        </div>
       </div>
     </section>
   );

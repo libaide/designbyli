@@ -1,18 +1,90 @@
 "use client";
 
+import CaseStudyTopSection from "@/components/case-study/CaseStudyTopSection";
 import Container from "@/components/Container";
+import RiseInOnView from "@/components/RiseInOnView";
 import Image from "next/image";
-import CaseStudyHeroSplit from "@/components/CaseStudyHeroSplit";
-import FadeInOnView from "@/components/FadeInOnView";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 type ExpandedImage = { src: string; alt: string } | null;
 
-function StatCard({ label, value }: { label: string; value: string }) {
+type AppCard = {
+  title: string;
+  logo: string;
+  body: string;
+};
+
+type GalleryImage = {
+  src: string;
+  alt: string;
+  title: string;
+};
+
+function cx(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
+
+function AppSummaryCard({ app }: { app: AppCard }) {
   return (
-    <div className="rounded-2xl bg-[#EFEFEF] px-5 py-5">
-      <p className="text-xs font-medium text-black/50">{label}</p>
-      <p className="mt-1 text-sm font-semibold text-black/80">{value}</p>
+    <div className="space-y-6">
+      <div className="flex items-center justify-center rounded-2xl border border-black/15 bg-white px-6 py-5">
+        {/* Using <img> here is fine (SVGs). If you want next/image, configure it for SVG. */}
+        <img
+          src={app.logo}
+          alt={`${app.title} logo`}
+          className="h-[40px] w-auto"
+          draggable={false}
+        />
+      </div>
+
+      <p className="max-w-[42ch] text-base leading-relaxed text-[#474747]/80">
+        {app.body}
+      </p>
+    </div>
+  );
+}
+
+function Lightbox({
+  image,
+  onClose,
+}: {
+  image: ExpandedImage;
+  onClose: () => void;
+}) {
+  if (!image) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Expanded image preview"
+      onClick={onClose}
+    >
+      <div className="flex h-full w-full items-center justify-center overflow-y-auto p-4 sm:p-6">
+        <div
+          className="relative w-full max-w-6xl"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            type="button"
+            onClick={onClose}
+            className="absolute -right-3 -top-3 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/95 text-black shadow-lg ring-1 ring-black/10"
+            aria-label="Close expanded preview"
+          >
+            ✕
+          </button>
+
+          <div className="relative w-full max-h-[85vh] overflow-hidden rounded-2xl bg-white">
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="block h-auto w-full max-h-[85vh] object-contain"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -26,6 +98,7 @@ export default function OperatorCaseStudy() {
 
   const closeImage = useCallback(() => setExpandedImage(null), []);
 
+  // Close on Escape
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeImage();
@@ -34,6 +107,7 @@ export default function OperatorCaseStudy() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [closeImage]);
 
+  // Lock body scroll while lightbox is open
   useEffect(() => {
     document.body.style.overflow = expandedImage ? "hidden" : "";
     return () => {
@@ -41,103 +115,151 @@ export default function OperatorCaseStudy() {
     };
   }, [expandedImage]);
 
+  const apps = useMemo<AppCard[]>(
+    () => [
+      {
+        title: "Assist",
+        logo: "/case-studies/operator/Assist-logo.svg",
+        body: "Formerly PartnerGenie, an AI copilot that helps agents draft and refine customer emails, reducing response time and improving accuracy. It is comprised of a web app for managers/admins and a Chrome extension that agents use to interact with the AI copilot.",
+      },
+      {
+        title: "Quality",
+        logo: "/case-studies/operator/Quality-logo.svg",
+        body: "Formerly Aprikot, a peer-to-peer review tool that enables teams to evaluate and improve agent performance collaboratively. It is comprised of a web app for managers/admins and a Chrome extension that agents use to score tickets.",
+      },
+      {
+        title: "Health",
+        logo: "/case-studies/operator/Health-logo.svg",
+        body: "A powerful analytics dashboard that aggregates key metrics, providing actionable insights for managers and clients. It is comprised of a web app for managers/admins.",
+      },
+    ],
+    []
+  );
+
+  const currentStateImages = useMemo(
+    () => [
+      {
+        src: "/case-studies/operator/current-state-analysis-1.png",
+        alt: "Current state analysis artifact 1",
+      },
+      {
+        src: "/case-studies/operator/current-state-analysis-2.png",
+        alt: "Current state analysis artifact 2",
+      },
+      {
+        src: "/case-studies/operator/current-state-analysis-3.png",
+        alt: "Current state analysis artifact 3",
+      },
+      {
+        src: "/case-studies/operator/current-state-analysis-4.png",
+        alt: "Current state analysis artifact 4",
+      },
+    ],
+    []
+  );
+
+  const ideationImages = useMemo(
+    () => [
+      { src: "/case-studies/operator/ideation-collage1.png", alt: "Ideation artifact 1" },
+      { src: "/case-studies/operator/ideation-collage2.png", alt: "Ideation artifact 2" },
+      { src: "/case-studies/operator/ideation-collage3.png", alt: "Ideation artifact 3" },
+      { src: "/case-studies/operator/ideation-collage4.png", alt: "Ideation artifact 4" },
+    ],
+    []
+  );
+
+  const uiPreviewsTop = useMemo<GalleryImage[]>(
+    () => [
+      {
+        src: "/case-studies/operator/ui-preview-1.png",
+        alt: "Operator Admin panel - Home",
+        title: "Operator Admin panel - Home",
+      },
+      {
+        src: "/case-studies/operator/ui-preview-2.png",
+        alt: "Operator Admin panel - Users",
+        title: "Operator Admin panel - Users",
+      },
+      {
+        src: "/case-studies/operator/ui-preview-3.png",
+        alt: "Assist - Answer Feedback",
+        title: "Assist - Answer Feedback",
+      },
+      {
+        src: "/case-studies/operator/ui-preview-4.png",
+        alt: "Assist - Sentiment analysis",
+        title: "Assist - Sentiment analysis",
+      },
+    ],
+    []
+  );
+
+  const uiPreviewsBottom = useMemo<GalleryImage[]>(
+    () => [
+      {
+        src: "/case-studies/operator/ui-preview-5.png",
+        alt: "Quality - Dashboard",
+        title: "Quality - Dashboard",
+      },
+      {
+        src: "/case-studies/operator/ui-preview-6.png",
+        alt: "Quality - Rubrics",
+        title: "Quality - Rubrics",
+      },
+    ],
+    []
+  );
+
   return (
     <>
-      {/* TOP BLOCK */}
+      {/* Top */}
       <section className="bg-white pb-24">
-        <FadeInOnView>
-          <>
-            <CaseStudyHeroSplit
-              logoSrc="/case-studies/operator/Operator-logo.svg"
-              logoAlt="Operator logo"
-              illustrationSrc="/case-studies/operator/hero-illustration.png"
-              illustrationAlt="Operator UI preview"
-              summary={
-                <>
-                  <p>
-                    Operator is{" "}
-                    <span className="font-semibold">PartnerHero’s</span>{" "}
-                    <span className="font-base">(now Crescendo)</span>, internal
-                    platform that unified multiple support operations tools into
-                    one product suite. It helps agents, managers, and admins work
-                    faster with consistent workflows, shared data, and a cohesive
-                    UI across applications.
-                  </p>
+        <CaseStudyTopSection
+          logoSrc="/case-studies/operator/Operator-logo.svg"
+          logoAlt="Operator logo"
+          illustrationSrc="/case-studies/operator/hero-illustration.png"
+          illustrationAlt="Operator UI preview"
+          summary={
+            <div className="space-y-4 text-[#474747]/80">
+              <p>
+                Operator is <span className="font-semibold">PartnerHero’s</span>{" "}
+                <span className="font-normal">(now Crescendo)</span> internal platform that unified
+                multiple support operations tools into one product suite. It helps agents, managers,
+                and admins work faster with consistent workflows, shared data, and a cohesive UI
+                across applications.
+              </p>
 
-                  <p>
-                    I led UX and UI design for{" "}
-                    <span className="font-semibold">Assist</span>,{" "}
-                    <span className="font-semibold">Quality</span>, and the{" "}
-                    <span className="font-semibold">Operator</span> admin panel,
-                    collaborating closely with designers, PMs, developers, and
-                    stakeholders.
-                  </p>
-                </>
-              }
-            />
-
-            <Container>
-              {/* Core products cards */}
-              <div className="mt-16 grid gap-10 md:grid-cols-3">
-                {[
-                  {
-                    title: "Assist",
-                    logo: "/case-studies/operator/Assist-logo.svg",
-                    body:
-                      "Formerly PartnerGenie, an AI copilot that helps agents draft and refine customer emails, reducing response time and improving accuracy. It is comprised of a web app for managers/admins and a Chrome extension that agents use to interact with the AI copilot.",
-                  },
-                  {
-                    title: "Quality",
-                    logo: "/case-studies/operator/Quality-logo.svg",
-                    body:
-                      "Formerly Aprikot, a peer-to-peer review tool that enables teams to evaluate and improve agent performance collaboratively. It is comprised of a web app for managers/admins and a Chrome extension that agents use to score tickets.",
-                  },
-                  {
-                    title: "Health",
-                    logo: "/case-studies/operator/Health-logo.svg",
-                    body:
-                      "A powerful analytics dashboard that aggregates key metrics, providing actionable insights for managers and clients. It is comprised of a web app for managers/admins.",
-                  },
-                ].map((app) => (
-                  <div key={app.title} className="space-y-6">
-                    <div className="flex items-center justify-center rounded-2xl border border-black/15 bg-white px-6 py-5">
-                      <img
-                        src={app.logo}
-                        alt={`${app.title} logo`}
-                        className="h-[40px] w-auto"
-                        draggable={false}
-                      />
-                    </div>
-
-                    <p className="max-w-[42ch] text-base leading-relaxed text-[#474747]/80">
-                      {app.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Overview cards */}
-              <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <StatCard label="Project Type" value="Internal SaaS Platform" />
-                <StatCard label="Role" value="UX/UI Designer" />
-                <StatCard label="Timeline" value="2023–2024" />
-                <StatCard label="Tools" value="Figma, Material UI, Jira" />
-                <StatCard
-                  label="Scope"
-                  value="Research, Wireframing, Prototyping, Visual Design"
-                />
-                <StatCard label="Company" value="PartnerHero (now Crescendo)" />
-              </div>
-            </Container>
-          </>
-        </FadeInOnView>
+              <p>
+                I led UX and UI design for <span className="font-semibold">Assist</span>,{" "}
+                <span className="font-semibold">Quality</span>, and the{" "}
+                <span className="font-semibold">Operator</span> admin panel, collaborating closely
+                with designers, PMs, developers, and stakeholders.
+              </p>
+            </div>
+          }
+          afterHero={
+            <div className="grid gap-10 md:grid-cols-3">
+              {apps.map((app) => (
+                <AppSummaryCard key={app.title} app={app} />
+              ))}
+            </div>
+          }
+          stats={[
+            { label: "Project Type", value: "Internal SaaS Platform" },
+            { label: "Role", value: "UX/UI Designer" },
+            { label: "Timeline", value: "2023–2024" },
+            { label: "Tools", value: "Figma, Material UI, Jira" },
+            { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
+            { label: "Company", value: "PartnerHero (now Crescendo)" },
+          ]}
+        />
       </section>
 
       {/* Problem & Context */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
-        <FadeInOnView>
+        <RiseInOnView>
           <div className="relative mx-auto w-full max-w-5xl px-4">
             <div className="relative z-10 min-h-[620px] py-24">
               <div className="max-w-xl">
@@ -146,18 +268,17 @@ export default function OperatorCaseStudy() {
                 </h2>
 
                 <p className="mt-6 text-base leading-relaxed text-white/70">
-                  Customer support teams previously relied on fragmented tools,
-                  inconsistent workflows, and manual processes, which led to
-                  inefficiencies and rising operational costs. After several
-                  proof-of-concept tools proved their value, PartnerHero decided
-                  to fully design and develop a centralized platform—one that
+                  Customer support teams previously relied on fragmented tools, inconsistent
+                  workflows, and manual processes, which led to inefficiencies and rising
+                  operational costs. After several proof-of-concept tools proved their value,
+                  PartnerHero decided to fully design and develop a centralized platform—one that
                   would empower every team across the organization.
                 </p>
 
                 <p className="mt-6 text-base leading-relaxed text-white/70">
-                  My mission was to transform fragmented internal tools into an
-                  integrated, scalable product suite, ensuring that every feature
-                  enhanced efficiency, clarity, and agent satisfaction.
+                  My mission was to transform fragmented internal tools into an integrated, scalable
+                  product suite, ensuring that every feature enhanced efficiency, clarity, and agent
+                  satisfaction.
                 </p>
               </div>
             </div>
@@ -170,60 +291,43 @@ export default function OperatorCaseStudy() {
                   fill
                   className="object-contain object-bottom"
                   priority
+                  sizes="420px"
                 />
               </div>
             </div>
           </div>
-        </FadeInOnView>
+        </RiseInOnView>
       </section>
 
       {/* Research & Insights */}
-      <section className="py-24 bg-[#FBFAF9]">
-        <FadeInOnView>
+      <section className="bg-[#FBFAF9] py-24">
+        <RiseInOnView>
           <Container>
-            <h2 className="text-5xl text-[#4521A6] font-semibold tracking-tight text-center">
+            <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
               Research & Insights
             </h2>
 
             {/* Current State Analysis */}
             <div className="mt-16">
-              <div className=" max-w-3xl text-left">
+              <div className="max-w-3xl text-left">
                 <h3 className="text-3xl font-medium tracking-tight text-[#474747]">
                   Current State Analysis
                 </h3>
 
                 <div className="mt-5 space-y-6 text-base leading-relaxed text-[#474747]/80">
                   <p>
-                    At the time of evaluation, the product experience relied on
-                    fragmented workflows and inconsistent interface patterns.
-                    Core tasks required unnecessary steps, increasing cognitive
-                    load and slowing down users’ ability to complete their work
-                    efficiently. While the system functioned from a technical
-                    standpoint, it lacked clarity, hierarchy, and scalability
-                    from a user experience perspective.
+                    At the time of evaluation, the product experience relied on fragmented
+                    workflows and inconsistent interface patterns. Core tasks required unnecessary
+                    steps, increasing cognitive load and slowing down users’ ability to complete
+                    their work efficiently. While the system functioned from a technical
+                    standpoint, it lacked clarity, hierarchy, and scalability from a user
+                    experience perspective.
                   </p>
                 </div>
               </div>
 
               <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {[
-                  {
-                    src: "/case-studies/operator/current-state-analysis-1.png",
-                    alt: "Current state analysis artifact 1",
-                  },
-                  {
-                    src: "/case-studies/operator/current-state-analysis-2.png",
-                    alt: "Current state analysis artifact 2",
-                  },
-                  {
-                    src: "/case-studies/operator/current-state-analysis-3.png",
-                    alt: "Current state analysis artifact 3",
-                  },
-                  {
-                    src: "/case-studies/operator/current-state-analysis-4.png",
-                    alt: "Current state analysis artifact 4",
-                  },
-                ].map((img) => (
+                {currentStateImages.map((img) => (
                   <div
                     key={img.src}
                     className="overflow-hidden rounded-3xl border border-black/10 bg-white"
@@ -245,9 +349,7 @@ export default function OperatorCaseStudy() {
             {/* Interviews */}
             <div className="mt-16">
               <div className="relative overflow-hidden rounded-3xl bg-white">
-                <div className="absolute inset-0" />
-
-                <div className="relative grid gap-10  lg:grid-cols-2 lg:items-center">
+                <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
                   <div className="relative">
                     <div className="relative overflow-hidden rounded-2xl bg-white">
                       <div className="relative aspect-[4/3]">
@@ -262,23 +364,23 @@ export default function OperatorCaseStudy() {
                     </div>
                   </div>
 
-                  <div className="max-w-xl">
+                  <div className="max-w-xl p-6 sm:p-8">
                     <h3 className="text-3xl font-medium tracking-tight text-[#474747]">
                       Interviews
                     </h3>
+
                     <div className="mt-6 space-y-5 text-base leading-relaxed text-[#474747]/80">
                       <p>
-                        To ensure Operator effectively addressed the challenges
-                        faced by customer support agents, I planned and led a
-                        series of user interviews with agents and managers who
-                        interacted daily with Assist and Quality. My objective
-                        was to identify pain points, usability concerns, and
-                        improvement opportunities in the tools.
+                        To ensure Operator effectively addressed the challenges faced by customer
+                        support agents, I planned and led a series of user interviews with agents
+                        and managers who interacted daily with Assist and Quality. My objective was
+                        to identify pain points, usability concerns, and improvement opportunities
+                        in the tools.
                       </p>
 
                       <p>
-                        A diverse group of agents and managers across different
-                        teams and experience levels were selected. We would have:
+                        A diverse group of agents and managers across different teams and experience
+                        levels were selected. We used:
                       </p>
 
                       <ul className="ml-4 list-disc space-y-2">
@@ -293,55 +395,51 @@ export default function OperatorCaseStudy() {
             </div>
 
             {/* Insights */}
-            <section className="py-16">
-              <h3 className="text-3xl font-medium tracking-tight text-center text-[#474747]">
-                Insights
-              </h3>
-              <p className="mt-3 text-center text-base text-[#474747]/80">
-                These insights directly influenced feature updates and UI improvements,
-                making the tools more intuitive and valuable for agents.
-              </p>
+            <div className="mt-16">
+  <h3 className="text-center text-3xl font-medium tracking-tight text-[#474747]">
+    Insights
+  </h3>
+  <p className="mt-3 max-w-2xl mx-auto text-center text-base text-[#474747]/80">
+    These insights directly influenced feature updates and UI improvements, making the
+    tools more intuitive and valuable for agents.
+  </p>
 
-              <div className="mt-8 grid gap-6 sm:grid-cols-2">
+  <div className="mt-8 grid gap-6 sm:grid-cols-2">
                 <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)]">
-                  <h4 className="font-normal text-2xl text-[#474747]">
-                    Agent experience
-                  </h4>
-                  <ul className="mt-3 list-disc pl-5 text-base text-[#474747]/80 space-y-2">
+                  <h4 className="text-2xl font-normal text-[#474747]">Agent experience</h4>
+                  <ul className="mt-3 space-y-2 list-disc pl-5 text-base text-[#474747]/80">
                     <li>The Chrome extension UI is unclear</li>
+                    <li>Management through the web app is difficult, and so is reviewing data</li>
                     <li>
-                      Management through the web-app is difficult, and so is reviewing data.
+                      Some agents felt AI-generated responses were too generic and needed more customization
                     </li>
-                    <li>
-                      Some agents felt the AI-generated responses were too generic and needed more customization.
-                    </li>
-                    <li>Trust in AI suggestions varied based on agent experience level.</li>
-                    <li>Agents wanted a way to quickly edit AI responses before sending.</li>
-                    <li>It is common for agents to prefer the use of macros over the tool.</li>
+                    <li>Trust in AI suggestions varied based on agent experience level</li>
+                    <li>Agents wanted a way to quickly edit AI responses before sending</li>
+                    <li>It is common for agents to prefer the use of macros over the tool</li>
                   </ul>
                 </div>
 
                 <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)]">
-                  <h4 className="font-normal text-2xl text-[#474747]">Quality & ops</h4>
-                  <ul className="mt-3 list-disc pl-5 text-base text-[#474747]/80 space-y-2">
-                    <li>Agents had difficulty understanding how to navigate and score in the Chrome extension</li>
+                  <h4 className="text-2xl font-normal text-[#474747]">Quality & ops</h4>
+                  <ul className="mt-3 space-y-2 list-disc pl-5 text-base text-[#474747]/80">
+                    <li>Agents had difficulty navigating and scoring in the Chrome extension</li>
                     <li>Managers had difficulty understanding how to create rubrics</li>
                     <li>Reviewing and comparing data felt slow</li>
-                    <li>Managers were asking for different scoring methods, capabilities, and requirements</li>
+                    <li>Managers asked for different scoring methods, capabilities, and requirements</li>
                     <li>Lack of actionable feedback for agents being scored</li>
                   </ul>
                 </div>
               </div>
-            </section>
+            </div>
           </Container>
-        </FadeInOnView>
+        </RiseInOnView>
       </section>
 
       {/* Ideation & Design Process */}
-      <section className="relative overflow-hidden py-20">
+      <section className="relative overflow-hidden py-24">
         <div className="absolute inset-0 bg-white" />
 
-        <FadeInOnView>
+        <RiseInOnView>
           <Container>
             <div className="relative">
               <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
@@ -352,44 +450,23 @@ export default function OperatorCaseStudy() {
                 <div className="lg:col-span-5">
                   <div className="mx-auto max-w-xl space-y-6 text-base leading-relaxed text-[#474747]/80 lg:mx-0">
                     <p>
-                      After reviewing insights gathered during the research process and
-                      incorporating feedback from project managers, stakeholders, and
-                      developers, we aligned on a structured vision for the software suite.
-                      We openly discussed what an ideal version of the product would look like
-                      and developed a clear plan for the MVP.
+                      After reviewing insights gathered during research and incorporating feedback
+                      from PMs, stakeholders, and developers, we aligned on a structured vision for
+                      the software suite and developed a clear plan for the MVP.
                     </p>
 
                     <p>
-                      With the roadmap in place, we began wireframing and designing the
-                      interfaces section by section. To ensure a consistent and cohesive
-                      experience across all applications within the platform, we chose
-                      Material UI as our design framework. For the MVP, customization of
-                      the design system was kept minimal to prioritize functionality and
-                      speed of development.
+                      With the roadmap in place, we began wireframing and designing section by
+                      section. To ensure a consistent and cohesive experience across all apps, we
+                      chose Material UI as our design framework. For the MVP, customization was kept
+                      minimal to prioritize functionality and speed of development.
                     </p>
                   </div>
                 </div>
 
                 <div className="lg:col-span-7">
                   <div className="grid gap-6 sm:grid-cols-2">
-                    {[
-                      {
-                        src: "/case-studies/operator/ideation-collage1.png",
-                        alt: "Ideation artifact 1",
-                      },
-                      {
-                        src: "/case-studies/operator/ideation-collage2.png",
-                        alt: "Ideation artifact 2",
-                      },
-                      {
-                        src: "/case-studies/operator/ideation-collage3.png",
-                        alt: "Ideation artifact 3",
-                      },
-                      {
-                        src: "/case-studies/operator/ideation-collage4.png",
-                        alt: "Ideation artifact 4",
-                      },
-                    ].map((img) => (
+                    {ideationImages.map((img) => (
                       <div
                         key={img.src}
                         className="relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm"
@@ -410,44 +487,20 @@ export default function OperatorCaseStudy() {
               </div>
             </div>
           </Container>
-        </FadeInOnView>
+        </RiseInOnView>
       </section>
 
       {/* UI Previews */}
-      <section className="py-20 bg-white">
-        <FadeInOnView>
+      <section className="bg-white py-24">
+        <RiseInOnView>
           <Container>
-            <h2 className="text-5xl font-semibold tracking-tight text-center text-[#4521A6]">
+            <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
               UI Previews
             </h2>
 
             <div className="mt-16 grid gap-6 sm:grid-cols-2">
-              {[
-                {
-                  src: "/case-studies/operator/ui-preview-1.png",
-                  alt: "Operator Admin panel - Home",
-                  title: "Operator Admin panel - Home",
-                },
-                {
-                  src: "/case-studies/operator/ui-preview-2.png",
-                  alt: "Operator Admin panel - Users",
-                  title: "Operator Admin panel - Users",
-                },
-                {
-                  src: "/case-studies/operator/ui-preview-3.png",
-                  alt: "Assist - Answer Feedback",
-                  title: "Assist - Answer Feedback",
-                },
-                {
-                  src: "/case-studies/operator/ui-preview-4.png",
-                  alt: "Assist - Sentiment analysis",
-                  title: "Assist - Sentiment analysis",
-                },
-              ].map((img) => (
-                <div
-                  key={img.src}
-                  className="overflow-hidden rounded-3xl border border-black/10"
-                >
+              {uiPreviewsTop.map((img) => (
+                <div key={img.src} className="overflow-hidden rounded-3xl border border-black/10">
                   <button
                     type="button"
                     onClick={() => openImage({ src: img.src, alt: img.alt })}
@@ -472,9 +525,7 @@ export default function OperatorCaseStudy() {
                   </button>
 
                   <div className="px-5 py-4">
-                    <p className="text-sm font-semibold text-[#474747]/80">
-                      {img.title}
-                    </p>
+                    <p className="text-sm font-semibold text-[#474747]/80">{img.title}</p>
                   </div>
                 </div>
               ))}
@@ -483,7 +534,7 @@ export default function OperatorCaseStudy() {
             <div className="mt-10">
               <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-black/10 bg-white">
                 <div className="px-5 pt-5">
-                  <p className="text-sm text-[#474747]/80 font-semibold">
+                  <p className="text-sm font-semibold text-[#474747]/80">
                     Assist Chrome extension - Humanizing response
                   </p>
                 </div>
@@ -505,22 +556,8 @@ export default function OperatorCaseStudy() {
             </div>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              {[
-                {
-                  src: "/case-studies/operator/ui-preview-5.png",
-                  alt: "Quality - Dashboard",
-                  title: "Quality - Dashboard",
-                },
-                {
-                  src: "/case-studies/operator/ui-preview-6.png",
-                  alt: "Quality - Rubrics",
-                  title: "Quality - Rubrics",
-                },
-              ].map((img) => (
-                <div
-                  key={img.src}
-                  className="overflow-hidden rounded-3xl border border-black/10"
-                >
+              {uiPreviewsBottom.map((img) => (
+                <div key={img.src} className="overflow-hidden rounded-3xl border border-black/10">
                   <button
                     type="button"
                     onClick={() => openImage({ src: img.src, alt: img.alt })}
@@ -545,9 +582,7 @@ export default function OperatorCaseStudy() {
                   </button>
 
                   <div className="px-5 py-4">
-                    <p className="text-sm font-semibold text-[#474747]/80">
-                      {img.title}
-                    </p>
+                    <p className="text-sm font-semibold text-[#474747]/80">{img.title}</p>
                   </div>
                 </div>
               ))}
@@ -556,7 +591,7 @@ export default function OperatorCaseStudy() {
             <div className="mt-10">
               <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-black/10 bg-white">
                 <div className="px-5 pt-5">
-                  <p className="text-sm text-[#474747]/80 font-semibold">
+                  <p className="text-sm font-semibold text-[#474747]/80">
                     Quality Chrome extension - Scoring
                   </p>
                 </div>
@@ -577,11 +612,11 @@ export default function OperatorCaseStudy() {
               </div>
             </div>
           </Container>
-        </FadeInOnView>
+        </RiseInOnView>
       </section>
 
       {/* Impact & Results */}
-      <section className="relative overflow-hidden py-20">
+      <section className="relative overflow-hidden py-24">
         <div className="absolute inset-0">
           <Image
             src="/case-studies/operator/impact-bg1.png"
@@ -589,12 +624,13 @@ export default function OperatorCaseStudy() {
             fill
             className="object-cover object-right"
             priority
+            sizes="100vw"
           />
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
 
-        <FadeInOnView>
+        <RiseInOnView>
           <Container>
             <div className="relative z-10">
               <h2 className="text-center text-5xl font-semibold tracking-tight text-[#FF80F1]">
@@ -609,63 +645,50 @@ export default function OperatorCaseStudy() {
 
                   <p className="mt-8 text-lg leading-relaxed text-white/85">
                     The success and maturity of Operator’s product direction contributed to
-                    Crescendo’s interest in PartnerHero during the acquisition process,
-                    demonstrating the value of scalable internal tooling and thoughtful
-                    product design.
+                    Crescendo’s interest in PartnerHero during the acquisition process, demonstrating
+                    the value of scalable internal tooling and thoughtful product design.
                   </p>
                 </div>
 
-                <div className="hidden lg:flex justify-center">
+                <div className="hidden justify-center lg:flex">
                   <span className="block h-full w-px bg-white/30" />
                 </div>
 
                 <div>
                   <ul className="space-y-6">
-                    <li className="flex items-start gap-4">
-                      <span className="mt-1 inline-flex h-8 w-8 min-h-8 min-w-8 flex-shrink-0 items-center justify-center rounded-full bg-white text-black">
-                        ✓
-                      </span>
-                      <p className="text-base text-white/90">
-                        <span className="font-semibold text-white">Adopted by 500+</span>{" "}
-                        agents across teams
-                      </p>
-                    </li>
-
-                    <li className="flex items-start gap-4">
-                      <span className="mt-1 inline-flex h-8 w-8 min-h-8 min-w-8 flex-shrink-0 items-center justify-center rounded-full bg-white text-black">
-                        ✓
-                      </span>
-                      <p className="text-base text-white/90">
-                        Unified design language across{" "}
-                        <span className="font-semibold text-white">3 applications</span>{" "}
-                        and an admin panel
-                      </p>
-                    </li>
-
-                    <li className="flex items-start gap-4">
-                      <span className="mt-1 inline-flex h-8 w-8 min-h-8 min-w-8 flex-shrink-0 items-center justify-center rounded-full bg-white text-black">
-                        ✓
-                      </span>
-                      <p className="text-base text-white/90">
-                        Positive feedback from early users—agents and paying customers—
-                        highlighting clarity and visual consistency
-                      </p>
-                    </li>
+                    {[
+                      { bold: "Adopted by 500+", text: "agents across teams" },
+                      { bold: "Unified design language across 3 applications", text: "and an admin panel" },
+                      {
+                        bold: "Positive feedback from early users",
+                        text: "highlighting clarity and visual consistency",
+                      },
+                    ].map((item) => (
+                      <li key={item.bold} className="flex items-start gap-4">
+                        <span className="mt-1 inline-flex h-8 w-8 min-h-8 min-w-8 flex-shrink-0 items-center justify-center rounded-full bg-white text-black">
+                          ✓
+                        </span>
+                        <p className="text-base text-white/90">
+                          <span className="font-semibold text-white">{item.bold}</span>{" "}
+                          {item.text}
+                        </p>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
             </div>
           </Container>
-        </FadeInOnView>
+        </RiseInOnView>
       </section>
 
       {/* Reflection */}
-      <section className="relative overflow-hidden py-20">
+      <section className="relative overflow-hidden py-24">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
-        <FadeInOnView>
+        <RiseInOnView>
           <Container>
-            <div className="relative z-10 max-w-2xl mx-auto">
+            <div className="relative z-10 mx-auto max-w-2xl">
               <h2 className="text-center text-5xl font-semibold tracking-tight text-[#FF80F1]">
                 Reflection
               </h2>
@@ -678,14 +701,14 @@ export default function OperatorCaseStudy() {
                 </p>
 
                 <p>
-                  As features regularly changed, objectives transformed, and deadlines shifted, I was
-                  motivated to develop greater flexibility, better communication skills, and a more
-                  practical design methodology.
+                  As features regularly changed, objectives transformed, and deadlines shifted, I
+                  was motivated to develop greater flexibility, better communication skills, and a
+                  more practical design methodology.
                 </p>
 
                 <p>
-                  However, the most fulfilling aspect went beyond the process itself; it was observing
-                  teams thrive using the exact tools we had created.
+                  However, the most fulfilling aspect went beyond the process itself; it was
+                  observing teams thrive using the exact tools we had created.
                 </p>
 
                 <h4 className="pt-6 text-center text-3xl font-semibold tracking-tight text-white">
@@ -693,51 +716,17 @@ export default function OperatorCaseStudy() {
                 </h4>
 
                 <p className="text-center text-base">
-                  Exceptional design involves empowering individuals to perform at their highest level
-                  through clear communication, understanding, and flexible systems that evolve
+                  Exceptional design involves empowering individuals to perform at their highest
+                  level through clear communication, understanding, and flexible systems that evolve
                   alongside their users.
                 </p>
               </div>
             </div>
           </Container>
-        </FadeInOnView>
+        </RiseInOnView>
       </section>
 
-      {/* Lightbox */}
-      {expandedImage ? (
-        <div
-          className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Expanded image preview"
-          onClick={closeImage}
-        >
-          <div className="flex h-full w-full items-center justify-center overflow-y-auto p-4 sm:p-6">
-            <div
-              className="relative w-full max-w-6xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={closeImage}
-                className="absolute -right-3 -top-3 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/95 text-black shadow-lg ring-1 ring-black/10"
-                aria-label="Close expanded preview"
-              >
-                ✕
-              </button>
-
-              <div className="relative w-full max-h-[85vh] overflow-hidden rounded-2xl bg-white">
-                <img
-                  src={expandedImage.src}
-                  alt={expandedImage.alt}
-                  className="block h-auto w-full max-h-[85vh] object-contain"
-                  loading="eager"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : null}
+      <Lightbox image={expandedImage} onClose={closeImage} />
     </>
   );
 }
