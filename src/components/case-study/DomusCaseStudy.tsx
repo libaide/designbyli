@@ -222,7 +222,7 @@ export default function DomusCaseStudy() {
               <div className="space-y-4">
                 <p className="text-[#1B2166]/70">
                   A Honduran home-services marketplace concept designed to help clients find verified
-                  technicians, request services, and manage scheduling and payments—while giving
+                  technicians, request services, and manage scheduling and payments, as well as giving
                   technicians a reliable pipeline of work.
                 </p>
                 <p className="text-[#1B2166]/70">

@@ -33,8 +33,8 @@ export default function SectionHeader({
   underline?: Underline;
 }) {
   // Defaults match Domus
-  const defaultTitle = dark ? "text-white" : "text-[#1B2166]";
-  const defaultDesc = dark ? "text-white/80" : "text-[#1B2166]/70";
+  const defaultTitle = dark ? "text-white" : "text-black";
+  const defaultDesc = dark ? "text-[#c9c9d3]" : "text-[#252525]";
 
   const showUnderline = underline?.show;
 

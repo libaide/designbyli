@@ -124,6 +124,7 @@ export default function FeaturedWorkAnimated() {
 
       {/* Foreground content */}
       <div className="relative z-10 px-6 sm:px-10 py-24">
+        <div className="mx-auto max-w-6xl px-6 sm:px-10">
         <SectionHeader
           title="Featured work"
           underline={{ show: false }}
@@ -175,7 +176,7 @@ export default function FeaturedWorkAnimated() {
                 ))}
               </div>
 
-              <p className="mt-4 max-w-[40ch] text-m text-white/80">{p.description}</p>
+              <p className="mt-4 max-w-[40ch] text-m text-[#c9c9d3]">{p.description}</p>
 
               <span className="mt-4 inline-block text-sm underline underline-offset-4">
                 View
@@ -189,7 +190,7 @@ export default function FeaturedWorkAnimated() {
             <Button>View more projects</Button>
           </Link>
         </div>
-      </div>
+      </div></div>
     </section>
   );
 }

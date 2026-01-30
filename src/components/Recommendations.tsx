@@ -30,7 +30,7 @@ function RecCard({
           transition: "max-height 420ms cubic-bezier(0.22, 1, 0.36, 1)",
         }}
       >
-        <blockquote className="text-base leading-relaxed text-white/80 sm:text-lg">
+        <blockquote className="text-base leading-relaxed text-[#c9c9d3] sm:text-lg">
           “{text}”
         </blockquote>
 
@@ -42,14 +42,14 @@ function RecCard({
       <button
         type="button"
         onClick={onToggle}
-        className="mt-4 text-sm font-medium underline underline-offset-4 text-white/70 transition hover:text-white/90"
+        className="mt-4 text-sm font-medium underline underline-offset-4 text-white transition hover:text-white/90"
       >
         {expanded ? "Show less" : "Read more"}
       </button>
 
       <figcaption className="mt-8">
         <div className="text-sm font-semibold text-white sm:text-base">{name}</div>
-        <div className="mt-1 text-xs text-white/60 sm:text-sm">{title}</div>
+        <div className="mt-1 text-xs text-[#c9c9d3] sm:text-sm">{title}</div>
       </figcaption>
     </figure>
   );
@@ -83,7 +83,7 @@ export default function Recommendations() {
   if (items.length === 0) return null;
 
   return (
-    <section className="bg-black text-white">
+    <section className="bg-black text-[#d5d5e7]">
       <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10">
         <SectionHeader
           title="Recommendations"

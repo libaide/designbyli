@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import CurvedLoop from "@/components/CurvedLoop";
 import SectionHeader from "@/components/case-study/SectionHeader";
 import ContactSection from "@/components/ContactSection";
+import Image from "next/image";
 
 const skills = [
   {
@@ -43,12 +44,11 @@ const skills = [
 
 export default function AboutPage() {
   const skillsMarqueeText = useMemo(() => {
-    const parts: string[] = [];
-    skills.forEach((group) => {
-      parts.push(group.title);
-      group.items.forEach((item) => parts.push(item));
-    });
-    return parts.join(" ✦ ") + " ✦";
+    const items = skills
+      .filter((group) => group.title !== "Tools") // exclude Tools
+      .flatMap((group) => group.items); // ignore titles
+
+    return items.join(" ✦ ") + " ✦";
   }, []);
 
   return (
@@ -56,24 +56,24 @@ export default function AboutPage() {
       {/* Intro */}
       <section className="py-24">
         <div className="mx-auto max-w-6xl px-6 sm:px-10">
-          <SectionHeader title="Hi! I'm Li" dark />
+          <SectionHeader title="Hi! I'm Li" dark titleClassName="text-7xl md:text-[10rem]" />
 
           {/* Small banner marquee */}
           <div className="mt-8 overflow-hidden">
-  <CurvedLoop
-    marqueeText={skillsMarqueeText}
-    variant="straight"
-    speed={4}
-    interactive={false}
-    containerClassName="banner"
-    svgClassName="banner"
-    className="fill-white/80"
-  />
-</div>
+            <CurvedLoop
+              marqueeText={skillsMarqueeText}
+              variant="straight"
+              speed={4}
+              interactive={false}
+              containerClassName="banner"
+              svgClassName="banner"
+              className="fill-white text-5xl md:text-7xl"
+            />
+          </div>
 
           {/* Intro text */}
-          <div className="mx-auto mt-10 max-w-3xl">
-            <div className="space-y-4 text-base leading-relaxed text-white/70">
+          <div className="mx-auto mt-10 max-w-2xl">
+            <div className="space-y-4 text-base leading-relaxed text-[#c9c9d3]">
               <p>
                 I’m a UX/UI designer with over six years of experience designing digital products
                 that are clear, functional, and thoughtfully crafted. I’ve spent most of my career
@@ -96,11 +96,23 @@ export default function AboutPage() {
                 Outside of design, I’m deeply interested in creativity and technology, always
                 learning and experimenting with new tools and ideas.
               </p>
+              {/* Profile picture */}
+<div className="mt-12 flex justify-center">
+  <div className="relative h-32 w-32 overflow-hidden rounded-full border border-white/10 bg-white/5 shadow-sm">
+    <Image
+      src="/ProfilePic.png"
+      alt="Portrait of Li"
+      fill
+      className="object-cover"
+      priority
+    />
+  </div>
+</div>
+
             </div>
           </div>
         </div>
       </section>
-
 
       {/* Contact */}
       <ContactSection id="about-contact" title="Let’s work together" />
