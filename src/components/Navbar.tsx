@@ -20,7 +20,7 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo = Home */}
           <Link href="/" className="flex items-center gap-2 text-white">
-            <Logo size={44} />
+            <Logo size={54} />
           </Link>
 
           {/* Nav */}

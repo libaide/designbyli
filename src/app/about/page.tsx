@@ -56,7 +56,7 @@ export default function AboutPage() {
       {/* Intro */}
       <section className="py-24">
         <div className="mx-auto max-w-6xl px-6 sm:px-10">
-          <SectionHeader title="Hi! I'm Li" dark titleClassName="text-7xl md:text-[10rem]" />
+          <SectionHeader title="I'm Li" dark titleClassName="text-7xl md:text-[10rem]" />
 
           {/* Small banner marquee */}
           <div className="mt-8 overflow-hidden">

@@ -33,7 +33,7 @@ export default function Logo({
       style={{ width: size, height: size }}
     >
       <Image
-        src="/logo.svg"
+        src="/LogoWhite_600.svg"
         alt="Design by Li logo"
         fill
         priority={priority}

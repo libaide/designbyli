@@ -32,9 +32,18 @@ export default function SectionHeader({
 
   underline?: Underline;
 }) {
-  // Defaults match Domus
-  const defaultTitle = dark ? "text-white" : "text-black";
-  const defaultDesc = dark ? "text-[#c9c9d3]" : "text-[#252525]";
+  // ✅ Apply defaults ONLY when no override is provided
+  const defaultTitle = titleClassName
+    ? undefined
+    : dark
+      ? "text-white"
+      : "text-black";
+
+  const defaultDesc = descriptionClassName
+    ? undefined
+    : dark
+      ? "text-white/70"
+      : "text-black/70";
 
   const showUnderline = underline?.show;
 
@@ -64,7 +73,6 @@ export default function SectionHeader({
       {description ? (
         <p
           className={cx(
-            // Domus uses mt-8 — but if underline is present we usually want tighter spacing
             showUnderline ? "mt-6" : "mt-8",
             "text-base leading-relaxed",
             defaultDesc,

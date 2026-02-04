@@ -1,3 +1,4 @@
+import type React from "react";
 import Container from "@/components/Container";
 import Image from "next/image";
 import clsx from "clsx";
@@ -9,8 +10,8 @@ type Props = {
   illustrationSrc: string;
   illustrationAlt: string;
 
-  /** Optional: lets you bump small logos (e.g. Domus/Humanize) without affecting others */
   logoSize?: "sm" | "md" | "lg";
+  logoClassName?: string;
 };
 
 export default function CaseStudyHeroSplit({
@@ -20,34 +21,31 @@ export default function CaseStudyHeroSplit({
   illustrationSrc,
   illustrationAlt,
   logoSize = "md",
+  logoClassName,
 }: Props) {
   const logoSizeClasses = {
-    sm: "h-10 sm:h-11",
-    md: "h-12 sm:h-13",
-    lg: "h-14 sm:h-44",
+    sm: "h-8 sm:h-9",
+    md: "h-9 sm:h-11",
+    lg: "h-12 sm:h-14",
   } as const;
 
   return (
-    <section className="bg-white pt-16 pb-8 sm:pt-28">
+    <section className="bg-white pb-8 pt-16 sm:pt-28">
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           {/* Left */}
-<div className="lg:col-span-5 lg:text-left">
-  <img
-    src={logoSrc}
-    alt={logoAlt}
-    className={clsx("mx-auto lg:mx-auto block w-auto", logoSizeClasses[logoSize])}
-    draggable={false}
-  />
+          <div className="lg:col-span-5 lg:text-left">
+            <img
+              src={logoSrc}
+              alt={logoAlt}
+              className={clsx("mx-auto block w-auto", logoSizeClasses[logoSize], logoClassName)}
+              draggable={false}
+            />
 
-  <div className="mt-8 space-y-6 text-base leading-relaxed text-[#474747]/80">
-    {summary}
-  </div>
-</div>
-
-
-
-
+            <div className="mt-8 space-y-6 text-base leading-relaxed text-[#474747]/80">
+              {summary}
+            </div>
+          </div>
 
           {/* Right */}
           <div className="lg:col-span-7">

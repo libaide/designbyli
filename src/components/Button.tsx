@@ -21,12 +21,12 @@ export default function Button({
 
   const variants: Record<ButtonVariant, string> = {
     cta:
-      "bg-white text-black font-semibold border-black " +
+      "bg-white text-black font-semibold border-white " +
       "px-8 py-4 text-sm " +
-      "hover:bg-black hover:text-white",
+      "hover:bg-black hover:text-white hover:border-white",
 
     secondary:
-      "bg-black text-white font-medium border-black " +
+      "bg-black text-white font-medium border-white " +
       "px-6 py-3 text-sm " +
       "hover:bg-white hover:text-black",
   };

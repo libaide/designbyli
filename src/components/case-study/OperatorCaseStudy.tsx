@@ -5,6 +5,7 @@ import Container from "@/components/Container";
 import RiseInOnView from "@/components/RiseInOnView";
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { Check } from "lucide-react";
 
 type ExpandedImage = { src: string; alt: string } | null;
 
@@ -28,11 +29,10 @@ function AppSummaryCard({ app }: { app: AppCard }) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-center rounded-2xl border border-black/15 bg-white px-6 py-5">
-        {/* Using <img> here is fine (SVGs). If you want next/image, configure it for SVG. */}
         <img
           src={app.logo}
           alt={`${app.title} logo`}
-          className="h-[40px] w-auto"
+          className="h-[32px] w-auto"
           draggable={false}
         />
       </div>
@@ -138,22 +138,10 @@ export default function OperatorCaseStudy() {
 
   const currentStateImages = useMemo(
     () => [
-      {
-        src: "/case-studies/operator/current-state-analysis-1.png",
-        alt: "Current state analysis artifact 1",
-      },
-      {
-        src: "/case-studies/operator/current-state-analysis-2.png",
-        alt: "Current state analysis artifact 2",
-      },
-      {
-        src: "/case-studies/operator/current-state-analysis-3.png",
-        alt: "Current state analysis artifact 3",
-      },
-      {
-        src: "/case-studies/operator/current-state-analysis-4.png",
-        alt: "Current state analysis artifact 4",
-      },
+      { src: "/case-studies/operator/current-state-analysis-1.png", alt: "Current state analysis artifact 1" },
+      { src: "/case-studies/operator/current-state-analysis-2.png", alt: "Current state analysis artifact 2" },
+      { src: "/case-studies/operator/current-state-analysis-3.png", alt: "Current state analysis artifact 3" },
+      { src: "/case-studies/operator/current-state-analysis-4.png", alt: "Current state analysis artifact 4" },
     ],
     []
   );
@@ -170,42 +158,18 @@ export default function OperatorCaseStudy() {
 
   const uiPreviewsTop = useMemo<GalleryImage[]>(
     () => [
-      {
-        src: "/case-studies/operator/ui-preview-1.png",
-        alt: "Operator Admin panel - Home",
-        title: "Operator Admin panel - Home",
-      },
-      {
-        src: "/case-studies/operator/ui-preview-2.png",
-        alt: "Operator Admin panel - Users",
-        title: "Operator Admin panel - Users",
-      },
-      {
-        src: "/case-studies/operator/ui-preview-3.png",
-        alt: "Assist - Answer Feedback",
-        title: "Assist - Answer Feedback",
-      },
-      {
-        src: "/case-studies/operator/ui-preview-4.png",
-        alt: "Assist - Sentiment analysis",
-        title: "Assist - Sentiment analysis",
-      },
+      { src: "/case-studies/operator/ui-preview-1.png", alt: "Operator Admin panel - Home", title: "Operator Admin panel - Home" },
+      { src: "/case-studies/operator/ui-preview-2.png", alt: "Operator Admin panel - Users", title: "Operator Admin panel - Users" },
+      { src: "/case-studies/operator/ui-preview-3.png", alt: "Assist - Answer Feedback", title: "Assist - Answer Feedback" },
+      { src: "/case-studies/operator/ui-preview-4.png", alt: "Assist - Sentiment analysis", title: "Assist - Sentiment analysis" },
     ],
     []
   );
 
   const uiPreviewsBottom = useMemo<GalleryImage[]>(
     () => [
-      {
-        src: "/case-studies/operator/ui-preview-5.png",
-        alt: "Quality - Dashboard",
-        title: "Quality - Dashboard",
-      },
-      {
-        src: "/case-studies/operator/ui-preview-6.png",
-        alt: "Quality - Rubrics",
-        title: "Quality - Rubrics",
-      },
+      { src: "/case-studies/operator/ui-preview-5.png", alt: "Quality - Dashboard", title: "Quality - Dashboard" },
+      { src: "/case-studies/operator/ui-preview-6.png", alt: "Quality - Rubrics", title: "Quality - Rubrics" },
     ],
     []
   );
@@ -214,68 +178,74 @@ export default function OperatorCaseStudy() {
     <>
       {/* Top */}
       <section className="bg-white pb-24">
-        <CaseStudyTopSection
-          logoSrc="/case-studies/operator/Operator-logo.svg"
-          logoAlt="Operator logo"
-          illustrationSrc="/case-studies/operator/hero-illustration.png"
-          illustrationAlt="Operator UI preview"
-          summary={
-            <div className="space-y-4 text-[#474747]/80">
-              <p>
-                Operator is <span className="font-semibold">PartnerHero’s</span>{" "}
-                <span className="font-normal">(now Crescendo)</span> internal platform that unified
-                multiple support operations tools into one product suite. It helps agents, managers,
-                and admins work faster with consistent workflows, shared data, and a cohesive UI
-                across applications.
-              </p>
+        <RiseInOnView staggerChildren>
+          <div>
+            <CaseStudyTopSection
+              logoSrc="/case-studies/operator/Operator-logo.svg"
+              logoAlt="Operator logo"
+              logoSize="sm"
+              illustrationSrc="/case-studies/operator/hero-illustration.png"
+              illustrationAlt="Operator UI preview"
+              summary={
+                <div className="space-y-4 text-[#474747]/80">
+                  <p>
+                    Operator is <span className="font-semibold">PartnerHero’s</span>{" "}
+                    <span className="font-normal">(now Crescendo)</span> internal platform that unified
+                    multiple support operations tools into one product suite. It helps agents, managers,
+                    and admins work faster with consistent workflows, shared data, and a cohesive UI
+                    across applications.
+                  </p>
 
-              <p>
-                I led UX and UI design for <span className="font-semibold">Assist</span>,{" "}
-                <span className="font-semibold">Quality</span>, and the{" "}
-                <span className="font-semibold">Operator</span> admin panel, collaborating closely
-                with designers, PMs, developers, and stakeholders.
-              </p>
-            </div>
-          }
-          afterHero={
-            <div className="grid gap-10 md:grid-cols-3">
-              {apps.map((app) => (
-                <AppSummaryCard key={app.title} app={app} />
-              ))}
-            </div>
-          }
-          stats={[
-            { label: "Project Type", value: "Internal SaaS Platform" },
-            { label: "Role", value: "UX/UI Designer" },
-            { label: "Timeline", value: "2023–2024" },
-            { label: "Tools", value: "Figma, Material UI, Jira" },
-            { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
-            { label: "Company", value: "PartnerHero (now Crescendo)" },
-          ]}
-        />
+                  <p>
+                    I led UX and UI design for <span className="font-semibold">Assist</span>,{" "}
+                    <span className="font-semibold">Quality</span>, and the{" "}
+                    <span className="font-semibold">Operator</span> admin panel, collaborating closely
+                    with designers, PMs, developers, and stakeholders.
+                  </p>
+                </div>
+              }
+              afterHero={
+                <RiseInOnView staggerChildren className="grid gap-10 md:grid-cols-3">
+                  {apps.map((app) => (
+                    <AppSummaryCard key={app.title} app={app} />
+                  ))}
+                </RiseInOnView>
+              }
+              stats={[
+                { label: "Project Type", value: "Internal SaaS Platform" },
+                { label: "Role", value: "UX/UI Designer" },
+                { label: "Timeline", value: "2023–2024" },
+                { label: "Tools", value: "Figma, Material UI, Jira" },
+                { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
+                { label: "Company", value: "PartnerHero (now Crescendo)" },
+              ]}
+            />
+          </div>
+        </RiseInOnView>
       </section>
 
       {/* Problem & Context */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
-        <RiseInOnView>
+        <RiseInOnView staggerChildren>
           <div className="relative mx-auto w-full max-w-5xl px-4">
+            {/* stagger targets */}
             <div className="relative z-10 min-h-[620px] py-24">
               <div className="max-w-xl">
                 <h2 className="text-5xl font-semibold tracking-tight text-[#FF80F1]">
                   Problem & Context
                 </h2>
 
-                <p className="mt-6 text-base leading-relaxed text-white/70">
+                <p className="mt-6 text-base leading-relaxed text-[#d3d3d3]">
                   Customer support teams previously relied on fragmented tools, inconsistent
                   workflows, and manual processes, which led to inefficiencies and rising
                   operational costs. After several proof-of-concept tools proved their value,
-                  PartnerHero decided to fully design and develop a centralized platform—one that
+                  PartnerHero decided to fully design and develop a centralized platform that
                   would empower every team across the organization.
                 </p>
 
-                <p className="mt-6 text-base leading-relaxed text-white/70">
+                <p className="mt-6 text-base leading-relaxed text-[#d3d3d3]">
                   My mission was to transform fragmented internal tools into an integrated, scalable
                   product suite, ensuring that every feature enhanced efficiency, clarity, and agent
                   satisfaction.
@@ -301,134 +271,153 @@ export default function OperatorCaseStudy() {
 
       {/* Research & Insights */}
       <section className="bg-[#FBFAF9] py-24">
-        <RiseInOnView>
+        <RiseInOnView staggerChildren>
           <Container>
-            <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
-              Research & Insights
-            </h2>
+            <div className="space-y-16">
+              {/* 1) section header */}
+              <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
+                Research & Insights
+              </h2>
 
-            {/* Current State Analysis */}
-            <div className="mt-16">
-              <div className="max-w-3xl text-left">
-                <h3 className="text-3xl font-medium tracking-tight text-[#474747]">
-                  Current State Analysis
-                </h3>
+              {/* 2) Current State Analysis */}
+              <div>
+                <RiseInOnView staggerChildren>
+                  <div className="max-w-3xl text-left">
+                    <h3 className="text-3xl font-medium tracking-tight text-[#474747]">
+                      Current State Analysis
+                    </h3>
 
-                <div className="mt-5 space-y-6 text-base leading-relaxed text-[#474747]/80">
-                  <p>
-                    At the time of evaluation, the product experience relied on fragmented
-                    workflows and inconsistent interface patterns. Core tasks required unnecessary
-                    steps, increasing cognitive load and slowing down users’ ability to complete
-                    their work efficiently. While the system functioned from a technical
-                    standpoint, it lacked clarity, hierarchy, and scalability from a user
-                    experience perspective.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {currentStateImages.map((img) => (
-                  <div
-                    key={img.src}
-                    className="overflow-hidden rounded-3xl border border-black/10 bg-white"
-                  >
-                    <div className="relative aspect-[4/3]">
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        className="object-contain"
-                        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                      />
+                    <div className="mt-5 space-y-6 text-base leading-relaxed text-[#474747]/80">
+                      <p>
+                        At the time of evaluation, the product experience relied on fragmented
+                        workflows and inconsistent interface patterns. Core tasks required unnecessary
+                        steps, increasing cognitive load and slowing down users’ ability to complete
+                        their work efficiently. While the system functioned from a technical
+                        standpoint, it lacked clarity, hierarchy, and scalability from a user
+                        experience perspective.
+                      </p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Interviews */}
-            <div className="mt-16">
-              <div className="relative overflow-hidden rounded-3xl bg-white">
-                <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
-                  <div className="relative">
-                    <div className="relative overflow-hidden rounded-2xl bg-white">
-                      <div className="relative aspect-[4/3]">
-                        <Image
-                          src="/case-studies/operator/interviews.png"
-                          alt="Interview insights and qualitative feedback visualization"
-                          fill
-                          className="object-cover"
-                          sizes="(min-width: 1024px) 40vw, 100vw"
-                        />
+                  <RiseInOnView
+                    staggerChildren
+                    className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+                  >
+                    {currentStateImages.map((img) => (
+                      <div
+                        key={img.src}
+                        className="overflow-hidden rounded-3xl border border-black/10 bg-white"
+                      >
+                        <div className="relative aspect-[4/3]">
+                          <Image
+                            src={img.src}
+                            alt={img.alt}
+                            fill
+                            className="object-contain"
+                            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </RiseInOnView>
+                </RiseInOnView>
+              </div>
+
+              {/* 3) Interviews */}
+              <div>
+                <RiseInOnView staggerChildren>
+                  <div
+                    className="relative overflow-hidden rounded-3xl border border-black/10 bg-white
+                               shadow-[0_18px_50px_rgba(15,23,42,0.10)]"
+                  >
+                    <div className="relative grid gap-10 lg:grid-cols-2 lg:items-stretch">
+                      {/* Text — left */}
+                      <div className="order-2 max-w-xl p-6 sm:p-8 lg:order-1 lg:pr-10">
+                        <h3 className="text-3xl font-medium tracking-tight text-[#474747]">
+                          Interviews
+                        </h3>
+
+                        <div className="mt-6 space-y-5 text-base leading-relaxed text-[#474747]/80">
+                          <p>
+                            To ensure Operator effectively addressed the challenges faced by customer
+                            support agents, I planned and led a series of user interviews with agents
+                            and managers who interacted daily with Assist and Quality. My objective was
+                            to identify pain points, usability concerns, and improvement opportunities
+                            in the tools.
+                          </p>
+
+                          <p>
+                            A diverse group of agents and managers across different teams and experience
+                            levels were selected. We used:
+                          </p>
+
+                          {/* stagger list items */}
+                          <RiseInOnView staggerChildren className="ml-4 list-disc space-y-2">
+                            <li>One-on-one video call interviews</li>
+                            <li>Open-ended questions to encourage detailed feedback</li>
+                            <li>Live walkthroughs of the tools to observe agent workflows</li>
+                          </RiseInOnView>
+                        </div>
+                      </div>
+
+                      {/* Image — right */}
+                      <div className="order-1 relative h-full w-full lg:order-2">
+                        <div className="relative h-full w-full overflow-hidden lg:rounded-r-3xl">
+                          <div className="relative h-full min-h-[280px] lg:min-h-full">
+                            <Image
+                              src="/case-studies/operator/InterviewsIllustration.png"
+                              alt="Interview insights and qualitative feedback visualization"
+                              fill
+                              className="object-cover"
+                              sizes="(min-width: 1024px) 50vw, 100vw"
+                              priority
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
+                </RiseInOnView>
+              </div>
 
-                  <div className="max-w-xl p-6 sm:p-8">
-                    <h3 className="text-3xl font-medium tracking-tight text-[#474747]">
-                      Interviews
+              {/* 4) Insights */}
+              <div>
+                <RiseInOnView staggerChildren>
+                  <div>
+                    <h3 className="text-left text-3xl font-medium tracking-tight text-[#474747]">
+                      Insights
                     </h3>
+                    <p className="mt-3 max-w-2xl text-left text-base text-[#474747]/80">
+                      These insights directly influenced feature updates and UI improvements, making the
+                      tools more intuitive and valuable for agents.
+                    </p>
+                  </div>
 
-                    <div className="mt-6 space-y-5 text-base leading-relaxed text-[#474747]/80">
-                      <p>
-                        To ensure Operator effectively addressed the challenges faced by customer
-                        support agents, I planned and led a series of user interviews with agents
-                        and managers who interacted daily with Assist and Quality. My objective was
-                        to identify pain points, usability concerns, and improvement opportunities
-                        in the tools.
-                      </p>
-
-                      <p>
-                        A diverse group of agents and managers across different teams and experience
-                        levels were selected. We used:
-                      </p>
-
-                      <ul className="ml-4 list-disc space-y-2">
-                        <li>One-on-one video call interviews</li>
-                        <li>Open-ended questions to encourage detailed feedback</li>
-                        <li>Live walkthroughs of the tools to observe agent workflows</li>
+                  <RiseInOnView staggerChildren className="mt-8 grid gap-6 sm:grid-cols-2">
+                    <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)]">
+                      <h4 className="text-2xl font-normal text-[#474747]">Agent experience</h4>
+                      <ul className="mt-3 list-disc space-y-2 pl-5 text-base text-[#474747]/80">
+                        <li>The Chrome extension UI is unclear</li>
+                        <li>Management through the web app is difficult, and so is reviewing data</li>
+                        <li>Some agents felt AI-generated responses were too generic and needed more customization</li>
+                        <li>Trust in AI suggestions varied based on agent experience level</li>
+                        <li>Agents wanted a way to quickly edit AI responses before sending</li>
+                        <li>It is common for agents to prefer the use of macros over the tool</li>
                       </ul>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            {/* Insights */}
-            <div className="mt-16">
-  <h3 className="text-center text-3xl font-medium tracking-tight text-[#474747]">
-    Insights
-  </h3>
-  <p className="mt-3 max-w-2xl mx-auto text-center text-base text-[#474747]/80">
-    These insights directly influenced feature updates and UI improvements, making the
-    tools more intuitive and valuable for agents.
-  </p>
-
-  <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)]">
-                  <h4 className="text-2xl font-normal text-[#474747]">Agent experience</h4>
-                  <ul className="mt-3 space-y-2 list-disc pl-5 text-base text-[#474747]/80">
-                    <li>The Chrome extension UI is unclear</li>
-                    <li>Management through the web app is difficult, and so is reviewing data</li>
-                    <li>
-                      Some agents felt AI-generated responses were too generic and needed more customization
-                    </li>
-                    <li>Trust in AI suggestions varied based on agent experience level</li>
-                    <li>Agents wanted a way to quickly edit AI responses before sending</li>
-                    <li>It is common for agents to prefer the use of macros over the tool</li>
-                  </ul>
-                </div>
-
-                <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)]">
-                  <h4 className="text-2xl font-normal text-[#474747]">Quality & ops</h4>
-                  <ul className="mt-3 space-y-2 list-disc pl-5 text-base text-[#474747]/80">
-                    <li>Agents had difficulty navigating and scoring in the Chrome extension</li>
-                    <li>Managers had difficulty understanding how to create rubrics</li>
-                    <li>Reviewing and comparing data felt slow</li>
-                    <li>Managers asked for different scoring methods, capabilities, and requirements</li>
-                    <li>Lack of actionable feedback for agents being scored</li>
-                  </ul>
-                </div>
+                    <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)]">
+                      <h4 className="text-2xl font-normal text-[#474747]">Quality & ops</h4>
+                      <ul className="mt-3 list-disc space-y-2 pl-5 text-base text-[#474747]/80">
+                        <li>Agents had difficulty navigating and scoring in the Chrome extension</li>
+                        <li>Managers had difficulty understanding how to create rubrics</li>
+                        <li>Reviewing and comparing data felt slow</li>
+                        <li>Managers asked for different scoring methods, capabilities, and requirements</li>
+                        <li>Lack of actionable feedback for agents being scored</li>
+                      </ul>
+                    </div>
+                  </RiseInOnView>
+                </RiseInOnView>
               </div>
             </div>
           </Container>
@@ -439,15 +428,15 @@ export default function OperatorCaseStudy() {
       <section className="relative overflow-hidden py-24">
         <div className="absolute inset-0 bg-white" />
 
-        <RiseInOnView>
+        <RiseInOnView staggerChildren>
           <Container>
-            <div className="relative">
+            <div className="relative space-y-14">
               <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
                 Ideation & Design Process
               </h2>
 
-              <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:items-center">
-                <div className="lg:col-span-5">
+              <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+                <RiseInOnView staggerChildren className="lg:col-span-5">
                   <div className="mx-auto max-w-xl space-y-6 text-base leading-relaxed text-[#474747]/80 lg:mx-0">
                     <p>
                       After reviewing insights gathered during research and incorporating feedback
@@ -462,28 +451,29 @@ export default function OperatorCaseStudy() {
                       minimal to prioritize functionality and speed of development.
                     </p>
                   </div>
-                </div>
+                </RiseInOnView>
 
-                <div className="lg:col-span-7">
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    {ideationImages.map((img) => (
-                      <div
-                        key={img.src}
-                        className="relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm"
-                      >
-                        <div className="relative aspect-[16/10]">
-                          <Image
-                            src={img.src}
-                            alt={img.alt}
-                            fill
-                            className="object-cover"
-                            sizes="(min-width: 1024px) 35vw, (min-width: 640px) 50vw, 100vw"
-                          />
-                        </div>
+                <RiseInOnView
+                  staggerChildren
+                  className="grid gap-6 sm:grid-cols-2 lg:col-span-7"
+                >
+                  {ideationImages.map((img) => (
+                    <div
+                      key={img.src}
+                      className="relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm"
+                    >
+                      <div className="relative aspect-[16/10]">
+                        <Image
+                          src={img.src}
+                          alt={img.alt}
+                          fill
+                          className="object-cover"
+                          sizes="(min-width: 1024px) 35vw, (min-width: 640px) 50vw, 100vw"
+                        />
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </div>
+                  ))}
+                </RiseInOnView>
               </div>
             </div>
           </Container>
@@ -492,124 +482,131 @@ export default function OperatorCaseStudy() {
 
       {/* UI Previews */}
       <section className="bg-white py-24">
-        <RiseInOnView>
+        <RiseInOnView staggerChildren>
           <Container>
-            <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
-              UI Previews
-            </h2>
+            <div className="space-y-16">
+              <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
+                UI Previews
+              </h2>
 
-            <div className="mt-16 grid gap-6 sm:grid-cols-2">
-              {uiPreviewsTop.map((img) => (
-                <div key={img.src} className="overflow-hidden rounded-3xl border border-black/10">
-                  <button
-                    type="button"
-                    onClick={() => openImage({ src: img.src, alt: img.alt })}
-                    className="group relative w-full cursor-zoom-in focus:outline-none"
-                    aria-label={`Expand image: ${img.title}`}
-                  >
-                    <div className="relative aspect-[16/10] bg-white">
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        className="object-contain transition-transform duration-300 group-hover:scale-[1.01]"
-                        sizes="(min-width: 640px) 50vw, 100vw"
-                      />
+              {/* Top grid */}
+              <RiseInOnView staggerChildren className="grid gap-6 sm:grid-cols-2">
+                {uiPreviewsTop.map((img) => (
+                  <div key={img.src} className="overflow-hidden rounded-3xl border border-black/10">
+                    <button
+                      type="button"
+                      onClick={() => openImage({ src: img.src, alt: img.alt })}
+                      className="group relative w-full cursor-zoom-in focus:outline-none"
+                      aria-label={`Expand image: ${img.title}`}
+                    >
+                      <div className="relative aspect-[16/10] bg-white">
+                        <Image
+                          src={img.src}
+                          alt={img.alt}
+                          fill
+                          className="object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                          sizes="(min-width: 640px) 50vw, 100vw"
+                        />
+                      </div>
+
+                      <div className="pointer-events-none absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10" />
+
+                      <div className="pointer-events-none absolute bottom-4 right-4 hidden rounded-full bg-black/60 px-3 py-1 text-xs text-white sm:block">
+                        Click to expand
+                      </div>
+                    </button>
+
+                    <div className="px-5 py-4">
+                      <p className="text-sm font-semibold text-[#474747]/80">{img.title}</p>
                     </div>
+                  </div>
+                ))}
+              </RiseInOnView>
 
-                    <div className="pointer-events-none absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10" />
+              {/* Video 1 */}
+              <RiseInOnView staggerChildren>
+                <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-black/10 bg-white">
+                  <div className="px-5 pt-5">
+                    <p className="text-sm font-semibold text-[#474747]/80">
+                      Assist Chrome extension - Humanizing response
+                    </p>
+                  </div>
 
-                    <div className="pointer-events-none absolute bottom-4 right-4 hidden rounded-full bg-black/60 px-3 py-1 text-xs text-white sm:block">
-                      Click to expand
-                    </div>
-                  </button>
-
-                  <div className="px-5 py-4">
-                    <p className="text-sm font-semibold text-[#474747]/80">{img.title}</p>
+                  <div className="mt-4 flex justify-center px-4 pb-4">
+                    <video
+                      src="/case-studies/operator/extension-demo.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-full max-w-md rounded-xl"
+                    >
+                      Your browser does not support the video tag.
+                    </video>
                   </div>
                 </div>
-              ))}
-            </div>
+              </RiseInOnView>
 
-            <div className="mt-10">
-              <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-black/10 bg-white">
-                <div className="px-5 pt-5">
-                  <p className="text-sm font-semibold text-[#474747]/80">
-                    Assist Chrome extension - Humanizing response
-                  </p>
-                </div>
+              {/* Bottom grid (FIX: use uiPreviewsBottom here, not uiPreviewsTop) */}
+              <RiseInOnView staggerChildren className="grid gap-6 sm:grid-cols-2">
+                {uiPreviewsBottom.map((img) => (
+                  <div key={img.src} className="overflow-hidden rounded-3xl border border-black/10">
+                    <button
+                      type="button"
+                      onClick={() => openImage({ src: img.src, alt: img.alt })}
+                      className="group relative w-full cursor-zoom-in focus:outline-none"
+                      aria-label={`Expand image: ${img.title}`}
+                    >
+                      <div className="relative aspect-[16/10] bg-white">
+                        <Image
+                          src={img.src}
+                          alt={img.alt}
+                          fill
+                          className="object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                          sizes="(min-width: 640px) 50vw, 100vw"
+                        />
+                      </div>
 
-                <div className="mt-4 flex justify-center px-4 pb-4">
-                  <video
-                    src="/case-studies/operator/extension-demo.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    className="w-full max-w-md rounded-xl"
-                  >
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              </div>
-            </div>
+                      <div className="pointer-events-none absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10" />
 
-            <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              {uiPreviewsBottom.map((img) => (
-                <div key={img.src} className="overflow-hidden rounded-3xl border border-black/10">
-                  <button
-                    type="button"
-                    onClick={() => openImage({ src: img.src, alt: img.alt })}
-                    className="group relative w-full cursor-zoom-in focus:outline-none"
-                    aria-label={`Expand image: ${img.title}`}
-                  >
-                    <div className="relative aspect-[16/10] bg-white">
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        className="object-contain transition-transform duration-300 group-hover:scale-[1.01]"
-                        sizes="(min-width: 640px) 50vw, 100vw"
-                      />
+                      <div className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
+                        <span className="sm:hidden">Tap to expand</span>
+                        <span className="hidden sm:inline">Click to expand</span>
+                      </div>
+                    </button>
+
+                    <div className="px-5 py-4">
+                      <p className="text-sm font-semibold text-[#474747]/80">{img.title}</p>
                     </div>
+                  </div>
+                ))}
+              </RiseInOnView>
 
-                    <div className="pointer-events-none absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10" />
+              {/* Video 2 */}
+              <RiseInOnView staggerChildren>
+                <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-black/10 bg-white">
+                  <div className="px-5 pt-5">
+                    <p className="text-sm font-semibold text-[#474747]/80">
+                      Quality Chrome extension - Scoring
+                    </p>
+                  </div>
 
-                    <div className="pointer-events-none absolute bottom-4 right-4 hidden rounded-full bg-black/60 px-3 py-1 text-xs text-white sm:block">
-                      Click to expand
-                    </div>
-                  </button>
-
-                  <div className="px-5 py-4">
-                    <p className="text-sm font-semibold text-[#474747]/80">{img.title}</p>
+                  <div className="mt-4 flex justify-center px-4 pb-4">
+                    <video
+                      src="/case-studies/operator/extension-demo-2.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-full max-w-md rounded-xl"
+                    >
+                      Your browser does not support the video tag.
+                    </video>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="mt-10">
-              <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-black/10 bg-white">
-                <div className="px-5 pt-5">
-                  <p className="text-sm font-semibold text-[#474747]/80">
-                    Quality Chrome extension - Scoring
-                  </p>
-                </div>
-
-                <div className="mt-4 flex justify-center px-4 pb-4">
-                  <video
-                    src="/case-studies/operator/extension-demo-2.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    className="w-full max-w-md rounded-xl"
-                  >
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              </div>
+              </RiseInOnView>
             </div>
           </Container>
         </RiseInOnView>
@@ -630,52 +627,56 @@ export default function OperatorCaseStudy() {
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
 
-        <RiseInOnView>
+        <RiseInOnView staggerChildren>
           <Container>
-            <div className="relative z-10">
+            <div className="relative z-10 space-y-16">
               <h2 className="text-center text-5xl font-semibold tracking-tight text-[#FF80F1]">
                 Impact And Results
               </h2>
 
-              <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
-                <div>
-                  <p className="text-lg leading-relaxed text-white/80">
-                    Operator improved usability and adoption across the company’s internal tools.
-                  </p>
+              <div className="grid gap-12 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
+                <RiseInOnView staggerChildren>
+                  <div>
+                    <p className="text-lg leading-relaxed text-[#d3d3d3]">
+                      Operator improved usability and adoption across the company’s internal tools.
+                    </p>
 
-                  <p className="mt-8 text-lg leading-relaxed text-white/85">
-                    The success and maturity of Operator’s product direction contributed to
-                    Crescendo’s interest in PartnerHero during the acquisition process, demonstrating
-                    the value of scalable internal tooling and thoughtful product design.
-                  </p>
-                </div>
+                    <p className="mt-6 text-lg leading-relaxed text-[#d3d3d3]">
+                      The success and maturity of Operator’s product direction contributed to
+                      Crescendo’s interest in PartnerHero during the acquisition process, demonstrating
+                      the value of scalable internal tooling and thoughtful product design.
+                    </p>
+                  </div>
+                </RiseInOnView>
 
                 <div className="hidden justify-center lg:flex">
-                  <span className="block h-full w-px bg-white/30" />
+                  <span className="block h-full w-px bg-[#d3d3d3]" />
                 </div>
 
-                <div>
-                  <ul className="space-y-6">
+                {/* stagger the bullet cards */}
+                <RiseInOnView staggerChildren>
+                  <ul className="space-y-4">
                     {[
                       { bold: "Adopted by 500+", text: "agents across teams" },
                       { bold: "Unified design language across 3 applications", text: "and an admin panel" },
-                      {
-                        bold: "Positive feedback from early users",
-                        text: "highlighting clarity and visual consistency",
-                      },
+                      { bold: "Positive feedback from early users", text: "highlighting clarity and visual consistency" },
                     ].map((item) => (
-                      <li key={item.bold} className="flex items-start gap-4">
-                        <span className="mt-1 inline-flex h-8 w-8 min-h-8 min-w-8 flex-shrink-0 items-center justify-center rounded-full bg-white text-black">
-                          ✓
+                      <li
+                        key={item.bold}
+                        className="flex items-center gap-4 rounded-2xl bg-black/70 px-5 py-4"
+                      >
+                        <span className="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black">
+                          <Check className="h-4 w-4 stroke-[2.5]" />
                         </span>
-                        <p className="text-base text-white/90">
-                          <span className="font-semibold text-white">{item.bold}</span>{" "}
+
+                        <p className="text-base leading-snug text-white">
+                          <span className="font-semibold">{item.bold}</span>{" "}
                           {item.text}
                         </p>
                       </li>
                     ))}
                   </ul>
-                </div>
+                </RiseInOnView>
               </div>
             </div>
           </Container>
@@ -686,41 +687,43 @@ export default function OperatorCaseStudy() {
       <section className="relative overflow-hidden py-24">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
-        <RiseInOnView>
+        <RiseInOnView staggerChildren>
           <Container>
             <div className="relative z-10 mx-auto max-w-2xl">
-              <h2 className="text-center text-5xl font-semibold tracking-tight text-[#FF80F1]">
-                Reflection
-              </h2>
+              <RiseInOnView staggerChildren className="space-y-6">
+                <h2 className="text-center text-5xl font-semibold tracking-tight text-[#FF80F1]">
+                  Reflection
+                </h2>
 
-              <div className="mt-6 space-y-6 text-base leading-relaxed text-white/70">
-                <p>
-                  Through my experience with Operator, I gained valuable insights into implementing
-                  design strategies across multiple teams and products while maintaining consistency,
-                  transparency, and purpose.
-                </p>
+                <div className="space-y-6 text-base leading-relaxed text-[#d3d3d3]">
+                  <p>
+                    Through my experience with Operator, I gained valuable insights into implementing
+                    design strategies across multiple teams and products while maintaining consistency,
+                    transparency, and purpose.
+                  </p>
 
-                <p>
-                  As features regularly changed, objectives transformed, and deadlines shifted, I
-                  was motivated to develop greater flexibility, better communication skills, and a
-                  more practical design methodology.
-                </p>
+                  <p>
+                    As features regularly changed, objectives transformed, and deadlines shifted, I
+                    was motivated to develop greater flexibility, better communication skills, and a
+                    more practical design methodology.
+                  </p>
 
-                <p>
-                  However, the most fulfilling aspect went beyond the process itself; it was
-                  observing teams thrive using the exact tools we had created.
-                </p>
+                  <p>
+                    However, the most fulfilling aspect went beyond the process itself; it was
+                    observing teams thrive using the exact tools we had created.
+                  </p>
 
-                <h4 className="pt-6 text-center text-3xl font-semibold tracking-tight text-white">
-                  ...exceptional design goes beyond visual interfaces.
-                </h4>
+                  <h4 className="pt-6 text-center text-3xl font-semibold tracking-tight text-white">
+                    ...exceptional design goes beyond visual interfaces.
+                  </h4>
 
-                <p className="text-center text-base">
-                  Exceptional design involves empowering individuals to perform at their highest
-                  level through clear communication, understanding, and flexible systems that evolve
-                  alongside their users.
-                </p>
-              </div>
+                  <p className="text-center text-base text-[#d3d3d3]">
+                    Exceptional design involves empowering individuals to perform at their highest
+                    level through clear communication, understanding, and flexible systems that evolve
+                    alongside their users.
+                  </p>
+                </div>
+              </RiseInOnView>
             </div>
           </Container>
         </RiseInOnView>

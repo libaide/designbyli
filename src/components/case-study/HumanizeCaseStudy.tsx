@@ -43,6 +43,8 @@ export default function HumanizeCaseStudy() {
         logoSrc="/case-studies/humanize/humanize-logo.png"
         logoAlt="Humanize logo"
         logoSize="lg"
+        logoClassName="h-28 sm:h-28 md:h-28"
+        
         illustrationSrc="/case-studies/humanize/hero.png"
         illustrationAlt="Humanize UI preview"
         summary={

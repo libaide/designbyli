@@ -7,7 +7,6 @@ import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import SectionHeader from "@/components/case-study/SectionHeader";
 
-
 type ExpandedImage = { src: string; alt: string } | null;
 
 type JourneyCard = {
@@ -211,47 +210,44 @@ export default function DomusCaseStudy() {
 
   return (
     <>
-        <section className="bg-white pb-20">
-          <CaseStudyTopSection
-            logoSrc="/case-studies/domus/domus-logo.png"
-            logoAlt="Domus logo"
-            logoSize="lg"
-            illustrationSrc="/case-studies/domus/hero-image.png"
-            illustrationAlt="Domus UI preview"
-            summary={
-              <div className="space-y-4">
-                <p className="text-[#1B2166]/70">
-                  A Honduran home-services marketplace concept designed to help clients find verified
-                  technicians, request services, and manage scheduling and payments, as well as giving
-                  technicians a reliable pipeline of work.
-                </p>
-                <p className="text-[#1B2166]/70">
-                  I led UX and UI design for the MVP across client, technician, and admin experiences,
-                  focusing on trust, clarity, and a scalable Material Design 3 foundation.
-                </p>
-              </div>
-            }
-            stats={[
-              { label: "Project Type", value: "Mobile App MVP" },
-              { label: "Role", value: "UX/UI Designer" },
-              { label: "Timeline", value: "Sept. 2025 — Nov. 2025" },
-              { label: "Tools", value: "Figma, Material Design 3" },
-              {
-                label: "Scope",
-                value: "UX Research, Wireframing, Prototyping, Visual Design",
-              },
-              { label: "Client", value: "Domus" },
-            ]}
-          />
-        </section>
+      {/* Top */}
+      <section className="bg-white pb-20">
+        <CaseStudyTopSection
+          logoSrc="/case-studies/domus/domus-logo.png"
+          logoAlt="Domus logo"
+          logoSize="lg"
+          logoClassName="h-20 sm:h-24 md:h-28"
+          illustrationSrc="/case-studies/domus/hero-image.png"
+          illustrationAlt="Domus UI preview"
+          summary={
+            <div className="space-y-4">
+              <p className="text-[#1B2166]/70">
+                A Honduran home-services marketplace concept designed to help clients find verified
+                technicians, request services, and manage scheduling and payments, as well as giving
+                technicians a reliable pipeline of work.
+              </p>
+              <p className="text-[#1B2166]/70">
+                I led UX and UI design for the MVP across client, technician, and admin experiences,
+                focusing on trust, clarity, and a scalable Material Design 3 foundation.
+              </p>
+            </div>
+          }
+          stats={[
+            { label: "Project Type", value: "Mobile App MVP" },
+            { label: "Role", value: "UX/UI Designer" },
+            { label: "Timeline", value: "Sept. 2025 — Nov. 2025" },
+            { label: "Tools", value: "Figma, Material Design 3" },
+            { label: "Scope", value: "UX Research, Wireframing, Prototyping, Visual Design" },
+            { label: "Client", value: "Domus" },
+          ]}
+        />
+      </section>
 
       {/* Problem & Context */}
       <section className="relative overflow-hidden bg-[#f6f7ff]">
         <div className="relative mx-auto w-full max-w-5xl px-4 py-20 lg:py-20">
-          {/* Animate the card in */}
           <RiseInOnView>
             <div className="relative z-10 max-w-xl lg:max-w-[560px] lg:rounded-3xl lg:bg-[#FFD000] lg:p-10 lg:shadow-sm">
-              {/* Stagger the *contents* (direct children of RiseInOnView) */}
               <RiseInOnView
                 staggerChildren
                 staggerMs={90}
@@ -259,9 +255,11 @@ export default function DomusCaseStudy() {
                 y={14}
                 duration={850}
               >
-                <h2 className="text-4xl font-semibold tracking-tight text-[#1B2166]">
-                  The Problem
-                </h2>
+                <SectionHeader
+                  title="The Problem"
+                  wrapperClassName="max-w-none text-left"
+                  titleClassName="text-[#1B2166] text-4xl"
+                />
 
                 <p className="mt-6 text-base leading-relaxed text-[#1B2166]/70">
                   In Honduras, it can be tough to find reliable and trustworthy home service providers.
@@ -325,27 +323,21 @@ export default function DomusCaseStudy() {
       <section className="bg-white py-20">
         <Container>
           <RiseInOnView staggerChildren staggerMs={90} y={14} duration={850}>
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-4xl font-semibold tracking-tight text-[#1B2166]">
-                Business Objectives & MVP Goals
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-[#1B2166]/70">
-                The MVP aimed to validate the business hypothesis that there is real demand for
-                verified home services in Honduras under a <span className="italic">“pull model”</span>,
-                where clients post requests and technicians apply to them.
-              </p>
-            </div>
+            <SectionHeader
+              title="Business Objectives & MVP Goals"
+              description='The MVP aimed to validate the business hypothesis that there is real demand for verified home services in Honduras under a “pull model”, where clients post requests and technicians apply to them.'
+              titleClassName="text-[#1B2166] text-4xl"
+            />
           </RiseInOnView>
 
           <RiseInOnView
-  staggerChildren
-  staggerMs={110}
-  y={16}
-  duration={900}
-  className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-12 items-stretch"
->
-            <div className="h-full rounded-3xl bg-white p-10 shadow-[0_25px_70px_rgba(15,23,42,0.18)] sm:p-12 flex flex-col">
-
+            staggerChildren
+            staggerMs={110}
+            y={16}
+            duration={900}
+            className="mt-16 grid gap-10 items-stretch lg:grid-cols-2 lg:gap-12"
+          >
+            <div className="flex h-full flex-col rounded-3xl bg-white p-10 shadow-[0_25px_70px_rgba(15,23,42,0.18)] sm:p-12">
               <div className="flex items-center gap-4">
                 <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#1B2166]/5">
                   <svg
@@ -378,8 +370,7 @@ export default function DomusCaseStudy() {
               </ul>
             </div>
 
-            <div className="h-full rounded-3xl bg-white p-10 shadow-[0_25px_70px_rgba(15,23,42,0.18)] sm:p-12 flex flex-col">
-
+            <div className="flex h-full flex-col rounded-3xl bg-white p-10 shadow-[0_25px_70px_rgba(15,23,42,0.18)] sm:p-12">
               <div className="flex items-center gap-4">
                 <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#1B2166]/5">
                   <svg
@@ -430,7 +421,6 @@ export default function DomusCaseStudy() {
               />
             </RiseInOnView>
 
-            {/* Stagger the two persona columns */}
             <RiseInOnView
               staggerChildren
               staggerMs={120}
@@ -512,9 +502,12 @@ export default function DomusCaseStudy() {
             <RiseInOnView>
               <div className="w-full max-w-4xl rounded-[32px] bg-[#F6F7FF] px-10 py-12 text-center sm:px-14 sm:py-16">
                 <RiseInOnView staggerChildren staggerMs={90} y={14} duration={850}>
-                  <h2 className="text-4xl font-semibold tracking-tight text-[#1B2166]">
-                    Competitive Research
-                  </h2>
+                  <SectionHeader
+                    title="Competitive Research"
+                    wrapperClassName="max-w-none text-left"
+                    titleClassName="text-[#1B2166] text-4xl"
+                    descriptionClassName="text-left"
+                  />
 
                   <div className="mt-8 space-y-6 text-base leading-relaxed text-[#1B2166]/70 text-left">
                     <p>
@@ -553,10 +546,11 @@ export default function DomusCaseStudy() {
               <SectionHeader
                 title="User Journeys"
                 description="Once the MVP objectives were defined and the research had been done, I mapped the user journeys for the three main roles: Client, Technician, and Admin. These journeys helped identify critical moments that would shape the MVP."
+                descriptionClassName="text-[#1B2166]/70"
+                titleClassName="text-[#1B2166] text-4xl"
               />
             </RiseInOnView>
 
-            {/* Stagger the journey cards */}
             <RiseInOnView
               staggerChildren
               staggerMs={110}
@@ -593,14 +587,15 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* User Flows */}
-      <section className="relative overflow-hidden py-20 sm:py-20 bg-white">
-
+      <section className="relative overflow-hidden bg-white py-20 sm:py-20">
         <Container>
           <div className="relative">
             <RiseInOnView>
               <SectionHeader
                 title="User Flows"
                 description="I proceeded to map the core user flows for the three main roles. This helped clarify how each interaction connected to business logic, from posting a service to payment confirmation."
+                descriptionClassName="text-[#1B2166]/70"
+                titleClassName="text-[#1B2166] text-4xl"
               />
             </RiseInOnView>
 
@@ -627,13 +622,15 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Wireframes */}
-      <section className="relative overflow-hidden py-20 sm:py-20 bg-white">
+      <section className="relative overflow-hidden bg-white py-20 sm:py-20">
         <Container>
           <div className="relative">
             <RiseInOnView>
               <SectionHeader
                 title="Wireframes"
                 description="After finalizing the flow diagrams and defining the MVP scope and core features, I transitioned into low-fidelity wireframes. I collaborated closely with Ricardo and Samuel to ensure all critical MVP functionalities were represented and the UX remained simple and intuitive."
+                descriptionClassName="text-[#1B2166]/70"
+                titleClassName="text-[#1B2166] text-4xl"
               />
             </RiseInOnView>
 
@@ -644,7 +641,6 @@ export default function DomusCaseStudy() {
                     <RiseInOnView staggerChildren staggerMs={90} y={12} duration={850}>
                       <p className="text-sm text-[#1B2166]/55">(Preview)</p>
 
-                      {/* Stagger the grid items (buttons) */}
                       <RiseInOnView
                         staggerChildren
                         staggerMs={90}
@@ -687,21 +683,22 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Design System */}
-      <section className="relative overflow-hidden py-20 sm:py-20 bg-[#f6f7ff]">
-
+      <section className="relative overflow-hidden bg-[#f6f7ff] py-20 sm:py-20">
         <Container>
           <div className="relative">
             <RiseInOnView staggerChildren staggerMs={90} y={14} duration={850}>
               <SectionHeader
                 title="Design System"
                 description="Once the UX structure and wireframes were validated, I established the visual identity and design system for Domus. The goal was to build a cohesive, scalable, and developer-friendly UI foundation that could evolve as the product matured."
+                descriptionClassName="text-[#1B2166]/70"
+                titleClassName="text-[#1b2166] text-4xl"
               />
 
               <div className="mx-auto mt-4 max-w-3xl text-center">
                 <p className="text-sm leading-relaxed text-[#1B2166]/70">
-                  Using the Material Theme
-                  Builder, I generated an accessible, Domus-branded design system and created a local
-                  component library and style tokens tailored to the project’s needs.
+                  Using the Material Theme Builder, I generated an accessible, Domus-branded design
+                  system and created a local component library and style tokens tailored to the
+                  project’s needs.
                 </p>
               </div>
             </RiseInOnView>
@@ -743,7 +740,7 @@ export default function DomusCaseStudy() {
               />
             </RiseInOnView>
 
-            {/* Stagger mobile previews */}
+            {/* Mobile previews */}
             <RiseInOnView
               staggerChildren
               staggerMs={70}
@@ -778,7 +775,7 @@ export default function DomusCaseStudy() {
               ))}
             </RiseInOnView>
 
-            {/* Stagger desktop previews */}
+            {/* Desktop previews */}
             <RiseInOnView
               staggerChildren
               staggerMs={120}
@@ -833,9 +830,12 @@ export default function DomusCaseStudy() {
             <RiseInOnView>
               <div className="w-full max-w-3xl rounded-[32px] bg-[#F6F7FF] px-10 py-12 text-center sm:px-14 sm:py-16">
                 <RiseInOnView staggerChildren staggerMs={90} y={14} duration={850}>
-                  <h2 className="text-4xl font-semibold tracking-tight text-[#1B2166]">
-                    Reflection
-                  </h2>
+                  <SectionHeader
+                    title="Reflection"
+                    wrapperClassName="max-w-none text-center"
+                    titleClassName="text-[#1B2166] text-4xl"
+                    descriptionClassName="text-[#1B2166]/70 text-4xl"
+                  />
 
                   <div className="mt-8 space-y-6 text-base leading-relaxed text-[#1B2166]/70 text-left">
                     <p>
@@ -843,7 +843,7 @@ export default function DomusCaseStudy() {
                       execution, transforming a simple idea into a validated MVP.
                     </p>
 
-                    <p className="space-y-6 text-base leading-relaxed text-[#1B2166]/70 text-left">
+                    <p className="text-base leading-relaxed text-[#1B2166]/70">
                       This project strengthened my ability to design trust-based ecosystems and create
                       scalable product foundations for emerging markets.
                     </p>
@@ -865,7 +865,10 @@ export default function DomusCaseStudy() {
           onClick={closeImage}
         >
           <div className="flex h-full w-full items-center justify-center overflow-y-auto p-4 sm:p-6">
-            <div className="relative w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
+            <div
+              className="relative w-full max-w-6xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 type="button"
                 onClick={closeImage}
