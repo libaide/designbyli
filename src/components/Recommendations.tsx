@@ -30,7 +30,7 @@ function RecCard({
           transition: "max-height 420ms cubic-bezier(0.22, 1, 0.36, 1)",
         }}
       >
-        <blockquote className="text-base leading-relaxed text-[#c9c9d3] sm:text-lg">
+        <blockquote className="text-base leading-relaxed text-[#c9c9d3] sm:text-lg font-light">
           “{text}”
         </blockquote>
 
@@ -42,7 +42,7 @@ function RecCard({
       <button
         type="button"
         onClick={onToggle}
-        className="mt-4 text-sm font-medium underline underline-offset-4 text-white transition hover:text-white/90"
+        className="mt-4 text-base font-medium underline underline-offset-4 text-white transition hover:text-white/90"
       >
         {expanded ? "Show less" : "Read more"}
       </button>

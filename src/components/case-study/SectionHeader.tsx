@@ -51,7 +51,7 @@ export default function SectionHeader({
     <div className={cx("mx-auto max-w-3xl text-center", wrapperClassName)}>
       <h2
         className={cx(
-          "text-4xl font-semibold tracking-tight",
+          "text-4xl font-medium tracking-normal",
           defaultTitle,
           titleClassName
         )}

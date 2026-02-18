@@ -14,7 +14,7 @@ type ContactSectionProps = {
 export default function ContactSection({
   id = "contact",
   className = "bg-white text-black",
-  title = "Let’s build something great",
+  title = "Let’s Build Something Great",
 }: ContactSectionProps) {
   return (
     <section

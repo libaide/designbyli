@@ -126,7 +126,7 @@ export default function FeaturedWorkAnimated() {
       <div className="relative z-10 px-6 sm:px-10 py-24">
         <div className="mx-auto max-w-6xl px-6 sm:px-10">
         <SectionHeader
-          title="Featured work"
+          title="Featured Work"
           underline={{ show: false }}
           // optional tweaks:
           titleClassName="text-white"
@@ -163,7 +163,7 @@ export default function FeaturedWorkAnimated() {
                 />
               </div>
 
-              <h3 className="mt-6 text-xl font-semibold tracking-tight">{p.title}</h3>
+              <h3 className="mt-6 text-xl font-normal text-white tracking-normal">{p.title}</h3>
 
               <div className="mt-4 flex flex-wrap gap-2">
                 {p.tags.map((t) => (
@@ -176,9 +176,9 @@ export default function FeaturedWorkAnimated() {
                 ))}
               </div>
 
-              <p className="mt-4 max-w-[40ch] text-m text-[#c9c9d3]">{p.description}</p>
+              <p className="mt-4 max-w-[40ch] text-base font-light text-gray-300">{p.description}</p>
 
-              <span className="mt-4 inline-block text-sm underline underline-offset-4">
+              <span className="mt-4 inline-block text-base underline underline-offset-4">
                 View
               </span>
             </Link>

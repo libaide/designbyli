@@ -4,11 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Container from "./Container";
 import Logo from "@/components/logo";
-import Button from "@/components/Button";
+// import Button from "@/components/Button"; // Button is no longer used in the Navbar
 
 const nav = [
-  { href: "/about", label: "About" },
+  { href: "/about", label: "Lore" },
   { href: "/work", label: "Work" },
+  { href: "/contact", label: "Contact" }, // Added Contact here as a regular nav item
 ];
 
 export default function Navbar() {
@@ -32,7 +33,8 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative flex flex-col items-center text-sm text-white/80 hover:text-white transition-colors"
+                  // These classes are shared with other nav items
+                  className="relative flex flex-col items-center text-m text-white/80 hover:text-white transition-colors"
                 >
                   {item.label}
 
@@ -47,15 +49,7 @@ export default function Navbar() {
               );
             })}
 
-            {/* CTA Contact */}
-            <Link href="/contact">
-              <Button
-                variant="cta"
-                className="!px-6 !py-3 text-sm"
-              >
-                Contact
-              </Button>
-            </Link>
+            {/* CTA Contact - This section has been removed */}
           </nav>
         </div>
       </Container>

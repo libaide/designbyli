@@ -31,6 +31,8 @@ function cx(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
+// ... (inside DomusCaseStudy function, where ZoomImageButton is defined)
+
 function ZoomImageButton({
   src,
   alt,
@@ -70,7 +72,8 @@ function ZoomImageButton({
       />
 
       {hint ? (
-        <div className="pointer-events-none absolute bottom-4 right-4 hidden rounded-full bg-black/60 px-3 py-1 text-xs text-white sm:block">
+        // REMOVED 'hidden sm:block' from here
+        <div className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
           Click to expand
         </div>
       ) : null}
@@ -246,8 +249,10 @@ export default function DomusCaseStudy() {
       {/* Problem & Context */}
       <section className="relative overflow-hidden bg-[#f6f7ff]">
         <div className="relative mx-auto w-full max-w-5xl px-4 py-20 lg:py-20">
-          <RiseInOnView>
-            <div className="relative z-10 max-w-xl lg:max-w-[560px] lg:rounded-3xl lg:bg-[#FFD000] lg:p-10 lg:shadow-sm">
+
+          {/* Text Container - ENSURE this RiseInOnView has a higher (or default) z-index relative to the image */}
+          <RiseInOnView className="relative z-20"> {/* ADDED className="relative z-20" here */}
+            <div className="max-w-xl lg:max-w-[560px] lg:rounded-3xl lg:bg-[#FFD000] lg:p-10 lg:shadow-sm"> {/* Removed z-10 from this inner div, as the parent RiseInOnView now handles it */}
               <RiseInOnView
                 staggerChildren
                 staggerMs={90}
@@ -287,7 +292,7 @@ export default function DomusCaseStudy() {
             </div>
           </RiseInOnView>
 
-          {/* Mobile image */}
+          {/* Mobile image - no change needed as it's hidden on lg: */}
           <RiseInOnView delay={120}>
             <div className="relative mt-12 h-[460px] w-full sm:h-[520px] lg:hidden">
               <Image
@@ -302,8 +307,9 @@ export default function DomusCaseStudy() {
           </RiseInOnView>
 
           {/* Desktop image */}
-          <div className="pointer-events-none absolute bottom-[-40px] right-[-80px] z-0 hidden lg:block">
-            <RiseInOnView delay={140}>
+          {/* This is the key change: apply relative and a LOW z-index to the RiseInOnView */}
+          <div className="pointer-events-none absolute bottom-[-40px] right-[-80px] hidden lg:block">
+            <RiseInOnView delay={140} className="relative z-0"> {/* Changed to relative z-0 */}
               <div className="relative h-[860px] w-[860px] xl:h-[980px] xl:w-[980px]">
                 <Image
                   src="/case-studies/domus/problem-and-context.png"
@@ -405,7 +411,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Personas */}
-      <section className="relative overflow-hidden sm:py-20">
+      <section className="relative overflow-hidden py-20 sm:py-20"> {/* Changed here: added py-20 */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1B1E4B] via-[#15173A] to-[#0A0B1F]" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/30" />
@@ -417,7 +423,6 @@ export default function DomusCaseStudy() {
               <SectionHeader
                 title="Personas"
                 dark
-                description="The design was guided by two primary personas representing the core users: clients and technicians."
               />
             </RiseInOnView>
 
@@ -532,90 +537,36 @@ export default function DomusCaseStudy() {
         </Container>
       </section>
 
-      {/* User Journeys */}
-      <section className="relative overflow-hidden py-20 sm:py-20">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[#F6F7FF]" />
-          <div className="absolute left-1/2 top-[-220px] h-[700px] w-[900px] -translate-x-1/2 rounded-full bg-[#D9DBFF]/35 blur-3xl" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F6F7FF] via-[#F6F7FF] to-white" />
+      {/* User Flows & Journeys (Combined & Artistic Diagonal Split Section - New Approach) */}
+      <section className="relative overflow-hidden py-20 sm:py-20 bg-[#F6F7FF]"> {/* Main section background */}
+
+        {/* Diagonal White Background Shape - this creates the left white area */}
+        {/* Uses clip-path to define the diagonal. Adjust polygon values for angle. */}
+        <div className="absolute inset-0 z-10 bg-white"
+             style={{ clipPath: 'polygon(0 0, 60% 0, 40% 100%, 0 100%)' }} /> {/* Adjust 60% and 40% for diagonal angle */}
+
+        {/* Image filling the rest of the section, behind the white diagonal */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/case-studies/domus/UserJourneys.png"
+            alt="Artistic illustration of user flows and journeys"
+            fill
+            className="object-cover" // Ensure image covers the entire background area
+            sizes="100vw"
+            priority
+          />
         </div>
 
         <Container>
-          <div className="relative">
+          {/* Text Content - positioned within the Container, will sit on the white diagonal part */}
+          <div className="relative z-20 max-w-xl pr-8 lg:max-w-2xl"> {/* z-20 ensures it's above both diagonals */}
             <RiseInOnView>
               <SectionHeader
-                title="User Journeys"
-                description="Once the MVP objectives were defined and the research had been done, I mapped the user journeys for the three main roles: Client, Technician, and Admin. These journeys helped identify critical moments that would shape the MVP."
+                title="User Flows & Journeys"
+                description="I began by mapping the core user flows for the three main roles, clarifying how each interaction connected to business logic, from posting a service to payment confirmation. Following this, I mapped the broader user journeys, identifying critical moments that would shape the MVP."
                 descriptionClassName="text-[#1B2166]/70"
                 titleClassName="text-[#1B2166] text-4xl"
               />
-            </RiseInOnView>
-
-            <RiseInOnView
-              staggerChildren
-              staggerMs={110}
-              y={16}
-              duration={900}
-              className="relative mt-14 space-y-10"
-            >
-              {journeyCards.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-3xl border border-black/5 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.18)]"
-                >
-                  <div className="px-8 pt-7">
-                    <h4 className="text-base font-semibold text-[#1B2166]">{item.title}</h4>
-                  </div>
-
-                  <div className="px-6 pb-7 pt-4 sm:px-8">
-                    <div className="relative overflow-hidden rounded-2xl bg-white">
-                      <ZoomImageButton
-                        src={item.src}
-                        alt={item.alt}
-                        aspectClass="aspect-[16/5]"
-                        sizes="(min-width: 1024px) 960px, 100vw"
-                        imgClassName="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                        onExpand={openImage}
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </RiseInOnView>
-          </div>
-        </Container>
-      </section>
-
-      {/* User Flows */}
-      <section className="relative overflow-hidden bg-white py-20 sm:py-20">
-        <Container>
-          <div className="relative">
-            <RiseInOnView>
-              <SectionHeader
-                title="User Flows"
-                description="I proceeded to map the core user flows for the three main roles. This helped clarify how each interaction connected to business logic, from posting a service to payment confirmation."
-                descriptionClassName="text-[#1B2166]/70"
-                titleClassName="text-[#1B2166] text-4xl"
-              />
-            </RiseInOnView>
-
-            <RiseInOnView delay={80}>
-              <div className="relative mt-14">
-                <div className="rounded-3xl border border-black/5 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.18)]">
-                  <div className="px-6 pb-7 pt-6 sm:px-8">
-                    <div className="relative overflow-hidden rounded-2xl bg-white">
-                      <ZoomImageButton
-                        src="/case-studies/domus/user-flows.png"
-                        alt="User flows diagram for Client, Technician, and Admin"
-                        aspectClass="aspect-[16/10] sm:aspect-[16/9]"
-                        sizes="(min-width: 1024px) 900px, 100vw"
-                        imgClassName="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                        onExpand={openImage}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
             </RiseInOnView>
           </div>
         </Container>
@@ -727,7 +678,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* UI Previews */}
-      <section className="relative overflow-hidden py-20">
+      <section className="relative overflow-hidden py-20"> {/* Ensure py-20 is here for mobile padding */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-indigo-900 via-indigo-950 to-black" />
 
         <div className="relative z-10">
@@ -741,39 +692,27 @@ export default function DomusCaseStudy() {
             </RiseInOnView>
 
             {/* Mobile previews */}
-            <RiseInOnView
-              staggerChildren
-              staggerMs={70}
-              y={14}
-              duration={900}
-              className="relative mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+            <div
+              className="relative mt-16 grid grid-cols-2 gap-6 lg:grid-cols-4" // CHANGED: 'sm:grid-cols-2' to 'grid-cols-2'
             >
               {mobilePreviews.map(({ src, alt }) => (
                 <div
                   key={src}
                   className="relative overflow-hidden rounded-3xl bg-black/30 shadow-xl ring-1 ring-white/10"
                 >
-                  <button
-                    type="button"
-                    onClick={() => openImage({ src, alt })}
-                    className="group relative w-full cursor-zoom-in overflow-hidden rounded-3xl focus:outline-none"
-                    aria-label={`Expand image: ${alt}`}
-                  >
-                    <div className="relative aspect-[9/19]">
-                      <Image
-                        src={src}
-                        alt={alt}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                        sizes="(min-width: 1024px) 20vw, 50vw"
-                      />
-                    </div>
-
-                    <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 group-hover:ring-white/20" />
-                  </button>
+                  <ZoomImageButton
+                    src={src}
+                    alt={alt}
+                    aspectClass="aspect-[9/19] h-full"
+                    sizes="(min-width: 1024px) 20vw, 50vw"
+                    imgClassName="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    onExpand={openImage}
+                    ringClassName="ring-white/10 group-hover:ring-white/20"
+                    hint={true}
+                  />
                 </div>
               ))}
-            </RiseInOnView>
+            </div>
 
             {/* Desktop previews */}
             <RiseInOnView

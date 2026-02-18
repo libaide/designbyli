@@ -13,7 +13,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-  "inline-flex items-center justify-center rounded-xl border-[3px] " +
+  "inline-flex items-center justify-center rounded-xl border-[1px] " +
   "cursor-pointer " +
   "transition-all duration-200 " +
   "focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30";
@@ -21,14 +21,14 @@ export default function Button({
 
   const variants: Record<ButtonVariant, string> = {
     cta:
-      "bg-white text-black font-semibold border-white " +
-      "px-8 py-4 text-sm " +
-      "hover:bg-black hover:text-white hover:border-white",
+      "bg-transparent text-white font-medium border-[#f1f1f1] " +
+      "px-8 py-4 text-base " +
+      "hover:bg-black hover:text-white hover:border-gray-600",
 
     secondary:
-      "bg-black text-white font-medium border-white " +
-      "px-6 py-3 text-sm " +
-      "hover:bg-white hover:text-black",
+      "bg-transparent text-gray-300 font-medium border-gray-600 " +
+      "px-8 py-4 text-base " +
+      "hover:bg-black hover:text-white",
   };
 
   return (

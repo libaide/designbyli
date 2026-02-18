@@ -1,104 +1,94 @@
 "use client";
 
-import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/Container";
-import HeroPixelBlastBg from "@/components/Hero/Visuals/HeroPixelBlastBg";
 import FeaturedWorkAnimated from "@/components/FeaturedWorkAnimated";
 import Recommendations from "@/components/Recommendations";
-import Logo from "@/components/logo";
 import Button from "@/components/Button";
-import FadeInOnView from "@/components/RiseInOnView";
+import RiseInOnView from "@/components/RiseInOnView";
 import ContactSection from "@/components/ContactSection";
-
-
+import LightRaysBG from "@/components/Hero/Visuals/LightRaysBG";
 
 
 export default function HomePage() {
+  const scrollToFeaturedWork = () => {
+    document
+      .getElementById("featured-work")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToContactForm = () => {
+    document
+      .getElementById("home-contact")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       {/* Hero */}
-<section
-  id="hero"
-  className="relative overflow-hidden min-h-svh"
->
-  <HeroPixelBlastBg />
+      <section
+        id="hero"
+        className="relative overflow-hidden min-h-svh"
+      >
+        <LightRaysBG />
+        <div className="relative z-10 flex flex-col">
+          <div className="flex-1 flex items-center justify-center">
+            <Container>
+              <div className="flex flex-col items-center text-center gap-6 sm:pt-32"> {/* Adjusted padding */}
+                <RiseInOnView staggerChildren={true} staggerMs={100} className="w-full text-center">
+                  {/* Logo Image */}
+                  <div className="mb-0 mx-auto scale-[0.82] sm:scale-100 relative w-[244px] h-[244px]">
+                    <Image
+                      src="/LogoWhite_600.svg"
+                      alt="Design by Li logo"
+                      fill
+                      priority={true}
+                      className="object-contain"
+                    />
+                  </div>
 
-  {/* Content + arrow layout */}
-  <div className="relative z-10 min-h-svh flex flex-col">
-    {/* Centered content */}
-    <div className="flex-1 flex items-center">
-      <Container>
-        <div className="flex flex-col items-center text-center gap-6 pb-24 sm:pt-16">
-          <h1 className="sr-only">Design by Li</h1>
+                  {/* Headline */}
+                  <p className="max-w-3xl mx-auto text-3xl leading-relaxed text-white sm:text-5xl tracking-normal mb-12 font-light">
+                    Crafting Intuitive Digital Experiences
+                  </p>
 
-          <div className="mb-2 scale-[0.82] sm:scale-100 origin-center">
-            <Logo size={324} priority delayMs={100} />
-          </div>
+                  {/* Sub-headline */}
+                  <p className="max-w-3xl mx-auto text-lg leading-relaxed text-gray-300 sm:text-base tracking-normal font-light">
+                    From messy challenges to clear, functional, and beautiful solutions.
+                  </p>
 
-          <p className="animate-fade-up max-w-3xl text-xl leading-relaxed text-white sm:text-4xl tracking-tight">
-            clear · functional · beautiful
-          </p>
-          <div className="animate-fade-up [animation-delay:340ms]">
-          <Link href="/contact">
-            <Button variant="cta">Get in touch</Button>
-          </Link>
+                  {/* Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center mx-auto">
+                    <Button variant="cta" onClick={scrollToContactForm}>
+                      Let's Connect
+                    </Button>
+                    <Button variant="secondary" onClick={scrollToFeaturedWork}>
+                      View My Work
+                    </Button>
+                  </div>
+                </RiseInOnView>
+              </div>
+            </Container>
           </div>
         </div>
-      </Container>
-    </div>
-
-    {/* Scroll down button */}
-    <div className="hidden sm:flex justify-center pb-24">
-  <button
-    type="button"
-    aria-label="Scroll to featured work"
-    onClick={() => {
-      document
-        .getElementById("featured-work")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }}
-    className="group cursor-pointer"
-  >
-    <span className="relative grid h-12 w-12 place-items-center rounded-full border border-border bg-card/40 backdrop-blur-sm shadow-sm transition hover:bg-card/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-border">
-      <span className="absolute inset-0 rounded-full animate-scrollPing group-hover:opacity-0" />
-
-      <svg
-        viewBox="0 0 24 24"
-        className="h-5 w-5 text-white/80 animate-scrollBounce"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12 5v12" />
-        <path d="M7 12l5 5 5-5" />
-      </svg>
-    </span>
-  </button>
-</div>
-
-  </div>
-</section>
-
-
+      </section>
 
       {/* Featured work */}
-<section id="featured-work">
-  <FadeInOnView>
-    <FeaturedWorkAnimated />
-  </FadeInOnView>
-</section>
+      <section id="featured-work">
+        <RiseInOnView>
+          <FeaturedWorkAnimated />
+        </RiseInOnView>
+      </section>
 
 
       {/* Recommendations */}
-      <FadeInOnView>
+      <RiseInOnView>
        <Recommendations />
-      </FadeInOnView>
+      </RiseInOnView>
 
 
       {/* Contact (Homepage) */}
-<ContactSection id="home-contact" />
+      <ContactSection id="home-contact" />
 
     </>
   );
