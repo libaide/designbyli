@@ -62,6 +62,14 @@ export default function FeaturedWorkAnimated() {
   const bgRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
 
+  // Ensure the reveal starts hidden (useful on refresh / no mouse move yet)
+  useEffect(() => {
+    const bg = bgRef.current;
+    if (!bg) return;
+    bg.style.setProperty("--reveal-x", `-999px`);
+    bg.style.setProperty("--reveal-y", `-999px`);
+  }, []);
+
   const onPointerMove = useCallback((e: React.PointerEvent<HTMLElement>) => {
     const area = areaRef.current;
     const bg = bgRef.current;
@@ -93,8 +101,11 @@ export default function FeaturedWorkAnimated() {
       ref={areaRef}
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
-      className="relative overflow-hidden rounded-3xl"
+      className="relative overflow-hidden rounded-3xl isolate"
     >
+      {/* Base layer to block anything behind (e.g. fixed LightRays) */}
+      <div aria-hidden="true" className="absolute inset-0 bg-black" />
+
       {/* BG – always visible on mobile */}
       <div
         aria-hidden="true"
@@ -118,6 +129,7 @@ export default function FeaturedWorkAnimated() {
           bg-[url('/featured-work-bg.png')]
           bg-cover bg-center bg-no-repeat
           opacity-60
+          transform-gpu will-change-transform
         "
         style={{ ["--reveal-radius" as any]: "220px" }}
       />
@@ -125,72 +137,72 @@ export default function FeaturedWorkAnimated() {
       {/* Foreground content */}
       <div className="relative z-10 px-6 sm:px-10 py-24">
         <div className="mx-auto max-w-6xl px-6 sm:px-10">
-        <SectionHeader
-          title="Featured Work"
-          underline={{ show: false }}
-          // optional tweaks:
-          titleClassName="text-white"
-          // description="A few highlights from recent projects."
-          // descriptionClassName="text-white/70"
-        />
+          <SectionHeader
+            title="Featured Work"
+            underline={{ show: false }}
+            titleClassName="text-white"
+          />
 
-        <div
-          ref={containerRef}
-          className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {featured.map((p, i) => (
-            <Link
-              key={p.slug}
-              href={`/work/${p.slug}`}
-              data-card
-              data-index={i}
-              className={[
-                "group block will-change-transform transition-[transform,opacity,filter] duration-700 ease-out",
-                visible[i]
-                  ? "translate-y-0 opacity-100 blur-0"
-                  : "translate-y-6 opacity-0 blur-[6px]",
-              ].join(" ")}
-              style={{ transitionDelay: `${i * 90}ms` }}
-            >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted/30">
-                <Image
-                  src={p.cover}
-                  alt={`${p.title} cover`}
-                  fill
-                  className="object-cover transition duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-95"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority={p.slug === "operator"}
-                />
-              </div>
+          <div
+            ref={containerRef}
+            className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {featured.map((p, i) => (
+              <Link
+                key={p.slug}
+                href={`/work/${p.slug}`}
+                data-card
+                data-index={i}
+                className={[
+                  "group block will-change-transform transition-[transform,opacity] duration-700 ease-out",
+                  visible[i] ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+                ].join(" ")}
+                style={{ transitionDelay: `${i * 90}ms` }}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted/30">
+                  <Image
+                    src={p.cover}
+                    alt={`${p.title} cover`}
+                    fill
+                    className="object-cover transition duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-95"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={p.slug === "operator"}
+                  />
+                </div>
 
-              <h3 className="mt-6 text-xl font-normal text-white tracking-normal">{p.title}</h3>
+                <h3 className="mt-6 text-xl font-normal text-white tracking-normal">
+                  {p.title}
+                </h3>
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                {p.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-border px-4 py-1 text-sm text-muted"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-gray-600 px-4 py-1 text-sm text-gray-300"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
 
-              <p className="mt-4 max-w-[40ch] text-base font-light text-gray-300">{p.description}</p>
+                <p className="mt-4 max-w-[40ch] text-base font-light text-gray-300">
+                  {p.description}
+                </p>
 
-              <span className="mt-4 inline-block text-base underline underline-offset-4">
-                View
-              </span>
+                <span className="mt-4 inline-block text-base font-semibold underline underline-offset-4">
+                  View
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Link href="/work">
+              <Button>View more projects</Button>
             </Link>
-          ))}
+          </div>
         </div>
-
-        <div className="mt-12 flex justify-center">
-          <Link href="/work">
-            <Button>View more projects</Button>
-          </Link>
-        </div>
-      </div></div>
+      </div>
     </section>
   );
 }

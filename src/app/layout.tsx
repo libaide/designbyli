@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+
 export const metadata: Metadata = {
   title: {
     default: "Your Name — UI/UX Designer",
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body className="min-h-dvh bg-background text-foreground">
         <Navbar />
         <main className="pt-16">{children}</main>

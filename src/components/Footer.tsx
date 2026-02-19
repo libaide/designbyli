@@ -8,7 +8,7 @@ export default function Footer() {
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           {/* Left */}
-          <p className="text-sm text-muted">
+          <p className="text-sm text-gray-300">
             © 2025 Exeli Baide. All rights reserved.
           </p>
 
@@ -19,7 +19,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="text-muted transition hover:text-foreground"
+              className="text-white/80 transition hover:text-white"
             >
               <Linkedin className="h-5 w-5" />
             </a>
@@ -29,17 +29,10 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="text-muted transition hover:text-foreground"
+              className="text-white/80 transition hover:text-white"
             >
               <Github className="h-5 w-5" />
             </a>
-
-            <Link
-              href="/contact"
-              className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium transition hover:bg-accent hover:text-foreground"
-            >
-              Contact
-            </Link>
           </div>
         </div>
       </Container>

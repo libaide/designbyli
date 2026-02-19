@@ -224,14 +224,11 @@ export default function DomusCaseStudy() {
           illustrationAlt="Domus UI preview"
           summary={
             <div className="space-y-4">
-              <p className="text-[#1B2166]/70">
-                A Honduran home-services marketplace concept designed to help clients find verified
-                technicians, request services, and manage scheduling and payments, as well as giving
-                technicians a reliable pipeline of work.
+              <p className="text-[#1B2166]/70 text-base leading-relaxed font-normal">
+                A new home-services marketplace concept for Honduras, developed to empower clients to easily find verified technicians, request services, and manage scheduling and payments. Simultaneously, it provides technicians with a consistent and reliable source of work.
               </p>
-              <p className="text-[#1B2166]/70">
-                I led UX and UI design for the MVP across client, technician, and admin experiences,
-                focusing on trust, clarity, and a scalable Material Design 3 foundation.
+              <p className="text-[#1B2166]/70 text-base leading-relaxed font-normal">
+                My role involved leading the UX and UI design for the MVP, focusing on building intuitive experiences across client, technician, and admin interfaces.
               </p>
             </div>
           }
@@ -266,7 +263,7 @@ export default function DomusCaseStudy() {
                   titleClassName="text-[#1B2166] text-4xl"
                 />
 
-                <p className="mt-6 text-base leading-relaxed text-[#1B2166]/70">
+                <p className="mt-6 text-base leading-relaxed text-[#1B2166]/70 font-normal">
                   In Honduras, it can be tough to find reliable and trustworthy home service providers.
                   Most people rely on informal recommendations or social media groups, which can lead
                   to trust issues, miscommunication, and unreliable scheduling.
@@ -368,8 +365,8 @@ export default function DomusCaseStudy() {
 
               <ul className="mt-10 space-y-10">
                 {coreObjectives.map((item) => (
-                  <li key={item} className="flex gap-6">
-                    <span className="mt-1.5 h-4 w-4 rounded-full border-[4px] border-[#F5A623]" />
+                  <li key={item} className="flex gap-6 items-start">
+                    <span className="block mt-1.5 h-4 w-4 rounded-full border-[2px] flex-none border-[#F5A623]" />
                     <p className="text-base leading-relaxed text-[#1B2166]/70">{item}</p>
                   </li>
                 ))}
@@ -399,8 +396,8 @@ export default function DomusCaseStudy() {
 
               <ul className="mt-10 space-y-10">
                 {successMetrics.map((item) => (
-                  <li key={item} className="flex gap-6">
-                    <span className="mt-1.5 h-4 w-4 rounded-full border-[4px] border-[#F5A623]" />
+                  <li key={item} className="flex gap-6 items-start">
+                    <span className="block mt-1.5 h-4 w-4 rounded-full border-[2px] flex-none border-[#F5A623]" />
                     <p className="text-base leading-relaxed text-[#1B2166]/70">{item}</p>
                   </li>
                 ))}
@@ -538,28 +535,13 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* User Flows & Journeys (Combined & Artistic Diagonal Split Section - New Approach) */}
-      <section className="relative overflow-hidden py-20 sm:py-20 bg-[#F6F7FF]"> {/* Main section background */}
-
-        {/* Diagonal White Background Shape - this creates the left white area */}
-        {/* Uses clip-path to define the diagonal. Adjust polygon values for angle. */}
-        <div className="absolute inset-0 z-10 bg-white"
-             style={{ clipPath: 'polygon(0 0, 60% 0, 40% 100%, 0 100%)' }} /> {/* Adjust 60% and 40% for diagonal angle */}
-
-        {/* Image filling the rest of the section, behind the white diagonal */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/case-studies/domus/UserJourneys.png"
-            alt="Artistic illustration of user flows and journeys"
-            fill
-            className="object-cover" // Ensure image covers the entire background area
-            sizes="100vw"
-            priority
-          />
-        </div>
-
-        <Container>
-          {/* Text Content - positioned within the Container, will sit on the white diagonal part */}
-          <div className="relative z-20 max-w-xl pr-8 lg:max-w-2xl"> {/* z-20 ensures it's above both diagonals */}
+      <section
+        className="relative py-20 sm:py-20 flex items-center justify-center bg-fixed bg-cover bg-center" // Added flex, items-center, justify-center, bg-fixed, bg-cover, bg-center
+        style={{ backgroundImage: "url('/case-studies/domus/UserJourneys.png')" }} // Moved image to background-image style
+      >
+        <Container className="relative z-10"> {/* Ensure z-index for content above background */}
+          {/* Text Content - now centered and with an opaque background */}
+          <div className="relative z-20 max-w-xl lg:max-w-2xl mx-auto p-8 sm:p-10 rounded-3xl bg-white/90 shadow-lg text-center"> {/* Added mx-auto, padding, rounded, bg-white/90, shadow, text-center */}
             <RiseInOnView>
               <SectionHeader
                 title="User Flows & Journeys"
@@ -573,65 +555,79 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Wireframes */}
-      <section className="relative overflow-hidden bg-white py-20 sm:py-20">
-        <Container>
-          <div className="relative">
-            <RiseInOnView>
-              <SectionHeader
-                title="Wireframes"
-                description="After finalizing the flow diagrams and defining the MVP scope and core features, I transitioned into low-fidelity wireframes. I collaborated closely with Ricardo and Samuel to ensure all critical MVP functionalities were represented and the UX remained simple and intuitive."
-                descriptionClassName="text-[#1B2166]/70"
-                titleClassName="text-[#1B2166] text-4xl"
-              />
-            </RiseInOnView>
+<section className="relative overflow-hidden bg-white py-20 sm:py-20">
+  <Container>
+    <div className="relative">
+      <RiseInOnView>
+        <SectionHeader
+          title="Wireframes"
+          description="After finalizing the flow diagrams and defining the MVP scope and core features, I transitioned into low-fidelity wireframes. I collaborated closely with Ricardo and Samuel to ensure all critical MVP functionalities were represented and the UX remained simple and intuitive."
+          descriptionClassName="text-[#1B2166]/70"
+          titleClassName="text-[#1B2166] text-4xl"
+        />
+      </RiseInOnView>
 
-            <RiseInOnView delay={80}>
-              <div className="relative mt-14">
-                <div className="mx-auto max-w-6xl rounded-3xl border border-black/5 bg-white shadow-[0_25px_70px_rgba(15,23,42,0.18)]">
-                  <div className="p-6 sm:p-8">
-                    <RiseInOnView staggerChildren staggerMs={90} y={12} duration={850}>
-                      <p className="text-sm text-[#1B2166]/55">(Preview)</p>
+      <RiseInOnView delay={80}>
+        <div className="relative mt-14">
+          <div className="mx-auto max-w-6xl rounded-3xl bg-white">
+            <div className="p-6 sm:p-8">
+              <RiseInOnView staggerChildren staggerMs={90} y={12} duration={850}>
+                <p className="text-sm text-[#1B2166]/55">(Preview)</p>
 
-                      <RiseInOnView
-                        staggerChildren
-                        staggerMs={90}
-                        y={14}
-                        duration={900}
-                        className="mt-6 grid gap-6 lg:grid-cols-4"
+                {/* UPDATED LAYOUT: 3-up grid for first 3, admin full-width below */}
+                <RiseInOnView
+                  staggerChildren
+                  staggerMs={90}
+                  y={14}
+                  duration={900}
+                  className="mt-6 space-y-6"
+                >
+                  {/* Top row: first 3 wireframes */}
+                  <div className="grid gap-6 lg:grid-cols-3">
+                    {wireframes.slice(0, 3).map((w) => (
+                      <div
+                        key={w.src}
+                        className="relative overflow-hidden rounded-2xl bg-white"
                       >
-                        {wireframes.map((w) => (
-                          <button
-                            key={w.src}
-                            type="button"
-                            onClick={() => openImage({ src: w.src, alt: w.alt })}
-                            className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm focus:outline-none"
-                            aria-label={`Expand image: ${w.alt}`}
-                          >
-                            <div className={cx("relative", w.aspectClass)}>
-                              <Image
-                                src={w.src}
-                                alt={w.alt}
-                                fill
-                                className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                                sizes="(min-width: 1024px) 260px, 100vw"
-                              />
-                            </div>
-                            <div className="pointer-events-none absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10" />
-                          </button>
-                        ))}
-                      </RiseInOnView>
-
-                      <p className="mt-6 hidden text-center text-xs text-[#1B2166]/50 sm:block">
-                        Click any wireframe to expand.
-                      </p>
-                    </RiseInOnView>
+                        <div className={cx("relative h-full", w.aspectClass)}>
+                          <Image
+                            src={w.src}
+                            alt={w.alt}
+                            fill
+                            className="object-contain"
+                            sizes="(min-width: 1024px) 320px, 100vw"
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                </div>
-              </div>
-            </RiseInOnView>
+
+                  {/* Bottom row: admin wireframe (full-width) */}
+                  {wireframes[3] ? (
+                    <div className="relative overflow-hidden rounded-2xl  bg-white">
+                      <div className={cx("relative h-full", wireframes[3].aspectClass)}>
+                        <Image
+                          src={wireframes[3].src}
+                          alt={wireframes[3].alt}
+                          fill
+                          className="object-contain"
+                          sizes="(min-width: 1024px) 1024px, 100vw"
+                        />
+                      </div>
+                    </div>
+                  ) : null}
+                </RiseInOnView>
+
+                {/* Removed the hint text */}
+              </RiseInOnView>
+            </div>
           </div>
-        </Container>
-      </section>
+        </div>
+      </RiseInOnView>
+    </div>
+  </Container>
+</section>
+
 
       {/* Design System */}
       <section className="relative overflow-hidden bg-[#f6f7ff] py-20 sm:py-20">
@@ -640,18 +636,12 @@ export default function DomusCaseStudy() {
             <RiseInOnView staggerChildren staggerMs={90} y={14} duration={850}>
               <SectionHeader
                 title="Design System"
-                description="Once the UX structure and wireframes were validated, I established the visual identity and design system for Domus. The goal was to build a cohesive, scalable, and developer-friendly UI foundation that could evolve as the product matured."
+                description="Using the Material Theme Builder, I generated an accessible, Domus-branded design
+                  system and created a local component library and style tokens tailored to the
+                  project’s needs."
                 descriptionClassName="text-[#1B2166]/70"
                 titleClassName="text-[#1b2166] text-4xl"
               />
-
-              <div className="mx-auto mt-4 max-w-3xl text-center">
-                <p className="text-sm leading-relaxed text-[#1B2166]/70">
-                  Using the Material Theme Builder, I generated an accessible, Domus-branded design
-                  system and created a local component library and style tokens tailored to the
-                  project’s needs.
-                </p>
-              </div>
             </RiseInOnView>
 
             <RiseInOnView delay={90}>
