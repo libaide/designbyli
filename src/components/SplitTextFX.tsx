@@ -9,20 +9,22 @@ type MotionVars = {
   y: number;
 };
 
+type SplitType = "chars" | "words" | "lines";
+
 type SplitTextFXProps = {
   text: string;
+  tag?: string; // ✅ must be a string for <Tag />
   className?: string;
-  tag?: string; // ✅ keep it string to satisfy SplitText types
-  textAlign?: React.CSSProperties["textAlign"];
   delay?: number;
   duration?: number;
   ease?: string;
-  splitType?: string;
-  from?: MotionVars; // ✅ match expected shape
-  to?: MotionVars;   // ✅ match expected shape
+  splitType?: SplitType;
+  from?: Partial<MotionVars> | any;
+  to?: Partial<MotionVars> | any;
   threshold?: number;
   rootMargin?: string;
-  onComplete?: () => void; // ✅ optional
+  textAlign?: "left" | "center" | "right";
+  onComplete?: () => void;
 };
 
 export default function SplitTextFX({
@@ -56,7 +58,7 @@ export default function SplitTextFX({
       rootMargin={rootMargin}
       textAlign={textAlign}
       tag={tag}
-      onLetterAnimationComplete={onComplete ?? (() => {})} // ✅ satisfy "required"
+      onLetterAnimationComplete={onComplete ?? (() => {})} // ✅ satisfies required prop typing
     />
   );
 }

@@ -15,7 +15,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-black/45 border-b border-white/10 isolate will-change-transform transform-gpu">
+    <header className="fixed inset-x-0 top-0 z-50 bg-black/45 backdrop-blur-xl border-b border-white/10 isolate will-change-transform transform-gpu">
       <Container>
         <div className="flex h-16 items-center justify-between">
           {/* Logo = Home */}

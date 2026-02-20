@@ -101,7 +101,7 @@ export default function FeaturedWorkAnimated() {
       ref={areaRef}
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
-      className="relative overflow-hidden rounded-3xl isolate"
+      className="relative overflow-hidden isolate"
     >
       {/* Base layer to block anything behind (e.g. fixed LightRays) */}
       <div aria-hidden="true" className="absolute inset-0 bg-black" />
