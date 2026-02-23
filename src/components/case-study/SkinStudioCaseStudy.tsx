@@ -46,18 +46,18 @@ export default function SkinStudioCaseStudy() {
         summary={
           <>
             <p>
-              Marketing website and custom hosted payment page (HPP) integration built for Skin Studio, a skincare clinic in Honduras. The goal was to create a modern, conversion-focused digital presence that clearly communicates services, builds trust, and streamlines online payments for treatments and packages.
+              Marketing website and custom hosted payment page (HPP) integration built for Skin Studio, a skincare clinic in Honduras. The goal was to create a modern, digital presence that converts, clearly communicates services, builds trust, and streamlines online payments for treatments and packages.
             </p>
             
           </>
         }
         stats={[
-          { label: "Project Type", value: "SaaS Product" },
-          { label: "Role", value: "UX/UI Designer" },
-          { label: "Timeframe", value: "3 months" },
-          { label: "Tools", value: "Figma, Material Design" },
-          { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
-          { label: "Company", value: "Skin Studio" },
+          { label: "Project Type", value: "UX/UI Design & Web Development" },
+          { label: "Role", value: "Designer and Developer" },
+          { label: "Timeframe", value: "3.5 months" },
+          { label: "Tools", value: "Figma, Squarespace, PowerTranz HPP, Python, CSS, Supabase, Render, Zoho Mail" },
+          { label: "Scope", value: "Research, Web Design, Front-End Development, HPP Integration, Testing and Deployment" },
+          { label: "Client", value: "Skin Studio" },
         ]}
       />
 

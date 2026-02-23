@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Container from "@/components/Container";
 import FeaturedWorkAnimated from "@/components/FeaturedWorkAnimated";
 import Recommendations from "@/components/Recommendations";
@@ -8,81 +7,60 @@ import Button from "@/components/Button";
 import RiseInOnView from "@/components/RiseInOnView";
 import ContactSection from "@/components/ContactSection";
 import LightRaysBG from "@/components/Hero/Visuals/LightRaysBG";
-
+import Logo from "@/components/logo";
 
 export default function HomePage() {
-  const scrollToFeaturedWork = () => {
-    document
-      .getElementById("featured-work")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToContactForm = () => {
-    document
-      .getElementById("home-contact")
-      ?.scrollIntoView({ behavior: "smooth" });
+  const scrollToId = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <>
       {/* Hero */}
-<section
-  id="hero"
-  className="relative min-h-svh isolate"
->
-  <LightRaysBG />
+      <section id="hero" className="relative min-h-svh isolate">
+        <LightRaysBG />
 
-  <div className="relative z-10 min-h-svh flex flex-col">
-    <div className="flex-1 flex items-center justify-center">
-      <Container>
-        <div className="flex flex-col items-center text-center pb-24 sm:pb-64">
+        <div className="relative z-10 min-h-svh flex items-center">
+          <Container>
+            <div className="flex flex-col items-center text-center pb-24 sm:pb-64 w-full">
+              <RiseInOnView staggerChildren staggerMs={100} className="w-full text-center">
+                {/* Logo */}
+                <Logo
+                  size={180}
+                  smSize={244}
+                  priority
+                  disableAnimation
+                  className="mb-0 mx-auto scale-[0.82] sm:scale-100"
+                />
 
-          <RiseInOnView
-            staggerChildren
-            staggerMs={100}
-            className="w-full text-center"
-          >
-            {/* Logo */}
-            <div className="mb-0 mx-auto scale-[0.82] sm:scale-100 relative w-[180px] h-[180px] sm:w-[244px] sm:h-[244px]">
-              <Image
-                src="/LogoWhite_600.svg"
-                alt="Design by Li logo"
-                fill
-                priority
-                className="object-contain"
-              />
+                {/* Headline */}
+                <p className="max-w-3xl mx-auto text-3xl/11 sm:text-5xl text-white tracking-normal mb-6 sm:mb-16">
+                  Crafting Intuitive Digital Experiences
+                </p>
+
+                {/* Sub-headline */}
+                <p className="max-w-3xl mx-auto text-base leading-relaxed text-gray-300 font-light">
+                  From messy challenges to clear, functional, and beautiful solutions.
+                </p>
+
+                {/* Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center mx-auto">
+                  <Button variant="cta" onClick={() => scrollToId("featured-work")}>
+                    View my work
+                  </Button>
+
+                  <Button variant="secondary" onClick={() => scrollToId("home-contact")}>
+                    Let's connect
+                  </Button>
+                </div>
+              </RiseInOnView>
             </div>
-
-            {/* Headline */}
-            <p className="max-w-3xl mx-auto text-3xl/11 sm:text-5xl text-white tracking-normal mb-6 sm:mb-16">
-              Crafting Intuitive Digital Experiences
-            </p>
-
-            {/* Sub-headline */}
-            <p className="max-w-3xl mx-auto text-base leading-relaxed text-gray-300 font-light">
-              From messy challenges to clear, functional, and beautiful solutions.
-            </p>
-
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center mx-auto">
-              <Button variant="cta" onClick={scrollToFeaturedWork}>
-                View my work
-              </Button>
-
-              <Button variant="secondary" onClick={scrollToContactForm}>
-                Let's connect
-              </Button>
-            </div>
-          </RiseInOnView>
-
+          </Container>
         </div>
-      </Container>
-    </div>
-  </div>
 
-  {/* Fade-out overlay so rays visually end at hero */}
-  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-black" />
-</section>
+        {/* Fade-out overlay so rays visually end at hero */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-black" />
+      </section>
 
       {/* Featured work */}
       <section id="featured-work">
@@ -91,16 +69,13 @@ export default function HomePage() {
         </RiseInOnView>
       </section>
 
-
       {/* Recommendations */}
       <RiseInOnView>
-       <Recommendations />
+        <Recommendations />
       </RiseInOnView>
-
 
       {/* Contact (Homepage) */}
       <ContactSection id="home-contact" />
-
     </>
   );
 }

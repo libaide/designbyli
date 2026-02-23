@@ -8,13 +8,23 @@ type Props = {
   children: ReactNode;
   className?: string;
   threshold?: number;
-  delay?: number; // base delay (ms)
+
+  /** prefer delayMs, but keep delay for backward compat */
+  delay?: number; // ms
+  delayMs?: number; // ms
+
   y?: number; // translateY px
   duration?: number; // ms
 
   // stagger
   staggerChildren?: boolean;
   staggerMs?: number; // added per child (ms)
+
+  /** Helps trigger earlier / more reliably */
+  rootMargin?: string;
+
+  /** If true, content renders visible even if observer fails */
+  fallbackInView?: boolean;
 };
 
 const easeOutSoft = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -24,12 +34,24 @@ export default function RiseInOnView({
   className = "",
   threshold = 0.2,
   delay = 0,
+  delayMs,
   y = 16,
   duration = 800,
   staggerChildren = false,
   staggerMs = 90,
+  rootMargin = "0px 0px -10% 0px",
+  fallbackInView = true,
 }: Props) {
-  const { ref, inView } = useInView({ threshold, triggerOnce: true });
+  // Use delayMs if provided, otherwise fall back to delay
+  const baseDelay = typeof delayMs === "number" ? delayMs : delay;
+
+  const { ref, inView } = useInView({
+    threshold,
+    triggerOnce: true,
+    rootMargin,
+    // If IO is unsupported or flaky, this prevents invisible content
+    fallbackInView,
+  });
 
   // If staggering: animate each child wrapper (NOT the parent).
   if (staggerChildren) {
@@ -48,7 +70,7 @@ export default function RiseInOnView({
               transitionProperty: "opacity, transform",
               transitionDuration: `${duration}ms`,
               transitionTimingFunction: easeOutSoft,
-              transitionDelay: `${delay + index * staggerMs}ms`,
+              transitionDelay: `${baseDelay + index * staggerMs}ms`,
             }}
           >
             {child}
@@ -69,7 +91,7 @@ export default function RiseInOnView({
         transitionProperty: "opacity, transform",
         transitionDuration: `${duration}ms`,
         transitionTimingFunction: easeOutSoft,
-        transitionDelay: `${delay}ms`,
+        transitionDelay: `${baseDelay}ms`,
       }}
     >
       {children}

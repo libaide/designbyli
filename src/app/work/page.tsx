@@ -14,7 +14,7 @@ export default function WorkPage() {
           <SectionHeader
             title="Work"
             description="Click a project to view the case study."
-            titleClassName="text-white font-bold"
+            titleClassName="text-white"
             descriptionClassName="text-gray-300 text-base font-regular leading-relaxed"
             underline={{ show: false, className: "bg-[#E45027]" }}
             wrapperClassName="text-center mx-0 max-w-none"

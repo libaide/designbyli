@@ -21,7 +21,7 @@ export default function Navbar() {
           {/* Logo = Home */}
           <Link href="/" className="flex items-center gap-2 text-white">
             {/* Using the new smSize prop */}
-            <Logo size={36} smSize={54} priority={false} />
+            <Logo size={36} smSize={54} disableAnimation />
           </Link>
 
           {/* Nav */}

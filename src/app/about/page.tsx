@@ -111,11 +111,7 @@ export default function AboutPage() {
                 </p>
 
                 <p>
-                  I&apos;m a truly well-rounded designer with diverse experience far beyond typical UX/UI.
-                  I&apos;ve delivered branding, logo designs, complete websites, social media ads, print posters,
-                  video banners, and even marketing animations. My capabilities also extend to audio design
-                  and production, backed by formal training at a music production institute. This breadth of
-                  skills enables a holistic and integrated design approach to every project.
+                  My design experience extends well beyond typical UX/UI. I've delivered branding, logo designs, complete websites, social media ads, print posters, video banners, and even marketing animations. My capabilities also reach into audio design and production, thanks to formal training at a music production institute. This wide range of skills means I bring a truly integrated design approach to every project.
                 </p>
 
                 <p>

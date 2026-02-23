@@ -23,7 +23,7 @@ export const projects: Project[] = [
     category: "Product Design",
     description:
       "A mobile application that connects clients in Honduras with verified home service professionals such as plumbers, electricians, gardeners, and more. ",
-    tags: ["Product Design", "UX", "Mobile"],
+    tags: ["Product Design", "UX", "UI"],
     cover: "/covers/domus.png",
   },
   {
@@ -37,29 +37,29 @@ export const projects: Project[] = [
   },
   {
     slug: "skin-studio",
-    title: "Skin Studio",
-    category: "UX / UI",
+    title: "Skin Studio: Website and HPP Integration",
+    category: "Web Design & HPP Integration",
     description:
       "Marketing website and custom HPP payment integration for a skincare clinic.",
-    tags: ["Payments", "Web Design","HPP",],
+    tags: ["Web Design", "Front-End","HPP Integration",],
     cover: "/covers/skin-studio.png",
   },
   {
     slug: "properly",
     title: "Properly",
-    category: "Front-End Development",
+    category: "SaaS Product Design",
     description:
       "A property management application designed to streamline job management, inspections, and data integration.",
-    tags: ["Front-End", "React", "UI"],
+    tags: ["UX", "UI", "SaaS Product"],
     cover: "/covers/properly.png",
   },
   {
     slug: "hema-sync",
     title: "HemaSync",
-    category: "Front-End Development",
+    category: "SaaS Product Design",
     description:
-      "A responsive real estate website focused on performance, clarity, and clean UI.",
-    tags: ["Front-End", "React", "UI"],
+      "A laboratory information management system for a laboratory in Honduras.",
+    tags: ["UX", "UI", "SaaS Product"],
     cover: "/covers/HemaSync.png",
   },
   {
