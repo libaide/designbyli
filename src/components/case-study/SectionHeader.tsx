@@ -9,10 +9,15 @@ type Underline = {
   className?: string; // full control (e.g. "bg-[#E45027] h-2 w-20 mt-4")
 };
 
+type Align = "left" | "center" | "right";
+
 export default function SectionHeader({
   title,
   description,
   dark = false,
+
+  // ✅ NEW: alignment control (defaults to center to preserve current behavior)
+  align = "center",
 
   // Optional overrides (Tailwind class strings)
   titleClassName,
@@ -26,46 +31,38 @@ export default function SectionHeader({
   description?: string;
   dark?: boolean;
 
+  align?: Align;
+
   titleClassName?: string;
   descriptionClassName?: string;
   wrapperClassName?: string;
 
   underline?: Underline;
 }) {
-  // ✅ Apply defaults ONLY when no override is provided
-  const defaultTitle = titleClassName
-    ? undefined
-    : dark
-      ? "text-white"
-      : "text-black";
-
-  const defaultDesc = descriptionClassName
-    ? undefined
-    : dark
-      ? "text-white/70"
-      : "text-black/70";
+  // Defaults ONLY when no override is provided
+  const defaultTitle = titleClassName ? undefined : dark ? "text-white" : "text-black";
+  const defaultDesc = descriptionClassName ? undefined : dark ? "text-white/70" : "text-black/70";
 
   const showUnderline = underline?.show;
 
+  const alignText =
+    align === "left" ? "text-left" : align === "right" ? "text-right" : "text-center";
+
+  const underlineJustify =
+    align === "left" ? "justify-start" : align === "right" ? "justify-end" : "justify-center";
+
   return (
-    <div className={cx("mx-auto max-w-3xl text-center", wrapperClassName)}>
+    <div className={cx("mx-auto max-w-3xl", alignText, wrapperClassName)}>
       <h2
-        className={cx(
-          "text-4xl font-medium tracking-normal",
-          defaultTitle,
-          titleClassName
-        )}
+        className={cx("text-4xl font-medium tracking-normal", defaultTitle, titleClassName)}
       >
         {title}
       </h2>
 
       {showUnderline ? (
-        <div className="mt-4 flex justify-center">
+        <div className={cx("mt-4 flex", underlineJustify)}>
           <div
-            className={cx(
-              "h-2 w-20 rounded-full bg-[#E45027]",
-              underline?.className
-            )}
+            className={cx("h-2 w-20 rounded-full bg-[#E45027]", underline?.className)}
           />
         </div>
       ) : null}

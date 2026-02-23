@@ -19,7 +19,7 @@ export default function ContactSection({
   return (
     <section
       id={id}
-      className={`relative overflow-hidden py-24 ${className}`}
+      className={`relative overflow-hidden py-16 sm:py-24 ${className}`}
     >
       {/* Animated noise on desktop (must be direct child so it can measure parent) */}
       <Noise
@@ -35,7 +35,7 @@ export default function ContactSection({
       <div className="absolute inset-0 z-0 opacity-12 md:hidden static-noise" />
 
       <div className="relative z-10">
-        <div className="mx-auto max-w-6xl px-6 sm:px-10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-10">
           <RiseInOnView>
             <SectionHeader
               title={title}

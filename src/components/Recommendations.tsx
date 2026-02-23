@@ -84,7 +84,7 @@ export default function Recommendations() {
 
   return (
     <section className="bg-black text-[#d5d5e7]">
-      <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10">
+      <div className="mx-auto max-w-6xl px-5 py-24 sm:px-10">
         <SectionHeader
           title="Recommendations"
           dark

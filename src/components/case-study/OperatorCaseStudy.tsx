@@ -393,30 +393,33 @@ export default function OperatorCaseStudy() {
                     </p>
                   </div>
 
-                  <RiseInOnView staggerChildren className="mt-8 grid gap-6 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)]">
-                      <h4 className="text-2xl font-normal text-[#474747]">Agent experience</h4>
-                      <ul className="mt-3 list-disc space-y-2 pl-5 text-base text-[#474747]/80">
-                        <li>The Chrome extension UI is unclear</li>
-                        <li>Management through the web app is difficult, and so is reviewing data</li>
-                        <li>Some agents felt AI-generated responses were too generic and needed more customization</li>
-                        <li>Trust in AI suggestions varied based on agent experience level</li>
-                        <li>Agents wanted a way to quickly edit AI responses before sending</li>
-                        <li>It is common for agents to prefer the use of macros over the tool</li>
-                      </ul>
-                    </div>
+                  <RiseInOnView
+  staggerChildren
+  className="mt-8 grid gap-6 sm:grid-cols-2 items-stretch"
+>
+  <div className="h-full rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)] flex flex-col">
+    <h4 className="text-2xl font-normal text-[#474747]">Agent experience</h4>
+    <ul className="mt-3 list-disc space-y-2 pl-5 text-base text-[#474747]/80">
+      <li>The Chrome extension UI is unclear</li>
+      <li>Management through the web app is difficult, and so is reviewing data</li>
+      <li>Some agents felt AI-generated responses were too generic and needed more customization</li>
+      <li>Trust in AI suggestions varied based on agent experience level</li>
+      <li>Agents wanted a way to quickly edit AI responses before sending</li>
+      <li>It is common for agents to prefer the use of macros over the tool</li>
+    </ul>
+  </div>
 
-                    <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)]">
-                      <h4 className="text-2xl font-normal text-[#474747]">Quality & ops</h4>
-                      <ul className="mt-3 list-disc space-y-2 pl-5 text-base text-[#474747]/80">
-                        <li>Agents had difficulty navigating and scoring in the Chrome extension</li>
-                        <li>Managers had difficulty understanding how to create rubrics</li>
-                        <li>Reviewing and comparing data felt slow</li>
-                        <li>Managers asked for different scoring methods, capabilities, and requirements</li>
-                        <li>Lack of actionable feedback for agents being scored</li>
-                      </ul>
-                    </div>
-                  </RiseInOnView>
+  <div className="h-full rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)] flex flex-col">
+    <h4 className="text-2xl font-normal text-[#474747]">Quality & ops</h4>
+    <ul className="mt-3 list-disc space-y-2 pl-5 text-base text-[#474747]/80">
+      <li>Agents had difficulty navigating and scoring in the Chrome extension</li>
+      <li>Managers had difficulty understanding how to create rubrics</li>
+      <li>Reviewing and comparing data felt slow</li>
+      <li>Managers asked for different scoring methods, capabilities, and requirements</li>
+      <li>Lack of actionable feedback for agents being scored</li>
+    </ul>
+  </div>
+</RiseInOnView>
                 </RiseInOnView>
               </div>
             </div>
@@ -637,11 +640,11 @@ export default function OperatorCaseStudy() {
               <div className="grid gap-12 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
                 <RiseInOnView staggerChildren>
                   <div>
-                    <p className="text-lg leading-relaxed text-[#d3d3d3]">
+                    <p className="text-base leading-relaxed text-[#d3d3d3]">
                       Operator improved usability and adoption across the company’s internal tools.
                     </p>
 
-                    <p className="mt-6 text-lg leading-relaxed text-[#d3d3d3]">
+                    <p className="mt-6 text-base leading-relaxed text-[#d3d3d3]">
                       The success and maturity of Operator’s product direction contributed to
                       Crescendo’s interest in PartnerHero during the acquisition process, demonstrating
                       the value of scalable internal tooling and thoughtful product design.

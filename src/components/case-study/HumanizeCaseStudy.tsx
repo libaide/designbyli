@@ -43,7 +43,7 @@ export default function HumanizeCaseStudy() {
         logoSrc="/case-studies/humanize/humanize-logo.png"
         logoAlt="Humanize logo"
         logoSize="lg"
-        logoClassName="h-28 sm:h-28 md:h-28"
+        logoClassName="h-32 sm:h-32 md:h-32"
         
         illustrationSrc="/case-studies/humanize/hero.png"
         illustrationAlt="Humanize UI preview"
@@ -86,6 +86,7 @@ export default function HumanizeCaseStudy() {
               {/* Text */}
               <div className="relative z-10 max-w-xl">
                 <SectionHeader
+                  align="left"
                   title="Context & Opportunity"
                   description="PartnerHero’s global CX teams could offer high-quality support at scale. The challenge was turning this operational capability into a lightweight, self-serve Shopify app with a frictionless user experience."
                   titleClassName="text-[#1B1B1B] font-bold"
@@ -176,10 +177,10 @@ export default function HumanizeCaseStudy() {
                 title="Design Process"
                 description="I followed a structured, human-centered design process focused on reducing friction, building trust, and aligning with Shopify merchants’ expectations."
                 dark
-                titleClassName="font-bold"
-                descriptionClassName="text-white/70 text-lg font-medium"
+                titleClassName="font-light"
+                descriptionClassName="text-gray-300 text-lg font-light"
                 underline={{ show: true, className: "bg-[#E45027]" }}
-                wrapperClassName="max-w-5xl"
+                wrapperClassName="max-w-3xl"
               />
 
               <div className="mx-auto mt-14 grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -195,7 +196,7 @@ export default function HumanizeCaseStudy() {
                       </h4>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-muted">
+                    <p className="text-base font-light leading-relaxed text-gray-300">
                       Before defining flows or UI, I conducted a focused research phase to
                       understand merchant needs, competitive expectations within the Shopify
                       ecosystem, and the operational requirements of Humanize’s support workflows.
@@ -215,11 +216,11 @@ export default function HumanizeCaseStudy() {
                       </h4>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-muted">
+                    <p className="text-base font-light leading-relaxed text-gray-300">
                       I mapped the core user flows required to activate and use Humanize effectively:
                     </p>
 
-                    <ul className="space-y-2 text-sm text-muted">
+                    <ul className="space-y-2 text-base font-light text-gray-300">
                       {[
                         "First-time onboarding",
                         "Policy & product configuration",
@@ -228,7 +229,7 @@ export default function HumanizeCaseStudy() {
                         "Account management & billing",
                       ].map((item) => (
                         <li key={item} className="flex gap-3">
-                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-muted-foreground/70" />
+                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-300" />
                           {item}
                         </li>
                       ))}
@@ -248,7 +249,7 @@ export default function HumanizeCaseStudy() {
                       </h4>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-muted">
+                    <p className="text-base font-light leading-relaxed text-gray-300">
                       Because Humanize lives inside the Shopify Admin, I used Shopify Polaris as the
                       foundation and extended it only where necessary. This kept the UI familiar,
                       reduced learning time, and increased merchant trust from the first interaction.
@@ -268,7 +269,7 @@ export default function HumanizeCaseStudy() {
                       </h4>
                     </div>
 
-                    <ul className="space-y-2 text-sm text-muted">
+                    <ul className="space-y-2 text-base font-light text-gray-300">
                       {[
                         "Make installation feel effortless",
                         "Ask only for essential information",
@@ -276,7 +277,7 @@ export default function HumanizeCaseStudy() {
                         "Provide reassurance at every step",
                       ].map((item) => (
                         <li key={item} className="flex gap-3">
-                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-muted-foreground/70" />
+                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-300" />
                           {item}
                         </li>
                       ))}
@@ -296,7 +297,7 @@ export default function HumanizeCaseStudy() {
                       </h4>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-muted">
+                    <p className="text-base font-light leading-relaxed text-gray-300">
                       To enable reliable, high-quality support, merchants were required to provide at
                       least 10 knowledge base articles. I designed a guided flow that broke this task
                       into manageable steps without overwhelming users.
@@ -316,7 +317,7 @@ export default function HumanizeCaseStudy() {
                       </h4>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-muted">
+                    <p className="text-base font-light leading-relaxed text-gray-300">
                       Once requirements were clear, I created low-fidelity wireframes to define
                       structure and hierarchy. After validation, these were translated into
                       high-fidelity designs, resulting in a polished, Shopify-native app merchants

@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import CaseStudyTopSection from "@/components/case-study/CaseStudyTopSection";
 import RiseInOnView from "@/components/RiseInOnView";
 
+// ✅ Use your renamed/moved header component from the case-study folder.
+// If your file name is different, only change this import path/name.
+import SectionHeader from "@/components/case-study/SectionHeader";
+
 type ExpandedImage =
   | null
   | {
@@ -13,7 +17,7 @@ type ExpandedImage =
       alt: string;
     };
 
-export default function SkinStudioCaseStudy() {
+export default function HemaSyncCaseStudy() {
   const [expandedImage, setExpandedImage] = useState<ExpandedImage>(null);
 
   useEffect(() => {
@@ -36,43 +40,41 @@ export default function SkinStudioCaseStudy() {
       {/* Split Hero */}
       <CaseStudyTopSection
         className="bg-white pb-20"
-        logoSrc="/case-studies/skin-studio/skin-studio-logo.png"
-        logoAlt="Skin Studio logo"
-        logoSize="lg"
-        logoClassName="h-32 sm:h-32 md:h-32"
+        logoSrc="/case-studies/hemasync/HemaSync-logo.png"
+        logoAlt="HemaSync logo"
+        logoSize="md"
+        logoClassName="h-10 sm:h-10 md:h-10"
         
-        illustrationSrc="/case-studies/skin-studio/skin-studio-hero.png"
-        illustrationAlt="Skin Studio UI preview"
+        illustrationSrc="/case-studies/hemasync/hero.png"
+        illustrationAlt="HemaSync UI preview"
         summary={
           <>
             <p>
-              Marketing website and custom hosted payment page (HPP) integration built for Skin Studio, a skincare clinic in Honduras. The goal was to create a modern, conversion-focused digital presence that clearly communicates services, builds trust, and streamlines online payments for treatments and packages.
-            </p>
-            
+              A platform designed to streamline patient data and lab result management for a commercial laboratory in Honduras. This intuitive tool empowers laboratory employees to efficiently handle patient information, including searching, viewing, and editing patient details by name or ID. Its core functionality focuses on simplifying the process of completing and publishing lab orders, which can consist of one or multiple requested exams.</p>
           </>
         }
         stats={[
-          { label: "Project Type", value: "SaaS Product" },
+          { label: "Project Type", value: "Laboratory Information Management System" },
           { label: "Role", value: "UX/UI Designer" },
           { label: "Timeframe", value: "3 months" },
-          { label: "Tools", value: "Figma, Material Design" },
+          { label: "Tools", value: "Figma" },
           { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
-          { label: "Company", value: "Skin Studio" },
+          { label: "Client", value: "DapperLogic" },
         ]}
       />
 
       {/* Coming Soon */}
-<section className="bg-white pb-24">
-  <Container>
-    <RiseInOnView>
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl text-black">
-          Case study coming soon!
-        </h2>
-      </div>
-    </RiseInOnView>
-  </Container>
-</section>
+      <section className="bg-white pb-24">
+        <Container>
+          <RiseInOnView>
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl text-black">
+                Case study coming soon!
+              </h2>
+            </div>
+          </RiseInOnView>
+        </Container>
+      </section>
 
       {/* Lightbox */}
       {expandedImage && (

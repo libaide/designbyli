@@ -54,7 +54,7 @@ export default function HomePage() {
             </div>
 
             {/* Headline */}
-            <p className="max-w-3xl mx-auto text-3xl sm:text-5xl leading-relaxed text-white tracking-normal mb-6 sm:mb-16">
+            <p className="max-w-3xl mx-auto text-3xl/11 sm:text-5xl text-white tracking-normal mb-6 sm:mb-16">
               Crafting Intuitive Digital Experiences
             </p>
 
@@ -66,11 +66,11 @@ export default function HomePage() {
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center mx-auto">
               <Button variant="cta" onClick={scrollToFeaturedWork}>
-                View My Work
+                View my work
               </Button>
 
               <Button variant="secondary" onClick={scrollToContactForm}>
-                Let's Connect
+                Let's connect
               </Button>
             </div>
           </RiseInOnView>

@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import CaseStudyTopSection from "@/components/case-study/CaseStudyTopSection";
 import RiseInOnView from "@/components/RiseInOnView";
 
+// ✅ Use your renamed/moved header component from the case-study folder.
+// If your file name is different, only change this import path/name.
+import SectionHeader from "@/components/case-study/SectionHeader";
+
 type ExpandedImage =
   | null
   | {
@@ -13,7 +17,7 @@ type ExpandedImage =
       alt: string;
     };
 
-export default function SkinStudioCaseStudy() {
+export default function HoffmanLenseCaseStudy() {
   const [expandedImage, setExpandedImage] = useState<ExpandedImage>(null);
 
   useEffect(() => {
@@ -36,43 +40,45 @@ export default function SkinStudioCaseStudy() {
       {/* Split Hero */}
       <CaseStudyTopSection
         className="bg-white pb-20"
-        logoSrc="/case-studies/skin-studio/skin-studio-logo.png"
-        logoAlt="Skin Studio logo"
+        logoSrc="/case-studies/hoffman-lens/hoffman-lens-logo.png"
+        logoAlt="Hoffman Lens logo"
         logoSize="lg"
-        logoClassName="h-32 sm:h-32 md:h-32"
+        logoClassName="h-24 sm:h-24 md:h-24"
         
-        illustrationSrc="/case-studies/skin-studio/skin-studio-hero.png"
-        illustrationAlt="Skin Studio UI preview"
+        illustrationSrc="/case-studies/hoffman-lens/hero.png"
+        illustrationAlt="Hoffman Lens UI preview"
         summary={
           <>
             <p>
-              Marketing website and custom hosted payment page (HPP) integration built for Skin Studio, a skincare clinic in Honduras. The goal was to create a modern, conversion-focused digital presence that clearly communicates services, builds trust, and streamlines online payments for treatments and packages.
+              An AI-powered Chrome extension that acts as a real-time "truth filter" for the web, inspired by the cult classic film They Live. Designed to combat the saturation of corporate marketing fluff, the tool utilizes the OpenAI API to scan DOM elements, including headlines, buttons, and infinite-scroll social feeds, and rewrite them into their stark, cynical intent.
             </p>
-            
+            <p>
+              Featuring a brutalist, industrial UI and complex MutationObserver logic to handle dynamic single-page applications like LinkedIn and Twitter, the project blends technical implementation with critical commentary on digital capitalism and user manipulation.
+            </p>
           </>
         }
         stats={[
-          { label: "Project Type", value: "SaaS Product" },
-          { label: "Role", value: "UX/UI Designer" },
-          { label: "Timeframe", value: "3 months" },
-          { label: "Tools", value: "Figma, Material Design" },
+          { label: "Project Type", value: "AI-Powered Chrome Extension" },
+          { label: "Role", value: "Designer & Developer" },
+          { label: "Timeframe", value: "1 day" },
+          { label: "Tools", value: "Figma, JavaScript, OpenAI API, GitHub" },
           { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
-          { label: "Company", value: "Skin Studio" },
+          { label: "Company", value: "N/A – Conceptual" },
         ]}
       />
 
       {/* Coming Soon */}
-<section className="bg-white pb-24">
-  <Container>
-    <RiseInOnView>
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl text-black">
-          Case study coming soon!
-        </h2>
-      </div>
-    </RiseInOnView>
-  </Container>
-</section>
+            <section className="bg-white pb-24">
+              <Container>
+                <RiseInOnView>
+                  <div className="mx-auto max-w-2xl text-center">
+                    <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl text-black">
+                      Case study coming soon!
+                    </h2>
+                  </div>
+                </RiseInOnView>
+              </Container>
+            </section>
 
       {/* Lightbox */}
       {expandedImage && (

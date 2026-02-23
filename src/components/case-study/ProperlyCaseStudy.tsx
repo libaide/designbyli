@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import CaseStudyTopSection from "@/components/case-study/CaseStudyTopSection";
 import RiseInOnView from "@/components/RiseInOnView";
 
+// ✅ Use your renamed/moved header component from the case-study folder.
+// If your file name is different, only change this import path/name.
+import SectionHeader from "@/components/case-study/SectionHeader";
+
 type ExpandedImage =
   | null
   | {
@@ -13,7 +17,7 @@ type ExpandedImage =
       alt: string;
     };
 
-export default function SkinStudioCaseStudy() {
+export default function ProperlyCaseStudy() {
   const [expandedImage, setExpandedImage] = useState<ExpandedImage>(null);
 
   useEffect(() => {
@@ -36,19 +40,18 @@ export default function SkinStudioCaseStudy() {
       {/* Split Hero */}
       <CaseStudyTopSection
         className="bg-white pb-20"
-        logoSrc="/case-studies/skin-studio/skin-studio-logo.png"
-        logoAlt="Skin Studio logo"
+        logoSrc="/case-studies/properly/properly-logo-new.png"
+        logoAlt="Properly logo"
         logoSize="lg"
-        logoClassName="h-32 sm:h-32 md:h-32"
+        logoClassName="h-16 sm:h-16 md:h-16"
         
-        illustrationSrc="/case-studies/skin-studio/skin-studio-hero.png"
-        illustrationAlt="Skin Studio UI preview"
+        illustrationSrc="/case-studies/properly/properlyhero.png"
+        illustrationAlt="Properly UI preview"
         summary={
           <>
             <p>
-              Marketing website and custom hosted payment page (HPP) integration built for Skin Studio, a skincare clinic in Honduras. The goal was to create a modern, conversion-focused digital presence that clearly communicates services, builds trust, and streamlines online payments for treatments and packages.
+              Properly is a property management app that combines the budget managing capabilities of RenoWalk along with the task features of SiteCapture into a single app, offering comprehensive job management, inspections, and seamless data integration.
             </p>
-            
           </>
         }
         stats={[
@@ -57,7 +60,7 @@ export default function SkinStudioCaseStudy() {
           { label: "Timeframe", value: "3 months" },
           { label: "Tools", value: "Figma, Material Design" },
           { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
-          { label: "Company", value: "Skin Studio" },
+          { label: "Client", value: "DapperLogic" },
         ]}
       />
 

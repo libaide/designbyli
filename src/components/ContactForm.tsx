@@ -116,7 +116,7 @@ export default function ContactForm() {
   return (
     <section className="w-full">
       <RiseInOnView>
-      <div className="mx-auto max-w-2xl rounded-3xl border-[4px] border-black bg-white p-8">
+      <div className="mx-auto max-w-2xl rounded-3xl border-[4px] border-black bg-white p-6 sm:p-8">
         <form className="space-y-6" onSubmit={onSubmit}>
           {/* Honeypot (hidden from users, bots may fill it) */}
           <div className="hidden" aria-hidden="true">

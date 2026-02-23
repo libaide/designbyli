@@ -135,8 +135,8 @@ export default function FeaturedWorkAnimated() {
       />
 
       {/* Foreground content */}
-      <div className="relative z-10 px-6 sm:px-10 py-24">
-        <div className="mx-auto max-w-6xl px-6 sm:px-10">
+      <div className="relative z-10 px-6 sm:px-10 py-24 sm:py-24">
+        <div className="mx-auto max-w-6xl px-0 sm:px-10">
           <SectionHeader
             title="Featured Work"
             underline={{ show: false }}
@@ -190,7 +190,7 @@ export default function FeaturedWorkAnimated() {
                 </p>
 
                 <span className="mt-4 inline-block text-base font-semibold underline underline-offset-4">
-                  View
+                  Read case study
                 </span>
               </Link>
             ))}

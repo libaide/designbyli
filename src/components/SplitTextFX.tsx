@@ -1,3 +1,4 @@
+// SplitTextFX.tsx
 "use client";
 
 import dynamic from "next/dynamic";
@@ -13,7 +14,7 @@ type SplitType = "chars" | "words" | "lines";
 
 type SplitTextFXProps = {
   text: string;
-  tag?: string; // ✅ must be a string for <Tag />
+  tag?: string;
   className?: string;
   delay?: number;
   duration?: number;
@@ -25,6 +26,15 @@ type SplitTextFXProps = {
   rootMargin?: string;
   textAlign?: "left" | "center" | "right";
   onComplete?: () => void;
+
+  animateOnScroll?: boolean;
+
+  fadeOutOnScroll?: boolean;
+  fadeOutStart?: string;
+  fadeOutEnd?: string;
+  fadeOutY?: number;
+  fadeOutStagger?: number;
+  fadeOutTrigger?: "self" | "parent" | "section" | string;
 };
 
 export default function SplitTextFX({
@@ -41,6 +51,15 @@ export default function SplitTextFX({
   threshold = 0.2,
   rootMargin = "-80px",
   onComplete,
+  animateOnScroll = true,
+
+  // Fade-out defaults
+  fadeOutOnScroll = false,
+  fadeOutStart = "top top",
+  fadeOutEnd = "bottom top",
+  fadeOutY = -32,
+  fadeOutStagger = 0.02,
+  fadeOutTrigger = "self",
 }: SplitTextFXProps) {
   if (!text) return null;
 
@@ -58,7 +77,14 @@ export default function SplitTextFX({
       rootMargin={rootMargin}
       textAlign={textAlign}
       tag={tag}
-      onLetterAnimationComplete={onComplete ?? (() => {})} // ✅ satisfies required prop typing
+      animateOnScroll={animateOnScroll}
+      fadeOutOnScroll={fadeOutOnScroll}
+      fadeOutStart={fadeOutStart}
+      fadeOutEnd={fadeOutEnd}
+      fadeOutY={fadeOutY}
+      fadeOutStagger={fadeOutStagger}
+      fadeOutTrigger={fadeOutTrigger}
+      onLetterAnimationComplete={onComplete ?? (() => {})}
     />
   );
 }

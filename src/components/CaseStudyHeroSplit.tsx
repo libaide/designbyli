@@ -30,7 +30,7 @@ export default function CaseStudyHeroSplit({
   } as const;
 
   return (
-    <section className="bg-white pb-8 pt-16 sm:pt-28">
+    <section className="bg-white pb-8 pt-16 sm:pt-24">
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           {/* Left */}
@@ -48,20 +48,20 @@ export default function CaseStudyHeroSplit({
           </div>
 
           {/* Right */}
-          <div className="lg:col-span-7">
-            <div className="relative overflow-hidden">
-              <div className="relative aspect-[16/10]">
-                <Image
-                  src={illustrationSrc}
-                  alt={illustrationAlt}
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="(min-width: 1024px) 55vw, 100vw"
-                />
-              </div>
-            </div>
-          </div>
+<div className="lg:col-span-7">
+  <div className="relative overflow-hidden">
+    <div className="relative aspect-[16/14]">
+      <Image
+        src={illustrationSrc}
+        alt={illustrationAlt}
+        fill
+        className="object-contain"
+        priority
+        sizes="(min-width: 1024px) 55vw, 100vw"
+      />
+    </div>
+  </div>
+</div>
         </div>
       </Container>
     </section>

@@ -1,96 +1,108 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useRef } from "react";
 import ContactSection from "@/components/ContactSection";
 import Image from "next/image";
-import SplitTextFX from "@/components/SplitTextFX";
 import RiseInOnView from "@/components/RiseInOnView";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-const skills = [
-  {
-    title: "UX & Research",
-    items: [
-      "Design Thinking",
-      "User Interviews & Usability Testing",
-      "Journey Mapping",
-      "Information Architecture",
-      "UX Strategy",
-    ],
-  },
-  {
-    title: "UI & Visual Design",
-    items: [
-      "UI Design",
-      "Design Systems",
-      "Responsive Web Design",
-      "Branding",
-      "Prototyping",
-    ],
-  },
-  {
-    title: "Technical & Collaboration",
-    items: [
-      "Agile / Scrum",
-      "Design Documentation",
-      "Cross-functional Collaboration",
-      "Stakeholder Communication",
-    ],
-  },
-  {
-    title: "Tools",
-    items: ["Figma", "Adobe Illustrator", "Adobe Photoshop", "Next.js", "Tailwind"],
-  },
-];
+gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutPage() {
-  const [titleDone, setTitleDone] = useState(false);
+  const heroRef = useRef<HTMLElement | null>(null);
+  const introRef = useRef<HTMLDivElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
-  const skillsMarqueeText = useMemo(() => {
-    const items = skills
-      .filter((group) => group.title !== "Tools")
-      .flatMap((group) => group.items);
+  useGSAP(() => {
+    const hero = heroRef.current;
+    const intro = introRef.current;
+    const content = contentRef.current;
 
-    return items.join(" ✦ ") + " ✦";
+    if (!hero || !intro || !content) return;
+
+    // Initial states
+    gsap.set(content, { opacity: 0, y: 40 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: hero,
+        start: "top top",
+        end: "+=1200", // total scroll length of pinned sequence
+        scrub: true,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    // Fade out intro
+    tl.to(
+      intro,
+      {
+        opacity: 0,
+        y: -28,
+        ease: "none",
+      },
+      0
+    );
+
+    // Fade in content
+    tl.to(
+      content,
+      {
+        opacity: 1,
+        y: 0,
+        ease: "none",
+      },
+      0.18
+    );
+
+    // HOLD — creates breathing space before unpin
+    tl.to({}, { duration: 0.35 });
+
+    return () => {
+      try {
+        tl.scrollTrigger?.kill();
+      } catch (_) {}
+      try {
+        tl.kill();
+      } catch (_) {}
+    };
   }, []);
 
   return (
     <>
-      {/* Intro */}
-      <section className="py-24">
-        <div className="mx-auto max-w-6xl px-6 sm:px-10">
-          <SplitTextFX
-            text="I'm Li"
-            tag="h1"
-            className="text-7xl md:text-[10rem] tracking-tight text-white"
-            delay={35}
-            duration={1.1}
-            from={{ opacity: 0, y: 28 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.2}
-            rootMargin="-120px"
-            textAlign="center"
-            onComplete={() => setTitleDone(true)}
-          />
+      {/* Pinned Hero Sequence */}
+      <section ref={heroRef} className="relative min-h-[100svh] bg-black overflow-hidden">
+        <div className="mx-auto px-6 sm:px-10 py-16 sm:py-24">
+          {/* INTRO SECTION */}
+          <div
+            ref={introRef}
+            className="flex flex-col items-center justify-center text-center min-h-[70svh]"
+          >
+            <RiseInOnView staggerChildren={true} staggerMs={140}>
+              <h1 className="text-7xl md:text-[10rem] tracking-tight text-white">
+                I&apos;m Li
+              </h1>
 
-          {/* Keep content mounted to preserve layout height */}
-          <RiseInOnView staggerChildren={true} staggerMs={90} className="mt-10">
-            <div
-              className={[
-                "mx-auto mt-10 grid grid-cols-1 gap-12 md:grid-cols-2",
-                // Locked until title is done (no layout shift)
-                titleDone
-                  ? "opacity-100 translate-y-0 pointer-events-auto"
-                  : "opacity-0 translate-y-3 pointer-events-none",
-                "transition-[opacity,transform] duration-300 ease-out",
-              ].join(" ")}
-            >
-              {/* Column 1 */}
-              <div className="space-y-4 font-light text-base leading-relaxed text-[#c9c9d3]">
-                <p className="text-xl text-white font-medium">
-                  I believe that great design isn't just about aesthetics, it's about crafting intuitive
-                  experiences that empower users and solve real-world problems.
-                </p>
+              <p className="mt-6 max-w-3xl text-xl md:text-2xl font-light text-white">
+                I believe that great design isn&apos;t just about aesthetics, it&apos;s about crafting intuitive
+                experiences that empower users and solve real-world problems.
+              </p>
 
+              <div className="mt-10 text-sm text-white/60 font-light">
+                Scroll to learn more
+              </div>
+            </RiseInOnView>
+          </div>
+
+          {/* CONTENT SECTION */}
+          <div ref={contentRef} className="mx-auto max-w-[700px] pb-24">
+            <RiseInOnView staggerChildren={true} staggerMs={90}>
+              <div className="space-y-5 text-base leading-relaxed text-[#c9c9d3] font-light">
                 <p>
                   My journey into UX/UI design began serendipitously as a lead web designer. Introduced to an
                   in-house QA tool, I quickly became fascinated by the scientific and psychological aspects
@@ -99,30 +111,27 @@ export default function AboutPage() {
                 </p>
 
                 <p>
-                  I'm a truly well-rounded designer with diverse experience far beyond typical UX/UI. I've
-                  delivered branding, logo designs, complete websites, social media ads, print posters, video
-                  banners, and even marketing animations. My capabilities also extend to audio design and
-                  production, backed by formal training at a music production institute. This breadth of
+                  I&apos;m a truly well-rounded designer with diverse experience far beyond typical UX/UI.
+                  I&apos;ve delivered branding, logo designs, complete websites, social media ads, print posters,
+                  video banners, and even marketing animations. My capabilities also extend to audio design
+                  and production, backed by formal training at a music production institute. This breadth of
                   skills enables a holistic and integrated design approach to every project.
                 </p>
 
                 <p>
                   With over 8 years in design, I specialize in clear, functional, and thoughtfully crafted
                   digital products. My career has focused on complex internal tools and SaaS platforms, where
-                  usability, consistency, and attention to detail are paramount. I'm also excited to leverage
+                  usability, consistency, and attention to detail are paramount. I&apos;m also excited to leverage
                   AI as a powerful tool to enhance creativity and improve design outcomes, always striving to
                   create more and create better.
                 </p>
-              </div>
 
-              {/* Column 2 */}
-              <div className="space-y-4 text-base leading-relaxed text-[#c9c9d3]">
                 <p>
                   My approach is hands-on and system-driven, balancing visual design with user needs and
                   business goals. Colleagues often describe me as highly creative, efficient, and effective,
-                  constantly asking 'How can I be more creative?' This stems from a deep curiosity across
+                  constantly asking &apos;How can I be more creative?&apos; This stems from a deep curiosity across
                   science, art, history, music, philosophy, comedy, and psychology, allowing me to connect
-                  disparate ideas and 'put stuff together' uniquely. I prioritize delivering a client's
+                  disparate ideas and &apos;put stuff together&apos; uniquely. I prioritize delivering a client&apos;s
                   vision with sound design principles, excelling at guiding them to both what they want and
                   what they truly need.
                 </p>
@@ -135,10 +144,9 @@ export default function AboutPage() {
                   connections and collaborate on impactful work.
                 </p>
 
-                {/* Profile + meta */}
-                <div className="mt-12 flex justify-end">
-                  <div className="flex items-center gap-4">
-                    {/* Text (left of image) */}
+                {/* Signature */}
+                <div className="pt-12">
+                  <div className="flex items-center justify-end gap-6">
                     <div className="text-right">
                       <p className="text-lg font-medium text-gray-300">Exelí Baide</p>
 
@@ -156,13 +164,11 @@ export default function AboutPage() {
                           <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
                           <path d="M12 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
                         </svg>
-
                         <span>La Ceiba, Honduras</span>
                       </p>
                     </div>
 
-                    {/* Avatar (right side) */}
-                    <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full border border-white/10 bg-white/5 shadow-sm">
+                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-white/10 bg-white/5 shadow-sm">
                       <Image
                         src="/ProfilePic.png"
                         alt="Portrait of Exelí Baide"
@@ -174,12 +180,12 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-            </div>
-          </RiseInOnView>
+            </RiseInOnView>
+          </div>
         </div>
       </section>
 
-      {/* Contact */}
+      {/* Contact Section */}
       <ContactSection id="about-contact" title="Let’s work together" />
     </>
   );

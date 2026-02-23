@@ -2,8 +2,8 @@ export type Project = {
   slug: string;
   title: string;
   category: string;
-  description: string;
   tags: string[];
+  description: string;
   cover: string;
 };
 
@@ -45,12 +45,30 @@ export const projects: Project[] = [
     cover: "/covers/skin-studio.png",
   },
   {
-    slug: "realtor",
-    title: "Realtor",
+    slug: "properly",
+    title: "Properly",
+    category: "Front-End Development",
+    description:
+      "A property management application designed to streamline job management, inspections, and data integration.",
+    tags: ["Front-End", "React", "UI"],
+    cover: "/covers/properly.png",
+  },
+  {
+    slug: "hema-sync",
+    title: "HemaSync",
     category: "Front-End Development",
     description:
       "A responsive real estate website focused on performance, clarity, and clean UI.",
     tags: ["Front-End", "React", "UI"],
-    cover: "/covers/realtor.png",
+    cover: "/covers/HemaSync.png",
+  },
+  {
+    slug: "hoffman-lens",
+    title: "The Hoffman Lens",
+    category: "Front-End Development",
+    description:
+      "An AI-powered Chrome extension inspired by the cult classic film 'They Live'.",
+    tags: ["Creative Coding", "Chrome Extension", "Generative AI"],
+    cover: "/covers/hoffman-lens.png",
   },
 ];

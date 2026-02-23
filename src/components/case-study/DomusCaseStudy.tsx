@@ -219,7 +219,7 @@ export default function DomusCaseStudy() {
           logoSrc="/case-studies/domus/domus-logo.png"
           logoAlt="Domus logo"
           logoSize="lg"
-          logoClassName="h-20 sm:h-24 md:h-28"
+          logoClassName="h-32 sm:h-32"
           illustrationSrc="/case-studies/domus/hero-image.png"
           illustrationAlt="Domus UI preview"
           summary={
