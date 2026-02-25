@@ -72,7 +72,7 @@ const UI_PREVIEWS_BOTTOM: GalleryImage[] = [
 function AppSummaryCard({ app }: { app: AppCard }) {
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-center rounded-2xl border border-black/15 bg-white px-6 py-5">
+      <div className="flex items-center justify-center border-b border-black/15 pb-6">
         <img
           src={app.logo}
           alt={`${app.title} logo`}
@@ -81,7 +81,7 @@ function AppSummaryCard({ app }: { app: AppCard }) {
         />
       </div>
 
-      <p className="max-w-[42ch] text-base leading-relaxed text-[#474747]/80">
+      <p className="max-w-[42ch] text-base leading-relaxed text-gray-500 font-normal">
         {app.body}
       </p>
     </div>
@@ -112,10 +112,10 @@ export default function OperatorCaseStudy() {
               illustrationSrc="/case-studies/operator/hero-illustration.png"
               illustrationAlt="Operator UI preview"
               summary={
-                <div className="space-y-4 text-[#474747]/80">
+                <div className="space-y-4 text-gray-500 text-lg font-normal leading-normal">
                   <p>
                     Operator is <span className="font-semibold">PartnerHero’s</span>{" "}
-                    <span className="font-normal">(now Crescendo)</span> internal platform that unified
+                    <span className="font-normal">(now Crescendo)</span> internal platform that unifies
                     multiple support operations tools into one product suite. It helps agents, managers,
                     and admins work faster with consistent workflows, shared data, and a cohesive UI
                     across applications.
@@ -130,11 +130,11 @@ export default function OperatorCaseStudy() {
                 </div>
               }
               afterHero={
-                <RiseInOnView staggerChildren className="grid gap-10 md:grid-cols-3">
+                <div className="grid gap-16 md:grid-cols-3">
                   {APPS.map((app) => (
                     <AppSummaryCard key={app.title} app={app} />
                   ))}
-                </RiseInOnView>
+                </div>
               }
               stats={[
                 { label: "Project Type", value: "Internal SaaS Platform" },
@@ -161,7 +161,7 @@ export default function OperatorCaseStudy() {
                   Problem & Context
                 </h2>
 
-                <p className="mt-6 text-base leading-relaxed text-[#d3d3d3]">
+                <p className="mt-6 text-base leading-relaxed text-[#d3d3d3] font-normal">
                   Customer support teams previously relied on fragmented tools, inconsistent
                   workflows, and manual processes, which led to inefficiencies and rising
                   operational costs. After several proof-of-concept tools proved their value,
@@ -169,7 +169,7 @@ export default function OperatorCaseStudy() {
                   would empower every team across the organization.
                 </p>
 
-                <p className="mt-6 text-base leading-relaxed text-[#d3d3d3]">
+                <p className="mt-6 text-base leading-relaxed text-[#d3d3d3] font-normal">
                   My mission was to transform fragmented internal tools into an integrated, scalable
                   product suite, ensuring that every feature enhanced efficiency, clarity, and agent
                   satisfaction.
@@ -212,7 +212,7 @@ export default function OperatorCaseStudy() {
             Current State Analysis
           </h3>
 
-          <div className="mt-5 space-y-6 text-base leading-relaxed text-[#474747]/80">
+          <div className="mt-5 space-y-6 text-base leading-relaxed text-[#474747]/80 font-normal">
             <p>
               At the time of evaluation, the product experience relied on fragmented workflows and
               inconsistent interface patterns. Core tasks required unnecessary steps, increasing
@@ -252,7 +252,7 @@ export default function OperatorCaseStudy() {
                 Interviews
               </h3>
 
-              <div className="mt-6 space-y-5 text-base leading-relaxed text-[#474747]/80">
+              <div className="mt-6 space-y-5 text-base leading-relaxed text-[#474747]/80 font-normal">
                 <p>
                   To ensure Operator effectively addressed the challenges faced by customer
                   support agents, I planned and led a series of user interviews with agents
@@ -298,16 +298,16 @@ export default function OperatorCaseStudy() {
           <h3 className="text-left text-3xl font-medium tracking-tight text-[#474747]">
             Insights
           </h3>
-          <p className="mt-3 max-w-2xl text-left text-base text-[#474747]/80">
+          <p className="mt-3 max-w-2xl text-left text-base text-[#474747]/80 font-normal">
             These insights directly influenced feature updates and UI improvements, making the
             tools more intuitive and valuable for agents.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-6 items-stretch sm:grid-cols-2">
+        <div className="mt-10 grid gap-10 items-stretch sm:grid-cols-2">
           <div className="h-full rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)] flex flex-col">
             <h4 className="text-2xl font-normal text-[#474747]">Agent experience</h4>
-            <ul className="mt-3 list-disc space-y-2 pl-5 text-base text-[#474747]/80">
+            <ul className="mt-6 list-disc space-y-4 pl-5 text-base text-[#474747]/80 font-normal">
               <li>The Chrome extension UI is unclear</li>
               <li>Management through the web app is difficult, and so is reviewing data</li>
               <li>
@@ -321,7 +321,7 @@ export default function OperatorCaseStudy() {
 
           <div className="h-full rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)] flex flex-col">
             <h4 className="text-2xl font-normal text-[#474747]">Quality & ops</h4>
-            <ul className="mt-3 list-disc space-y-2 pl-5 text-base text-[#474747]/80">
+            <ul className="mt-6 list-disc space-y-4 pl-5 text-base text-[#474747]/80 font-normal">
               <li>Agents had difficulty navigating and scoring in the Chrome extension</li>
               <li>Managers had difficulty understanding how to create rubrics</li>
               <li>Reviewing and comparing data felt slow</li>
@@ -349,7 +349,7 @@ export default function OperatorCaseStudy() {
 
               <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
                 <RiseInOnView staggerChildren className="lg:col-span-5">
-                  <div className="mx-auto max-w-xl space-y-6 text-base leading-relaxed text-[#474747]/80 lg:mx-0">
+                  <div className="mx-auto max-w-xl space-y-6 text-base leading-relaxed text-[#474747]/80 lg:mx-0 font-normal">
                     <p>
                       After reviewing insights gathered during research and incorporating feedback
                       from PMs, stakeholders, and developers, we aligned on a structured vision for
@@ -552,11 +552,11 @@ export default function OperatorCaseStudy() {
               <div className="grid gap-12 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
                 <RiseInOnView staggerChildren>
                   <div>
-                    <p className="text-base leading-relaxed text-[#d3d3d3]">
+                    <p className="text-base leading-relaxed text-[#d3d3d3] font-normal">
                       Operator improved usability and adoption across the company’s internal tools.
                     </p>
 
-                    <p className="mt-6 text-base leading-relaxed text-[#d3d3d3]">
+                    <p className="mt-6 text-base leading-relaxed text-[#d3d3d3] font-normal">
                       The success and maturity of Operator’s product direction contributed to
                       Crescendo’s interest in PartnerHero during the acquisition process, demonstrating
                       the value of scalable internal tooling and thoughtful product design.
@@ -571,9 +571,9 @@ export default function OperatorCaseStudy() {
                 <RiseInOnView staggerChildren>
                   <ul className="space-y-4">
                     {[
-                      { bold: "Adopted by 500+", text: "agents across teams" },
-                      { bold: "Unified design language across 3 applications", text: "and an admin panel" },
-                      { bold: "Positive feedback from early users", text: "highlighting clarity and visual consistency" },
+                      { bold: "Adopted by 500+ agents across teams" },
+                      { bold: "Unified design language across 3 applications and an admin panel" },
+                      { bold: "Positive feedback from early users highlighting clarity and visual consistency" },
                     ].map((item) => (
                       <li
                         key={item.bold}
@@ -585,7 +585,6 @@ export default function OperatorCaseStudy() {
 
                         <p className="text-base leading-snug text-white">
                           <span className="font-semibold">{item.bold}</span>{" "}
-                          {item.text}
                         </p>
                       </li>
                     ))}
@@ -609,7 +608,7 @@ export default function OperatorCaseStudy() {
                   Reflection
                 </h2>
 
-                <div className="space-y-6 text-base leading-relaxed text-[#d3d3d3]">
+                <div className="space-y-6 text-base leading-relaxed text-gray-300 font-normal">
                   <p>
                     Through my experience with Operator, I gained valuable insights into implementing
                     design strategies across multiple teams and products while maintaining consistency,
@@ -631,7 +630,7 @@ export default function OperatorCaseStudy() {
                     ...exceptional design goes beyond visual interfaces.
                   </h4>
 
-                  <p className="text-center text-base text-[#d3d3d3]">
+                  <p className="text-center text-base text-gray-300 font-normal">
                     Exceptional design involves empowering individuals to perform at their highest
                     level through clear communication, understanding, and flexible systems that evolve
                     alongside their users.

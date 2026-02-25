@@ -169,13 +169,13 @@ body {
 
 .cursor-reveal {
   -webkit-mask-image: radial-gradient(
-    circle var(--reveal-radius, 180px) at var(--reveal-x, -999px) var(--reveal-y, -999px),
+    circle var(--reveal-radius, 440px) at var(--reveal-x, -999px) var(--reveal-y, -999px),
     rgba(0, 0, 0, 1) 0%,
     rgba(0, 0, 0, 1) 55%,
     rgba(0, 0, 0, 0) 100%
   );
   mask-image: radial-gradient(
-    circle var(--reveal-radius, 180px) at var(--reveal-x, -999px) var(--reveal-y, -999px),
+    circle var(--reveal-radius, 440px) at var(--reveal-x, -999px) var(--reveal-y, -999px),
     rgba(0, 0, 0, 1) 0%,
     rgba(0, 0, 0, 1) 55%,
     rgba(0, 0, 0, 0) 100%

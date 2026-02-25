@@ -25,7 +25,7 @@ export default function ContactForm() {
   const isActive = (field: Field) => Boolean(focused[field]) || hasValue(field);
 
   const baseField =
-    "w-full rounded-xl border-[4px] bg-white px-4 py-3 text-base outline-none transition-colors placeholder:text-neutral-400";
+    "w-full rounded-xl border-[1px] bg-white px-4 py-3 text-base outline-none transition-colors placeholder:text-neutral-400";
 
   const fieldClass = (field: Field) =>
     [
@@ -116,7 +116,7 @@ export default function ContactForm() {
   return (
     <section className="w-full">
       <RiseInOnView>
-      <div className="mx-auto max-w-2xl rounded-3xl border-[4px] border-black bg-white p-6 sm:p-8">
+      <div className="mx-auto max-w-2xl rounded-3xl border-[1px] border-gray-30 bg-white p-6 sm:p-8">
         <form className="space-y-6" onSubmit={onSubmit}>
           {/* Honeypot (hidden from users, bots may fill it) */}
           <div className="hidden" aria-hidden="true">
@@ -135,34 +135,52 @@ export default function ContactForm() {
           </div>
 
           {/* Reason */}
-          <div className="space-y-2">
-            <label htmlFor="reason" className="text-sm font-medium text-black">
-              Reason for reaching out
-            </label>
-            <select
-              id="reason"
-              value={values.reason}
-              onChange={(e) => update("reason", e.target.value)}
-              onFocus={() => setFocused((f) => ({ ...f, reason: true }))}
-              onBlur={() => setFocused((f) => ({ ...f, reason: false }))}
-              name="reason"
-              required
-              className={fieldClass("reason") + " appearance-none"}
-              aria-label="Reason for reaching out"
-              disabled={loading}
-            >
-              <option value="recruiter">
-                Full-time / Contract role
-              </option>
-              <option value="freelance">Freelance project</option>
-              <option value="collab">Collaboration</option>
-              <option value="other">Other</option>
-            </select>
+<div className="space-y-2">
+  <label htmlFor="reason" className="text-sm font-medium text-black">
+    Reason for reaching out
+  </label>
 
-            <p className="text-sm text-neutral-600">
-              Recruiters: a job link, location/time zone, and timeline help a lot.
-            </p>
-          </div>
+  <div className="relative">
+    <select
+      id="reason"
+      value={values.reason}
+      onChange={(e) => update("reason", e.target.value)}
+      onFocus={() => setFocused((f) => ({ ...f, reason: true }))}
+      onBlur={() => setFocused((f) => ({ ...f, reason: false }))}
+      name="reason"
+      required
+      className={fieldClass("reason") + " appearance-none pr-10"}
+      aria-label="Reason for reaching out"
+      disabled={loading}
+    >
+      <option value="recruiter">Full-time / Contract role</option>
+      <option value="freelance">Freelance project</option>
+      <option value="collab">Collaboration</option>
+      <option value="other">Other</option>
+    </select>
+
+    {/* Custom dropdown icon */}
+    <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-neutral-500">
+      <svg
+        className="h-4 w-4"
+        viewBox="0 0 20 20"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      >
+        <path
+          d="M6 8l4 4 4-4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <p className="text-sm text-neutral-600">
+    Recruiters: a job link, location/time zone, and timeline help a lot.
+  </p>
+</div>
 
           {/* Name */}
           <div className="space-y-2">

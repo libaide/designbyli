@@ -45,11 +45,11 @@ export default function HemaSyncCaseStudy() {
         logoSize="md"
         logoClassName="h-10 sm:h-10 md:h-10"
         
-        illustrationSrc="/case-studies/hemasync/hero.png"
+        illustrationSrc="/case-studies/hemasync/hema-hero.png"
         illustrationAlt="HemaSync UI preview"
         summary={
           <>
-            <p>
+            <p className="font-normal text-gray-500 leading-relaxed text-lg">
               A platform designed to streamline patient data and lab result management for a commercial laboratory in Honduras. This intuitive tool empowers laboratory employees to efficiently handle patient information, including searching, viewing, and editing patient details by name or ID. Its core functionality focuses on simplifying the process of completing and publishing lab orders, which can consist of one or multiple requested exams.</p>
           </>
         }

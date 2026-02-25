@@ -16,62 +16,84 @@ export default function AboutPage() {
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
-    const hero = heroRef.current;
-    const intro = introRef.current;
-    const content = contentRef.current;
+  const hero = heroRef.current;
+  const intro = introRef.current;
+  const content = contentRef.current;
 
-    if (!hero || !intro || !content) return;
+  if (!hero || !intro || !content) return;
 
-    // Initial states
-    gsap.set(content, { opacity: 0, y: 40 });
+  // Initial states
+  gsap.set(hero, { backgroundColor: "#000000" });
+  gsap.set(content, { opacity: 0, y: 40 });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: hero,
-        start: "top top",
-        end: "+=1200", // total scroll length of pinned sequence
-        scrub: true,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      },
-    });
+  const mm = gsap.matchMedia();
 
-    // Fade out intro
-    tl.to(
-      intro,
-      {
-        opacity: 0,
-        y: -28,
-        ease: "none",
-      },
-      0
-    );
+  mm.add(
+    {
+      isMobile: "(max-width: 639px)",
+      isDesktop: "(min-width: 640px)",
+    },
+    (ctx) => {
+      const { isMobile } = ctx.conditions as { isMobile: boolean };
 
-    // Fade in content
-    tl.to(
-      content,
-      {
-        opacity: 1,
-        y: 0,
-        ease: "none",
-      },
-      0.18
-    );
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: hero,
+          start: "top top",
+          end: isMobile ? "+=520" : "+=1000", // ✅ shorter on mobile
+          scrub: true,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
 
-    // HOLD — creates breathing space before unpin
-    tl.to({}, { duration: 0.35 });
+  // Fade out intro
+  tl.to(
+    intro,
+    {
+      opacity: 0,
+      y: -28,
+      ease: "none",
+    },
+    0
+  );
+  const t = isMobile ? 0.10 : 0.18;
 
-    return () => {
-      try {
+  // Transition bg to white as content begins
+  tl.to(
+    hero,
+    {
+      backgroundColor: "#ffffff",
+      ease: "none",
+    },
+    t
+  );
+
+  // Fade in content
+  tl.to(
+    content,
+    {
+      opacity: 1,
+      y: 0,
+      ease: "none",
+    },
+    t
+  );
+
+  // HOLD
+  tl.to({}, { duration: isMobile ? 0.10 : 0.35 });
+
+  return () => {
         tl.scrollTrigger?.kill();
-      } catch (_) {}
-      try {
         tl.kill();
-      } catch (_) {}
-    };
-  }, []);
+      };
+    }
+  );
+
+  return () => mm.kill();
+}, []);
 
   return (
     <>
@@ -84,12 +106,8 @@ export default function AboutPage() {
             className="flex flex-col items-center justify-center text-center min-h-[70svh]"
           >
             <RiseInOnView staggerChildren={true} staggerMs={140}>
-              <h1 className="text-7xl md:text-[10rem] tracking-tight text-white">
-                I&apos;m Li
-              </h1>
-
               <p className="mt-6 max-w-3xl text-xl md:text-2xl font-light text-white">
-                I believe that great design isn&apos;t just about aesthetics, it&apos;s about crafting intuitive
+                Great design isn&apos;t just about aesthetics, it&apos;s about crafting intuitive
                 experiences that empower users and solve real-world problems.
               </p>
 
@@ -100,9 +118,8 @@ export default function AboutPage() {
           </div>
 
           {/* CONTENT SECTION */}
-          <div ref={contentRef} className="mx-auto max-w-[700px] pb-24">
-            <RiseInOnView staggerChildren={true} staggerMs={90}>
-              <div className="space-y-5 text-base leading-relaxed text-[#c9c9d3] font-light">
+          <div ref={contentRef} className="mx-auto max-w-175 pb-24">
+              <div className="space-y-5 text-base leading-relaxed text-gray-500 font-light">
                 <p>
                   My journey into UX/UI design began serendipitously as a lead web designer. Introduced to an
                   in-house QA tool, I quickly became fascinated by the scientific and psychological aspects
@@ -144,9 +161,9 @@ export default function AboutPage() {
                 <div className="pt-12">
                   <div className="flex items-center justify-end gap-6">
                     <div className="text-right">
-                      <p className="text-lg font-medium text-gray-300">Exelí Baide</p>
+                      <p className="text-lg font-medium text-gray-500">Exelí Baide</p>
 
-                      <p className="mt-1 flex items-center justify-end gap-2 text-sm text-gray-300 font-light">
+                      <p className="mt-1 flex items-center justify-end gap-2 text-sm text-gray-500 font-light">
                         <svg
                           aria-hidden="true"
                           viewBox="0 0 24 24"
@@ -176,7 +193,6 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-            </RiseInOnView>
           </div>
         </div>
       </section>

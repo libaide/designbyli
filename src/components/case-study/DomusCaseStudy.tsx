@@ -174,19 +174,19 @@ export default function DomusCaseStudy() {
             illustrationAlt="Domus UI preview"
             summary={
               <div className="space-y-4">
-                <p className="text-[#1B2166]/70 text-base leading-relaxed font-normal">
+                <p className="text-gray-500 text-lg leading-relaxed font-normal">
                   A new home-services marketplace concept for Honduras, developed to empower clients to
                   easily find verified technicians, request services, and manage scheduling and payments.
                   It also provides technicians with a consistent and reliable source of work.
                 </p>
-                <p className="text-[#1B2166]/70 text-base leading-relaxed font-normal">
+                <p className="text-gray-500 text-lg leading-relaxed font-normal">
                   My role involved leading the UX and UI design for the MVP, focusing on building intuitive experiences across client, technician, and admin interfaces.
                 </p>
               </div>
             }
             stats={[
               { label: "Project Type", value: "Mobile App MVP" },
-              { label: "Role", value: "UX/UI Designer" },
+              { label: "Role", value: "Product Designer" },
               { label: "Timeline", value: "Sept. 2025 — Nov. 2025" },
               { label: "Tools", value: "Figma, Material Design 3" },
               { label: "Scope", value: "UX Research, Wireframing, Prototyping, Visual Design" },
@@ -206,25 +206,21 @@ export default function DomusCaseStudy() {
                   title="The Problem"
                   wrapperClassName="max-w-none text-left"
                   titleClassName="text-[#1B2166] text-4xl"
+                  description="Finding reliable home service providers in Honduras is a challenge. Most people rely on informal recommendations or social media groups, which can lead to trust issues, miscommunication, and unreliable scheduling."
+                  descriptionClassName="text-lg text-[#1B2166] font-normal leading-relaxed"
                 />
 
-                <p className="mt-6 text-base leading-relaxed text-[#1B2166]/70 font-normal">
-                  In Honduras, it can be tough to find reliable and trustworthy home service providers.
-                  Most people rely on informal recommendations or social media groups, which can lead to
-                  trust issues, miscommunication, and unreliable scheduling.
-                </p>
+                <p className="mt-8 text-base font-medium text-[#1B2166]">Challenges Identified:</p>
 
-                <p className="mt-8 text-base font-semibold text-[#1B2166]">Challenges Identified:</p>
-
-                <ul className="mt-4 ml-5 list-disc space-y-2 text-base leading-relaxed text-[#1B2166]/70">
+                <ul className="mt-4 ml-5 list-disc space-y-2 text-base leading-relaxed text-[#1B2166] font-normal">
                   <li>Lack of verified professionals and standardized pricing.</li>
                   <li>No structured system for tracking jobs or payments.</li>
                   <li>Missed opportunities for technicians to find consistent work.</li>
                 </ul>
 
-                <p className="mt-8 text-base font-semibold text-[#1B2166]">Opportunity:</p>
+                <p className="mt-8 text-base font-medium text-[#1B2166]">Opportunity:</p>
 
-                <p className="mt-3 text-base leading-relaxed text-[#1B2166]/70">
+                <p className="mt-3 text-base leading-relaxed text-[#1B2166] font-normal">
                   Build a mobile marketplace that connects verified technicians with clients through a
                   transparent and easy-to-use system.
                 </p>
@@ -270,6 +266,7 @@ export default function DomusCaseStudy() {
               title="Business Objectives & MVP Goals"
               description='The MVP aimed to validate the business hypothesis that there is real demand for verified home services in Honduras under a “pull model”, where clients post requests and technicians apply to them.'
               titleClassName="text-[#1B2166] text-4xl"
+              descriptionClassName="text-lg text-[#1B2166] font-normal leading-relaxed"
             />
           </RiseInOnView>
 
@@ -298,17 +295,17 @@ export default function DomusCaseStudy() {
                     <path d="M7 16h4" />
                   </svg>
                 </div>
-                <h4 className="text-2xl font-semibold tracking-tight text-[#1B2166]">
+                <h4 className="text-2xl font-medium tracking-tight text-[#1B2166]">
                   Core MVP Objectives
                 </h4>
               </div>
 
-              <ul className="mt-10 space-y-10">
+              <ul className="mt-10 space-y-6">
                 {CORE_OBJECTIVES.map((item, idx) => (
                   <RiseInOnView key={item} delayMs={80 + idx * 70}>
-                    <li className="flex gap-6 items-start">
+                    <li className="flex gap-4 items-start">
                       <span className="block mt-1.5 h-4 w-4 rounded-full border-[2px] flex-none border-[#F5A623]" />
-                      <p className="text-base leading-relaxed text-[#1B2166]/70">{item}</p>
+                      <p className="text-base leading-relaxed text-[#1B2166] font-normal">{item}</p>
                     </li>
                   </RiseInOnView>
                 ))}
@@ -331,17 +328,17 @@ export default function DomusCaseStudy() {
                     <path d="M7 15l3-3 3 2 5-6" />
                   </svg>
                 </div>
-                <h4 className="text-2xl font-semibold tracking-tight text-[#1B2166]">
+                <h4 className="text-2xl font-medium tracking-tight text-[#1B2166]">
                   Success Metrics
                 </h4>
               </div>
 
-              <ul className="mt-10 space-y-10">
+              <ul className="mt-10 space-y-6">
                 {SUCCESS_METRICS.map((item, idx) => (
                   <RiseInOnView key={item} delayMs={80 + idx * 70}>
-                    <li className="flex gap-6 items-start">
+                    <li className="flex gap-4 items-start">
                       <span className="block mt-1.5 h-4 w-4 rounded-full border-[2px] flex-none border-[#F5A623]" />
-                      <p className="text-base leading-relaxed text-[#1B2166]/70">{item}</p>
+                      <p className="text-base font-normalleading-relaxed text-[#1B2166]">{item}</p>
                     </li>
                   </RiseInOnView>
                 ))}
@@ -380,15 +377,15 @@ export default function DomusCaseStudy() {
                   </div>
 
                   <div>
-                    <h4 className="text-2xl font-semibold text-white">Karen López</h4>
-                    <p className="mt-1 text-sm text-white/70">Female · 32 years old · Client</p>
+                    <h4 className="text-2xl font-medium text-white">Karen López</h4>
+                    <p className="mt-1 text-sm text-gray-300">Female · 32 years old · Client</p>
 
                     <ul className="mt-6 space-y-4 text-base">
                       {CLIENT_PERSONA_BULLETS.map((t, idx) => (
                         <RiseInOnView key={t} delayMs={60 + idx * 70}>
                           <li className="flex gap-3">
                             <span className="mt-2 h-2 w-2 rounded-full bg-[#F5A623]" />
-                            <p className="text-white/80">{t}</p>
+                            <p className="text-gray-300">{t}</p>
                           </li>
                         </RiseInOnView>
                       ))}
@@ -412,15 +409,15 @@ export default function DomusCaseStudy() {
                   </div>
 
                   <div>
-                    <h4 className="text-2xl font-semibold text-white">Jorge Ortega</h4>
-                    <p className="mt-1 text-sm text-white/70">Male · 40 years old · Technician</p>
+                    <h4 className="text-2xl font-medium text-white">Jorge Ortega</h4>
+                    <p className="mt-1 text-sm text-gray-300">Male · 40 years old · Technician</p>
 
                     <ul className="mt-6 space-y-4 text-base">
                       {TECHNICIAN_PERSONA_BULLETS.map((t, idx) => (
                         <RiseInOnView key={t} delayMs={60 + idx * 70}>
                           <li className="flex gap-3">
                             <span className="mt-2 h-2 w-2 rounded-full bg-[#F5A623]" />
-                            <p className="text-white/80">{t}</p>
+                            <p className="text-gray-300">{t}</p>
                           </li>
                         </RiseInOnView>
                       ))}
@@ -454,7 +451,7 @@ export default function DomusCaseStudy() {
                     descriptionClassName="text-left"
                   />
 
-                  <div className="mt-8 space-y-6 text-base leading-relaxed text-[#1B2166]/70 text-left">
+                  <div className="mt-8 space-y-6 text-base leading-relaxed text-[#1B2166] text-left">
                     <p>
                       I conducted a competitive analysis of existing home service platforms in Honduras
                       and abroad to identify differentiation opportunities. I discovered that local
@@ -482,18 +479,18 @@ export default function DomusCaseStudy() {
         className="relative py-20 sm:py-20 flex items-center justify-center bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('/case-studies/domus/UserJourneys.png')" }}
       >
+        <RiseInOnView>
         <Container className="relative z-10">
           <div className="relative z-20 max-w-xl lg:max-w-2xl mx-auto p-8 sm:p-10 rounded-3xl bg-white/90 shadow-lg text-center">
-            <RiseInOnView>
               <SectionHeader
                 title="User Flows & Journeys"
-                description="I began by mapping the core user flows for the three main roles, clarifying how each interaction connected to business logic, from posting a service to payment confirmation. Following this, I mapped the broader user journeys, identifying critical moments that would shape the MVP."
-                descriptionClassName="text-[#1B2166]/70"
                 titleClassName="text-[#1B2166] text-4xl"
               />
-            </RiseInOnView>
+            <p className="mt-8 space-y-6 text-[#1B2166] font-normal text-base leading-normal text-left">I began by mapping the core user flows for the three main roles, clarifying how each interaction connected to business logic, from posting a service to payment confirmation. Following this, I mapped the broader user journeys, identifying critical moments that would shape the MVP.</p>
+            
           </div>
         </Container>
+        </RiseInOnView>
       </section>
 
       {/* Wireframes */}
@@ -504,7 +501,7 @@ export default function DomusCaseStudy() {
               <SectionHeader
                 title="Wireframes"
                 description="After finalizing the flow diagrams and defining the MVP scope and core features, I transitioned into low-fidelity wireframes. I collaborated closely with the client to ensure all critical MVP functionalities were represented and the UX remained simple and intuitive."
-                descriptionClassName="text-[#1B2166]/70"
+                descriptionClassName="text-[#1B2166] text-lg font-normal leading-relaxed"
                 titleClassName="text-[#1B2166] text-4xl"
               />
             </RiseInOnView>
@@ -568,7 +565,7 @@ export default function DomusCaseStudy() {
               <SectionHeader
                 title="Design System"
                 description="Using the Material Theme Builder, I generated an accessible, Domus-branded design system and created a local component library and style tokens tailored to the project’s needs."
-                descriptionClassName="text-[#1B2166]/70"
+                descriptionClassName="text-[#1B2166] text-lg font-normal leading-relaxed"
                 titleClassName="text-[#1b2166] text-4xl"
               />
             </RiseInOnView>
@@ -607,6 +604,7 @@ export default function DomusCaseStudy() {
                 title="UI Previews"
                 dark
                 description="The MVP design defined a clear, testable foundation for product validation."
+                descriptionClassName="text-white font-normal leading-relaxed text-lg"
               />
             </RiseInOnView>
 
@@ -687,13 +685,13 @@ export default function DomusCaseStudy() {
                     descriptionClassName="text-[#1B2166]/70 text-4xl"
                   />
 
-                  <div className="mt-8 space-y-6 text-base leading-relaxed text-[#1B2166]/70 text-left">
+                  <div className="mt-8 space-y-6 text-base leading-relaxed text-[#1B2166] font-normal text-left">
                     <p>
                       Domus provided me with the opportunity to combine UX strategy and product design
                       execution, transforming a simple idea into a validated MVP.
                     </p>
 
-                    <p className="text-base leading-relaxed text-[#1B2166]/70">
+                    <p className="text-base leading-relaxed text-[#1B2166] font-normal">
                       This project strengthened my ability to design trust-based ecosystems and create
                       scalable product foundations for emerging markets.
                     </p>

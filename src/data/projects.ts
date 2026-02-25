@@ -17,7 +17,7 @@ export const projects: Project[] = [
     tags: ["UX", "UI", "Internal Tools"],
     cover: "/covers/operator.png",
   },
-  {
+      {
     slug: "domus",
     title: "Domus",
     category: "Product Design",

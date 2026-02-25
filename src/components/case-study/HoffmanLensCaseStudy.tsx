@@ -49,10 +49,10 @@ export default function HoffmanLenseCaseStudy() {
         illustrationAlt="Hoffman Lens UI preview"
         summary={
           <>
-            <p>
+            <p className="font-normal text-gray-500 leading-relaxed text-lg">
               An AI-powered Chrome extension that acts as a real-time "truth filter" for the web, inspired by the cult classic film They Live. Designed to combat the saturation of corporate marketing fluff, the tool utilizes the OpenAI API to scan DOM elements, including headlines, buttons, and infinite-scroll social feeds, and rewrite them into their stark, cynical intent.
             </p>
-            <p>
+            <p className="font-normal text-gray-500 leading-relaxed text-lg">
               Featuring a brutalist, industrial UI and complex MutationObserver logic to handle dynamic single-page applications like LinkedIn and Twitter, the project blends technical implementation with critical commentary on digital capitalism and user manipulation.
             </p>
           </>
@@ -62,7 +62,7 @@ export default function HoffmanLenseCaseStudy() {
           { label: "Role", value: "Designer & Developer" },
           { label: "Timeframe", value: "1 day" },
           { label: "Tools", value: "Figma, JavaScript, OpenAI API, GitHub" },
-          { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
+          { label: "Scope", value: "Research, Coding, Visual Design" },
           { label: "Company", value: "N/A – Conceptual" },
         ]}
       />

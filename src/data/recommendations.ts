@@ -32,7 +32,7 @@ export const recommendations: Recommendation[] = [
     name: "Daniel Le'Sage",
     title: "Dever - Founder & CEO",
     text:
-      "I’ve known and worked with Li for years! we actually started in QA together back in the Quora days. Even then, he thought beyond the task in front of him. He cared about how things worked, how users experienced them, and how everything connected. Later, when we worked together on Operator, I got to see him fully in his element as a designer. He doesn’t just make things look good, he thinks through flows, edge cases, and real-world constraints. As a developer, that makes a huge difference. His designs are clear, intentional, and actually buildable. He’s calm, thoughtful, and really solid to collaborate with. If you’re working with him, you’re getting someone who genuinely cares about doing things right.",
+      "I’ve known and worked with Li for years! We actually started in QA together back in the Quora days. Even then, he thought beyond the task in front of him. He cared about how things worked, how users experienced them, and how everything connected. Later, when we worked together on Operator, I got to see him fully in his element as a designer. He doesn’t just make things look good, he thinks through flows, edge cases, and real-world constraints. As a developer, that makes a huge difference. His designs are clear, intentional, and actually buildable. He’s calm, thoughtful, and really solid to collaborate with. If you’re working with him, you’re getting someone who genuinely cares about doing things right.",
     source: "LinkedIn",
   },
     {

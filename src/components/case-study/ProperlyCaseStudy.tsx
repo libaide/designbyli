@@ -49,7 +49,7 @@ export default function ProperlyCaseStudy() {
         illustrationAlt="Properly UI preview"
         summary={
           <>
-            <p>
+            <p className="font-normal text-gray-500 leading-relaxed text-lg">
               Properly is a property management app that combines the budget managing capabilities of RenoWalk along with the task features of SiteCapture into a single app, offering comprehensive job management, inspections, and seamless data integration.
             </p>
           </>

@@ -128,15 +128,15 @@ export default function FeaturedWorkAnimated() {
           cursor-reveal
           bg-[url('/featured-work-bg.png')]
           bg-cover bg-center bg-no-repeat
-          opacity-60
+          opacity-80
           transform-gpu will-change-transform
         "
-        style={{ ["--reveal-radius" as any]: "220px" }}
+        style={{ ["--reveal-radius" as any]: "320px" }}
       />
 
       {/* Foreground content */}
       <div className="relative z-10 px-6 sm:px-10 py-24 sm:py-24">
-        <div className="mx-auto max-w-6xl px-0 sm:px-10">
+        <div className="mx-auto max-w-5xl px-0 sm:px-10">
           <SectionHeader
             title="Featured Work"
             underline={{ show: false }}

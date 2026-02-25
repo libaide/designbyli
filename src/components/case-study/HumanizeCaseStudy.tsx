@@ -58,6 +58,15 @@ const IMPACT_ITEMS = [
   "Clear value for merchants struggling with email volume",
 ] as const;
 
+const STATS = [
+  { label: "Project Type", value: "Shopify App, SaaS Product" },
+  { label: "Role", value: "UX/UI Designer" },
+  { label: "Timeline", value: "2022–2023" },
+  { label: "Tools", value: "Sketch, Polaris (Shopify design system)" },
+  { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
+  { label: "Company", value: "PartnerHero" },
+] as const;
+
 export default function HumanizeCaseStudy() {
   const [expandedImage, setExpandedImage] = useState<ExpandedImage>(null);
 
@@ -66,7 +75,7 @@ export default function HumanizeCaseStudy() {
   return (
     <>
       {/* Split Hero */}
-      <RiseInOnView>
+      <RiseInOnView staggerChildren>
         <CaseStudyTopSection
           className="bg-white pb-20"
           logoSrc="/case-studies/humanize/humanize-logo.png"
@@ -77,13 +86,13 @@ export default function HumanizeCaseStudy() {
           illustrationAlt="Humanize UI preview"
           summary={
             <>
-              <p>
+              <p className="text-lg font-normal leading-relaxed text-gray-500">
                 A lightweight, self-serve Shopify app that helps merchants deliver high-quality customer
                 support at scale through PartnerHero’s global CX teams—packaged into a frictionless,
                 Shopify-native experience.
               </p>
 
-              <p>
+              <p className="text-lg font-normal leading-relaxed text-gray-500">
                 My role covered <span className="font-semibold">research</span>,{" "}
                 <span className="font-semibold">user flows</span>,{" "}
                 <span className="font-semibold">wireframing</span>,{" "}
@@ -94,14 +103,7 @@ export default function HumanizeCaseStudy() {
               </p>
             </>
           }
-          stats={[
-            { label: "Project Type", value: "Shopify App, SaaS Product" },
-            { label: "Role", value: "UX/UI Designer" },
-            { label: "Timeline", value: "2022–2023" },
-            { label: "Tools", value: "Sketch, Polaris (Shopify design system)" },
-            { label: "Scope", value: "Research, Wireframing, Prototyping, Visual Design" },
-            { label: "Company", value: "PartnerHero" },
-          ]}
+          stats={STATS}
         />
       </RiseInOnView>
 
@@ -119,16 +121,16 @@ export default function HumanizeCaseStudy() {
                   title="Context & Opportunity"
                   description="PartnerHero’s global CX teams could offer high-quality support at scale. The challenge was turning this operational capability into a lightweight, self-serve Shopify app with a frictionless user experience."
                   titleClassName="text-[#1B1B1B] font-bold"
-                  descriptionClassName="text-[#1B1B1B]/80 text-lg font-medium leading-relaxed"
+                  descriptionClassName="text-[#1B1B1B] text-lg font-normal leading-relaxed"
                   underline={{ show: true, className: "bg-[#E45027]" }}
                   wrapperClassName="text-left mx-0 max-w-none"
                 />
 
-                <p className="mt-10 text-base font-bold leading-relaxed text-[#1B1B1B]/80">
-                  Merchant Pain Points
+                <p className="mt-10 text-base font-medium leading-relaxed text-[#1B1B1B]">
+                  Merchant Pain Points:
                 </p>
 
-                <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-[#1B1B1B]/80">
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-[#1B1B1B]">
                   <li>Customer emails piling up during nights and weekends</li>
                   <li>High costs of hiring and training support staff</li>
                   <li>Difficulty maintaining consistent tone and quality</li>
@@ -162,13 +164,13 @@ export default function HumanizeCaseStudy() {
               title="Objectives"
               description="The project focused on four primary UX objectives:"
               titleClassName="text-[#1B1B1B] font-bold"
-              descriptionClassName="text-[#1B1B1B]/80 text-lg font-medium"
+              descriptionClassName="text-[#1B1B1B] text-lg font-normal"
               underline={{ show: true, className: "bg-[#E45027]" }}
             />
           </RiseInOnView>
 
           <div className="mx-auto mt-10 max-w-2xl">
-            <ol className="list-disc space-y-2 pl-5 text-base text-[#1B1B1B]/80">
+            <ol className="list-disc space-y-2 pl-5 text-base text-[#1B1B1B]">
               {[
                 "Establish trust through clear tone, privacy signals, and consistent UI patterns",
                 "Communicate Humanize’s value proposition in under 20 seconds",
@@ -185,181 +187,189 @@ export default function HumanizeCaseStudy() {
       </section>
 
       {/* Design Process */}
-      <section className="relative overflow-hidden py-20">
-        <div className="absolute inset-0 bg-[#0B0B10]" />
+<section className="relative overflow-hidden py-20">
+  <div className="absolute inset-0 bg-[#0B0B10]" />
 
-        <div
-          className="
-            absolute bottom-[-40%] right-[-20%]
-            h-[700px] w-[700px] rounded-full
-            bg-[radial-gradient(circle_at_center,#FF9985_0%,#FF7F66_20%,#E85032_35%,#85392F_55%,transparent_70%)]
-            blur-3xl opacity-80
-          "
-        />
+  <div
+    className="
+      absolute bottom-[-40%] right-[-20%]
+      h-[700px] w-[700px] rounded-full
+      bg-[radial-gradient(circle_at_center,#FF9985_0%,#FF7F66_20%,#E85032_35%,#85392F_55%,transparent_70%)]
+      blur-3xl opacity-80
+    "
+  />
 
-        <div
-          className="
-            absolute top-[-30%] left-[-20%]
-            h-[600px] w-[600px] rounded-full
-            bg-[radial-gradient(circle_at_center,#3B272C_0%,#2E242B_40%,transparent_70%)]
-            blur-3xl opacity-60
-          "
-        />
+  <div
+    className="
+      absolute top-[-30%] left-[-20%]
+      h-[600px] w-[600px] rounded-full
+      bg-[radial-gradient(circle_at_center,#3B272C_0%,#2E242B_40%,transparent_70%)]
+      blur-3xl opacity-60
+    "
+  />
 
-        <Container className="relative z-10">
-          <RiseInOnView>
-            <SectionHeader
-              title="Design Process"
-              description="I followed a structured, human-centered design process focused on reducing friction, building trust, and aligning with Shopify merchants’ expectations."
-              dark
-              titleClassName="font-light"
-              descriptionClassName="text-gray-300 text-lg font-light"
-              underline={{ show: true, className: "bg-[#E45027]" }}
-              wrapperClassName="max-w-3xl"
-            />
-          </RiseInOnView>
+  <Container className="relative z-10">
+    <RiseInOnView>
+      <SectionHeader
+        title="Design Process"
+        description="I followed a structured, human-centered design process focused on reducing friction, building trust, and aligning with Shopify merchants’ expectations."
+        dark
+        titleClassName="font-medium"
+        descriptionClassName="text-gray-300 text-lg font-normal"
+        underline={{ show: true, className: "bg-[#E45027]" }}
+        wrapperClassName="max-w-3xl"
+      />
+    </RiseInOnView>
 
-          {/* Process cards — per-card RiseInOnView */}
-          <div className="mx-auto mt-14 grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* 1. Research */}
-            <RiseInOnView delayMs={80}>
-              <div className="rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-semibold leading-none text-white">
-                      1
-                    </div>
-                    <h4 className="text-xl font-semibold tracking-tight text-white">Research</h4>
-                  </div>
-
-                  <p className="text-base font-light leading-relaxed text-gray-300">
-                    Before defining flows or UI, I conducted a focused research phase to understand
-                    merchant needs, competitive expectations within the Shopify ecosystem, and the
-                    operational requirements of Humanize’s support workflows.
-                  </p>
-                </div>
+    {/* Process cards */}
+    <div className="mx-auto mt-14 grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+      
+      {/* 1. Research */}
+      <RiseInOnView delayMs={80}>
+        <div className="flex h-full flex-col rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-medium text-white">
+                1
               </div>
-            </RiseInOnView>
+              <h4 className="text-xl font-medium tracking-tight text-white">
+                Research
+              </h4>
+            </div>
 
-            {/* 2. User Flows */}
-            <RiseInOnView delayMs={160}>
-              <div className="rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-semibold leading-none text-white">
-                      2
-                    </div>
-                    <h4 className="text-xl font-semibold tracking-tight text-white">User Flows</h4>
-                  </div>
-
-                  <p className="text-base font-light leading-relaxed text-gray-300">
-                    I mapped the core user flows required to activate and use Humanize effectively:
-                  </p>
-
-                  <ul className="space-y-2 text-base font-light text-gray-300">
-                    {USER_FLOW_ITEMS.map((item, idx) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-300" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </RiseInOnView>
-
-            {/* 3. Polaris Design System */}
-            <RiseInOnView delayMs={240}>
-              <div className="rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-semibold leading-none text-white">
-                      3
-                    </div>
-                    <h4 className="text-xl font-semibold tracking-tight text-white">
-                      Polaris Design System
-                    </h4>
-                  </div>
-
-                  <p className="text-base font-light leading-relaxed text-gray-300">
-                    Because Humanize lives inside the Shopify Admin, I used Shopify Polaris as the
-                    foundation and extended it only where necessary. This kept the UI familiar,
-                    reduced learning time, and increased merchant trust from the first interaction.
-                  </p>
-                </div>
-              </div>
-            </RiseInOnView>
-
-            {/* 4. Onboarding Experience */}
-            <RiseInOnView delayMs={320}>
-              <div className="rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-semibold leading-none text-white">
-                      4
-                    </div>
-                    <h4 className="text-xl font-semibold tracking-tight text-white">
-                      Onboarding Experience
-                    </h4>
-                  </div>
-
-                  <ul className="space-y-2 text-base font-light text-gray-300">
-                    {ONBOARDING_ITEMS.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-300" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </RiseInOnView>
-
-            {/* 5. Knowledge Base Creation */}
-            <RiseInOnView delayMs={400}>
-              <div className="rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-semibold leading-none text-white">
-                      5
-                    </div>
-                    <h4 className="text-xl font-semibold tracking-tight text-white">
-                      Knowledge Base Creation
-                    </h4>
-                  </div>
-
-                  <p className="text-base font-light leading-relaxed text-gray-300">
-                    To enable reliable, high-quality support, merchants were required to provide at
-                    least 10 knowledge base articles. I designed a guided flow that broke this task
-                    into manageable steps without overwhelming users.
-                  </p>
-                </div>
-              </div>
-            </RiseInOnView>
-
-            {/* 6. UI Design */}
-            <RiseInOnView delayMs={480}>
-              <div className="rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-semibold leading-none text-white">
-                      6
-                    </div>
-                    <h4 className="text-xl font-semibold tracking-tight text-white">UI Design</h4>
-                  </div>
-
-                  <p className="text-base font-light leading-relaxed text-gray-300">
-                    Once requirements were clear, I created low-fidelity wireframes to define
-                    structure and hierarchy. After validation, these were translated into
-                    high-fidelity designs, resulting in a polished, Shopify-native app merchants
-                    could trust from day one.
-                  </p>
-                </div>
-              </div>
-            </RiseInOnView>
+            <p className="text-base font-normal leading-relaxed text-gray-300">
+              Before defining flows or UI, I conducted a focused research phase to understand
+              merchant needs, competitive expectations within the Shopify ecosystem, and the
+              operational requirements of Humanize’s support workflows.
+            </p>
           </div>
-        </Container>
-      </section>
+        </div>
+      </RiseInOnView>
+
+      {/* 2. User Flows */}
+      <RiseInOnView delayMs={160}>
+        <div className="flex h-full flex-col rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-medium text-white">
+                2
+              </div>
+              <h4 className="text-xl font-medium tracking-tight text-white">
+                User Flows
+              </h4>
+            </div>
+
+            <p className="text-base font-normal leading-relaxed text-gray-300">
+              I mapped the core user flows required to activate and use Humanize effectively:
+            </p>
+
+            <ul className="space-y-2 text-base font-normal text-gray-300">
+              {USER_FLOW_ITEMS.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-300" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </RiseInOnView>
+
+      {/* 3. Polaris Design System */}
+      <RiseInOnView delayMs={240}>
+        <div className="flex h-full flex-col rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-medium text-white">
+                3
+              </div>
+              <h4 className="text-xl font-medium tracking-tight text-white">
+                Polaris Design System
+              </h4>
+            </div>
+
+            <p className="text-base font-normal leading-relaxed text-gray-300">
+              Because Humanize lives inside the Shopify Admin, I used Shopify Polaris as the
+              foundation and extended it only where necessary. This kept the UI familiar,
+              reduced learning time, and increased merchant trust from the first interaction.
+            </p>
+          </div>
+        </div>
+      </RiseInOnView>
+
+      {/* 4. Onboarding Experience */}
+      <RiseInOnView delayMs={320}>
+        <div className="flex h-full flex-col rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-medium text-white">
+                4
+              </div>
+              <h4 className="text-xl font-medium tracking-tight text-white">
+                Onboarding Experience
+              </h4>
+            </div>
+
+            <ul className="space-y-2 text-base font-normal text-gray-300">
+              {ONBOARDING_ITEMS.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-300" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </RiseInOnView>
+
+      {/* 5. Knowledge Base Creation */}
+      <RiseInOnView delayMs={400}>
+        <div className="flex h-full flex-col rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-medium text-white">
+                5
+              </div>
+              <h4 className="text-xl font-medium tracking-tight text-white">
+                Knowledge Base Creation
+              </h4>
+            </div>
+
+            <p className="text-base font-normal leading-relaxed text-gray-300">
+              To enable reliable, high-quality support, merchants were required to provide at
+              least 10 knowledge base articles. I designed a guided flow that broke this task
+              into manageable steps without overwhelming users.
+            </p>
+          </div>
+        </div>
+      </RiseInOnView>
+
+      {/* 6. UI Design */}
+      <RiseInOnView delayMs={480}>
+        <div className="flex h-full flex-col rounded-3xl border border-border bg-[#1B1B1B]/50 p-7 shadow-sm">
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-orange-500 text-base font-medium text-white">
+                6
+              </div>
+              <h4 className="text-xl font-medium tracking-tight text-white">
+                UI Design
+              </h4>
+            </div>
+
+            <p className="text-base font-normal leading-relaxed text-gray-300">
+              Once requirements were clear, I created low-fidelity wireframes to define
+              structure and hierarchy. After validation, these were translated into
+              high-fidelity designs, resulting in a polished, Shopify-native app merchants
+              could trust from day one.
+            </p>
+          </div>
+        </div>
+      </RiseInOnView>
+
+    </div>
+  </Container>
+</section>
 
       {/* UI Preview */}
       <section className="relative overflow-hidden border-b-4 border-[#1B1B1B] bg-[#F5F3E8] py-24">
@@ -368,8 +378,8 @@ export default function HumanizeCaseStudy() {
             <SectionHeader
               title="UI Preview"
               description="Key screens inside the Shopify Admin showing onboarding, knowledge base setup, performance metrics, and support visibility."
-              titleClassName="text-[#1B1B1B] font-bold"
-              descriptionClassName="text-[#1B1B1B]/80 text-lg font-medium"
+              titleClassName="text-[#1B1B1B] font-medium"
+              descriptionClassName="text-[#1B1B1B] text-lg font-normal leading-relaxed"
               underline={{ show: true, className: "bg-[#E45027]" }}
             />
           </RiseInOnView>
@@ -414,27 +424,42 @@ export default function HumanizeCaseStudy() {
             <SectionHeader
               title="Launch & Impact"
               description="Humanize launched successfully on the Shopify App Store. This project demonstrated PartnerHero’s ability to bring a real SaaS product to market fast, lean, and merchant-driven."
-              titleClassName="text-[#1B1B1B] font-bold"
-              descriptionClassName="text-[#1B1B1B]/80 text-lg font-medium"
+              titleClassName="text-[#1B1B1B] font-medium"
+              descriptionClassName="text-[#1B1B1B] text-lg font-normal leading-relaxed"
               underline={{ show: true, className: "bg-[#E45027]" }}
             />
           </RiseInOnView>
 
-          <div className="mx-auto mt-10 max-w-2xl">
+          <div className="mx-auto mt-10">
             <RiseInOnView delayMs={80}>
-              <p className="text-left text-base font-normal text-[#1B1B1B]/80">Early results included:</p>
+              <p className="text-left text-base font-medium text-[#1B1B1B]">
+                Early results included:
+              </p>
             </RiseInOnView>
 
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-m text-[#1B1B1B]/80">
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {IMPACT_ITEMS.map((item, idx) => (
                 <RiseInOnView key={item} delayMs={120 + idx * 70}>
-                  <li className="flex gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#E45027]" />
-                    {item}
-                  </li>
+                  <div
+                    className="
+                      flex items-start gap-3
+                      rounded-2xl
+                      border border-[#1B1B1B]/15
+                      bg-white/40
+                      p-4
+                      transition-all duration-300 ease-out
+                      hover:bg-white/60
+                      hover:border-[#1B1B1B]/25
+                    "
+                  >
+                    <span className="mt-1 font-semibold text-[#1B1B1B]">✓</span>
+                    <p className="text-base font-normal leading-relaxed text-[#1B1B1B]">
+                      {item}
+                    </p>
+                  </div>
                 </RiseInOnView>
               ))}
-            </ul>
+            </div>
           </div>
         </Container>
       </section>

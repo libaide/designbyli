@@ -14,7 +14,8 @@ type Props = {
   illustrationAlt: string;
   summary: React.ReactNode;
 
-  stats: Stat[];
+  // ✅ Accept readonly arrays (works with `as const`)
+  stats?: readonly Stat[];
   afterHero?: React.ReactNode;
 
   logoSize?: "sm" | "md" | "lg";
@@ -29,7 +30,7 @@ export default function CaseStudyTopSection({
   illustrationSrc,
   illustrationAlt,
   summary,
-  stats = [], // ✅ prevents .map crash
+  stats = [], // ✅ safe default
   afterHero,
   logoSize = "md",
   logoClassName,
@@ -54,8 +55,8 @@ export default function CaseStudyTopSection({
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {stats.map((s) => (
               <div key={s.label} className="rounded-2xl border border-black/10 bg-white p-5">
-                <p className="text-sm font-semibold text-[#474747]/70">{s.label}</p>
-                <p className="mt-1 text-base text-[#474747]">{s.value}</p>
+                <p className="text-sm font-semibold text-gray-400">{s.label}</p>
+                <p className="mt-1 text-base font-normal text-gray-500">{s.value}</p>
               </div>
             ))}
           </div>
