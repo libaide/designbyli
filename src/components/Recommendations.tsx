@@ -109,8 +109,8 @@ export default function Recommendations() {
   if (items.length === 0) return null;
 
   return (
-    <section className="bg-black text-gray-300]">
-      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-10">
+      <div className="pb-24">
+    <div className="mx-auto max-w-7xl px-4">
         <SectionHeader
           title="Recommendations"
           dark
@@ -134,6 +134,6 @@ export default function Recommendations() {
           />
         </div>
       </div>
-    </section>
+      </div>
   );
 }

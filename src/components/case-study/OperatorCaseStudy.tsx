@@ -6,9 +6,9 @@ import RiseInOnView from "@/components/RiseInOnView";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import { Check } from "lucide-react";
-import { Lightbox } from "@/components/Lightbox";
 
 type ExpandedImage = { src: string; alt: string } | null;
+type ExpandedVideo = { src: string; title: string } | null;
 
 type AppCard = {
   title: string;
@@ -73,14 +73,8 @@ function AppSummaryCard({ app }: { app: AppCard }) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-center border-b border-black/15 pb-6">
-        <img
-          src={app.logo}
-          alt={`${app.title} logo`}
-          className="h-[32px] w-auto"
-          draggable={false}
-        />
+        <img src={app.logo} alt={`${app.title} logo`} className="h-[32px] w-auto" draggable={false} />
       </div>
-
       <p className="max-w-[42ch] text-base leading-relaxed text-gray-500 font-normal">
         {app.body}
       </p>
@@ -88,16 +82,37 @@ function AppSummaryCard({ app }: { app: AppCard }) {
   );
 }
 
-
 export default function OperatorCaseStudy() {
   const [expandedImage, setExpandedImage] = useState<ExpandedImage>(null);
+  const [expandedVideo, setExpandedVideo] = useState<ExpandedVideo>(null);
 
   const openImage = useCallback((img: { src: string; alt: string }) => {
     setExpandedImage(img);
   }, []);
 
-  const closeImage = useCallback(() => setExpandedImage(null), []);
+  const openVideo = useCallback((video: { src: string; title: string }) => {
+    setExpandedVideo(video);
+  }, []);
 
+  const closeMedia = useCallback(() => {
+    setExpandedImage(null);
+    setExpandedVideo(null);
+  }, []);
+
+  const UI_PREVIEWS_ALL = [
+    ...UI_PREVIEWS_TOP.map((i) => ({ kind: "image" as const, ...i })),
+    {
+      kind: "video" as const,
+      src: "/case-studies/operator/extension-demo.mp4",
+      title: "Assist Chrome extension - Humanizing response",
+    },
+    ...UI_PREVIEWS_BOTTOM.map((i) => ({ kind: "image" as const, ...i })),
+    {
+      kind: "video" as const,
+      src: "/case-studies/operator/extension-demo-2.mp4",
+      title: "Quality Chrome extension - Scoring",
+    },
+  ];
 
   return (
     <>
@@ -154,7 +169,7 @@ export default function OperatorCaseStudy() {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
         <RiseInOnView staggerChildren>
-          <div className="relative mx-auto w-full max-w-5xl px-4">
+          <div className="relative mx-auto w-full max-w-7xl px-4">
             <div className="relative z-10 min-h-[620px] py-24">
               <div className="max-w-xl">
                 <h2 className="text-5xl font-semibold tracking-tight text-[#FF80F1]">
@@ -170,7 +185,7 @@ export default function OperatorCaseStudy() {
                 </p>
 
                 <p className="mt-6 text-base leading-relaxed text-[#d3d3d3] font-normal">
-                  My mission was to transform fragmented internal tools into an integrated, scalable
+                  My mission was to transform the fragmented internal tools into an integrated, scalable
                   product suite, ensuring that every feature enhanced efficiency, clarity, and agent
                   satisfaction.
                 </p>
@@ -391,140 +406,68 @@ export default function OperatorCaseStudy() {
 
       {/* UI Previews */}
 <section className="bg-white py-24">
-  <Container>
-    <div className="space-y-16">
-      {/* Heading */}
-      <RiseInOnView>
-        <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
-          UI Previews
-        </h2>
-      </RiseInOnView>
+        <Container>
+          <div className="space-y-16">
+            <RiseInOnView>
+              <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
+                UI Previews
+              </h2>
+            </RiseInOnView>
 
-      {/* Top grid (per-card RiseInOnView) */}
-      <div className="grid gap-6 sm:grid-cols-2">
-        {UI_PREVIEWS_TOP.map((img, idx) => (
-          <RiseInOnView key={img.src} delayMs={80 + idx * 90}>
-            <div className="overflow-hidden rounded-3xl border border-black/10">
-              <button
-                type="button"
-                onClick={() => openImage({ src: img.src, alt: img.alt })}
-                className="group relative w-full cursor-zoom-in focus:outline-none"
-                aria-label={`Expand image: ${img.title}`}
-              >
-                <div className="relative aspect-[16/10] bg-white">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className="object-contain transition-transform duration-300 group-hover:scale-[1.01]"
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                  />
-                </div>
+            <div className="grid gap-6 sm:grid-cols-2">
+              {UI_PREVIEWS_ALL.map((item, idx) => (
+                <RiseInOnView key={`${item.kind}-${item.src}`} delayMs={80 + idx * 70}>
+                  <div className="overflow-hidden rounded-3xl border border-black/10 bg-white">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        item.kind === "image"
+                          ? openImage({ src: item.src, alt: item.alt })
+                          : openVideo({ src: item.src, title: item.title })
+                      }
+                      className="group relative w-full text-left"
+                    >
+                      <div className="relative aspect-[16/10] bg-white">
+                        {item.kind === "image" ? (
+                          <Image
+                            src={item.src}
+                            alt={item.alt}
+                            fill
+                            className="object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                          />
+                        ) : (
+                          <video
+                            src={item.src}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload="metadata"
+                            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                          />
+                        )}
 
-                <div className="pointer-events-none absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10" />
+                        <div className="pointer-events-none absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10" />
 
-                <div className="pointer-events-none absolute bottom-4 right-4 hidden rounded-full bg-black/60 px-3 py-1 text-xs text-white sm:block">
-                  Click to expand
-                </div>
-              </button>
+                        <div className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
+                          <span className="sm:hidden">Tap to expand</span>
+                          <span className="hidden sm:inline">Click to expand</span>
+                        </div>
+                      </div>
 
-              <div className="px-5 py-4">
-                <p className="text-sm font-semibold text-[#474747]/80">{img.title}</p>
-              </div>
+                      <div className="px-5 py-4">
+                        <p className="text-sm font-semibold text-[#474747]/80">
+                          {item.title}
+                        </p>
+                      </div>
+                    </button>
+                  </div>
+                </RiseInOnView>
+              ))}
             </div>
-          </RiseInOnView>
-        ))}
-      </div>
-
-      {/* Video 1 */}
-      <RiseInOnView>
-        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-black/10 bg-white">
-          <div className="px-5 pt-5">
-            <p className="text-sm font-semibold text-[#474747]/80">
-              Assist Chrome extension - Humanizing response
-            </p>
           </div>
-
-          <div className="mt-4 flex justify-center px-4 pb-4">
-            <video
-              src="/case-studies/operator/extension-demo.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="w-full max-w-md rounded-xl"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </RiseInOnView>
-
-      {/* Bottom grid (per-card RiseInOnView) */}
-      <div className="grid gap-6 sm:grid-cols-2">
-        {UI_PREVIEWS_BOTTOM.map((img, idx) => (
-          <RiseInOnView key={img.src} delayMs={80 + idx * 90}>
-            <div className="overflow-hidden rounded-3xl border border-black/10">
-              <button
-                type="button"
-                onClick={() => openImage({ src: img.src, alt: img.alt })}
-                className="group relative w-full cursor-zoom-in focus:outline-none"
-                aria-label={`Expand image: ${img.title}`}
-              >
-                <div className="relative aspect-[16/10] bg-white">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className="object-contain transition-transform duration-300 group-hover:scale-[1.01]"
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                  />
-                </div>
-
-                <div className="pointer-events-none absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10" />
-
-                <div className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
-                  <span className="sm:hidden">Tap to expand</span>
-                  <span className="hidden sm:inline">Click to expand</span>
-                </div>
-              </button>
-
-              <div className="px-5 py-4">
-                <p className="text-sm font-semibold text-[#474747]/80">{img.title}</p>
-              </div>
-            </div>
-          </RiseInOnView>
-        ))}
-      </div>
-
-      {/* Video 2 */}
-      <RiseInOnView>
-        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-black/10 bg-white">
-          <div className="px-5 pt-5">
-            <p className="text-sm font-semibold text-[#474747]/80">
-              Quality Chrome extension - Scoring
-            </p>
-          </div>
-
-          <div className="mt-4 flex justify-center px-4 pb-4">
-            <video
-              src="/case-studies/operator/extension-demo-2.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="w-full max-w-md rounded-xl"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </RiseInOnView>
-    </div>
-  </Container>
-</section>
+        </Container>
+      </section>
 
 
       {/* Impact & Results */}
@@ -642,7 +585,71 @@ export default function OperatorCaseStudy() {
         </RiseInOnView>
       </section>
 
-      <Lightbox image={expandedImage} onClose={closeImage} />
+      {/* MODAL */}
+{(expandedImage || expandedVideo) && (
+  <div
+    className="fixed inset-0 z-50 bg-black/80 p-4 sm:p-6"
+    onClick={closeMedia}
+    role="dialog"
+    aria-modal="true"
+  >
+    <div
+      className="
+        mx-auto flex max-h-[92vh] w-full max-w-6xl flex-col
+        overflow-hidden rounded-2xl bg-black/60 backdrop-blur
+        ring-1 ring-white/10
+      "
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Header (always visible) */}
+      <div className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-white/10 bg-black/40 px-4 py-3 sm:px-5">
+        <div className="truncate text-sm font-medium text-white/80">
+          {expandedVideo?.title ?? expandedImage?.alt ?? "Preview"}
+        </div>
+
+        <button
+          type="button"
+          onClick={closeMedia}
+          className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/90 transition hover:bg-white/15"
+        >
+          Close
+        </button>
+      </div>
+
+      {/* Body (scrollable) */}
+      <div className="flex-1 overflow-auto p-4 sm:p-6">
+        {expandedImage && (
+          <div className="relative mx-auto w-full max-w-5xl">
+            <div className="relative w-full">
+              {/* Constrain by viewport height */}
+              <div className="relative mx-auto max-h-[75vh] w-full">
+                <Image
+                  src={expandedImage.src}
+                  alt={expandedImage.alt}
+                  width={1600}
+                  height={1000}
+                  className="h-auto max-h-[75vh] w-full rounded-xl object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {expandedVideo && (
+          <div className="mx-auto w-full max-w-5xl">
+            <video
+              src={expandedVideo.src}
+              controls
+              autoPlay
+              playsInline
+              className="w-full rounded-xl object-contain max-h-[75vh]"
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+)}
     </>
   );
 }

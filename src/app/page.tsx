@@ -8,6 +8,7 @@ import RiseInOnView from "@/components/RiseInOnView";
 import ContactSection from "@/components/ContactSection";
 import LightRaysBG from "@/components/Hero/Visuals/LightRaysBG";
 import Logo from "@/components/logo";
+import WorkAndRecommendationsSection from "@/components/WorkAndRecommendationsSection";
 
 export default function HomePage() {
   const scrollToId = (id: string) => {
@@ -58,21 +59,12 @@ export default function HomePage() {
           </Container>
         </div>
 
-        {/* Fade-out overlay so rays visually end at hero */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-black" />
+      
       </section>
 
-      {/* Featured work */}
-      <section id="featured-work">
-        <RiseInOnView>
-          <FeaturedWorkAnimated />
-        </RiseInOnView>
-      </section>
-
-      {/* Recommendations */}
       <RiseInOnView>
-        <Recommendations />
-      </RiseInOnView>
+  <WorkAndRecommendationsSection />
+</RiseInOnView>
 
       {/* Contact (Homepage) */}
       <ContactSection id="home-contact" />

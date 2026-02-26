@@ -6,9 +6,6 @@ import CaseStudyTopSection from "@/components/case-study/CaseStudyTopSection";
 import SectionHeader from "@/components/case-study/SectionHeader";
 import Image from "next/image";
 import { useCallback, useState } from "react";
-import { Lightbox } from "@/components/Lightbox";
-
-type ExpandedImage = { src: string; alt: string } | null;
 
 type PreviewImage = {
   src: string;
@@ -27,6 +24,13 @@ type Wireframe = {
   alt: string;
   aspectClass: string;
 };
+
+type ExpandedImage = { src: string; alt: string } | null;
+type ExpandedVideo = { src: string; title: string } | null;
+
+type PreviewItem =
+  | { kind: "image"; src: string; alt: string; title: string }
+  | { kind: "video"; src: string; title: string };
 
 function cx(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
@@ -153,12 +157,38 @@ function ZoomImageButton({
 
 export default function DomusCaseStudy() {
   const [expandedImage, setExpandedImage] = useState<ExpandedImage>(null);
+  const [expandedVideo, setExpandedVideo] = useState<ExpandedVideo>(null);
 
   const openImage = useCallback((img: { src: string; alt: string }) => {
     setExpandedImage(img);
   }, []);
 
-  const closeImage = useCallback(() => setExpandedImage(null), []);
+  const openVideo = useCallback((video: { src: string; title: string }) => {
+    setExpandedVideo(video);
+  }, []);
+
+  const closeMedia = useCallback(() => {
+    setExpandedImage(null);
+    setExpandedVideo(null);
+  }, []);
+
+  // ✅ Build UI previews list from your existing Domus preview arrays
+  const UI_PREVIEWS_ALL: PreviewItem[] = [
+    ...MOBILE_PREVIEWS.map((p, idx) => ({
+      kind: "image" as const,
+      src: p.src,
+      alt: p.alt,
+      title: `Mobile preview ${idx + 1}`,
+    })),
+    ...DESKTOP_PREVIEWS.map((p, idx) => ({
+      kind: "image" as const,
+      src: p.src,
+      alt: p.alt,
+      title: `Desktop preview ${idx + 1}`,
+    })),
+    // If you have Domus videos, add them here, e.g.:
+    // { kind: "video" as const, src: "/case-studies/domus/demo.mp4", title: "Domus – Demo" },
+  ];
 
   return (
     <>
@@ -180,7 +210,8 @@ export default function DomusCaseStudy() {
                   It also provides technicians with a consistent and reliable source of work.
                 </p>
                 <p className="text-gray-500 text-lg leading-relaxed font-normal">
-                  My role involved leading the UX and UI design for the MVP, focusing on building intuitive experiences across client, technician, and admin interfaces.
+                  My role involved leading the UX and UI design for the MVP, focusing on building
+                  intuitive experiences across client, technician, and admin interfaces.
                 </p>
               </div>
             }
@@ -198,7 +229,7 @@ export default function DomusCaseStudy() {
 
       {/* Problem & Context */}
       <section className="relative overflow-hidden bg-[#f6f7ff]">
-        <div className="relative mx-auto w-full max-w-5xl px-4 py-20 lg:py-20">
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-20 lg:py-20">
           <RiseInOnView className="relative z-20">
             <div className="max-w-xl lg:max-w-[560px] lg:rounded-3xl lg:bg-[#FFD000] lg:p-10 lg:shadow-sm">
               <RiseInOnView staggerChildren staggerMs={90} className="space-y-0" y={14} duration={850}>
@@ -295,9 +326,7 @@ export default function DomusCaseStudy() {
                     <path d="M7 16h4" />
                   </svg>
                 </div>
-                <h4 className="text-2xl font-medium tracking-tight text-[#1B2166]">
-                  Core MVP Objectives
-                </h4>
+                <h4 className="text-2xl font-medium tracking-tight text-[#1B2166]">Core MVP Objectives</h4>
               </div>
 
               <ul className="mt-10 space-y-6">
@@ -328,9 +357,7 @@ export default function DomusCaseStudy() {
                     <path d="M7 15l3-3 3 2 5-6" />
                   </svg>
                 </div>
-                <h4 className="text-2xl font-medium tracking-tight text-[#1B2166]">
-                  Success Metrics
-                </h4>
+                <h4 className="text-2xl font-medium tracking-tight text-[#1B2166]">Success Metrics</h4>
               </div>
 
               <ul className="mt-10 space-y-6">
@@ -338,7 +365,7 @@ export default function DomusCaseStudy() {
                   <RiseInOnView key={item} delayMs={80 + idx * 70}>
                     <li className="flex gap-4 items-start">
                       <span className="block mt-1.5 h-4 w-4 rounded-full border-[2px] flex-none border-[#F5A623]" />
-                      <p className="text-base font-normalleading-relaxed text-[#1B2166]">{item}</p>
+                      <p className="text-base leading-relaxed text-[#1B2166] font-normal">{item}</p>
                     </li>
                   </RiseInOnView>
                 ))}
@@ -480,16 +507,17 @@ export default function DomusCaseStudy() {
         style={{ backgroundImage: "url('/case-studies/domus/UserJourneys.png')" }}
       >
         <RiseInOnView>
-        <Container className="relative z-10">
-          <div className="relative z-20 max-w-xl lg:max-w-4xl mx-auto p-8 sm:p-10 rounded-3xl bg-white/90 shadow-lg text-center">
-              <SectionHeader
-                title="User Flows & Journeys"
-                titleClassName="text-[#1B2166] text-4xl"
-              />
-            <p className="mt-8 space-y-6 text-[#1B2166] font-normal text-base leading-normal text-left">I began by mapping the core user flows for the three main roles, clarifying how each interaction connected to business logic, from posting a service to payment confirmation. Following this, I mapped the broader user journeys, identifying critical moments that would shape the MVP.</p>
-            
-          </div>
-        </Container>
+          <Container className="relative z-10">
+            <div className="relative z-20 max-w-xl lg:max-w-4xl mx-auto p-8 sm:p-10 rounded-3xl bg-white/90 shadow-lg text-center">
+              <SectionHeader title="User Flows & Journeys" titleClassName="text-[#1B2166] text-4xl" />
+              <p className="mt-8 space-y-6 text-[#1B2166] font-normal text-base leading-normal text-left">
+                I began by mapping the core user flows for the three main roles, clarifying how each
+                interaction connected to business logic, from posting a service to payment confirmation.
+                Following this, I mapped the broader user journeys, identifying critical moments that
+                would shape the MVP.
+              </p>
+            </div>
+          </Container>
         </RiseInOnView>
       </section>
 
@@ -594,75 +622,85 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* UI Previews */}
-      <section className="relative overflow-hidden py-20">
-        <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-indigo-900 via-indigo-950 to-black" />
+<section className="relative overflow-hidden py-24">
+  {/* Background gradient (same as Personas section) */}
+  <div className="absolute inset-0">
+    <div className="absolute inset-0 bg-gradient-to-br from-[#1B1E4B] via-[#15173A] to-[#0A0B1F]" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/30" />
+  </div>
 
-        <div className="relative z-10">
-          <Container>
-            <RiseInOnView>
-              <SectionHeader
-                title="UI Previews"
-                dark
-                description="The MVP design defined a clear, testable foundation for product validation."
-                descriptionClassName="text-white font-normal leading-relaxed text-lg"
-              />
-            </RiseInOnView>
+  <Container>
+    <div className="relative z-10 space-y-16">
+      <RiseInOnView>
+        <SectionHeader
+          title="UI Previews"
+          dark
+        />
+      </RiseInOnView>
 
-            {/* Mobile previews — per-card RiseInOnView */}
-            <div className="relative mt-16 grid grid-cols-2 gap-6 lg:grid-cols-4">
-              {MOBILE_PREVIEWS.map(({ src, alt }, idx) => (
-                <RiseInOnView key={src} delayMs={80 + idx * 80}>
-                  <div className="relative overflow-hidden rounded-3xl bg-black/30 shadow-xl ring-1 ring-white/10">
-                    <ZoomImageButton
-                      src={src}
-                      alt={alt}
-                      aspectClass="aspect-[9/19] h-full"
-                      sizes="(min-width: 1024px) 20vw, 50vw"
-                      imgClassName="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                      onExpand={openImage}
-                      ringClassName="ring-white/10 group-hover:ring-white/20"
-                      hint={true}
+      {/* 
+        Mobile: 4 columns
+        Desktop: 2 columns
+      */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-6">
+        {UI_PREVIEWS_ALL.map((item, idx) => (
+          <RiseInOnView
+            key={`${item.kind}-${item.src}`}
+            delayMs={80 + idx * 70}
+          >
+            <div className="overflow-hidden rounded-3xl bg-white/5 backdrop-blur ring-1 ring-white/10">
+              <button
+                type="button"
+                onClick={() =>
+                  item.kind === "image"
+                    ? openImage({ src: item.src, alt: item.alt })
+                    : openVideo({ src: item.src, title: item.title })
+                }
+                className="group relative w-full text-left"
+                aria-label={`Expand preview: ${item.title}`}
+              >
+                <div className="relative aspect-[16/10]">
+                  {item.kind === "image" ? (
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                      sizes="(min-width: 1024px) 50vw, 25vw"
                     />
-                  </div>
-                </RiseInOnView>
-              ))}
-            </div>
+                  ) : (
+                    <video
+                      src={item.src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                  )}
 
-            {/* Desktop previews — per-block RiseInOnView */}
-            <div className="relative mt-20 space-y-10">
-              {DESKTOP_PREVIEWS.map((d, idx) => (
-                <RiseInOnView key={d.src} delayMs={120 + idx * 120} y={16} duration={950}>
-                  <div
-                    className={cx(
-                      "mx-auto rounded-3xl bg-black/30 p-4 shadow-xl ring-1 ring-white/10",
-                      d.maxWidthClass
-                    )}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => openImage({ src: d.src, alt: d.alt })}
-                      className="group relative w-full cursor-zoom-in overflow-hidden rounded-2xl focus:outline-none"
-                      aria-label={`Expand image: ${d.alt}`}
-                    >
-                      <div className={cx("relative", d.aspectClass)}>
-                        <Image
-                          src={d.src}
-                          alt={d.alt}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-[1.01]"
-                          sizes="(min-width: 1024px) 80vw, 100vw"
-                        />
-                      </div>
+                  <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 group-hover:ring-white/20" />
 
-                      <div className="pointer-events-none absolute inset-0 ring-1 ring-white/10 group-hover:ring-white/20" />
-                    </button>
+                  <div className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
+                    <span className="sm:hidden">Tap to expand</span>
+                    <span className="hidden sm:inline">Click to expand</span>
                   </div>
-                </RiseInOnView>
-              ))}
+                </div>
+
+                <div className="px-5 py-4">
+                  <p className="text-sm font-semibold text-white/80">
+                    {item.title}
+                  </p>
+                </div>
+              </button>
             </div>
-          </Container>
-        </div>
-      </section>
+          </RiseInOnView>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>
 
       {/* Reflection */}
       <section
@@ -703,7 +741,60 @@ export default function DomusCaseStudy() {
         </Container>
       </section>
 
-      <Lightbox image={expandedImage} onClose={closeImage} />
+      {/* MODAL */}
+      {(expandedImage || expandedVideo) && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 p-4 sm:p-6"
+          onClick={closeMedia}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="
+              mx-auto flex max-h-[92vh] w-full max-w-6xl flex-col
+              overflow-hidden rounded-2xl bg-black/60 backdrop-blur
+              ring-1 ring-white/10
+            "
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-white/10 bg-black/40 px-4 py-3 sm:px-5">
+              <div className="truncate text-sm font-medium text-white/80">
+                {expandedVideo?.title ?? expandedImage?.alt ?? "Preview"}
+              </div>
+
+              <button
+                type="button"
+                onClick={closeMedia}
+                className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/90 transition hover:bg-white/15"
+              >
+                Close
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-auto p-4 sm:p-6">
+              {expandedImage && (
+                <Image
+                  src={expandedImage.src}
+                  alt={expandedImage.alt}
+                  width={1600}
+                  height={1000}
+                  className="h-auto max-h-[75vh] w-full rounded-xl object-contain"
+                />
+              )}
+
+              {expandedVideo && (
+                <video
+                  src={expandedVideo.src}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full max-h-[75vh] rounded-xl object-contain"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -1,7 +1,6 @@
 // app/work/[slug]/page.tsx
 import Container from "@/components/Container";
 import { projects } from "@/data/projects";
-import CaseHero from "@/components/case-study/CaseHero";
 
 import OperatorCaseStudy from "@/components/case-study/OperatorCaseStudy";
 import DomusCaseStudy from "@/components/case-study/DomusCaseStudy";
@@ -30,57 +29,34 @@ export default async function CaseStudyPage({
     );
   }
 
-  // ✅ Projects that render their own hero inside the case study
-  const usesCustomHero =
-  slug === "operator" ||
-  slug === "domus" ||
-  slug === "humanize" ||
-  slug === "properly" ||
-  slug === "hema-sync" ||
-  slug === "hoffman-lens" ||
-  slug === "skin-studio";
-
   return (
     <div className="pb-20">
-      {/* ✅ Only show old CaseHero for projects that DON'T have a custom hero */}
-      {!usesCustomHero && (
-        <CaseHero
-          title={project.title}
-          subtitle={project.description}
-          meta="Case Study"
-          coverSrc={project.cover}
-          priority
-          height="lg"
-          align="bottom"
-        />
-      )}
-
       {slug === "operator" && <OperatorCaseStudy />}
       {slug === "domus" && <DomusCaseStudy />}
       {slug === "humanize" && <HumanizeCaseStudy />}
       {slug === "properly" && <ProperlyCaseStudy />}
-{slug === "hema-sync" && <HemaSyncCaseStudy />}
-{slug === "hoffman-lens" && <HoffmanLensCaseStudy />}
-{slug === "skin-studio" && <SkinStudioCaseStudy />}
+      {slug === "hema-sync" && <HemaSyncCaseStudy />}
+      {slug === "hoffman-lens" && <HoffmanLensCaseStudy />}
+      {slug === "skin-studio" && <SkinStudioCaseStudy />}
 
       {slug !== "operator" &&
-  slug !== "domus" &&
-  slug !== "humanize" &&
-  slug !== "properly" &&
-  slug !== "hema-sync" &&
-  slug !== "skin-studio" &&
-  slug !== "hoffman-lens" && (
-        <section className="py-12">
-          <Container>
-            <h3 className="text-3xl font-semibold tracking-tight">
-              Case study in progress
-            </h3>
-            <p className="mt-2 text-sm text-muted">
-              This case study is being built next.
-            </p>
-          </Container>
-        </section>
-      )}
+        slug !== "domus" &&
+        slug !== "humanize" &&
+        slug !== "properly" &&
+        slug !== "hema-sync" &&
+        slug !== "skin-studio" &&
+        slug !== "hoffman-lens" && (
+          <section className="py-12">
+            <Container>
+              <h3 className="text-3xl font-semibold tracking-tight">
+                Case study in progress
+              </h3>
+              <p className="mt-2 text-sm text-muted">
+                This case study is being built next.
+              </p>
+            </Container>
+          </section>
+        )}
     </div>
   );
 }

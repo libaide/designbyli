@@ -135,8 +135,8 @@ export default function FeaturedWorkAnimated() {
       />
 
       {/* Foreground content */}
-      <div className="relative z-10 px-6 sm:px-10 py-24 sm:py-24">
-        <div className="mx-auto max-w-7xl px-0 sm:px-10">
+      <div className="relative z-10 py-24 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4">
           <SectionHeader
             title="Featured Work"
             underline={{ show: false }}
