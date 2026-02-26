@@ -446,7 +446,7 @@ export default function DomusCaseStudy() {
                 <RiseInOnView staggerChildren staggerMs={90} y={14} duration={850}>
                   <SectionHeader
                     title="Competitive Research"
-                    wrapperClassName="max-w-none text-left"
+                    wrapperClassName="max-w-none text-center"
                     titleClassName="text-[#1B2166] text-4xl"
                     descriptionClassName="text-left"
                   />
@@ -476,12 +476,12 @@ export default function DomusCaseStudy() {
 
       {/* User Flows & Journeys */}
       <section
-        className="relative py-20 sm:py-20 flex items-center justify-center bg-fixed bg-cover bg-center"
+        className="relative py-20 sm:py-32 flex items-center justify-center bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('/case-studies/domus/UserJourneys.png')" }}
       >
         <RiseInOnView>
         <Container className="relative z-10">
-          <div className="relative z-20 max-w-xl lg:max-w-2xl mx-auto p-8 sm:p-10 rounded-3xl bg-white/90 shadow-lg text-center">
+          <div className="relative z-20 max-w-xl lg:max-w-4xl mx-auto p-8 sm:p-10 rounded-3xl bg-white/90 shadow-lg text-center">
               <SectionHeader
                 title="User Flows & Journeys"
                 titleClassName="text-[#1B2166] text-4xl"
@@ -676,7 +676,7 @@ export default function DomusCaseStudy() {
         <Container>
           <div className="flex justify-center">
             <RiseInOnView>
-              <div className="w-full max-w-3xl rounded-[32px] bg-[#F6F7FF] px-10 py-12 text-center sm:px-14 sm:py-16">
+              <div className="w-full max-w-4xl rounded-[32px] bg-[#F6F7FF] px-10 py-12 text-center sm:px-14 sm:py-16">
                 <RiseInOnView staggerChildren staggerMs={90} y={14} duration={850}>
                   <SectionHeader
                     title="Reflection"

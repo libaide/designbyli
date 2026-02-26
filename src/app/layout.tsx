@@ -4,15 +4,20 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://designbyli.com"), // replace with real domain
+
   title: {
-    default: "Your Name — UI/UX Designer",
-    template: "%s — Your Name",
+    default: "Design by Li",
+    template: "%s | Design by Li",
   },
-  description: "Personal website and portfolio.",
-  metadataBase: new URL("https://example.com"),
+
+  description:
+    "UX/UI Designer crafting clear, functional, and beautiful digital experiences for web and SaaS products.",
+
   openGraph: {
-    title: "Your Name — UI/UX Designer",
-    description: "Personal website and portfolio.",
+    title: "Design by Li",
+    description:
+      "Clear, functional, and beautiful digital experiences for web and apps.",
     type: "website",
   },
 };

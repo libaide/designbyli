@@ -124,18 +124,18 @@ export default function RecommendationsCarousel<T>({
       </div>
 
       {/* Carousel */}
-      <div ref={emblaRef} className="overflow-hidden">
-        <div className="flex gap-4">
-          {items.map((item, idx) => (
-            <div
-              key={idx}
-              className="min-w-0 shrink-0 basis-[88%] sm:basis-[70%] lg:basis-[46%] xl:basis-[38%]"
-            >
-              {renderSlide(item, idx)}
-            </div>
-          ))}
-        </div>
+<div ref={emblaRef} className="overflow-hidden pt-2">
+  <div className="flex gap-4 -mt-2">
+    {items.map((item, idx) => (
+      <div
+        key={idx}
+        className="min-w-0 shrink-0 basis-[88%] sm:basis-[70%] lg:basis-[46%] xl:basis-[38%]"
+      >
+        {renderSlide(item, idx)}
       </div>
+    ))}
+  </div>
+</div>
     </section>
   );
 }

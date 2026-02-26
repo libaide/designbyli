@@ -111,7 +111,7 @@ export default function HumanizeCaseStudy() {
       <section className="relative overflow-hidden border-b-4 border-[#1B1B1B]">
         <div className="absolute inset-0 bg-[#A3DEFA]" />
 
-        <div className="relative mx-auto w-full max-w-5xl px-6 py-20">
+        <div className="relative mx-auto w-full max-w-7xl px-6 py-20">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             {/* Text */}
             <RiseInOnView>
@@ -222,7 +222,7 @@ export default function HumanizeCaseStudy() {
     </RiseInOnView>
 
     {/* Process cards */}
-    <div className="mx-auto mt-14 grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+    <div className="mx-auto mt-14 grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
       
       {/* 1. Research */}
       <RiseInOnView delayMs={80}>
@@ -388,7 +388,7 @@ export default function HumanizeCaseStudy() {
           <div className="relative mt-16 space-y-10">
             {UI_PREVIEW_IMAGES.map((img, idx) => (
               <RiseInOnView key={img.src} delayMs={80 + idx * 90}>
-                <div className="mx-auto max-w-5xl rounded-3xl bg-section p-4">
+                <div className="mx-auto max-w-7xl rounded-3xl bg-section p-4">
                   <button
                     type="button"
                     onClick={() => setExpandedImage(img)}

@@ -113,7 +113,7 @@ export default function FeaturedWorkAnimated() {
           pointer-events-none absolute inset-0
           bg-[url('/featured-work-bg.png')]
           bg-auto bg-center bg-repeat
-          opacity-25
+          opacity-40
           md:hidden
         "
       />
@@ -136,7 +136,7 @@ export default function FeaturedWorkAnimated() {
 
       {/* Foreground content */}
       <div className="relative z-10 px-6 sm:px-10 py-24 sm:py-24">
-        <div className="mx-auto max-w-5xl px-0 sm:px-10">
+        <div className="mx-auto max-w-7xl px-0 sm:px-10">
           <SectionHeader
             title="Featured Work"
             underline={{ show: false }}
@@ -149,50 +149,71 @@ export default function FeaturedWorkAnimated() {
           >
             {featured.map((p, i) => (
               <Link
-                key={p.slug}
-                href={`/work/${p.slug}`}
-                data-card
-                data-index={i}
-                className={[
-                  "group block will-change-transform transition-[transform,opacity] duration-700 ease-out",
-                  visible[i] ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-                ].join(" ")}
-                style={{ transitionDelay: `${i * 90}ms` }}
-              >
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted/30">
-                  <Image
-                    src={p.cover}
-                    alt={`${p.title} cover`}
-                    fill
-                    className="object-cover transition duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-95"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={p.slug === "operator"}
-                  />
-                </div>
+  key={p.slug}
+  href={`/work/${p.slug}`}
+  data-card
+  data-index={i}
+  className={[
+  "group flex h-full flex-col rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-sm",
+  "transition-colors duration-300 ease-out hover:border-white",
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60",
+  "will-change-transform transition-[transform,opacity] duration-700 ease-out",
+  visible[i] ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+].join(" ")}
+  style={{ transitionDelay: `${i * 90}ms` }}
+>
+  {/* Inner wrapper lifts (prevents clipping in overflow-hidden parents) */}
+  <div className="p-6 sm:p-7 flex flex-col h-full transition-transform duration-300 ease-out group-hover:-translate-y-1">
+    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-muted/30">
+      <Image
+        src={p.cover}
+        alt={`${p.title} cover`}
+        fill
+        className="object-cover transition duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-95"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        priority={p.slug === "operator"}
+      />
+    </div>
 
-                <h3 className="mt-6 text-xl font-normal text-white tracking-normal">
-                  {p.title}
-                </h3>
+    <h3 className="mt-6 text-xl font-normal text-white tracking-normal">
+      {p.title}
+    </h3>
 
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full border border-gray-600 px-4 py-1 text-sm text-gray-300"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+    <div className="mt-4 flex flex-wrap gap-2">
+      {p.tags.map((t) => (
+        <span
+          key={t}
+          className="rounded-full border border-white/15 px-4 py-1 text-sm text-white/70"
+        >
+          {t}
+        </span>
+      ))}
+    </div>
 
-                <p className="mt-4 max-w-[40ch] text-base font-light text-gray-300">
-                  {p.description}
-                </p>
+    <p className="mt-4 max-w-[40ch] text-base font-light text-white/70">
+      {p.description}
+    </p>
 
-                <span className="mt-4 inline-block text-base font-semibold underline underline-offset-4">
-                  Read case study
-                </span>
-              </Link>
+    {/* Premium CTA */}
+    <div className="mt-auto pt-6 flex justify-end">
+  <div className="inline-flex items-center gap-2 text-sm font-medium text-white/70 transition group-hover:text-white">
+    <span>Read case study</span>
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12h12" />
+      <path d="M13 6l6 6-6 6" />
+    </svg>
+  </div>
+</div>
+  </div>
+</Link>
             ))}
           </div>
 

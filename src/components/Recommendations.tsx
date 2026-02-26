@@ -21,7 +21,22 @@ function RecCard({
   onToggle: () => void;
 }) {
   return (
-    <figure className="w-full rounded-3xl border border-white/10 bg-white/5 p-8 shadow-sm backdrop-blur-sm">
+    <figure
+      role="button"
+      tabIndex={0}
+      onClick={onToggle}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onToggle();
+      }}
+      className="
+        group
+        w-full cursor-pointer rounded-3xl border border-white/10 p-8
+        backdrop-blur-sm
+        transition-all duration-300 ease-out
+        hover:border-white hover:pt-9 hover:pb-7
+        focus-visible:ring-2 focus-visible:ring-white/60
+      "
+    >
       {/* Text area */}
       <div
         className="relative overflow-hidden"
@@ -30,25 +45,36 @@ function RecCard({
           transition: "max-height 420ms cubic-bezier(0.22, 1, 0.36, 1)",
         }}
       >
-        <blockquote className="text-base leading-relaxed text-[#c9c9d3] sm:text-lg font-light">
+        <blockquote className="text-base font-light leading-relaxed text-[#c9c9d3] sm:text-lg">
           “{text}”
         </blockquote>
 
-        {!expanded ? (
+        {!expanded && (
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/60 to-transparent" />
-        ) : null}
+        )}
       </div>
 
-      <button
-        type="button"
-        onClick={onToggle}
-        className="mt-4 text-base font-medium underline underline-offset-4 text-white transition hover:text-white/90"
-      >
-        {expanded ? "Show less" : "Read more"}
-      </button>
+      {/* Subtle Read More */}
+      <div className="mt-4 flex items-center gap-2 text-sm text-white/60 transition group-hover:text-white">
+        <span>{expanded ? "Show less" : "Read more"}</span>
+
+        <svg
+          className={`h-4 w-4 transition-transform duration-300 ${
+            expanded ? "rotate-180" : ""
+          }`}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+        </svg>
+      </div>
 
       <figcaption className="mt-8">
-        <div className="text-sm font-semibold text-white sm:text-base">{name}</div>
+        <div className="text-sm font-semibold text-white sm:text-base">
+          {name}
+        </div>
         <div className="mt-1 text-xs text-[#c9c9d3] sm:text-sm">{title}</div>
       </figcaption>
     </figure>
@@ -83,8 +109,8 @@ export default function Recommendations() {
   if (items.length === 0) return null;
 
   return (
-    <section className="bg-black text-[#d5d5e7]">
-      <div className="mx-auto max-w-6xl px-5 py-24 sm:px-10">
+    <section className="bg-black text-gray-300]">
+      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-10">
         <SectionHeader
           title="Recommendations"
           dark

@@ -26,11 +26,11 @@ export default function HomePage() {
               <RiseInOnView staggerChildren staggerMs={100} className="w-full text-center">
                 {/* Logo */}
                 <Logo
-                  size={180}
-                  smSize={244}
+                  size={240}
+                  smSize={264}
                   priority
                   disableAnimation
-                  className="mb-0 mx-auto scale-[0.82] sm:scale-100"
+                  className="mb-4 mx-auto scale-[0.82] sm:scale-100"
                 />
 
                 {/* Headline */}
@@ -39,7 +39,7 @@ export default function HomePage() {
                 </p>
 
                 {/* Sub-headline */}
-                <p className="max-w-3xl mx-auto text-base leading-relaxed text-gray-300 font-light">
+                <p className="max-w-3xl mx-auto text-lg leading-relaxed text-gray-300 font-normal">
                   From messy challenges to clear, functional, and beautiful solutions.
                 </p>
 

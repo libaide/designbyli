@@ -8,7 +8,7 @@ import RiseInOnView from "@/components/RiseInOnView";
 export default function WorkPage() {
   return (
     <section className="py-16 sm:py-24 bg-white">
-      <div className="mx-auto max-w-5xl px-6 sm:px-10">
+      <div className="mx-auto max-w-7xl px-6 sm:px-10">
         {/* Header rise-in */}
         <RiseInOnView>
           <SectionHeader

@@ -119,7 +119,7 @@ export default function AboutPage() {
 
           {/* CONTENT SECTION */}
           <div ref={contentRef} className="mx-auto max-w-175 pb-24">
-              <div className="space-y-5 text-base leading-relaxed text-gray-500 font-light">
+              <div className="space-y-5 text-base leading-relaxed text-gray-500 font-normal">
                 <p>
                   My journey into UX/UI design began serendipitously as a lead web designer. Introduced to an
                   in-house QA tool, I quickly became fascinated by the scientific and psychological aspects

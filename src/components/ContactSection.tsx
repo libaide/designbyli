@@ -35,7 +35,7 @@ export default function ContactSection({
       <div className="absolute inset-0 z-0 opacity-12 md:hidden static-noise" />
 
       <div className="relative z-10">
-        <div className="mx-auto max-w-6xl px-5 sm:px-10">
+        <div className="mx-auto max-w-7xl px-5 sm:px-10">
           <RiseInOnView>
             <SectionHeader
               title={title}
