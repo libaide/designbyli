@@ -117,6 +117,9 @@ export default function ContactForm() {
     <section className="w-full">
       <RiseInOnView>
       <div className="mx-auto max-w-2xl rounded-3xl border-[1px] border-gray-30 bg-white p-6 sm:p-8">
+          <h3 className="mb-6 text-4xl font-semibold tracking-tight">
+    Let’s Build Something Great
+  </h3>
         <form className="space-y-6" onSubmit={onSubmit}>
           {/* Honeypot (hidden from users, bots may fill it) */}
           <div className="hidden" aria-hidden="true">
@@ -176,7 +179,6 @@ export default function ContactForm() {
       </svg>
     </div>
   </div>
-
   <p className="text-sm text-neutral-600">
     Recruiters: a job link, location/time zone, and timeline help a lot.
   </p>

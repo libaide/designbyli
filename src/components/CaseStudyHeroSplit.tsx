@@ -1,5 +1,4 @@
 import type React from "react";
-import Container from "@/components/Container";
 import Image from "next/image";
 import clsx from "clsx";
 
@@ -30,40 +29,46 @@ export default function CaseStudyHeroSplit({
   } as const;
 
   return (
-    <section className="bg-white pb-8 pt-16 sm:pt-24">
-      <Container>
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-          {/* Left */}
-          <div className="lg:col-span-5 lg:text-left">
-            <img
-              src={logoSrc}
-              alt={logoAlt}
-              className={clsx("mx-auto block w-auto", logoSizeClasses[logoSize], logoClassName)}
-              draggable={false}
-            />
+    <section className="bg-white pb-8 pt-16 sm:pt-24 max-w-7xl mx-auto px-5 sm:px-10">
+    {/* Full-bleed layout */}
+    <div className="grid items-center gap-12 lg:gap-6 lg:grid-cols-[25%_80%]">
+      {/* LEFT */}
+      <div className="flex items-center">
+        {/* This “fake container” aligns the content to your 7xl grid on the left only */}
+        <div className="w-full">
+          <div className="mx-auto max-w-lg">
+            <div className="max-w-xl lg:max-w-[560px]">
+              <img
+                src={logoSrc}
+                alt={logoAlt}
+                className={clsx(
+                  "mx-auto block w-auto lg:mx-0",
+                  logoSizeClasses[logoSize],
+                  logoClassName
+                )}
+                draggable={false}
+              />
 
-            <div className="mt-8 space-y-6 text-base leading-relaxed text-[#474747]/80">
-              {summary}
+              <div className="mt-8 space-y-6 text-base leading-relaxed text-[#474747]/80">
+                {summary}
+              </div>
             </div>
           </div>
-
-          {/* Right */}
-<div className="lg:col-span-7">
-  <div className="relative overflow-hidden">
-    <div className="relative aspect-[16/14]">
-      <Image
-        src={illustrationSrc}
-        alt={illustrationAlt}
-        fill
-        className="object-contain"
-        priority
-        sizes="(min-width: 1024px) 55vw, 100vw"
-      />
-    </div>
-  </div>
-</div>
         </div>
-      </Container>
-    </section>
+      </div>
+
+      {/* RIGHT */}
+      <div className="relative min-h-[320px] sm:min-h-[420px] lg:min-h-[72vh]">
+        <Image
+          src={illustrationSrc}
+          alt={illustrationAlt}
+          fill
+          className="object-contain"
+          priority
+          sizes="(min-width: 1024px) 55vw, 100vw"
+        />
+      </div>
+    </div>
+  </section>
   );
 }

@@ -3,12 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Container from "./Container";
-import Logo from "@/components/logo"; // Make sure path is correct
 
 const nav = [
+  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/work", label: "Work" },
-  { href: "/contact", label: "Contact" },
+  { href: "/work", label: "Case Studies" },
 ];
 
 export default function Navbar() {
@@ -18,14 +17,9 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 bg-black/45 backdrop-blur-xl isolate will-change-transform transform-gpu">
       <Container>
         <div className="flex h-16 items-center justify-between">
-          {/* Logo = Home */}
-          <Link href="/" className="flex items-center gap-2 text-white">
-            {/* Using the new smSize prop */}
-            <Logo size={36} smSize={54} disableAnimation />
-          </Link>
-
-          {/* Nav */}
-          <nav className="flex items-center gap-6">
+          
+          {/* Left Nav */}
+          <nav className="flex items-center gap-8">
             {nav.map((item) => {
               const isActive = pathname === item.href;
 
@@ -33,7 +27,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative flex flex-col items-center text-m text-white/80 hover:text-white transition-colors"
+                  className="relative flex flex-col items-center text-sm text-white/80 hover:text-white transition-colors"
                 >
                   {item.label}
 
@@ -48,6 +42,23 @@ export default function Navbar() {
               );
             })}
           </nav>
+
+          {/* CTA Right */}
+          <Link
+            href="/contact"
+            className="
+              inline-flex items-center justify-center
+              rounded-full
+              px-5 py-2
+              text-sm font-medium
+              bg-white text-black
+              hover:bg-white/90
+              transition
+            "
+          >
+            Contact me
+          </Link>
+
         </div>
       </Container>
     </header>

@@ -3,23 +3,20 @@
 import ContactForm from "@/components/ContactForm";
 import Noise from "@/components/Noise";
 import RiseInOnView from "@/components/RiseInOnView";
-import SectionHeader from "@/components/case-study/SectionHeader";
 
 type ContactSectionProps = {
   id?: string;
   className?: string;
-  title?: string;
 };
 
 export default function ContactSection({
   id = "contact",
   className = "bg-white text-black",
-  title = "Let’s Build Something Great"
 }: ContactSectionProps) {
   return (
     <section
       id={id}
-      className={`relative overflow-hidden py-16 sm:py-24 ${className}`}
+      className={`relative overflow-hidden py-16 sm:py-44 ${className}`}
     >
       {/* Animated noise on desktop (must be direct child so it can measure parent) */}
       <Noise
@@ -37,12 +34,7 @@ export default function ContactSection({
       <div className="relative z-10">
         <div className="mx-auto max-w-7xl px-5 sm:px-10">
           <RiseInOnView>
-            <SectionHeader
-              title={title}
-              underline={{ show: false }}
-            />
-
-            <div className="mt-12 flex justify-center">
+            <div className="flex justify-center">
               <ContactForm />
             </div>
           </RiseInOnView>

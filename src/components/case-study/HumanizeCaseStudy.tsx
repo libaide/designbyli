@@ -77,7 +77,7 @@ export default function HumanizeCaseStudy() {
       {/* Split Hero */}
       <RiseInOnView staggerChildren>
         <CaseStudyTopSection
-          className="bg-white pb-20"
+          className="bg-white"
           logoSrc="/case-studies/humanize/humanize-logo.png"
           logoAlt="Humanize logo"
           logoSize="lg"

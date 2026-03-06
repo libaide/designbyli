@@ -109,7 +109,7 @@ export default function Recommendations() {
   if (items.length === 0) return null;
 
   return (
-      <div className="pb-24">
+      <div className="py-16 sm:py-16 md:py-32 lg:py-36 xl:py-44">
     <div className="mx-auto max-w-7xl px-4">
         <SectionHeader
           title="Recommendations"

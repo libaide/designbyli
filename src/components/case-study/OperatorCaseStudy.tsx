@@ -6,6 +6,7 @@ import RiseInOnView from "@/components/RiseInOnView";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import { Check } from "lucide-react";
+import SectionHeader from "@/components/case-study/SectionHeader";
 
 type ExpandedImage = { src: string; alt: string } | null;
 type ExpandedVideo = { src: string; title: string } | null;
@@ -71,11 +72,17 @@ const UI_PREVIEWS_BOTTOM: GalleryImage[] = [
 
 function AppSummaryCard({ app }: { app: AppCard }) {
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-center border-b border-black/15 pb-6">
-        <img src={app.logo} alt={`${app.title} logo`} className="h-[32px] w-auto" draggable={false} />
+    <div className="h-full rounded-3xl border border-black/10 bg-white p-8 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+      <div className="flex items-center justify-start border-b border-black/10 pb-6">
+        <img
+          src={app.logo}
+          alt={`${app.title} logo`}
+          className="h-[34px] w-auto"
+          draggable={false}
+        />
       </div>
-      <p className="max-w-[42ch] text-base leading-relaxed text-gray-500 font-normal">
+
+      <p className="mt-6 text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed text-gray-500 font-normal">
         {app.body}
       </p>
     </div>
@@ -117,17 +124,17 @@ export default function OperatorCaseStudy() {
   return (
     <>
       {/* Top */}
-      <section className="bg-white pb-24">
+      <section className="bg-white pb-44">
         <RiseInOnView staggerChildren>
           <div>
             <CaseStudyTopSection
-              logoSrc="/case-studies/operator/Operator-logo.svg"
-              logoAlt="Operator logo"
-              logoSize="sm"
-              illustrationSrc="/case-studies/operator/hero-illustration.png"
-              illustrationAlt="Operator UI preview"
+  logoSrc="/case-studies/operator/Operator-logo.svg"
+  logoAlt="Operator logo"
+  logoSize="sm"
+  illustrationSrc="/case-studies/operator/operator-hero-2.png"
+  illustrationAlt="Operator UI preview"
               summary={
-                <div className="space-y-4 text-gray-500 text-lg font-normal leading-normal">
+                <div className="space-y-4 text-gray-500 text-xl font-normal leading-normal">
                   <p>
                     Operator is <span className="font-semibold">PartnerHero’s</span>{" "}
                     <span className="font-normal">(now Crescendo)</span> internal platform that unifies
@@ -144,13 +151,6 @@ export default function OperatorCaseStudy() {
                   </p>
                 </div>
               }
-              afterHero={
-                <div className="grid gap-16 md:grid-cols-3">
-                  {APPS.map((app) => (
-                    <AppSummaryCard key={app.title} app={app} />
-                  ))}
-                </div>
-              }
               stats={[
                 { label: "Project Type", value: "Internal SaaS Platform" },
                 { label: "Role", value: "UX/UI Designer" },
@@ -164,27 +164,77 @@ export default function OperatorCaseStudy() {
         </RiseInOnView>
       </section>
 
+{/* Apps Overview */}
+<section className="bg-[#fbfaf9] py-24 sm:py-32 lg:py-44">
+  <Container>
+    <RiseInOnView staggerChildren>
+      <div className="space-y-12">
+        {/* Header */}
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionHeader
+            title="The Operator Suite"
+            description="Operator is made up of three applications designed to support agents, managers, and admins with consistent workflows and shared data."
+            descriptionClassName="text-gray-500 text-xl leading-relaxed"
+            align="center"
+            wrapperClassName="max-w-none"
+            titleClassName="text-[#4521a6] text-4xl
+  sm:text-5xl
+  md:text-6xl
+  lg:text-7xl
+  font-semibold
+  tracking-tight"
+          />
+        </div>
+
+        {/* Cards */}
+        <div className="grid gap-8 lg:grid-cols-3">
+          {APPS.map((app, idx) => {
+            const offsets = [
+              "lg:-translate-x-3",
+              "lg:translate-x-0",
+              "lg:translate-x-3",
+            ];
+
+            return (
+              <div
+                key={app.title}
+                className={`transition-transform ${offsets[idx]}`}
+              >
+                <AppSummaryCard app={app} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </RiseInOnView>
+  </Container>
+</section>
+
       {/* Problem & Context */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
         <RiseInOnView staggerChildren>
           <div className="relative mx-auto w-full max-w-7xl px-4">
-            <div className="relative z-10 min-h-[620px] py-24">
+            <div className="relative z-10 min-h-[620px] py-24 sm:py-32 lg:py-64">
               <div className="max-w-xl">
-                <h2 className="text-5xl font-semibold tracking-tight text-[#FF80F1]">
-                  Problem & Context
-                </h2>
-
-                <p className="mt-6 text-base leading-relaxed text-[#d3d3d3] font-normal">
-                  Customer support teams previously relied on fragmented tools, inconsistent
+                <SectionHeader
+    title="Problem & Context"
+    description=" Customer support teams previously relied on fragmented tools, inconsistent
                   workflows, and manual processes, which led to inefficiencies and rising
-                  operational costs. After several proof-of-concept tools proved their value,
+                  operational costs."
+    descriptionClassName="text-gray-300"
+    align="left"
+    titleClassName="text-[#ff80f1]"
+  />
+
+                <p className="mt-6 text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed text-[#d3d3d3] font-normal">
+                  After several proof-of-concept tools proved their value,
                   PartnerHero decided to fully design and develop a centralized platform that
                   would empower every team across the organization.
                 </p>
 
-                <p className="mt-6 text-base leading-relaxed text-[#d3d3d3] font-normal">
+                <p className="mt-6 text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed text-[#d3d3d3] font-normal">
                   My mission was to transform the fragmented internal tools into an integrated, scalable
                   product suite, ensuring that every feature enhanced efficiency, clarity, and agent
                   satisfaction.
@@ -192,16 +242,25 @@ export default function OperatorCaseStudy() {
               </div>
             </div>
 
-           {/* Mobile/tablet: show below text. Desktop: absolute decorative image */}
-<div className="mt-12 lg:mt-0 lg:pointer-events-none lg:absolute lg:bottom-0 lg:right-4 lg:z-0">
-  <div className="relative mx-auto h-[320px] w-[260px] sm:h-[420px] sm:w-[320px] lg:h-[560px] lg:w-[420px]">
+           {/* Decorative image */}
+<div className="mt-12 lg:mt-0 lg:pointer-events-none lg:absolute lg:bottom-0 lg:right-0 lg:z-0">
+  <div
+    className="
+      relative mx-auto
+      w-[75vw] max-w-[520px]
+      aspect-[3/5]
+
+      lg:w-auto
+      lg:h-[80vh]
+      lg:max-h-[820px]
+    "
+  >
     <Image
       src="/case-studies/operator/problem-context.png"
       alt="Customer support agent using the Operator platform"
       fill
       className="object-contain object-bottom"
-      priority
-      sizes="(min-width: 1024px) 420px, (min-width: 640px) 320px, 260px"
+      sizes="(min-width: 1024px) 40vw, 75vw"
     />
   </div>
 </div>
@@ -210,14 +269,17 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* Research & Insights */}
-<section className="bg-[#FBFAF9] py-24">
+<section className="bg-[#FBFAF9] py-24 sm:py-32 lg:py-44">
   <Container>
-    <div className="space-y-16">
+    <div className="space-y-16 lg:space-y-24">
       {/* Section heading */}
       <RiseInOnView>
-        <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
-          Research & Insights
-        </h2>
+        <SectionHeader
+    title="Research & Insights"
+    align="center"
+    wrapperClassName="max-w-none"
+    titleClassName="text-[#4521a6]"
+  />
       </RiseInOnView>
 
       {/* Current State Analysis */}
@@ -227,7 +289,7 @@ export default function OperatorCaseStudy() {
             Current State Analysis
           </h3>
 
-          <div className="mt-5 space-y-6 text-base leading-relaxed text-[#474747]/80 font-normal">
+          <div className="mt-5 space-y-16 text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed text-[#474747]/80 font-normal">
             <p>
               At the time of evaluation, the product experience relied on fragmented workflows and
               inconsistent interface patterns. Core tasks required unnecessary steps, increasing
@@ -268,7 +330,7 @@ export default function OperatorCaseStudy() {
               </h3>
 
               <div className="mt-6 space-y-5 text-base leading-relaxed text-[#474747]/80 font-normal">
-                <p>
+                <p className="text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed">
                   To ensure Operator effectively addressed the challenges faced by customer
                   support agents, I planned and led a series of user interviews with agents
                   and managers who interacted daily with Assist and Quality. My objective was
@@ -276,12 +338,12 @@ export default function OperatorCaseStudy() {
                   in the tools.
                 </p>
 
-                <p>
+                <p className="text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed">
                   A diverse group of agents and managers across different teams and experience
                   levels were selected. We used:
                 </p>
 
-                <ul className="ml-5 list-disc space-y-2">
+                <ul className="ml-5 list-disc space-y-2 text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed">
                   <li>One-on-one video call interviews</li>
                   <li>Open-ended questions to encourage detailed feedback</li>
                   <li>Live walkthroughs of the tools to observe agent workflows</li>
@@ -313,7 +375,7 @@ export default function OperatorCaseStudy() {
           <h3 className="text-left text-3xl font-medium tracking-tight text-[#474747]">
             Insights
           </h3>
-          <p className="mt-3 max-w-2xl text-left text-base text-[#474747]/80 font-normal">
+          <p className="mt-3 max-w-2xl text-left text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed text-[#474747]/80 font-normal">
             These insights directly influenced feature updates and UI improvements, making the
             tools more intuitive and valuable for agents.
           </p>
@@ -322,7 +384,7 @@ export default function OperatorCaseStudy() {
         <div className="mt-10 grid gap-10 items-stretch sm:grid-cols-2">
           <div className="h-full rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)] flex flex-col">
             <h4 className="text-2xl font-normal text-[#474747]">Agent experience</h4>
-            <ul className="mt-6 list-disc space-y-4 pl-5 text-base text-[#474747]/80 font-normal">
+            <ul className="mt-6 list-disc space-y-4 pl-5 text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed text-[#474747]/80 font-normal">
               <li>The Chrome extension UI is unclear</li>
               <li>Management through the web app is difficult, and so is reviewing data</li>
               <li>
@@ -336,7 +398,7 @@ export default function OperatorCaseStudy() {
 
           <div className="h-full rounded-2xl border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.10)] flex flex-col">
             <h4 className="text-2xl font-normal text-[#474747]">Quality & ops</h4>
-            <ul className="mt-6 list-disc space-y-4 pl-5 text-base text-[#474747]/80 font-normal">
+            <ul className="mt-6 list-disc space-y-4 pl-5 text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed text-[#474747]/80 font-normal">
               <li>Agents had difficulty navigating and scoring in the Chrome extension</li>
               <li>Managers had difficulty understanding how to create rubrics</li>
               <li>Reviewing and comparing data felt slow</li>
@@ -352,26 +414,29 @@ export default function OperatorCaseStudy() {
 
 
       {/* Ideation & Design Process */}
-      <section className="relative overflow-hidden py-24">
+      <section className="relative overflow-hidden py-24 sm:py-32 lg:py-44">
         <div className="absolute inset-0 bg-white" />
 
         <RiseInOnView staggerChildren>
           <Container>
-            <div className="relative space-y-14">
-              <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
-                Ideation & Design Process
-              </h2>
+            <div className="relative space-y-16 lg:space-y-24">
 
-              <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+              <div className="grid gap-24 lg:grid-cols-12 lg:items-center">
                 <RiseInOnView staggerChildren className="lg:col-span-5">
                   <div className="mx-auto max-w-xl space-y-6 text-base leading-relaxed text-[#474747]/80 lg:mx-0 font-normal">
-                    <p>
-                      After reviewing insights gathered during research and incorporating feedback
+                  <SectionHeader
+    title="Ideation & Design Process"
+    description="After reviewing insights gathered during research and incorporating feedback
                       from PMs, stakeholders, and developers, we aligned on a structured vision for
-                      the software suite and developed a clear plan for the MVP.
-                    </p>
+                      the software suite and developed a clear plan for the MVP."
+    descriptionClassName="text-gray-500"
+    align="left"
+    wrapperClassName="max-w-none"
+    titleClassName="text-[#4521a6]"
+  />
+                
 
-                    <p>
+                    <p className="text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed">
                       With the roadmap in place, we began wireframing and designing section by
                       section. To ensure a consistent and cohesive experience across all apps, we
                       chose Material UI as our design framework. For the MVP, customization was kept
@@ -405,13 +470,16 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* UI Previews */}
-<section className="bg-white py-24">
+<section className="bg-[#FBFAF9] py-24 sm:py-32 lg:py-44">
         <Container>
-          <div className="space-y-16">
+          <div className="space-y-16 lg:space-y-24">
             <RiseInOnView>
-              <h2 className="text-center text-5xl font-semibold tracking-tight text-[#4521A6]">
-                UI Previews
-              </h2>
+             <SectionHeader
+    title="UI Previews"
+    align="center"
+    wrapperClassName="max-w-none"
+    titleClassName="text-[#4521a6]"
+  />
             </RiseInOnView>
 
             <div className="grid gap-6 sm:grid-cols-2">
@@ -471,7 +539,7 @@ export default function OperatorCaseStudy() {
 
 
       {/* Impact & Results */}
-      <section className="relative overflow-hidden py-24">
+      <section className="relative overflow-hidden py-24 sm:py-32 lg:py-64">
         <div className="absolute inset-0">
           <Image
             src="/case-studies/operator/impact-bg1.png"
@@ -488,22 +556,22 @@ export default function OperatorCaseStudy() {
         <RiseInOnView staggerChildren>
           <Container>
             <div className="relative z-10 space-y-16">
-              <h2 className="text-center text-5xl font-semibold tracking-tight text-[#FF80F1]">
-                Impact And Results
-              </h2>
 
-              <div className="grid gap-12 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
+              <div className="grid gap-24 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
                 <RiseInOnView staggerChildren>
                   <div>
-                    <p className="text-base leading-relaxed text-[#d3d3d3] font-normal">
-                      Operator improved usability and adoption across the company’s internal tools.
-                    </p>
-
-                    <p className="mt-6 text-base leading-relaxed text-[#d3d3d3] font-normal">
-                      The success and maturity of Operator’s product direction contributed to
-                      Crescendo’s interest in PartnerHero during the acquisition process, demonstrating
-                      the value of scalable internal tooling and thoughtful product design.
-                    </p>
+                    <SectionHeader
+    title="Impact & Results"
+    dark
+    description="Operator made our internal tools much easier to use, which boosted adoption throughout the company. More importantly, the sophistication of Operator's product direction was a clear indicator of how well PartnerHero's vision for AI-powered human customer support aligned with Crescendo's, playing a role in the acquisition."
+    descriptionClassName="text-white"
+    align="left"
+    wrapperClassName="max-w-none"
+    titleClassName="
+  text-[#ff80f1]
+"
+  />
+                    
                   </div>
                 </RiseInOnView>
 
@@ -540,24 +608,28 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* Reflection */}
-      <section className="relative overflow-hidden py-24">
+      <section className="relative overflow-hidden py-24 sm:py-32 lg:py-44">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
         <RiseInOnView staggerChildren>
           <Container>
             <div className="relative z-10 mx-auto max-w-2xl">
               <RiseInOnView staggerChildren className="space-y-6">
-                <h2 className="text-center text-5xl font-semibold tracking-tight text-[#FF80F1]">
-                  Reflection
-                </h2>
-
-                <div className="space-y-6 text-base leading-relaxed text-gray-300 font-normal">
-                  <p>
-                    Through my experience with Operator, I gained valuable insights into implementing
+                <SectionHeader
+    title="Reflection"
+    dark
+    description="Through my experience with Operator, I gained valuable insights into implementing
                     design strategies across multiple teams and products while maintaining consistency,
-                    transparency, and purpose.
-                  </p>
+                    transparency, and purpose."
+    descriptionClassName="text-left"
+    align="center"
+    wrapperClassName="max-w-none"
+    titleClassName="
+  text-[#ff80f1]
+"
+  />
 
+                <div className="space-y-6 text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed text-gray-300 font-normal">
                   <p>
                     As features regularly changed, objectives transformed, and deadlines shifted, I
                     was motivated to develop greater flexibility, better communication skills, and a
@@ -569,11 +641,7 @@ export default function OperatorCaseStudy() {
                     observing teams thrive using the exact tools we had created.
                   </p>
 
-                  <h4 className="pt-6 text-center text-3xl font-semibold tracking-tight text-white">
-                    ...exceptional design goes beyond visual interfaces.
-                  </h4>
-
-                  <p className="text-center text-base text-gray-300 font-normal">
+                  <p>
                     Exceptional design involves empowering individuals to perform at their highest
                     level through clear communication, understanding, and flexible systems that evolve
                     alongside their users.

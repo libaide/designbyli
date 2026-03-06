@@ -52,12 +52,16 @@ export default function SectionHeader({
     align === "left" ? "justify-start" : align === "right" ? "justify-end" : "justify-center";
 
   return (
-    <div className={cx("mx-auto max-w-3xl", alignText, wrapperClassName)}>
+    <div className={cx("align-left max-w-5xl mb-12 sm:mb-12 md:mb-12 lg:mb-12 xl:mb-16", alignText, wrapperClassName)}>
       <h2
-        className={cx("text-4xl font-medium tracking-normal", defaultTitle, titleClassName)}
-      >
-        {title}
-      </h2>
+  className={cx(
+    "text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-8xl font-base tracking-normal text-left",
+    defaultTitle,
+    titleClassName
+  )}
+>
+  {title}
+</h2>
 
       {showUnderline ? (
         <div className={cx("mt-4 flex", underlineJustify)}>
@@ -71,7 +75,7 @@ export default function SectionHeader({
         <p
           className={cx(
             showUnderline ? "mt-6" : "mt-8",
-            "text-base leading-relaxed",
+            "text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl tracking-normal leading-relaxed",
             defaultDesc,
             descriptionClassName
           )}

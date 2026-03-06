@@ -8,6 +8,11 @@ body {
   overflow-x: hidden;
 }
 
+h1, h2, h3 {
+  font-family: var(--font-heading), serif;
+}
+
+
 :root {
   color-scheme: dark; /* makes form controls/scrollbars dark too */
   --radius: 0.625rem;
@@ -193,6 +198,63 @@ body {
     background-repeat: repeat;
     background-size: 256px 256px;
   }
+}
+
+@layer utilities {
+  /* Hero background tuned to match your reference */
+  .hero-bg {
+    background-color: #050607;
+
+    background-image:
+      /* cool gray haze (top-right) */
+      radial-gradient(1100px 720px at 78% 22%, rgba(205, 212, 214, 0.24), transparent 62%),
+
+      /* teal haze (left / lower-left) */
+      radial-gradient(1200px 900px at 22% 58%, rgba(14, 74, 72, 0.34), transparent 64%),
+
+      /* subtle mid haze (center) */
+      radial-gradient(900px 650px at 52% 42%, rgba(255, 255, 255, 0.06), transparent 60%),
+
+      /* base vertical shading */
+      linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.30) 40%, rgba(0,0,0,0.86) 100%);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* Stronger vignette like the reference */
+  .hero-vignette {
+    position: relative;
+  }
+  .hero-vignette::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+
+    background:
+      radial-gradient(120% 120% at 50% 40%,
+        rgba(0,0,0,0) 42%,
+        rgba(0,0,0,0.70) 78%,
+        rgba(0,0,0,0.92) 100%
+      );
+  }
+
+  /* Noise overlay */
+  /*.hero-noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 15; /* under vignette, over background 
+    background-image: url("/noise.png");
+    background-repeat: repeat;
+    background-size: 220px 220px;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+  }*/
+  
 }
 
 .static-noise {

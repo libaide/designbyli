@@ -58,7 +58,7 @@ export default function WorkAndRecommendationsSection() {
         className="
           pointer-events-none absolute inset-0
           bg-[url('/featured-work-bg.png')]
-          bg-auto bg-center bg-repeat
+          bg-contain bg-center bg-repeat
           opacity-50
           md:hidden
         "
@@ -73,7 +73,7 @@ export default function WorkAndRecommendationsSection() {
           hidden md:block
           cursor-reveal
           bg-[url('/featured-work-bg.png')]
-          bg-cover bg-center bg-no-repeat
+          bg-size-[1000px] bg-center bg-repeat
           opacity-80
           transform-gpu will-change-transform
         "

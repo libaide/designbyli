@@ -12,8 +12,8 @@ export default function WorkPage() {
         {/* Header rise-in */}
         <RiseInOnView>
           <SectionHeader
-            title="Work"
-            description="Click a project to view the case study."
+            title="Case Studies"
+            description=""
             titleClassName="text-black"
             descriptionClassName="text-gray-500 text-lg leading-relaxed"
             underline={{ show: false, className: "bg-[#E45027]" }}

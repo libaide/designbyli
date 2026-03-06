@@ -96,51 +96,14 @@ export default function FeaturedWorkAnimated() {
   }, []);
 
   return (
-    <section
-      id="featured-work"
-      ref={areaRef}
-      onPointerMove={onPointerMove}
-      onPointerLeave={onPointerLeave}
-      className="relative overflow-hidden isolate"
-    >
-      {/* Base layer to block anything behind (e.g. fixed LightRays) */}
-      <div aria-hidden="true" className="absolute inset-0 bg-black" />
-
-      {/* BG – always visible on mobile */}
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none absolute inset-0
-          bg-[url('/featured-work-bg.png')]
-          bg-auto bg-center bg-repeat
-          opacity-40
-          md:hidden
-        "
-      />
-
-      {/* BG – cursor reveal on desktop */}
-      <div
-        ref={bgRef}
-        aria-hidden="true"
-        className="
-          pointer-events-none absolute inset-0
-          hidden md:block
-          cursor-reveal
-          bg-[url('/featured-work-bg.png')]
-          bg-cover bg-center bg-no-repeat
-          opacity-80
-          transform-gpu will-change-transform
-        "
-        style={{ ["--reveal-radius" as any]: "320px" }}
-      />
-
+<section>
       {/* Foreground content */}
-      <div className="relative z-10 py-24 sm:py-24">
+      <div className="relative z-10 py-24 sm:py-44">
         <div className="mx-auto max-w-7xl px-4">
           <SectionHeader
-            title="Featured Work"
+            title="Featured Case Studies"
+            dark
             underline={{ show: false }}
-            titleClassName="text-white"
           />
 
           <div
@@ -219,7 +182,7 @@ export default function FeaturedWorkAnimated() {
 
           <div className="mt-12 flex justify-center">
             <Link href="/work">
-              <Button>View more projects</Button>
+              <Button>View all case studies</Button>
             </Link>
           </div>
         </div>

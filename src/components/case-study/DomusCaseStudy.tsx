@@ -193,7 +193,7 @@ export default function DomusCaseStudy() {
   return (
     <>
       {/* Top */}
-      <section className="bg-white pb-20">
+      <section className="bg-white pb-44">
         <RiseInOnView>
           <CaseStudyTopSection
             logoSrc="/case-studies/domus/domus-logo.png"
@@ -204,12 +204,12 @@ export default function DomusCaseStudy() {
             illustrationAlt="Domus UI preview"
             summary={
               <div className="space-y-4">
-                <p className="text-gray-500 text-lg leading-relaxed font-normal">
+                <p className="text-gray-500 text-xl leading-relaxed font-normal">
                   A new home-services marketplace concept for Honduras, developed to empower clients to
                   easily find verified technicians, request services, and manage scheduling and payments.
                   It also provides technicians with a consistent and reliable source of work.
                 </p>
-                <p className="text-gray-500 text-lg leading-relaxed font-normal">
+                <p className="text-gray-500 text-xl leading-relaxed font-normal">
                   My role involved leading the UX and UI design for the MVP, focusing on building
                   intuitive experiences across client, technician, and admin interfaces.
                 </p>
@@ -228,17 +228,17 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Problem & Context */}
-      <section className="relative overflow-hidden bg-[#f6f7ff]">
-        <div className="relative mx-auto w-full max-w-7xl px-4 py-20 lg:py-20">
+      <section className="relative overflow-hidden bg-[#ecfffe]">
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-20 lg:py-44">
           <RiseInOnView className="relative z-20">
-            <div className="max-w-xl lg:max-w-[560px] lg:rounded-3xl lg:bg-[#FFD000] lg:p-10 lg:shadow-sm">
+            <div className="max-w-xl lg:max-w-[660px] lg:rounded-3xl lg:bg-[#FFD000] lg:p-10 lg:shadow-xl">
               <RiseInOnView staggerChildren staggerMs={90} className="space-y-0" y={14} duration={850}>
                 <SectionHeader
                   title="The Problem"
                   wrapperClassName="max-w-none text-left"
-                  titleClassName="text-[#1B2166] text-4xl"
+                  titleClassName="text-[#1B2166]"
                   description="Finding reliable home service providers in Honduras is a challenge. Most people rely on informal recommendations or social media groups, which can lead to trust issues, miscommunication, and unreliable scheduling."
-                  descriptionClassName="text-lg text-[#1B2166] font-normal leading-relaxed"
+                  descriptionClassName="text-[#1B2166]"
                 />
 
                 <p className="mt-8 text-base font-medium text-[#1B2166]">Challenges Identified:</p>
@@ -290,14 +290,14 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Business Objectives & MVP Goals */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-20 sm:py-24 lg:py-44">
         <Container>
           <RiseInOnView staggerChildren staggerMs={90} y={14} duration={850}>
             <SectionHeader
               title="Business Objectives & MVP Goals"
               description='The MVP aimed to validate the business hypothesis that there is real demand for verified home services in Honduras under a “pull model”, where clients post requests and technicians apply to them.'
-              titleClassName="text-[#1B2166] text-4xl"
-              descriptionClassName="text-lg text-[#1B2166] font-normal leading-relaxed"
+              titleClassName="text-[#1B2166]"
+              descriptionClassName="text-[#1B2166]"
             />
           </RiseInOnView>
 
@@ -376,7 +376,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Personas */}
-      <section className="relative overflow-hidden py-20 sm:py-20">
+      <section className="relative overflow-hidden py-20 sm:py-24 lg:py-44">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1B1E4B] via-[#15173A] to-[#0A0B1F]" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/30" />
@@ -385,7 +385,16 @@ export default function DomusCaseStudy() {
         <Container>
           <div className="relative z-10">
             <RiseInOnView>
-              <SectionHeader title="Personas" dark />
+              <SectionHeader
+              title="Personas"
+              titleClassName="text-white text-4xl
+  sm:text-5xl
+  md:text-6xl
+  lg:text-7xl
+  font-semibold
+  tracking-tight
+  leading-tight"
+            />
             </RiseInOnView>
 
             <div className="mt-20 grid gap-16 lg:grid-cols-2">
@@ -407,12 +416,12 @@ export default function DomusCaseStudy() {
                     <h4 className="text-2xl font-medium text-white">Karen López</h4>
                     <p className="mt-1 text-sm text-gray-300">Female · 32 years old · Client</p>
 
-                    <ul className="mt-6 space-y-4 text-base">
+                    <ul className="mt-6 space-y-4 text-xl">
                       {CLIENT_PERSONA_BULLETS.map((t, idx) => (
                         <RiseInOnView key={t} delayMs={60 + idx * 70}>
                           <li className="flex gap-3">
                             <span className="mt-2 h-2 w-2 rounded-full bg-[#F5A623]" />
-                            <p className="text-gray-300">{t}</p>
+                            <p className="text-white">{t}</p>
                           </li>
                         </RiseInOnView>
                       ))}
@@ -439,12 +448,12 @@ export default function DomusCaseStudy() {
                     <h4 className="text-2xl font-medium text-white">Jorge Ortega</h4>
                     <p className="mt-1 text-sm text-gray-300">Male · 40 years old · Technician</p>
 
-                    <ul className="mt-6 space-y-4 text-base">
+                    <ul className="mt-6 space-y-4 text-xl">
                       {TECHNICIAN_PERSONA_BULLETS.map((t, idx) => (
                         <RiseInOnView key={t} delayMs={60 + idx * 70}>
                           <li className="flex gap-3">
                             <span className="mt-2 h-2 w-2 rounded-full bg-[#F5A623]" />
-                            <p className="text-gray-300">{t}</p>
+                            <p className="text-white">{t}</p>
                           </li>
                         </RiseInOnView>
                       ))}
@@ -459,27 +468,33 @@ export default function DomusCaseStudy() {
 
       {/* Competitive Research */}
       <section
-        className="relative overflow-hidden bg-[#F6F7FF] py-20"
+        className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-44"
         style={{
           backgroundImage: "url('/case-studies/domus/pattern-tile.png')",
           backgroundRepeat: "repeat",
-          backgroundSize: "40px 40px",
+          backgroundSize: "32px 32px",
         }}
       >
         <Container>
           <div className="flex justify-center">
             <RiseInOnView>
-              <div className="w-full max-w-4xl rounded-[32px] bg-[#F6F7FF] px-10 py-12 text-center sm:px-14 sm:py-16">
+              <div className="w-full max-w-5xl rounded-[32px] bg-white px-10 py-12 text-center sm:px-24 sm:py-24 shadow-xl">
                 <RiseInOnView staggerChildren staggerMs={90} y={14} duration={850}>
                   <SectionHeader
                     title="Competitive Research"
                     wrapperClassName="max-w-none text-center"
-                    titleClassName="text-[#1B2166] text-4xl"
+                    titleClassName="text-[#1B2166] text-4xl
+  sm:text-5xl
+  md:text-6xl
+  lg:text-7xl
+  font-semibold
+  tracking-tight
+  leading-tight"
                     descriptionClassName="text-left"
                   />
 
                   <div className="mt-8 space-y-6 text-base leading-relaxed text-[#1B2166] text-left">
-                    <p>
+                    <p className="text-xl leading-relaxed">
                       I conducted a competitive analysis of existing home service platforms in Honduras
                       and abroad to identify differentiation opportunities. I discovered that local
                       competitors lacked verification systems and had poor UX design.
@@ -503,14 +518,20 @@ export default function DomusCaseStudy() {
 
       {/* User Flows & Journeys */}
       <section
-        className="relative py-20 sm:py-32 flex items-center justify-center bg-fixed bg-cover bg-center"
+        className="relative py-20 sm:py-24 lg:py-44 flex items-center justify-center bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('/case-studies/domus/UserJourneys.png')" }}
       >
         <RiseInOnView>
           <Container className="relative z-10">
-            <div className="relative z-20 max-w-xl lg:max-w-4xl mx-auto p-8 sm:p-10 rounded-3xl bg-white/90 shadow-lg text-center">
-              <SectionHeader title="User Flows & Journeys" titleClassName="text-[#1B2166] text-4xl" />
-              <p className="mt-8 space-y-6 text-[#1B2166] font-normal text-base leading-normal text-left">
+            <div className="w-full max-w-5xl rounded-[32px] bg-white px-10 py-12 text-center sm:px-24 sm:py-24 shadow-xl">
+              <SectionHeader title="User Flows & Journeys" titleClassName="text-[#1B2166] text-4xl
+  sm:text-5xl
+  md:text-6xl
+  lg:text-7xl
+  font-semibold
+  tracking-tight
+  leading-tight" />
+              <p className="mt-8 space-y-6 text-[#1B2166] font-normal text-xl leading-normal text-left">
                 I began by mapping the core user flows for the three main roles, clarifying how each
                 interaction connected to business logic, from posting a service to payment confirmation.
                 Following this, I mapped the broader user journeys, identifying critical moments that
@@ -522,15 +543,21 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Wireframes */}
-      <section className="relative overflow-hidden bg-white py-20 sm:py-20">
+      <section className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-44">
         <Container>
           <div className="relative">
             <RiseInOnView>
               <SectionHeader
                 title="Wireframes"
                 description="After finalizing the flow diagrams and defining the MVP scope and core features, I transitioned into low-fidelity wireframes. I collaborated closely with the client to ensure all critical MVP functionalities were represented and the UX remained simple and intuitive."
-                descriptionClassName="text-[#1B2166] text-lg font-normal leading-relaxed"
-                titleClassName="text-[#1B2166] text-4xl"
+                descriptionClassName="text-[#1B2166] text-xl font-normal leading-relaxed"
+                titleClassName="text-[#1B2166] text-4xl
+  sm:text-5xl
+  md:text-6xl
+  lg:text-7xl
+  font-semibold
+  tracking-tight
+  leading-tight"
               />
             </RiseInOnView>
 
@@ -586,15 +613,21 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Design System */}
-      <section className="relative overflow-hidden bg-[#f6f7ff] py-20 sm:py-20">
+      <section className="relative overflow-hidden bg-[#f6f7ff] py-20 sm:py-24 lg:py-44">
         <Container>
           <div className="relative">
             <RiseInOnView>
               <SectionHeader
                 title="Design System"
                 description="Using the Material Theme Builder, I generated an accessible, Domus-branded design system and created a local component library and style tokens tailored to the project’s needs."
-                descriptionClassName="text-[#1B2166] text-lg font-normal leading-relaxed"
-                titleClassName="text-[#1b2166] text-4xl"
+                descriptionClassName="text-[#1B2166] text-xl font-normal leading-relaxed"
+                titleClassName="text-[#1b2166] text-4xl
+  sm:text-5xl
+  md:text-6xl
+  lg:text-7xl
+  font-semibold
+  tracking-tight
+  leading-tight"
               />
             </RiseInOnView>
 
