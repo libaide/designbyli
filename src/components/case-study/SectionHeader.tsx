@@ -75,7 +75,7 @@ export default function SectionHeader({
         <p
           className={cx(
             showUnderline ? "mt-6" : "mt-8",
-            "text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl tracking-normal leading-relaxed",
+            "text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl tracking-normal leading-relaxed text-left",
             defaultDesc,
             descriptionClassName
           )}

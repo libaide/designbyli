@@ -114,10 +114,10 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="w-full">
+    <section className="w-full py-16 sm:py-4 lg:py-4">
       <RiseInOnView>
-      <div className="mx-auto max-w-2xl rounded-3xl border-[1px] border-gray-30 bg-white p-6 sm:p-8">
-          <h3 className="mb-6 text-4xl font-semibold tracking-tight">
+      <div className="mx-auto max-w-2xl rounded-3xl border-b border-white/50 bg-black/60 backdrop-blur-xl p-6 sm:p-8">
+          <h3 className="mb-6 text-4xl font-semibold tracking-tight text-white">
     Let’s Build Something Great
   </h3>
         <form className="space-y-6" onSubmit={onSubmit}>
@@ -139,7 +139,7 @@ export default function ContactForm() {
 
           {/* Reason */}
 <div className="space-y-2">
-  <label htmlFor="reason" className="text-sm font-medium text-black">
+  <label htmlFor="reason" className="text-sm font-medium text-white">
     Reason for reaching out
   </label>
 
@@ -163,7 +163,7 @@ export default function ContactForm() {
     </select>
 
     {/* Custom dropdown icon */}
-    <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-neutral-500">
+    <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-neutral-300">
       <svg
         className="h-4 w-4"
         viewBox="0 0 20 20"
@@ -179,14 +179,14 @@ export default function ContactForm() {
       </svg>
     </div>
   </div>
-  <p className="text-sm text-neutral-600">
+  <p className="text-sm text-neutral-400">
     Recruiters: a job link, location/time zone, and timeline help a lot.
   </p>
 </div>
 
           {/* Name */}
           <div className="space-y-2">
-            <label htmlFor="name" className="text-sm font-medium text-black">
+            <label htmlFor="name" className="text-sm font-medium text-white">
               Name
             </label>
             <input
@@ -206,7 +206,7 @@ export default function ContactForm() {
 
           {/* Email */}
           <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-black">
+            <label htmlFor="email" className="text-sm font-medium text-white">
               Email
             </label>
             <input
@@ -226,7 +226,7 @@ export default function ContactForm() {
 
           {/* Message */}
           <div className="space-y-2">
-            <label htmlFor="message" className="text-sm font-medium text-black">
+            <label htmlFor="message" className="text-sm font-medium text-white">
               Message
             </label>
             <textarea

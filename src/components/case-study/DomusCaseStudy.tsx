@@ -193,7 +193,7 @@ export default function DomusCaseStudy() {
   return (
     <>
       {/* Top */}
-      <section className="bg-white pb-44">
+      <section className="bg-white">
         <RiseInOnView>
           <CaseStudyTopSection
             logoSrc="/case-studies/domus/domus-logo.png"

@@ -49,7 +49,7 @@ export default function HomePage() {
   {/* Content */}
   <div className="relative z-20 h-full">
     <Container>
-      <div className="grid h-svh grid-cols-1 items-center gap-10 pt-28 pb-24 lg:grid-cols-2 lg:gap-16">
+      <div className="grid h-svh grid-cols-1 items-center gap-10 pt-32 pb-24 lg:grid-cols-2 lg:gap-16">
         {/* LEFT */}
         <RiseInOnView
           staggerChildren

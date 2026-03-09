@@ -147,7 +147,7 @@ export default function AboutPage() {
         ref={heroRef}
         className="relative min-h-[100svh] bg-black overflow-hidden"
       >
-        <div className="mx-auto px-6 sm:px-10 py-16 sm:py-24">
+        <div className="mx-auto px-6 sm:px-10 py-24 sm:py-44">
           {/* INTRO SECTION */}
           <div
             ref={introRef}

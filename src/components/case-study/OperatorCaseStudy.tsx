@@ -45,7 +45,7 @@ const APPS: AppCard[] = [
 ];
 
 const CURRENT_STATE_IMAGES = [
-  { src: "/case-studies/operator/current-state-analysis-1.png", alt: "Current state analysis artifact 1" },
+  { src: "/case-studies/operator/CurrentStateAnalysis-1.png", alt: "Current state analysis artifact 1" },
   { src: "/case-studies/operator/current-state-analysis-2.png", alt: "Current state analysis artifact 2" },
   { src: "/case-studies/operator/current-state-analysis-3.png", alt: "Current state analysis artifact 3" },
   { src: "/case-studies/operator/current-state-analysis-4.png", alt: "Current state analysis artifact 4" },
@@ -124,7 +124,7 @@ export default function OperatorCaseStudy() {
   return (
     <>
       {/* Top */}
-      <section className="bg-white pb-44">
+      <section className="bg-white">
         <RiseInOnView staggerChildren>
           <div>
             <CaseStudyTopSection
@@ -170,12 +170,11 @@ export default function OperatorCaseStudy() {
     <RiseInOnView staggerChildren>
       <div className="space-y-12">
         {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="max-w-3xl">
           <SectionHeader
             title="The Operator Suite"
             description="Operator is made up of three applications designed to support agents, managers, and admins with consistent workflows and shared data."
             descriptionClassName="text-gray-500 text-xl leading-relaxed"
-            align="center"
             wrapperClassName="max-w-none"
             titleClassName="text-[#4521a6] text-4xl
   sm:text-5xl
@@ -283,42 +282,83 @@ export default function OperatorCaseStudy() {
       </RiseInOnView>
 
       {/* Current State Analysis */}
-      <RiseInOnView>
-        <div className="max-w-3xl text-left">
-          <h3 className="text-3xl font-medium tracking-tight text-[#474747]">
-            Current State Analysis
-          </h3>
+<RiseInOnView>
+  <div className="grid gap-12 lg:grid-cols-[0.28fr_0.72fr] lg:items-start">
+    {/* Left side text */}
+    <div className="max-w-xl text-left lg:sticky lg:top-32">
+      <h3 className="text-3xl font-medium tracking-tight text-[#474747]">
+        Current State Analysis
+      </h3>
 
-          <div className="mt-5 space-y-16 text-base sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed text-[#474747]/80 font-normal">
-            <p>
-              At the time of evaluation, the product experience relied on fragmented workflows and
-              inconsistent interface patterns. Core tasks required unnecessary steps, increasing
-              cognitive load and slowing down users’ ability to complete their work efficiently.
-              While the system functioned from a technical standpoint, it lacked clarity, hierarchy,
-              and scalability from a user experience perspective.
-            </p>
-          </div>
-        </div>
+      <div className="mt-5 text-base leading-relaxed text-[#474747]/80 font-normal lg:text-lg">
+        <p>
+          At the time of evaluation, the product experience relied on fragmented workflows and
+          inconsistent interface patterns. Core tasks required unnecessary steps, increasing
+          cognitive load and slowing down users’ ability to complete their work efficiently.
+        </p>
+        <p className="mt-8">
+          While the system functioned from a technical standpoint, it lacked clarity, hierarchy,
+          and scalability from a user experience perspective.
+        </p>
+      </div>
+    </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {CURRENT_STATE_IMAGES.map((img) => (
-            <div
-              key={img.src}
-              className="overflow-hidden rounded-3xl border border-black/10 bg-white"
-            >
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-contain"
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                />
-              </div>
-            </div>
-          ))}
+    {/* Right side image layout */}
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {/* Top left */}
+      <div className="overflow-hidden rounded-[28px] lg:col-span-1">
+        <div className="relative aspect-[16/10] lg:h-full lg:min-h-[240px] lg:aspect-auto">
+          <Image
+            src={CURRENT_STATE_IMAGES[0].src}
+            alt={CURRENT_STATE_IMAGES[0].alt}
+            fill
+            className="object-cover object-top"
+            sizes="(min-width: 1024px) 18vw, 100vw"
+          />
         </div>
-      </RiseInOnView>
+      </div>
+
+      {/* Top right (wide) */}
+      <div className="overflow-hidden rounded-[28px] lg:col-span-2">
+        <div className="relative aspect-[16/9]">
+          <Image
+            src={CURRENT_STATE_IMAGES[1].src}
+            alt={CURRENT_STATE_IMAGES[1].alt}
+            fill
+            className="object-cover object-top"
+            sizes="(min-width: 1024px) 30vw, 100vw"
+          />
+        </div>
+      </div>
+
+      {/* Bottom left (wide) */}
+      <div className="overflow-hidden rounded-[28px] lg:col-span-2">
+        <div className="relative aspect-[16/9]">
+          <Image
+            src={CURRENT_STATE_IMAGES[2].src}
+            alt={CURRENT_STATE_IMAGES[2].alt}
+            fill
+            className="object-cover object-top"
+            sizes="(min-width: 1024px) 30vw, 100vw"
+          />
+        </div>
+      </div>
+
+      {/* Bottom right */}
+      <div className="overflow-hidden rounded-[28px] lg:col-span-1">
+        <div className="relative aspect-[16/10] lg:h-full lg:min-h-[240px] lg:aspect-auto">
+          <Image
+            src={CURRENT_STATE_IMAGES[3].src}
+            alt={CURRENT_STATE_IMAGES[3].alt}
+            fill
+            className="object-cover object-top"
+            sizes="(min-width: 1024px) 18vw, 100vw"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</RiseInOnView>
 
       {/* Interviews */}
       <RiseInOnView>

@@ -52,7 +52,7 @@ export default function CaseStudyTopSection({
         {afterHero ? <div className="mt-14">{afterHero}</div> : null}
 
         {stats.length ? (
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 pb-24 sm:pb-32 lg:pb-44">
             {stats.map((s) => (
               <div key={s.label} className="rounded-2xl border border-black/10 bg-white p-5">
                 <p className="text-sm font-semibold text-gray-400">{s.label}</p>

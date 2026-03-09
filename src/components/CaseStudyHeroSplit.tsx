@@ -29,9 +29,9 @@ export default function CaseStudyHeroSplit({
   } as const;
 
   return (
-    <section className="bg-white pb-8 pt-16 sm:pt-24 max-w-7xl mx-auto px-5 sm:px-10">
+    <section className="bg-white pb-8 pt-32 sm:pt-32 lg:pt-44 max-w-7xl mx-auto px-5 sm:px-10">
     {/* Full-bleed layout */}
-    <div className="grid items-center gap-12 lg:gap-6 lg:grid-cols-[25%_80%]">
+    <div className="grid items-center gap-12 lg:gap-12 lg:grid-cols-[30%_70%]">
       {/* LEFT */}
       <div className="flex items-center">
         {/* This “fake container” aligns the content to your 7xl grid on the left only */}
