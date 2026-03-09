@@ -25,73 +25,86 @@ export default function HomePage() {
   {/* Background */}
   <div className="pointer-events-none absolute inset-0 z-0">
     <ColorBends
-  className="absolute inset-0 z-0"
-  rotation={45}
-  speed={0.25}
-  colors={["#3300ff", "#00aaff", "#00ff88"]}
-  transparent={false}
-  autoRotate={0}
-  scale={1.4}
-  frequency={1.2}
-  warpStrength={1.1}
-  mouseInfluence={0}
-  parallax={0.4}
-  noise={0.1}
-/>
+      className="absolute inset-0 z-0"
+      rotation={45}
+      speed={0.25}
+      colors={["#3300ff", "#00aaff", "#00ff88"]}
+      transparent={false}
+      autoRotate={0}
+      scale={1.4}
+      frequency={1.2}
+      warpStrength={1.1}
+      mouseInfluence={0}
+      parallax={0.4}
+      noise={0.1}
+    />
   </div>
 
-  {/* Optional dark overlay for readability */}
+  {/* Global dark overlay */}
   <div
     aria-hidden
     className="pointer-events-none absolute inset-0 z-10 bg-black/20"
   />
 
+  {/* Mobile image layer */}
+  <div className="pointer-events-none absolute inset-0 z-[15] lg:hidden">
+    <img
+      src="/HeroRightImage.png"
+      alt="Exelí portrait"
+      className="absolute bottom-0 right-[-14%] h-[78%] w-auto max-w-none object-contain opacity-95 drop-shadow-[0_28px_80px_rgba(0,0,0,0.55)] sm:right-[-8%] sm:h-[82%]"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+  </div>
+
   {/* Content */}
   <div className="relative z-20 h-full">
     <Container>
-      <div className="grid h-svh grid-cols-1 items-center gap-10 pt-32 pb-24 lg:grid-cols-2 lg:gap-16">
-        {/* LEFT */}
+      <div className="relative h-svh pt-28 pb-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 lg:pt-32">
+        {/* LEFT / mobile overlay text */}
         <RiseInOnView
           staggerChildren
           staggerMs={100}
-          className="w-full max-w-3xl text-left"
+          className="relative z-30 flex h-full w-full items-start lg:items-center"
         >
-          <h3 className="mb-6 text-4xl font-normal tracking-normal text-white sm:text-7xl">
-            ¡Hola!
-          </h3>
+          <div className="mt-8 w-full max-w-[22rem]">
+            <h3 className="mb-4 text-3xl font-normal tracking-normal text-white sm:mb-6 sm:text-5xl lg:text-4xl">
+              ¡Hola!
+            </h3>
 
-          <div className="inline-block">
-            <h1 className="text-6xl font-normal leading-[0.9] tracking-normal text-white sm:text-7xl md:text-8xl xl:text-[150px]">
-              I&apos;m Exelí
-            </h1>
+            <div className="inline-block">
+              <h1 className="text-5xl font-normal leading-[0.9] tracking-normal text-white sm:text-7xl md:text-8xl xl:text-[150px]">
+                I&apos;m Exelí
+              </h1>
 
-            <div className="mt-3 text-right">
-              <span className="text-base font-medium tracking-wide italic text-white/70 sm:text-lg">
-                (ex-cell-LEE)
-              </span>
+              <div className="mt-2 text-right sm:mt-3">
+                <span className="text-sm font-medium tracking-wide italic text-white/70 sm:text-lg">
+                  (ex-cell-LEE)
+                </span>
+              </div>
             </div>
-          </div>
 
-          <p className="mt-8 text-3xl font-normal leading-tight tracking-normal text-white sm:text-4xl md:text-5xl xl:text-6xl">
-            your design partner <br className="hidden sm:block" />
-            for what&apos;s next.
-          </p>
-          <p className="mt-3 text-3xl font-medium leading-tight tracking-normal text-white/70 sm:text-3xl md:text-4xl xl:text-xl italic">
-            UX/UI design for SaaS, internal tools, and business websites.
-          </p>
+            <p className="mt-6 text-2xl font-normal leading-tight tracking-normal text-white sm:mt-8 sm:text-4xl md:text-5xl xl:text-6xl">
+              your design partner <br className="hidden sm:block" />
+              for what&apos;s next.
+            </p>
+
+            <p className="mt-3 text-lg font-medium leading-tight tracking-normal text-white/75 italic sm:text-2xl md:text-4xl xl:text-xl">
+              UX/UI design for SaaS, internal tools, and business websites.
+            </p>
+          </div>
         </RiseInOnView>
 
-        {/* RIGHT */}
+        {/* RIGHT / desktop only */}
         <RiseInOnView
           staggerChildren
           staggerMs={100}
-          className="w-full max-w-3xl text-left"
+          className="hidden w-full max-w-3xl text-left lg:block"
         >
-          <div className="relative flex h-full w-full items-end justify-end -mb-24 sm:-mb-28 lg:-mb-28">
+          <div className="relative flex h-full w-full items-end justify-end -mb-24 lg:-mb-28">
             <img
               src="/HeroRightImage.png"
               alt="Exelí portrait"
-              className="pointer-events-none select-none w-[92%] max-w-[660px] object-contain opacity-95 drop-shadow-[0_28px_80px_rgba(0,0,0,0.55)] sm:w-[84%] lg:w-[94%] lg:max-w-[760px]"
+              className="pointer-events-none select-none w-[92%] max-w-[660px] object-contain opacity-95 drop-shadow-[0_28px_80px_rgba(0,0,0,0.55)] lg:w-[94%] lg:max-w-[760px]"
             />
           </div>
         </RiseInOnView>
@@ -115,7 +128,7 @@ export default function HomePage() {
     >
       <svg
         viewBox="0 0 24 24"
-        className="h-5 w-5 text-white/80 transition group-hover:text-white sm:h-6 sm:w-6 animate-scroll-arrow"
+        className="h-5 w-5 animate-scroll-arrow text-white/80 transition group-hover:text-white sm:h-6 sm:w-6"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"

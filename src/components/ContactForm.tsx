@@ -163,7 +163,7 @@ export default function ContactForm() {
     </select>
 
     {/* Custom dropdown icon */}
-    <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-neutral-300">
+    <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-neutral-400">
       <svg
         className="h-4 w-4"
         viewBox="0 0 20 20"
