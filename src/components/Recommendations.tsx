@@ -4,6 +4,7 @@ import { useMemo, useState, useCallback } from "react";
 import SectionHeader from "@/components/case-study/SectionHeader";
 import { recommendations } from "@/data/recommendations";
 import RecommendationsCarousel from "@/components/RecommendationsCarousel";
+import RiseInOnView from "./RiseInOnView";
 
 const COLLAPSED_PX = 170;
 
@@ -111,6 +112,7 @@ export default function Recommendations() {
   return (
       <div className="py-16 sm:py-16 md:py-32 lg:py-36 xl:py-44">
     <div className="mx-auto max-w-7xl px-4">
+      <RiseInOnView staggerChildren={true} staggerMs={90}>
         <SectionHeader
           title="Recommendations"
           dark
@@ -132,7 +134,7 @@ export default function Recommendations() {
               />
             )}
           />
-        </div>
+        </div></RiseInOnView>
       </div>
       </div>
   );

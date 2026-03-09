@@ -1,23 +1,27 @@
+"use client";
+
+import React from "react";
+import { Slot } from "@radix-ui/react-slot";
 
 type ButtonVariant = "cta" | "secondary";
 
-interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   asChild?: boolean;
 }
 
 export default function Button({
   variant = "secondary",
+  asChild = false,
   className = "",
   ...props
 }: ButtonProps) {
-  const base =
-  "inline-flex items-center justify-center rounded-xl border-[1px] " +
-  "cursor-pointer " +
-  "transition-all duration-200 " +
-  "focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30";
+  const Comp = asChild ? Slot : "button";
 
+  const base =
+    "inline-flex items-center justify-center rounded-xl border-[1px] " +
+    "cursor-pointer transition-all duration-200 " +
+    "focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30";
 
   const variants: Record<ButtonVariant, string> = {
     cta:
@@ -32,7 +36,7 @@ export default function Button({
   };
 
   return (
-    <button
+    <Comp
       className={[base, variants[variant], className].join(" ")}
       {...props}
     />

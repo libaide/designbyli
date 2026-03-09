@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Container from "./Container";
+import Button from "@/components/Button";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -14,9 +15,9 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-black/45 backdrop-blur-xl isolate will-change-transform transform-gpu">
+    <header className="fixed inset-x-0 border-b border-white/10 top-0 z-50 bg-black/45 backdrop-blur-xl isolate will-change-transform transform-gpu shadow-md">
       <Container>
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-24 items-center justify-between mx-auto">
           
           {/* Left Nav */}
           <nav className="flex items-center gap-8">
@@ -44,20 +45,9 @@ export default function Navbar() {
           </nav>
 
           {/* CTA Right */}
-          <Link
-            href="/contact"
-            className="
-              inline-flex items-center justify-center
-              rounded-full
-              px-5 py-2
-              text-sm font-medium
-              bg-white text-black
-              hover:bg-white/90
-              transition
-            "
-          >
-            Contact me
-          </Link>
+          <Button variant="cta" asChild>
+  <Link href="/contact">Let's connect</Link>
+</Button>
 
         </div>
       </Container>

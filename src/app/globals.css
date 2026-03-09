@@ -94,6 +94,33 @@ h1, h2, h3 {
   }
 }
 
+@keyframes scroll-arrow {
+  0% {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+.animate-scroll-arrow {
+  animation: scroll-arrow 1.8s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+
 .animate-fade-up {
   opacity: 0;
   animation: fadeUp 700ms ease-out forwards;
@@ -198,31 +225,23 @@ h1, h2, h3 {
     background-repeat: repeat;
     background-size: 256px 256px;
   }
-}
 
-@layer utilities {
-  /* Hero background tuned to match your reference */
   .hero-bg {
-    background-color: #050607;
-
+    background-color: #03040a;
     background-image:
-      /* cool gray haze (top-right) */
-      radial-gradient(1100px 720px at 78% 22%, rgba(205, 212, 214, 0.24), transparent 62%),
-
-      /* teal haze (left / lower-left) */
-      radial-gradient(1200px 900px at 22% 58%, rgba(14, 74, 72, 0.34), transparent 64%),
-
-      /* subtle mid haze (center) */
-      radial-gradient(900px 650px at 52% 42%, rgba(255, 255, 255, 0.06), transparent 60%),
-
-      /* base vertical shading */
-      linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.30) 40%, rgba(0,0,0,0.86) 100%);
-
+      radial-gradient(ellipse 520px 900px at 78% -5%,  rgba(90, 60, 180, 0.72)  0%, transparent 70%),
+      radial-gradient(ellipse 380px 750px at 72% 5%,   rgba(30, 90, 230, 0.90)  0%, transparent 65%),
+      radial-gradient(ellipse 160px 500px at 66% 12%,  rgba(210, 220, 255, 0.75) 0%, transparent 55%),
+      radial-gradient(ellipse 440px 800px at -4% 48%,  rgba(80, 50, 170, 0.65)  0%, transparent 70%),
+      radial-gradient(ellipse 320px 680px at 4% 55%,   rgba(20, 80, 220, 0.85)  0%, transparent 65%),
+      radial-gradient(ellipse 130px 460px at 9% 52%,   rgba(200, 215, 255, 0.70) 0%, transparent 55%),
+      radial-gradient(ellipse 700px 300px at 15% 105%, rgba(15, 60, 200, 0.60)  0%, transparent 65%),
+      radial-gradient(ellipse 600px 280px at 88% 105%, rgba(40, 30, 160, 0.50)  0%, transparent 65%),
+      radial-gradient(ellipse 60% 60% at 50% 45%, rgba(0,0,0,0) 0%, #03040a 70%);
     background-repeat: no-repeat;
     background-size: cover;
   }
 
-  /* Stronger vignette like the reference */
   .hero-vignette {
     position: relative;
   }
@@ -232,7 +251,6 @@ h1, h2, h3 {
     inset: 0;
     pointer-events: none;
     z-index: 20;
-
     background:
       radial-gradient(120% 120% at 50% 40%,
         rgba(0,0,0,0) 42%,
@@ -240,6 +258,7 @@ h1, h2, h3 {
         rgba(0,0,0,0.92) 100%
       );
   }
+}
 
   /* Noise overlay */
   /*.hero-noise::before {
@@ -255,7 +274,6 @@ h1, h2, h3 {
     mix-blend-mode: overlay;
   }*/
   
-}
 
 .static-noise {
   background-image: url("/noise.png");

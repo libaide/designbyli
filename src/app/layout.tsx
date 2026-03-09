@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="min-h-dvh bg-background text-foreground" suppressHydrationWarning>
         <Navbar />
-        <main className="pt-16">{children}</main>
+        <main className="pt-0">{children}</main>
         <Footer />
       </body>
     </html>

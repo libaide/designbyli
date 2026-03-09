@@ -7,6 +7,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { projects } from "@/data/projects";
 import Button from "@/components/Button";
 import SectionHeader from "@/components/case-study/SectionHeader";
+import RiseInOnView from "./RiseInOnView";
 
 function useInViewStaggered(count: number) {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -100,6 +101,7 @@ export default function FeaturedWorkAnimated() {
       {/* Foreground content */}
       <div className="relative z-10 py-24 sm:py-44">
         <div className="mx-auto max-w-7xl px-4">
+          <RiseInOnView staggerChildren={true} staggerMs={90}>
           <SectionHeader
             title="Featured Case Studies"
             dark
@@ -181,10 +183,10 @@ export default function FeaturedWorkAnimated() {
           </div>
 
           <div className="mt-12 flex justify-center">
-            <Link href="/work">
-              <Button>View all case studies</Button>
-            </Link>
-          </div>
+            <Button asChild>
+  <Link href="/work">View all case studies</Link>
+</Button>
+          </div></RiseInOnView>
         </div>
       </div>
     </section>
