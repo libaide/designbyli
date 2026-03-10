@@ -4,60 +4,26 @@ import { useRef } from "react";
 import ContactSection from "@/components/ContactSection";
 import Image from "next/image";
 import RiseInOnView from "@/components/RiseInOnView";
+import ImageTrail from "@/components/ImageTrail";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// --- AnimatedWord Component (define ONCE) ---
-// Note: no overflow-hidden here (prevents cropping).
-function AnimatedWord({
-  text,
-  className = "",
-}: {
-  text: string;
-  className?: string;
-}) {
-  const containerRef = useRef<HTMLSpanElement | null>(null);
-
-  useGSAP(() => {
-    const letters = containerRef.current?.querySelectorAll(".letter");
-    if (!letters) return;
-
-    gsap.fromTo(
-      letters,
-      { yPercent: 105, opacity: 0 },
-      {
-        yPercent: 0,
-        opacity: 1,
-        duration: 0.85,
-        ease: "power3.out",
-        stagger: 0.035,
-        delay: 0.05,
-      }
-    );
-  }, []);
-
-  return (
-    <span ref={containerRef} className={`inline-block ${className}`}>
-      {text.split("").map((char, i) => (
-        <span
-          key={i}
-          className="letter inline-block"
-          style={{ whiteSpace: char === " " ? "pre" : "normal" }}
-        >
-          {char}
-        </span>
-      ))}
-    </span>
-  );
-}
-
 export default function AboutPage() {
   const heroRef = useRef<HTMLElement | null>(null);
   const introRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
+
+  const trailImages = [
+    "/Keys.png",
+    "/Concert.jpg",
+    "/Friends.jpg",
+    "/Forest.png",
+    "/Space.jpg",
+    "/Guitar.png",
+  ];
 
   useGSAP(() => {
     const hero = heroRef.current;
@@ -66,7 +32,6 @@ export default function AboutPage() {
 
     if (!hero || !intro || !content) return;
 
-    // Initial states
     gsap.set(hero, { backgroundColor: "#000000" });
     gsap.set(content, { opacity: 0, y: 40 });
 
@@ -93,7 +58,6 @@ export default function AboutPage() {
           },
         });
 
-        // Fade out intro
         tl.to(
           intro,
           {
@@ -104,9 +68,8 @@ export default function AboutPage() {
           0
         );
 
-        const t = isMobile ? 0.10 : 0.18;
+        const t = isMobile ? 0.1 : 0.18;
 
-        // Transition bg to white as content begins
         tl.to(
           hero,
           {
@@ -116,7 +79,6 @@ export default function AboutPage() {
           t
         );
 
-        // Fade in content
         tl.to(
           content,
           {
@@ -127,8 +89,7 @@ export default function AboutPage() {
           t
         );
 
-        // HOLD
-        tl.to({}, { duration: isMobile ? 0.10 : 0.35 });
+        tl.to({}, { duration: isMobile ? 0.1 : 0.35 });
 
         return () => {
           tl.scrollTrigger?.kill();
@@ -142,50 +103,25 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* Pinned Hero Sequence */}
       <section
         ref={heroRef}
-        className="relative min-h-[100svh] bg-black overflow-hidden"
+        className="relative min-h-[100svh] overflow-hidden bg-black"
       >
-        <div className="mx-auto px-6 sm:px-10 py-24 sm:py-44">
+        <div className="pointer-events-none fixed inset-0 z-0">
+  <ImageTrail items={trailImages} variant={1} />
+</div>
+
+        <div className="relative z-10 mx-auto px-6 py-24 sm:px-10 sm:py-44">
           {/* INTRO SECTION */}
           <div
             ref={introRef}
-            className="flex flex-col items-center justify-center text-center min-h-[70svh]"
+            className="flex min-h-[70svh] flex-col items-center justify-center text-center"
           >
             <RiseInOnView staggerChildren={true} staggerMs={140}>
-              {/* Title */}
-  <h1 className="text-white tracking-tight text-center max-w-[900px] leading-none">
-    {/* Excellent */}
-    <span className="block overflow-hidden pt-[0.10em] pb-[0.38em]">
-      <AnimatedWord
-        text="Excellent"
-        className="block font-semibold italic text-[clamp(56px,7vw,200px)] leading-[0.95]"
-      />
-    </span>
+              <h1 className="mx-auto max-w-[1200px] text-center text-4xl leading-snug tracking-normal sm:text-5xl md:text-6xl lg:text-6xl xl:text-8xl">
+                I believe excellent design isn&apos;t just about aesthetics.
+              </h1>
 
-    {/* Design */}
-    <span className="block overflow-hidden pt-[0.10em] pb-[0.45em] mt-3 translate-x-[6%] sm:translate-x-[10%] lg:translate-x-[14%]">
-      <AnimatedWord
-        text="Design"
-        className="block font-semibold italic text-[clamp(56px,7vw,200px)] leading-[0.95]"
-      />
-    </span>
-  </h1>
-
-              {/* Subhead */}
-              <p className="mt-10 font-light text-white text-[clamp(22px,3vw,54px)] leading-tight max-w-4xl">
-                …isn&apos;t just about aesthetics
-              </p>
-
-              {/* Supporting text */}
-              <p className="mt-8 max-w-3xl font-light text-white text-[clamp(16px,1.6vw,26px)] leading-relaxed">
-                it&apos;s about crafting intuitive experiences that
-                <br />
-                empower users and solve real-world problems.
-              </p>
-
-              {/* Hint */}
               <div className="mt-16 text-[12px] font-light text-white/30">
                 Scroll to learn more
               </div>
@@ -194,7 +130,7 @@ export default function AboutPage() {
 
           {/* CONTENT SECTION */}
           <div ref={contentRef} className="mx-auto max-w-175 pb-24">
-            <div className="space-y-5 text-xl leading-relaxed text-gray-500 font-normal">
+            <div className="space-y-5 text-xl font-normal leading-relaxed text-gray-500">
               <p>
                 My journey into UX/UI design began serendipitously as a lead web designer.
                 Introduced to an in-house QA tool, I quickly became fascinated by the
@@ -233,21 +169,20 @@ export default function AboutPage() {
               </p>
 
               <p>
-                When I’m not designing, you’ll usually find me spending quality time with
+                When I&apos;m not designing, you&apos;ll usually find me spending quality time with
                 my wife and daughter, maybe exploring the beautiful river lodges near El
                 Cangrejal for a swim. I also dedicate time to my passion for music, playing
-                and recording progressive metal guitar or producing electronic tracks. I’m
+                and recording progressive metal guitar or producing electronic tracks. I&apos;m
                 always looking for opportunities to build meaningful connections and
                 collaborate on impactful work.
               </p>
 
-              {/* Signature */}
               <div className="pt-12">
                 <div className="flex items-center justify-end gap-6">
                   <div className="text-right">
                     <p className="text-lg font-medium text-gray-500">Exelí Baide</p>
 
-                    <p className="mt-1 flex items-center justify-end gap-2 text-sm text-gray-500 font-light">
+                    <p className="mt-1 flex items-center justify-end gap-2 text-sm font-light text-gray-500">
                       <svg
                         aria-hidden="true"
                         viewBox="0 0 24 24"
@@ -281,7 +216,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <ContactSection id="contact" />
     </>
   );

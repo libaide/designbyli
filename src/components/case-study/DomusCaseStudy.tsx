@@ -54,6 +54,29 @@ const JOURNEY_CARDS = [
   },
 ] as const;
 
+const DESIGN_SYSTEM_PREVIEWS = [
+  {
+    src: "/case-studies/domus/Icons.png",
+    alt: "Domus icon set",
+  },
+  {
+    src: "/case-studies/domus/Light-Theme.png",
+    alt: "Domus light theme preview",
+  },
+  {
+    src: "/case-studies/domus/Tonal-Palettes.png",
+    alt: "Domus tonal palettes preview",
+  },
+  {
+    src: "/case-studies/domus/Domus-Typography.png",
+    alt: "Domus typography preview",
+  },
+  {
+    src: "/case-studies/domus/Dark-Theme.png",
+    alt: "Domus dark theme preview",
+  },
+] as const;
+
 const MOBILE_PREVIEWS: PreviewImage[] = [
   { src: "/case-studies/domus/mobile-preview-1.png", alt: "Domus mobile UI preview 1" },
   { src: "/case-studies/domus/mobile-preview-2.png", alt: "Domus mobile UI preview 2" },
@@ -543,116 +566,155 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Wireframes */}
-      <section className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-44">
-        <Container>
-          <div className="relative">
-            <RiseInOnView>
-              <SectionHeader
-                title="Wireframes"
-                description="After finalizing the flow diagrams and defining the MVP scope and core features, I transitioned into low-fidelity wireframes. I collaborated closely with the client to ensure all critical MVP functionalities were represented and the UX remained simple and intuitive."
-                descriptionClassName="text-[#1B2166] text-xl font-normal leading-relaxed"
-                titleClassName="text-[#1B2166] text-4xl
-  sm:text-5xl
-  md:text-6xl
-  lg:text-7xl
-  font-semibold
-  tracking-tight
-  leading-tight"
-              />
-            </RiseInOnView>
+<section
+  className="relative overflow-hidden py-20 sm:py-24 lg:py-44 bg-cover bg-repeat"
+  style={{ backgroundImage: "url('/case-studies/domus/Wireframs-BG.png')" }}
+>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-white/60" />
 
-            <RiseInOnView delayMs={80}>
-              <div className="relative mt-14">
-                <div className="mx-auto max-w-6xl rounded-3xl bg-white">
-                  <div className="p-6 sm:p-8">
-                    <RiseInOnView staggerChildren staggerMs={90} y={12} duration={850}>
-                      <p className="text-sm text-[#1B2166]/55">(Preview)</p>
+  <Container>
+    <div className="relative z-10">
+      <RiseInOnView>
+        <SectionHeader
+          title="Wireframes"
+          description="After finalizing the flow diagrams and defining the MVP scope and core features, I transitioned into low-fidelity wireframes. I collaborated closely with the client to ensure all critical MVP functionalities were represented and the UX remained simple and intuitive."
+          descriptionClassName="text-[#1B2166] text-xl font-normal leading-relaxed"
+          titleClassName="text-[#1B2166] text-4xl
+            sm:text-5xl
+            md:text-6xl
+            lg:text-7xl
+            font-semibold
+            tracking-tight
+            leading-tight"
+        />
+      </RiseInOnView>
+    </div>
+  </Container>
+</section>
 
-                      <div className="mt-6 space-y-6">
-                        <div className="grid gap-6 lg:grid-cols-3">
-                          {WIREFRAMES.slice(0, 3).map((w, idx) => (
-                            <RiseInOnView key={w.src} delayMs={80 + idx * 90}>
-                              <div className="relative overflow-hidden rounded-2xl bg-white">
-                                <div className={cx("relative h-full", w.aspectClass)}>
-                                  <Image
-                                    src={w.src}
-                                    alt={w.alt}
-                                    fill
-                                    className="object-contain"
-                                    sizes="(min-width: 1024px) 320px, 100vw"
-                                  />
-                                </div>
-                              </div>
-                            </RiseInOnView>
-                          ))}
-                        </div>
+     {/* Design System */}
+<section className="relative overflow-hidden bg-[#f6f7ff] py-20 sm:py-24 lg:py-44">
+  <Container>
+    <div className="relative">
+      <RiseInOnView>
+        <SectionHeader
+          title="Design System"
+          description="Using the Material Theme Builder, I generated an accessible, Domus-branded design system and created a local component library and style tokens tailored to the project’s needs."
+          descriptionClassName="text-[#1B2166] text-xl font-normal leading-relaxed max-w-4xl"
+          titleClassName="text-[#1b2166] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight"
+        />
+      </RiseInOnView>
 
-                        {WIREFRAMES[3] ? (
-                          <RiseInOnView delayMs={80 + 3 * 90}>
-                            <div className="relative overflow-hidden rounded-2xl bg-white">
-                              <div className={cx("relative h-full", WIREFRAMES[3].aspectClass)}>
-                                <Image
-                                  src={WIREFRAMES[3].src}
-                                  alt={WIREFRAMES[3].alt}
-                                  fill
-                                  className="object-contain"
-                                  sizes="(min-width: 1024px) 1024px, 100vw"
-                                />
-                              </div>
-                            </div>
-                          </RiseInOnView>
-                        ) : null}
-                      </div>
-                    </RiseInOnView>
-                  </div>
-                </div>
-              </div>
-            </RiseInOnView>
-          </div>
-        </Container>
-      </section>
+      <RiseInOnView delayMs={90}>
+        <div className="relative mt-14">
+          <div className="mx-auto max-w-[1440px]">
+            <p className="text-sm text-[#1B2166]/55">Previews</p>
 
-      {/* Design System */}
-      <section className="relative overflow-hidden bg-[#f6f7ff] py-20 sm:py-24 lg:py-44">
-        <Container>
-          <div className="relative">
-            <RiseInOnView>
-              <SectionHeader
-                title="Design System"
-                description="Using the Material Theme Builder, I generated an accessible, Domus-branded design system and created a local component library and style tokens tailored to the project’s needs."
-                descriptionClassName="text-[#1B2166] text-xl font-normal leading-relaxed"
-                titleClassName="text-[#1b2166] text-4xl
-  sm:text-5xl
-  md:text-6xl
-  lg:text-7xl
-  font-semibold
-  tracking-tight
-  leading-tight"
-              />
-            </RiseInOnView>
-
-            <RiseInOnView delayMs={90}>
-              <div className="relative mt-14">
-                <div className="mx-auto max-w-5xl rounded-3xl border border-black/5 bg-white shadow-[0_25px_70px_rgba(15,23,42,0.18)]">
-                  <div className="p-4 sm:p-6">
-                    <div className="relative overflow-hidden rounded-2xl bg-white">
-                      <ZoomImageButton
-                        src="/case-studies/domus/design-system.png"
-                        alt="Domus design system artifacts: color, typography, icons, and components"
-                        aspectClass="aspect-[16/13] sm:aspect-[16/12]"
-                        sizes="(min-width: 1024px) 900px, 100vw"
-                        imgClassName="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                        onExpand={openImage}
-                        hint={false}
+            {/* Mobile / tablet */}
+            <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 xl:hidden">
+              {DESIGN_SYSTEM_PREVIEWS.map((item, idx) => (
+                <RiseInOnView key={item.src} delayMs={80 + idx * 80}>
+                  <div className="overflow-hidden rounded-[28px] bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+                    <div className="relative aspect-[16/10]">
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 768px) 50vw, 100vw"
                       />
                     </div>
                   </div>
-                </div>
-              </div>
-            </RiseInOnView>
+                </RiseInOnView>
+              ))}
+            </div>
+
+           {/* Desktop editorial layout */}
+<div className="mt-6 hidden xl:grid xl:grid-cols-12 xl:gap-6 2xl:gap-8 xl:items-stretch">
+  {/* Left tall */}
+  <RiseInOnView delayMs={80} className="xl:col-span-4">
+    <div className="h-full overflow-hidden rounded-[28px] bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+      <div className="relative h-[780px] 2xl:h-[860px]">
+        <Image
+          src={DESIGN_SYSTEM_PREVIEWS[3].src}
+          alt={DESIGN_SYSTEM_PREVIEWS[3].alt}
+          fill
+          className="object-cover object-top"
+          sizes="(min-width: 1536px) 30vw, (min-width: 1280px) 32vw, 100vw"
+        />
+      </div>
+    </div>
+  </RiseInOnView>
+
+  {/* Middle column: short top, tall bottom */}
+  <div className="flex h-[780px] flex-col gap-6 2xl:h-[860px] 2xl:gap-8 xl:col-span-4">
+    <RiseInOnView delayMs={160}>
+      <div className="overflow-hidden rounded-[28px] bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+        <div className="relative h-[170px] 2xl:h-[190px]">
+          <Image
+            src={DESIGN_SYSTEM_PREVIEWS[1].src}
+            alt={DESIGN_SYSTEM_PREVIEWS[1].alt}
+            fill
+            className="object-cover object-top"
+            sizes="(min-width: 1536px) 30vw, (min-width: 1280px) 32vw, 100vw"
+          />
+        </div>
+      </div>
+    </RiseInOnView>
+
+    <RiseInOnView delayMs={240} className="flex-1">
+      <div className="h-full overflow-hidden rounded-[28px] bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+        <div className="relative h-full">
+          <Image
+            src={DESIGN_SYSTEM_PREVIEWS[2].src}
+            alt={DESIGN_SYSTEM_PREVIEWS[2].alt}
+            fill
+            className="object-cover object-top"
+            sizes="(min-width: 1536px) 30vw, (min-width: 1280px) 32vw, 100vw"
+          />
+        </div>
+      </div>
+    </RiseInOnView>
+  </div>
+
+  {/* Right column: tall top, short bottom */}
+  <div className="flex h-[780px] flex-col gap-6 2xl:h-[860px] 2xl:gap-8 xl:col-span-4">
+    <RiseInOnView delayMs={320} className="flex-1">
+      <div className="h-full overflow-hidden rounded-[28px] bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+        <div className="relative h-full">
+          <Image
+            src={DESIGN_SYSTEM_PREVIEWS[0].src}
+            alt={DESIGN_SYSTEM_PREVIEWS[0].alt}
+            fill
+            className="object-cover object-top"
+            sizes="(min-width: 1536px) 30vw, (min-width: 1280px) 32vw, 100vw"
+          />
+        </div>
+      </div>
+    </RiseInOnView>
+
+    <RiseInOnView delayMs={400}>
+      <div className="overflow-hidden rounded-[28px] bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+        <div className="relative h-[170px] 2xl:h-[190px]">
+          <Image
+            src={DESIGN_SYSTEM_PREVIEWS[4].src}
+            alt={DESIGN_SYSTEM_PREVIEWS[4].alt}
+            fill
+            className="object-cover object-top"
+            sizes="(min-width: 1536px) 30vw, (min-width: 1280px) 32vw, 100vw"
+          />
+        </div>
+      </div>
+    </RiseInOnView>
+  </div>
+</div>
           </div>
-        </Container>
-      </section>
+        </div>
+      </RiseInOnView>
+    </div>
+  </Container>
+</section>
 
       {/* UI Previews */}
 <section className="relative overflow-hidden py-24">

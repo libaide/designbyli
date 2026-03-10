@@ -66,7 +66,7 @@ export default function HomePage() {
           staggerMs={100}
           className="relative z-30 flex h-full w-full items-start lg:items-center"
         >
-          <div className="mt-8 w-full max-w-[22rem]">
+          <div className="mt-8 w-full max-w-[44rem]">
             <h3 className="mb-4 text-3xl font-normal tracking-normal text-white sm:mb-6 sm:text-5xl lg:text-4xl">
               ¡Hola!
             </h3>
