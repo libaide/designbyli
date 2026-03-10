@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState, useCallback } from "react";
 import SectionHeader from "@/components/case-study/SectionHeader";
 import { recommendations } from "@/data/recommendations";
@@ -12,12 +13,14 @@ function RecCard({
   name,
   title,
   text,
+  image,
   expanded,
   onToggle,
 }: {
   name: string;
   title: string;
   text: string;
+  image: string;
   expanded: boolean;
   onToggle: () => void;
 }) {
@@ -38,7 +41,6 @@ function RecCard({
         focus-visible:ring-2 focus-visible:ring-white/60
       "
     >
-      {/* Text area */}
       <div
         className="relative overflow-hidden"
         style={{
@@ -55,7 +57,6 @@ function RecCard({
         )}
       </div>
 
-      {/* Subtle Read More */}
       <div className="mt-4 flex items-center gap-2 text-sm text-white/60 transition group-hover:text-white">
         <span>{expanded ? "Show less" : "Read more"}</span>
 
@@ -72,11 +73,22 @@ function RecCard({
         </svg>
       </div>
 
-      <figcaption className="mt-8">
-        <div className="text-sm font-semibold text-white sm:text-base">
-          {name}
+      <figcaption className="mt-8 flex items-center gap-4">
+        <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border border-white/10 bg-white/5">
+          <Image
+            src={image}
+            alt={`Portrait of ${name}`}
+            fill
+            className="object-cover"
+          />
         </div>
-        <div className="mt-1 text-xs text-[#c9c9d3] sm:text-sm">{title}</div>
+
+        <div>
+          <div className="text-sm font-semibold text-white sm:text-base">
+            {name}
+          </div>
+          <div className="mt-1 text-xs text-[#c9c9d3] sm:text-sm">{title}</div>
+        </div>
       </figcaption>
     </figure>
   );
@@ -86,6 +98,7 @@ type RecItem = {
   name: string;
   title: string;
   quote: string;
+  image: string;
 };
 
 export default function Recommendations() {
@@ -95,6 +108,7 @@ export default function Recommendations() {
         name: r.name,
         title: r.title,
         quote: r.text,
+        image: r.image,
       })),
     []
   );
@@ -110,32 +124,31 @@ export default function Recommendations() {
   if (items.length === 0) return null;
 
   return (
-      <div className="py-16 sm:py-16 md:py-32 lg:py-36 xl:py-44">
-    <div className="mx-auto max-w-7xl px-4">
-      <RiseInOnView staggerChildren={true} staggerMs={90}>
-        <SectionHeader
-          title="Recommendations"
-          dark
-          underline={{ show: false }}
-          // description="What teammates and stakeholders have said about working with me."
-          // descriptionClassName="text-white/70"
-        />
-
-        <div className="mt-12">
-          <RecommendationsCarousel
-            items={items}
-            renderSlide={(rec, i) => (
-              <RecCard
-                name={rec.name}
-                title={rec.title}
-                text={rec.quote}
-                expanded={!!expandedByIndex[i]}
-                onToggle={() => toggleExpanded(i)}
-              />
-            )}
+    
+      <div className="mx-auto max-w-7xl px-4 pt-24 sm:pt-16 md:pt-32 lg:pt-36 xl:pt-44">
+        <RiseInOnView staggerChildren={true} staggerMs={90}>
+          <SectionHeader
+            title="Recommendations"
+            dark
+            underline={{ show: false }}
           />
-        </div></RiseInOnView>
-      </div>
+
+          <div className="mt-12">
+            <RecommendationsCarousel
+              items={items}
+              renderSlide={(rec, i) => (
+                <RecCard
+                  name={rec.name}
+                  title={rec.title}
+                  text={rec.quote}
+                  image={rec.image}
+                  expanded={!!expandedByIndex[i]}
+                  onToggle={() => toggleExpanded(i)}
+                />
+              )}
+            />
+          </div>
+        </RiseInOnView>
       </div>
   );
 }

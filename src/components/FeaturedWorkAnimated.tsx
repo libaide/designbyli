@@ -99,7 +99,7 @@ export default function FeaturedWorkAnimated() {
   return (
 <section>
       {/* Foreground content */}
-      <div className="relative z-10 py-24 sm:py-44">
+      <div className="relative z-10">
         <div className="mx-auto max-w-7xl px-4">
           <RiseInOnView staggerChildren={true} staggerMs={90}>
           <SectionHeader

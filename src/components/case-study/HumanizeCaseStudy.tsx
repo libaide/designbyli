@@ -108,7 +108,7 @@ export default function HumanizeCaseStudy() {
       </RiseInOnView>
 
       {/* Context & Opportunity */}
-      <section className="relative overflow-hidden border-b-4 border-[#1B1B1B] py-24 sm:py-32 lg:py-44">
+      <section className="relative overflow-hidden border-b-4 border-[#1B1B1B] py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
         <div className="absolute inset-0 bg-[#A3DEFA]" />
 
         <div className="relative mx-auto w-full max-w-7xl px-6">
@@ -157,7 +157,7 @@ export default function HumanizeCaseStudy() {
       </section>
 
       {/* Objectives */}
-      <section className="border-y-4 border-[#1B1B1B] bg-[#F5F3E8] py-24 sm:py-32 lg:py-44">
+      <section className="border-y-4 border-[#1B1B1B] bg-[#F5F3E8] py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
         <Container>
           <RiseInOnView>
             <SectionHeader
@@ -187,7 +187,7 @@ export default function HumanizeCaseStudy() {
       </section>
 
       {/* Design Process */}
-      <section className="relative overflow-hidden py-24 sm:py-32 lg:py-44">
+      <section className="relative overflow-hidden py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
         <div className="absolute inset-0 bg-[#0B0B10]" />
 
         <div
@@ -364,7 +364,7 @@ export default function HumanizeCaseStudy() {
       </section>
 
       {/* UI Previews (UPDATED to match Operator-style grid + hint visible on mobile) */}
-      <section className="relative overflow-hidden border-b-4 border-[#1B1B1B] py-24 sm:py-32 lg:py-44">
+      <section className="relative overflow-hidden border-b-4 border-[#1B1B1B] py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
         <div className="absolute inset-0 bg-[#F5F3E8]" />
 
         <Container className="relative z-10">
@@ -421,7 +421,7 @@ export default function HumanizeCaseStudy() {
       </section>
 
       {/* Launch & Impact */}
-      <section className="relative overflow-hidden border-t-4 border-[#1B1B1B] bg-[#A3DEFA] py-24 sm:py-32 lg:py-44">
+      <section className="relative overflow-hidden border-t-4 border-[#1B1B1B] bg-[#A3DEFA] py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
         <Container>
           <RiseInOnView>
             <SectionHeader

@@ -47,7 +47,7 @@ export default function WorkAndRecommendationsSection() {
       ref={areaRef}
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
-      className="relative overflow-hidden isolate"
+      className="relative overflow-hidden isolate py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44"
     >
       {/* Base layer */}
       <div aria-hidden="true" className="absolute inset-0 bg-black" />

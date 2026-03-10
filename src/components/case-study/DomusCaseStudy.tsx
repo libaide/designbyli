@@ -251,8 +251,8 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Problem & Context */}
-      <section className="relative overflow-hidden bg-[#ecfffe]">
-        <div className="relative mx-auto w-full max-w-7xl px-4 py-20 lg:py-44">
+      <section className="relative overflow-hidden bg-[#ecfffe] ">
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
           <RiseInOnView className="relative z-20">
             <div className="max-w-xl lg:max-w-[660px] lg:rounded-3xl lg:bg-[#FFD000] lg:p-10 lg:shadow-xl">
               <RiseInOnView staggerChildren staggerMs={90} className="space-y-0" y={14} duration={850}>
@@ -297,7 +297,7 @@ export default function DomusCaseStudy() {
 
           <div className="pointer-events-none absolute bottom-[-40px] right-[-80px] hidden lg:block">
             <RiseInOnView delayMs={140} className="relative z-0">
-              <div className="relative h-[860px] w-[860px] xl:h-[980px] xl:w-[980px]">
+              <div className="relative h-[860px] w-[860px] xl:h-[980px] xl:w-[1000px]">
                 <Image
                   src="/case-studies/domus/problem-and-context.png"
                   alt="Problem and context visual"
@@ -313,7 +313,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Business Objectives & MVP Goals */}
-      <section className="bg-white py-20 sm:py-24 lg:py-44">
+      <section className="bg-white py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
         <Container>
           <RiseInOnView staggerChildren staggerMs={90} y={14} duration={850}>
             <SectionHeader
@@ -349,7 +349,7 @@ export default function DomusCaseStudy() {
                     <path d="M7 16h4" />
                   </svg>
                 </div>
-                <h4 className="text-2xl font-medium tracking-tight text-[#1B2166]">Core MVP Objectives</h4>
+                <h3 className="text-3xl font-medium tracking-tight text-[#1B2166]">Core MVP Objectives</h3>
               </div>
 
               <ul className="mt-10 space-y-6">
@@ -380,7 +380,7 @@ export default function DomusCaseStudy() {
                     <path d="M7 15l3-3 3 2 5-6" />
                   </svg>
                 </div>
-                <h4 className="text-2xl font-medium tracking-tight text-[#1B2166]">Success Metrics</h4>
+                <h3 className="text-3xl font-medium tracking-tight text-[#1B2166]">Success Metrics</h3>
               </div>
 
               <ul className="mt-10 space-y-6">
@@ -399,7 +399,7 @@ export default function DomusCaseStudy() {
       </section>
 
       {/* Personas */}
-      <section className="relative overflow-hidden py-20 sm:py-24 lg:py-44">
+      <section className="relative overflow-hidden py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1B1E4B] via-[#15173A] to-[#0A0B1F]" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/30" />
@@ -436,7 +436,7 @@ export default function DomusCaseStudy() {
                   </div>
 
                   <div>
-                    <h4 className="text-2xl font-medium text-white">Karen López</h4>
+                    <h3 className="text-3xl font-normal text-white">Karen López</h3>
                     <p className="mt-1 text-sm text-gray-300">Female · 32 years old · Client</p>
 
                     <ul className="mt-6 space-y-4 text-xl">
@@ -468,7 +468,7 @@ export default function DomusCaseStudy() {
                   </div>
 
                   <div>
-                    <h4 className="text-2xl font-medium text-white">Jorge Ortega</h4>
+                    <h3 className="text-3xl font-medium text-white">Jorge Ortega</h3>
                     <p className="mt-1 text-sm text-gray-300">Male · 40 years old · Technician</p>
 
                     <ul className="mt-6 space-y-4 text-xl">
@@ -491,7 +491,7 @@ export default function DomusCaseStudy() {
 
       {/* Competitive Research */}
       <section
-        className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-44"
+        className="relative overflow-hidden bg-white py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44"
         style={{
           backgroundImage: "url('/case-studies/domus/pattern-tile.png')",
           backgroundRepeat: "repeat",
@@ -541,7 +541,7 @@ export default function DomusCaseStudy() {
 
       {/* User Flows & Journeys */}
       <section
-        className="relative py-20 sm:py-24 lg:py-44 flex items-center justify-center bg-fixed bg-cover bg-center"
+        className="relative py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44 flex items-center justify-center bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('/case-studies/domus/UserJourneys.png')" }}
       >
         <RiseInOnView>
@@ -567,7 +567,7 @@ export default function DomusCaseStudy() {
 
       {/* Wireframes */}
 <section
-  className="relative overflow-hidden py-20 sm:py-24 lg:py-44 bg-cover bg-repeat"
+  className="relative overflow-hidden py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44 bg-cover bg-repeat"
   style={{ backgroundImage: "url('/case-studies/domus/Wireframs-BG.png')" }}
 >
   {/* Overlay */}
@@ -594,7 +594,7 @@ export default function DomusCaseStudy() {
 </section>
 
      {/* Design System */}
-<section className="relative overflow-hidden bg-[#f6f7ff] py-20 sm:py-24 lg:py-44">
+<section className="relative overflow-hidden bg-[#f6f7ff] py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
   <Container>
     <div className="relative">
       <RiseInOnView>
@@ -717,7 +717,7 @@ export default function DomusCaseStudy() {
 </section>
 
       {/* UI Previews */}
-<section className="relative overflow-hidden py-24">
+<section className="relative overflow-hidden py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
   {/* Background gradient (same as Personas section) */}
   <div className="absolute inset-0">
     <div className="absolute inset-0 bg-gradient-to-br from-[#1B1E4B] via-[#15173A] to-[#0A0B1F]" />
@@ -799,7 +799,7 @@ export default function DomusCaseStudy() {
 
       {/* Reflection */}
       <section
-        className="relative overflow-hidden bg-[#F6F7FF] py-20"
+        className="relative overflow-hidden bg-[#F6F7FF] py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44"
         style={{
           backgroundImage: "url('/case-studies/domus/pattern-tile.png')",
           backgroundRepeat: "repeat",

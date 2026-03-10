@@ -63,8 +63,8 @@ export default function Navbar() {
 
             {/* CTA always visible */}
             <Button variant="cta" asChild>
-              <Link href="/contact">Let&apos;s connect</Link>
-            </Button>
+  <Link href="/contact">Let&apos;s connect</Link>
+</Button>
           </div>
         </Container>
       </header>

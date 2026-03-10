@@ -165,7 +165,7 @@ export default function OperatorCaseStudy() {
       </section>
 
 {/* Apps Overview */}
-<section className="bg-[#fbfaf9] py-24 sm:py-32 lg:py-44">
+<section className="bg-[#fbfaf9] py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
   <Container>
     <RiseInOnView staggerChildren>
       <div className="space-y-12">
@@ -214,8 +214,8 @@ export default function OperatorCaseStudy() {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-purple-800/80" />
 
         <RiseInOnView staggerChildren>
-          <div className="relative mx-auto w-full max-w-7xl px-4">
-            <div className="relative z-10 min-h-[620px] py-24 sm:py-32 lg:py-64">
+          <div className="relative mx-auto w-full max-w-7xl px-4 py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
+            <div className="relative z-10 min-h-[620px]">
               <div className="max-w-xl">
                 <SectionHeader
     title="Problem & Context"
@@ -268,7 +268,7 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* Research & Insights */}
-<section className="bg-[#FBFAF9] py-24 sm:py-32 lg:py-44">
+<section className="bg-[#FBFAF9] py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
   <Container>
     <div className="space-y-16 lg:space-y-24">
       {/* Section heading */}
@@ -454,7 +454,7 @@ export default function OperatorCaseStudy() {
 
 
       {/* Ideation & Design Process */}
-      <section className="relative overflow-hidden py-24 sm:py-32 lg:py-44">
+      <section className="relative overflow-hidden py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
         <div className="absolute inset-0 bg-white" />
 
         <RiseInOnView staggerChildren>
@@ -510,7 +510,7 @@ export default function OperatorCaseStudy() {
       </section>
 
       {/* UI Previews */}
-<section className="bg-[#FBFAF9] py-24 sm:py-32 lg:py-44">
+<section className="bg-[#FBFAF9] py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
         <Container>
           <div className="space-y-16 lg:space-y-24">
             <RiseInOnView>
@@ -579,73 +579,78 @@ export default function OperatorCaseStudy() {
 
 
       {/* Impact & Results */}
-      <section className="relative overflow-hidden py-24 sm:py-32 lg:py-64">
-        <div className="absolute inset-0">
-          <Image
-            src="/case-studies/operator/impact-bg1.png"
-            alt="Customer support agent using Operator"
-            fill
-            className="object-cover object-right"
-            priority
-            sizes="100vw"
-          />
-        </div>
+<section className="relative overflow-hidden py-24 sm:py-16 md:py-32 lg:py-36 xl:py-44">
+  <div className="absolute inset-0">
+    <Image
+      src="/case-studies/operator/impact-bg1.png"
+      alt="Customer support agent using Operator"
+      fill
+      className="object-cover object-right"
+      priority
+      sizes="100vw"
+    />
+  </div>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
+  <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
 
-        <RiseInOnView staggerChildren>
-          <Container>
-            <div className="relative z-10 space-y-16">
-
-              <div className="grid gap-24 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
-                <RiseInOnView staggerChildren>
-                  <div>
-                    <SectionHeader
-    title="Impact & Results"
-    dark
-    description="Operator made our internal tools much easier to use, which boosted adoption throughout the company. More importantly, the sophistication of Operator's product direction was a clear indicator of how well PartnerHero's vision for AI-powered human customer support aligned with Crescendo's, playing a role in the acquisition."
-    descriptionClassName="text-white"
-    align="left"
-    wrapperClassName="max-w-none"
-    titleClassName="
-  text-[#ff80f1]
-"
-  />
-                    
-                  </div>
-                </RiseInOnView>
-
-                <div className="hidden justify-center lg:flex">
-                  <span className="block h-full w-px bg-[#d3d3d3]" />
-                </div>
-
-                <RiseInOnView staggerChildren>
-                  <ul className="space-y-4">
-                    {[
-                      { bold: "Adopted by 500+ agents across teams" },
-                      { bold: "Unified design language across 3 applications and an admin panel" },
-                      { bold: "Positive feedback from early users highlighting clarity and visual consistency" },
-                    ].map((item) => (
-                      <li
-                        key={item.bold}
-                        className="flex items-center gap-4 rounded-2xl bg-black/70 px-5 py-4"
-                      >
-                        <span className="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black">
-                          <Check className="h-4 w-4 stroke-[2.5]" />
-                        </span>
-
-                        <p className="text-base leading-snug text-white">
-                          <span className="font-semibold">{item.bold}</span>{" "}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </RiseInOnView>
-              </div>
+  <RiseInOnView staggerChildren>
+    <Container>
+      <div className="relative z-10">
+        <div className="grid gap-16 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-20">
+          <RiseInOnView staggerChildren>
+            <div>
+              <SectionHeader
+                title="Impact & Results"
+                dark
+                description="Operator made our internal tools much easier to use, which boosted adoption throughout the company. More importantly, the sophistication of Operator's product direction was a clear indicator of how well PartnerHero's vision for AI-powered human customer support aligned with Crescendo's, playing a role in the acquisition."
+                descriptionClassName="text-white"
+                align="left"
+                wrapperClassName="max-w-none"
+                titleClassName="text-[#ff80f1]"
+              />
             </div>
-          </Container>
-        </RiseInOnView>
-      </section>
+          </RiseInOnView>
+
+          <div className="hidden lg:flex lg:h-full lg:justify-center">
+            <span className="block h-full w-px bg-white/20" />
+          </div>
+
+          <RiseInOnView staggerChildren>
+            <ul className="space-y-8">
+              {[
+                {
+                  bold: "Adopted by 500+ agents across teams",
+                  className: "lg:-translate-x-6",
+                },
+                {
+                  bold: "Unified design language across 3 applications and an admin panel",
+                  className: "lg:translate-x-12",
+                },
+                {
+                  bold: "Positive feedback from early users highlighting clarity and visual consistency",
+                  className: "lg:-translate-x-6",
+                },
+              ].map((item) => (
+                <li
+                  key={item.bold}
+                  className={`flex items-center gap-6 rounded-2xl border border-white/10 bg-white/10 px-8 py-7 backdrop-blur-md transition-transform ${item.className}`}
+                >
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-black">
+                    <Check className="h-5 w-5 stroke-[2.5]" />
+                  </span>
+
+                  <p className="text-xl leading-snug text-white md:text-xl">
+                    <span className="font-normal">{item.bold}</span>
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </RiseInOnView>
+        </div>
+      </div>
+    </Container>
+  </RiseInOnView>
+</section>
 
       {/* Reflection */}
       <section className="relative overflow-hidden py-24 sm:py-32 lg:py-44">

@@ -59,7 +59,7 @@ export default function HomePage() {
   {/* Content */}
   <div className="relative z-20 h-full">
     <Container>
-      <div className="relative h-svh pt-28 pb-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 lg:pt-32">
+      <div className="relative h-svh pt-32 sm:pt-32 md:pt-32 lg:pt-0 xl:pt-0 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16">
         {/* LEFT / mobile overlay text */}
         <RiseInOnView
           staggerChildren
@@ -72,7 +72,7 @@ export default function HomePage() {
             </h3>
 
             <div className="inline-block">
-              <h1 className="text-5xl font-normal leading-[0.9] tracking-normal text-white sm:text-7xl md:text-8xl xl:text-[150px]">
+              <h1 className="text-6xl font-normal leading-[0.9] tracking-normal text-white sm:text-7xl md:text-8xl xl:text-[150px]">
                 I&apos;m Exelí
               </h1>
 
@@ -88,7 +88,7 @@ export default function HomePage() {
               for what&apos;s next.
             </p>
 
-            <p className="mt-3 text-lg font-medium leading-tight tracking-normal text-white/75 italic sm:text-2xl md:text-4xl xl:text-xl">
+            <p className="mt-3 text-base font-medium leading-tight tracking-normal text-white/75 italic sm:text-base md:text-lg xl:text-xl">
               UX/UI design for SaaS, internal tools, and business websites.
             </p>
           </div>
