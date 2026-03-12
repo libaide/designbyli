@@ -67,17 +67,17 @@ export default function HomePage() {
           className="relative z-30 flex h-full w-full items-start lg:items-center"
         >
           <div className="mt-8 w-full max-w-[44rem]">
-            <h3 className="mb-4 text-3xl font-normal tracking-normal text-white sm:mb-6 sm:text-5xl lg:text-4xl">
+            <h3 className="mb-4 text-3xl font-normal tracking-normal text-white sm:mb-6 sm:text-4xl md:text-5xl lg:text-5xl xl:text-5xl">
               ¡Hola!
             </h3>
 
             <div className="inline-block">
-              <h1 className="text-6xl font-normal leading-[0.9] tracking-normal text-white sm:text-7xl md:text-8xl xl:text-[150px]">
+              <h1 className="text-7xl font-normal leading-[0.9] tracking-normal text-white sm:text-7xl md:text-9xl xl:text-[150px]">
                 I&apos;m Exelí
               </h1>
 
               <div className="mt-2 text-right sm:mt-3">
-                <span className="text-sm font-medium tracking-wide italic text-white/70 sm:text-lg">
+                <span className="text-sm font-normal tracking-wide italic text-white/70 sm:text-lg">
                   (ex-cell-LEE)
                 </span>
               </div>
@@ -88,8 +88,8 @@ export default function HomePage() {
               for what&apos;s next.
             </p>
 
-            <p className="mt-3 text-base font-medium leading-tight tracking-normal text-white/75 italic sm:text-base md:text-lg xl:text-xl">
-              UX/UI design for SaaS, internal tools, and business websites.
+            <p className="mt-3 text-base font-normal leading-tight tracking-normal text-white/75 italic sm:text-base md:text-lg xl:text-xl">
+              UX & UI design for SaaS, internal tools, and business websites.
             </p>
           </div>
         </RiseInOnView>

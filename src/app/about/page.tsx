@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import ContactSection from "@/components/ContactSection";
-import Image from "next/image";
 import RiseInOnView from "@/components/RiseInOnView";
 import ImageTrail from "@/components/ImageTrail";
 import { gsap } from "gsap";
@@ -11,10 +10,25 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const aboutParagraphs = [
+  {
+    highlight: "With over 8 years in design",
+    body: "I specialize in clear, functional, and thoughtfully crafted digital products. My career has focused on complex internal tools and SaaS platforms, where usability, consistency, and attention to detail are paramount. My approach is hands-on and system-driven, balancing visual design with user needs and business goals."
+  },
+  {
+    highlight: "My design experience",
+    body: "extends well beyond typical UX/UI. I’ve delivered branding, logo designs, complete websites, social media ads, print posters, video banners, and even marketing animations."
+  },
+  {
+    highlight: "When I’m not designing",
+    body: "you’ll usually find me spending quality time with my wife and daughter, maybe exploring the beautiful river lodges near El Cangrejal for a swim. I also dedicate time to my passion for music, playing and recording progressive metal guitar or producing electronic tracks."
+  }
+];
+
 export default function AboutPage() {
-  const heroRef = useRef<HTMLElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const introRef = useRef<HTMLDivElement | null>(null);
-  const contentRef = useRef<HTMLDivElement | null>(null);
+  const panelsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const trailImages = [
     "/Keys.png",
@@ -26,14 +40,14 @@ export default function AboutPage() {
   ];
 
   useGSAP(() => {
-    const hero = heroRef.current;
+    const section = sectionRef.current;
     const intro = introRef.current;
-    const content = contentRef.current;
+    const panels = panelsRef.current.filter(Boolean) as HTMLDivElement[];
 
-    if (!hero || !intro || !content) return;
+    if (!section || !intro || panels.length === 0) return;
 
-    gsap.set(hero, { backgroundColor: "#000000" });
-    gsap.set(content, { opacity: 0, y: 40 });
+    gsap.set(intro, { opacity: 1, y: 0 });
+    gsap.set(panels, { opacity: 0, y: 24 });
 
     const mm = gsap.matchMedia();
 
@@ -47,9 +61,11 @@ export default function AboutPage() {
 
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: hero,
+            trigger: section,
             start: "top top",
-            end: isMobile ? "+=520" : "+=1000",
+            end: isMobile
+              ? `+=${(aboutParagraphs.length + 1) * 420}`
+              : `+=${(aboutParagraphs.length + 1) * 650}`,
             scrub: true,
             pin: true,
             pinSpacing: true,
@@ -62,34 +78,38 @@ export default function AboutPage() {
           intro,
           {
             opacity: 0,
-            y: -28,
+            y: -24,
             ease: "none",
+            duration: 1,
           },
           0
         );
 
-        const t = isMobile ? 0.1 : 0.18;
+        panels.forEach((panel, index) => {
+          const start = index + 0.8;
 
-        tl.to(
-          hero,
-          {
-            backgroundColor: "#ffffff",
-            ease: "none",
-          },
-          t
-        );
+          tl.to(
+            panel,
+            {
+              opacity: 1,
+              y: 0,
+              ease: "none",
+              duration: 0.9,
+            },
+            start
+          );
 
-        tl.to(
-          content,
-          {
-            opacity: 1,
-            y: 0,
-            ease: "none",
-          },
-          t
-        );
-
-        tl.to({}, { duration: isMobile ? 0.1 : 0.35 });
+          tl.to(
+            panel,
+            {
+              opacity: 0,
+              y: -24,
+              ease: "none",
+              duration: 0.9,
+            },
+            start + 0.9
+          );
+        });
 
         return () => {
           tl.scrollTrigger?.kill();
@@ -104,114 +124,59 @@ export default function AboutPage() {
   return (
     <>
       <section
-        ref={heroRef}
-        className="relative min-h-[100svh] overflow-hidden bg-black"
+        ref={sectionRef}
+        className="relative min-h-[100svh] overflow-hidden bg-black text-white"
       >
         <div className="pointer-events-none fixed inset-0 z-0">
-  <ImageTrail items={trailImages} variant={1} />
-</div>
+          <ImageTrail items={trailImages} variant={1} />
+        </div>
 
-        <div className="relative z-10 mx-auto px-6 py-24 sm:px-10 sm:py-44">
-          {/* INTRO SECTION */}
-          <div
-            ref={introRef}
-            className="flex min-h-[70svh] flex-col items-center justify-center text-center"
-          >
-            <RiseInOnView staggerChildren={true} staggerMs={140}>
-              <h1 className="mx-auto max-w-[1200px] text-center text-4xl leading-snug tracking-normal sm:text-5xl md:text-6xl lg:text-6xl xl:text-8xl">
-                I believe excellent design isn&apos;t just about aesthetics.
-              </h1>
+        <div className="relative z-10 flex min-h-[100svh] items-center justify-center px-6 py-24 sm:px-10 sm:py-32">
+          <div className="relative mx-auto flex min-h-[70svh] w-full max-w-5xl items-center justify-center">
+            {/* INTRO */}
+            <div
+              ref={introRef}
+              className="absolute inset-0 flex flex-col items-center justify-center text-center"
+            >
+              <RiseInOnView staggerChildren={true} staggerMs={140}>
+                <h1 className="mx-auto max-w-[1200px] text-center text-4xl leading-snug tracking-normal sm:text-5xl md:text-6xl lg:text-6xl xl:text-8xl">
+                  I believe excellent design isn&apos;t just about aesthetics.
+                </h1>
 
-              <div className="mt-16 text-[12px] font-light text-white/30">
-                Scroll to learn more
-              </div>
-            </RiseInOnView>
-          </div>
+                <div className="mt-16 text-[16px] font-light text-white/30">
+                  Scroll to learn more
+                </div>
+              </RiseInOnView>
+            </div>
 
-          {/* CONTENT SECTION */}
-          <div ref={contentRef} className="mx-auto max-w-175 pb-24">
-            <div className="space-y-5 text-xl font-normal leading-relaxed text-gray-500">
-              <p>
-                My journey into UX/UI design began serendipitously as a lead web designer.
-                Introduced to an in-house QA tool, I quickly became fascinated by the
-                scientific and psychological aspects of UX/UI. This close collaboration
-                with development teams and the continuous challenge of transforming complex
-                problems into clean, intuitive solutions solidified my passion.
-              </p>
+            {/* PARAGRAPH PANELS */}
+            {aboutParagraphs.map((paragraph, index) => (
+              <div
+                key={index}
+                ref={(el) => {
+                  panelsRef.current[index] = el;
+                }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <div className="mx-auto max-w-4xl text-left">
+                  <p className="text-lg leading-relaxed text-white/85 sm:text-xl md:text-3xl">
 
-              <p>
-                My design experience extends well beyond typical UX/UI. I&apos;ve delivered
-                branding, logo designs, complete websites, social media ads, print posters,
-                video banners, and even marketing animations. My capabilities also reach
-                into audio design and production, thanks to formal training at a music
-                production institute. This wide range of skills means I bring a truly
-                integrated design approach to every project.
-              </p>
+  <span className="bg-gradient-to-r from-blue-500 via-blue-400 to-cyan-400 bg-clip-text text-transparent font-medium text-[1.8em]">
+    {paragraph.highlight}
+  </span>{" "}
+  
+  {paragraph.body}
 
-              <p>
-                With over 8 years in design, I specialize in clear, functional, and
-                thoughtfully crafted digital products. My career has focused on complex
-                internal tools and SaaS platforms, where usability, consistency, and
-                attention to detail are paramount. I&apos;m also excited to leverage AI as a
-                powerful tool to enhance creativity and improve design outcomes, always
-                striving to create more and create better.
-              </p>
+</p>
 
-              <p>
-                My approach is hands-on and system-driven, balancing visual design with
-                user needs and business goals. Colleagues often describe me as highly
-                creative, efficient, and effective, constantly asking &apos;How can I be more
-                creative?&apos; This stems from a deep curiosity across science, art, history,
-                music, philosophy, comedy, and psychology, allowing me to connect disparate
-                ideas and &apos;put stuff together&apos; uniquely. I prioritize delivering a
-                client&apos;s vision with sound design principles, excelling at guiding them to
-                both what they want and what they truly need.
-              </p>
-
-              <p>
-                When I&apos;m not designing, you&apos;ll usually find me spending quality time with
-                my wife and daughter, maybe exploring the beautiful river lodges near El
-                Cangrejal for a swim. I also dedicate time to my passion for music, playing
-                and recording progressive metal guitar or producing electronic tracks. I&apos;m
-                always looking for opportunities to build meaningful connections and
-                collaborate on impactful work.
-              </p>
-
-              <div className="pt-12">
-                <div className="flex items-center justify-end gap-6">
-                  <div className="text-right">
-                    <p className="text-lg font-medium text-gray-500">Exelí Baide</p>
-
-                    <p className="mt-1 flex items-center justify-end gap-2 text-sm font-light text-gray-500">
-                      <svg
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        className="h-4 w-4"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
-                        <path d="M12 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
-                      </svg>
-                      <span>La Ceiba, Honduras</span>
-                    </p>
-                  </div>
-
-                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-white/10 bg-white/5 shadow-sm">
-                    <Image
-                      src="/ProfilePic.png"
-                      alt="Portrait of Exelí Baide"
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
+                  {index === aboutParagraphs.length - 1 && (
+                    <div className="mt-10 text-lg font-light tracking-wide text-white/70">
+                      Exelí Baide · La Ceiba, Honduras
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

@@ -86,13 +86,13 @@ export default function HumanizeCaseStudy() {
           illustrationAlt="Humanize UI preview"
           summary={
             <>
-              <p className="text-lg font-normal leading-relaxed text-gray-500">
+              <p className="text-xl font-normal leading-relaxed text-gray-500">
                 A lightweight, self-serve Shopify app that helps merchants deliver high-quality customer
                 support at scale through PartnerHero’s global CX teams—packaged into a frictionless,
                 Shopify-native experience.
               </p>
 
-              <p className="text-lg font-normal leading-relaxed text-gray-500">
+              <p className="text-xl font-normal leading-relaxed text-gray-500">
                 My role covered <span className="font-semibold">research</span>,{" "}
                 <span className="font-semibold">user flows</span>,{" "}
                 <span className="font-semibold">wireframing</span>,{" "}
@@ -122,7 +122,7 @@ export default function HumanizeCaseStudy() {
                   description="PartnerHero’s global CX teams could offer high-quality support at scale. The challenge was turning this operational capability into a lightweight, self-serve Shopify app with a frictionless user experience."
                   titleClassName="text-[#1B1B1B] font-bold"
                   descriptionClassName="text-[#1B1B1B] text-lg font-normal leading-relaxed"
-                  underline={{ show: true, className: "bg-[#E45027]" }}
+                  underline={{ show: true, className: "bg-[#E45027] mt-8" }}
                   wrapperClassName="text-left mx-0 max-w-none"
                 />
 
@@ -161,11 +161,13 @@ export default function HumanizeCaseStudy() {
         <Container>
           <RiseInOnView>
             <SectionHeader
+              align="left"
               title="Objectives"
               description="The project focused on four primary UX objectives:"
               titleClassName="text-[#1B1B1B] font-bold"
               descriptionClassName="text-[#1B1B1B] text-lg font-normal"
-              underline={{ show: true, className: "bg-[#E45027]" }}
+              underline={{ show: true, className: "bg-[#E45027] mt-8" }}
+                  wrapperClassName="text-left mx-0 max-w-none"
             />
           </RiseInOnView>
 
